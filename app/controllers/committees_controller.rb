@@ -47,6 +47,10 @@ class CommitteesController < ApplicationController
     end
   end
 
+  def delete
+    @committee = Committee.find(params[:id])
+  end
+
   # DELETE /committees/1 or /committees/1.json
   def destroy
     @committee.destroy
