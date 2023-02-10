@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :committees
+  resources :excuses
 
   resources :committees do
     member do
