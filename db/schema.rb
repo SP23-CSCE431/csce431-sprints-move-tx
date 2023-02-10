@@ -10,8 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_10_214254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "members", force: :cascade do |t|
+    t.string "name"
+    t.string "committee"
+    t.string "position"
+    t.integer "civicPoints"
+    t.integer "outreachPoints"
+    t.integer "socialPoints"
+    t.integer "marketingPoints"
+    t.integer "totalPoints"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
