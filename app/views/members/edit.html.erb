@@ -1,0 +1,16 @@
+<%= link_to("Back to List", members_path, :class => 'back-link') %>
+
+<div class="members edit">
+  <h2>Edit Member</h2>
+
+  <%= form_for(@member) do |f| %>
+    <% # url: task_path(@task), method: 'patch' %>
+
+    <%= render(partial: 'form', locals: {f: f}) %>
+
+    <div class="form-buttoms">
+      <%= f.submit("Edit Member") %>
+    </div>
+
+  <% end %>
+</div>
