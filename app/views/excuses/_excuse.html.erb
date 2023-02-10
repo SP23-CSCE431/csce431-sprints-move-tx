@@ -1,0 +1,12 @@
+<div id="<%= dom_id excuse %>">
+  <p>
+    <strong>Description:</strong>
+    <%= excuse.description %>
+  </p>
+
+  <p>
+    <strong>File:</strong>
+    <%= link_to excuse.file.filename, excuse.file if excuse.file.attached? %>
+  </p>
+
+</div>
