@@ -1,0 +1,21 @@
+require 'rails_helper'
+
+RSpec.describe "committees/new", type: :view do
+  before(:each) do
+    assign(:committee, Committee.new(
+      name: "MyString",
+      leader_member_id: 1
+    ))
+  end
+
+  it "renders new committee form" do
+    render
+
+    assert_select "form[action=?][method=?]", committees_path, "post" do
+
+      assert_select "input[name=?]", "committee[name]"
+
+      assert_select "input[name=?]", "committee[leader_member_id]"
+    end
+  end
+end

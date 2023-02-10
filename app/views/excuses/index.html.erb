@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Excuses</h1>
+
+<div id="excuses">
+  <% @excuses.each do |excuse| %>
+    <%= render excuse %>
+    <p>
+      <%= link_to "Show this excuse", excuse %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New excuse", new_excuse_path %>

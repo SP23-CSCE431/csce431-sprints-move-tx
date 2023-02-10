@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @committee %>
+
+<div>
+  <%= link_to "Edit this committee", edit_committee_path(@committee) %> |
+  <%= link_to "Back to committees", committees_path %>
+
+  <%= button_to "Destroy this committee", @committee, method: :delete %>
+</div>
