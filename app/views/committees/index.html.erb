@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Committees</h1>
+
+<div id="committees">
+  <% @committees.each do |committee| %>
+    <%= render committee %>
+    <p>
+      <%= link_to "Show this committee", committee %>
+      <%= link_to "Delete this committee", delete_committee_path(committee), class: "action delete" %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New committee", new_committee_path %>
