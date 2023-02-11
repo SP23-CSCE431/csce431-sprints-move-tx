@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :member_events
   root "main#index"
 
   get 'main/index'
