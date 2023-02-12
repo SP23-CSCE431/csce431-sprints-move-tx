@@ -17,8 +17,39 @@ RSpec.describe "/member_events", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # MemberEvent. As you add validations to MemberEvent, be sure to
   # adjust the attributes here as well.
+  let(:member) {
+    Member.create!(
+      name: "MyName"
+    )
+  }
+
+  let(:event) {
+    Event.create!(
+      name: "MyName",
+      date: Date.parse("01-01-2023"),
+      event_type: "MyType"
+    )
+  }
+  
+  let(:member2) {
+    Member.create!(
+      name: "MyName2"
+    )
+  }
+
+  let(:event2) {
+    Event.create!(
+      name: "MyName2",
+      date: Date.parse("01-01-2023"),
+      event_type: "MyType"
+    )
+  }
+  
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      event_id: event.id,
+      member_id: member.id,
+    }
   }
 
   let(:invalid_attributes) {
@@ -89,7 +120,10 @@ RSpec.describe "/member_events", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          event_id: event2.id,
+          member_id: member2.id,
+        }
       }
 
       it "updates the requested member_event" do

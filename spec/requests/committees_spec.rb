@@ -18,7 +18,9 @@ RSpec.describe "/committees", type: :request do
   # Committee. As you add validations to Committee, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "Name"
+    }
   }
 
   let(:invalid_attributes) {
@@ -89,7 +91,9 @@ RSpec.describe "/committees", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: "Name2"
+        }
       }
 
       it "updates the requested committee" do

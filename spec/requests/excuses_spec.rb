@@ -18,7 +18,7 @@ RSpec.describe "/excuses", type: :request do
   # Excuse. As you add validations to Excuse, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {file: nil}
   }
 
   let(:invalid_attributes) {
@@ -89,7 +89,7 @@ RSpec.describe "/excuses", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {file: nil}
       }
 
       it "updates the requested excuse" do

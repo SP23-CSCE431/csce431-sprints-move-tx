@@ -4,6 +4,7 @@ RSpec.describe "events/show", type: :view do
   before(:each) do
     assign(:event, Event.create!(
       name: "Name",
+      date: Date.parse("01-01-2023"),
       point_type: "Point Type",
       event_type: "Event Type",
       phrase: "Phrase"
