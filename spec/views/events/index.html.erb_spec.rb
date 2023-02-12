@@ -5,12 +5,14 @@ RSpec.describe "events/index", type: :view do
     assign(:events, [
       Event.create!(
         name: "Name",
+        date: Date.parse("01-01-2023"),
         point_type: "Point Type",
         event_type: "Event Type",
         phrase: "Phrase"
       ),
       Event.create!(
         name: "Name",
+        date: Date.parse("01-01-2023"),
         point_type: "Point Type",
         event_type: "Event Type",
         phrase: "Phrase"
