@@ -58,7 +58,7 @@ RSpec.describe "members integration", type: :feature do
 
         scenario 'create with invalid name' do
             visit new_member_path
-            #fill_in "member[name]",             with: invalid_attributes[:name]
+            fill_in "member[name]",             with: invalid_attributes[:name]
             fill_in "member[committee]",        with: valid_attributes[:committee]
             fill_in "member[position]",         with: valid_attributes[:position]
             fill_in "member[civicPoints]",      with: valid_attributes[:civicPoints]
@@ -68,7 +68,6 @@ RSpec.describe "members integration", type: :feature do
             fill_in "member[totalPoints]",      with: valid_attributes[:totalPoints]
             click_on "Create Member"
             visit members_path
-            #expect(page).not_to have_content(invalid_attributes[:name])
             expect(page).not_to have_content(valid_attributes[:committee])
             expect(page).not_to have_content(valid_attributes[:position])
             expect(page).not_to have_content(valid_attributes[:civicPoints])
