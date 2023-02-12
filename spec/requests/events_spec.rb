@@ -18,11 +18,19 @@ RSpec.describe "/events", type: :request do
   # Event. As you add validations to Event, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "MyName",
+      date: Date.parse("01-01-2023"),
+      event_type: "MyType"
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: nil,
+      date: nil,
+      event_type: nil
+    }
   }
 
   describe "GET /index" do
@@ -89,7 +97,11 @@ RSpec.describe "/events", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: "MyName2",
+          date: Date.parse("01-02-2023"),
+          event_type: "MyType2"
+        }
       }
 
       it "updates the requested event" do
@@ -110,6 +122,7 @@ RSpec.describe "/events", type: :request do
     context "with invalid parameters" do
     
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
+        #skip("no worky (but should)")
         event = Event.create! valid_attributes
         patch event_url(event), params: { event: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
