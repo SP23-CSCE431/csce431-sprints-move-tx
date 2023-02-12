@@ -1,0 +1,49 @@
+<%= form_with(model: member_event) do |form| %>
+  <% if member_event.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(member_event.errors.count, "error") %> prohibited this member_event from being saved:</h2>
+
+      <ul>
+        <% member_event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :event_id, style: "display: block" %>
+    <%= form.select :event_id, Event.order(:name).map { |event| [event.name, event.id] } %>
+  </div>
+
+  <div>
+    <%= form.label :member_id, style: "display: block" %>
+    <%= form.select :member_id, Member.order(:name).map { |member| [member.name, member.id] } %>
+  </div>
+
+  <div>
+    <%= form.label :approved_status, style: "display: block" %>
+    <%= form.check_box :approved_status %>
+  </div>
+
+  <div>
+    <%= form.label :approve_date, style: "display: block" %>
+    <%= form.date_field :approve_date %>
+  </div>
+
+  <div>
+    <%= form.label :approve_by, style: "display: block" %>
+    <%= form.text_field :approve_by %>
+  </div>
+
+  <div>
+    <%= form.label :file, style: "display: block" %>
+    <%= form.file_field :file %>
+  </div>
+
+  <br>
+  
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
