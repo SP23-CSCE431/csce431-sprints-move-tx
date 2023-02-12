@@ -1,34 +1,36 @@
-<table summary="Member form fields">
-  <tr>
-    <th>Name</th>
-    <td><%= f.text_field(:name) %></td>
-  </tr>
-  <tr>
-    <th>Committee</th>
-    <td><%= f.text_field(:committee) %></td>
-  </tr>
-  <tr>
-    <th>Position</th>
-    <td><%= f.text_field(:position) %></td>
-  </tr>
-  <tr>
-    <th>Civic Points</th>
-    <td><%= f.number_field :civicPoints %>
-  </tr>
-  <tr>
-    <th>Outreach Points</th>
-    <td><%= f.number_field :outreachPoints %>
-  </tr>
-  <tr>
-    <th>Social Points</th>
-    <td><%= f.number_field :socialPoints %>
-  </tr>
-  <tr>
-    <th>Marketing Points</th>
-    <td><%= f.number_field :marketingPoints %>
-  </tr>
-  <tr>
-    <th>Total Points</th>
-    <td><%= f.number_field :totalPoints %>
-  </tr>
-</table>
+<%= form_with(model: @member) do |form| %>
+  <% if @member.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+        <% @member.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+    <%= form.label :committee, style: "display: block" %>
+    <%= form.text_field :committee %>
+    <%= form.label :position, style: "display: block" %>
+    <%= form.text_field :position %>
+    <%= form.label :civicPoints, style: "display: block" %>
+    <%= form.number_field :civicPoints %>
+    <%= form.label :outreachPoints, style: "display: block" %>
+    <%= form.number_field :outreachPoints %>
+    <%= form.label :socialPoints, style: "display: block" %>
+    <%= form.number_field :socialPoints %>
+    <%= form.label :marketingPoints, style: "display: block" %>
+    <%= form.number_field :marketingPoints %>
+    <%= form.label :totalPoints, style: "display: block" %>
+    <%= form.number_field :totalPoints %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
