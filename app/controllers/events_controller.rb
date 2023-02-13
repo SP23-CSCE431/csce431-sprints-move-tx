@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_event, :service_or_meeting, only: %i[ show edit update destroy ]
 
   # GET /events or /events.json
   def index
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1 or /events/1.json
   def update
     respond_to do |format|
-      if @event.update(event_params)
+        if @event.update(event_params)
         format.html { redirect_to event_url(@event), notice: "Event was successfully updated." }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -45,6 +45,11 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # for deletion page 
+  def delete
+    @event = Event.find(params[:id])
   end
 
   # DELETE /events/1 or /events/1.json
@@ -63,7 +68,20 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # condition that will automatically turn point type to nil if event type is meeting 
+    def service_or_meeting
+      if @event.event_type == "Meeting"
+        @event.point_type = nil
+        @event.save
+      end
+
+      if @event.event_type == "Service"
+        @event.phrase = nil
+        @event.save
+      end
+    end
+
+    # Only allow a list of trusted parameters through. 
     def event_params
       params.require(:event).permit(:name, :date, :point_type, :event_type, :phrase)
     end
