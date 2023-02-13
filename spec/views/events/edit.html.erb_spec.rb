@@ -22,9 +22,9 @@ RSpec.describe "events/edit", type: :view do
 
       assert_select "input[name=?]", "event[name]"
 
-      assert_select "input[name=?]", "event[point_type]"
+      assert_select "select[name=?]", "event[point_type]"
 
-      assert_select "input[name=?]", "event[event_type]"
+      assert_select "select[name=?]", "event[event_type]"
 
       assert_select "input[name=?]", "event[phrase]"
     end
