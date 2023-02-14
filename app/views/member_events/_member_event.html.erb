@@ -24,4 +24,9 @@
     <%= member_event.approve_by %>
   </p>
 
+  <p>
+  <strong>File:</strong>
+   <%= link_to member_event.file.filename, member_event.file if member_event.file.attached? %>
+  </p>
+
 </div>
