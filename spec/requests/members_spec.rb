@@ -67,7 +67,7 @@ RSpec.describe "/members", type: :request do
 
       it "redirects to the members table" do
         post members_url, params: { member: valid_attributes }
-        expect(response).to redirect_to(members_url)
+        expect(response).to redirect_to(member_url(Member.last))
       end
     end
 
