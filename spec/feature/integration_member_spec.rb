@@ -58,7 +58,6 @@ RSpec.describe "Members integration", type: :feature do
 
         scenario 'create with invalid name' do
             visit new_member_path
-            fill_in "member[name]",             with: invalid_attributes[:name]
             fill_in "member[committee]",        with: valid_attributes[:committee]
             fill_in "member[position]",         with: valid_attributes[:position]
             fill_in "member[civicPoints]",      with: valid_attributes[:civicPoints]

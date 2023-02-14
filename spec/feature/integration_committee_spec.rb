@@ -59,7 +59,7 @@ RSpec.describe "Committee integration", type: :feature do
     end
 
     describe "Deletion" do
-        scenario "Delete entry" do
+        scenario "delete entry" do
             @temp = Committee.create!(valid_attributes)
             visit committees_path
             expect(page).to have_content(valid_attributes[:name])
