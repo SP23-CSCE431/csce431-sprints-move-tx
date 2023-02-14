@@ -22,13 +22,13 @@
   </div>
 
   <div>
-    <%= form.label :point_type, style: "display: block" %>
-    <%= form.text_field :point_type %>
+    <%= form.label :event_type, style: "display: block" %>
+    <%= form.select :event_type, options_for_select([["Meeting"], ["Service"]])%>
   </div>
 
   <div>
-    <%= form.label :event_type, style: "display: block" %>
-    <%= form.text_field :event_type %>
+    <%= form.label :point_type, style: "display: block" %>
+    <%= form.select :point_type, options_for_select([[nil], ["Marketing"], ["Civic Engagement"], ["Chapter Development"], ["Outreach"]]) %>
   </div>
 
   <div>

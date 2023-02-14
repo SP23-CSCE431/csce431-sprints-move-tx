@@ -1,0 +1,17 @@
+<%= link_to "Back to events", events_path %>
+
+<div class="delete">
+    <h1>Destroy Event</h1>
+    <%= form_for(@event, method: 'delete') do |f| %>
+        <p>Are you sure you want to permanently delete this event?</p>
+        <p>Name: <%= @event.name %></p>
+        <p>Date: <%= @event.date %></p>
+        <p>Point Type: <%= @event.point_type %></p> 
+        <p>Event Type: <%= @event.event_type %></p> 
+        <p>Phrase: <%= @event.phrase %></p>
+        
+        <div class="form-buttons">
+            <%= f.submit("Delete event") %>
+        </div>
+    <% end %>
+</div>
