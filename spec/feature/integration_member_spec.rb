@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "members integration", type: :feature do
+RSpec.describe "Members integration", type: :feature do
     let(:valid_attributes) {
         {
             name: "MyName1",
@@ -90,7 +90,7 @@ RSpec.describe "members integration", type: :feature do
             expect(page).not_to have_content(valid_attributes[:name])
             expect(page).to have_content(edit_attributes[:name])
         end
-        #######################################
+        
         scenario 'update committee' do
             @temp = Member.create!(valid_attributes)
             visit member_url(@temp)
