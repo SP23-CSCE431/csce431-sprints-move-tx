@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @excuse %>
+
+<div>
+  <%= link_to "Edit this excuse", edit_excuse_path(@excuse) %> |
+  <%= link_to "Back to excuses", excuses_path %>
+
+  <%= button_to "Destroy this excuse", @excuse, method: :delete %>
+</div>

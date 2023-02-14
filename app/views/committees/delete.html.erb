@@ -1,0 +1,15 @@
+<%= link_to "Back to committees", committees_path %>
+
+<div class="delete">
+    <h1>Destroy Committe</h1>
+    
+    <%= form_for(@committee, method: 'delete') do |f| %>
+        <p>Are you sure you want to permanently delete this committee?</p>
+        <p>Name: <%= @committee.name %></p>
+        <p>Leader Member ID: <%= @committee.leader_member_id %></p>        
+
+        <div class="form-buttons">
+            <%= f.submit("Delete committee") %>
+        </div>
+    <% end %>
+</div>

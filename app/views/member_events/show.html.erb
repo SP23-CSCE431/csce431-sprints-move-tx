@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @member_event %>
+
+<div>
+  <%= link_to "Edit this member event", edit_member_event_path(@member_event) %> |
+  <%= link_to "Back to member events", member_events_path %>
+
+  <%= button_to "Destroy this member event", @member_event, method: :delete %>
+</div>

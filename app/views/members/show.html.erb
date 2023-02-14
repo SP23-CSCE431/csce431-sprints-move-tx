@@ -1,0 +1,56 @@
+<%= link_to("Back to Members", members_path, class: 'back-link') %>
+
+<div class="members show">
+  <h2>Show member</h2>
+
+  <div class="actions">
+    <%= link_to('Edit', edit_member_path(@member)) %>
+    <%= link_to('Delete', delete_member_path(@member)) %>
+  </div>
+  <table summary="Member detail view">
+    <tr>
+      <th>Name</th>
+      <td><%= @member.name %></td>
+    </tr>
+    <tr>
+      <th>Committee</th>
+      <% if @member.committee %>
+        <%= @member.committee %>
+      <% end %>
+    </tr>
+    <tr>
+      <th>Position</th>
+      <td><%= @member.position %></td>
+      <% if @member.position %>
+        <%= @member.position %>
+      <% end %>
+    </tr>
+    <tr>
+      <th>Civic Points</th>
+      <td><%= @member.civicPoints %></td>
+    </tr>
+    <tr>
+      <th>Outreach Points</th>
+      <td><%= @member.outreachPoints %></td>
+    </tr>
+    <tr>
+      <th>Social Points</th>
+      <td><%= @member.socialPoints %></td>
+    </tr>
+    <tr>
+      <th>Marketing Points</th>
+      <td><%= @member.marketingPoints %></td>
+    </tr>
+    <tr>
+      <th>Total Points</th>
+      <td><%= @member.totalPoints %></td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td><%= @member.created_at %></td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td><%= @member.updated_at %></td>
+    </tr>
+  </div>
