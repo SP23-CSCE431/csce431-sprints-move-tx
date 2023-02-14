@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Excuse, type: :model do
   describe "file attachment validations" do
-    let(:excuse) { build(:excuse) }
+    let(:excuse) { Excuse.new }
 
     context "file size is >= 5MB" do
       before do
