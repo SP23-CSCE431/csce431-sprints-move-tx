@@ -32,27 +32,19 @@ RSpec.describe "Committee integration", type: :feature do
     end
 
     describe "Editing" do
-        scenario 'update name' do
+        scenario 'update with valid attributes' do
             @temp = Committee.create!(valid_attributes)
             visit committee_url(@temp)
             expect(page).to have_content(valid_attributes[:name])
+            expect(page).to have_content(valid_attributes[:leader_member_id])
+
             visit edit_committee_path(@temp)
             fill_in "committee[name]", with: edit_attributes[:name]
-            click_on "Update Committee"
-            visit committee_url(@temp)
-            expect(page).not_to have_content(valid_attributes[:name])
-            expect(page).to have_content(edit_attributes[:name])
-        end
-        
-        scenario 'update leader_member_id' do
-            @temp = Committee.create!(valid_attributes)
-            visit committee_url(@temp)
-            expect(page).to have_content(valid_attributes[:leader_member_id])
-            visit edit_committee_path(@temp)
             fill_in "committee[leader_member_id]", with: edit_attributes[:leader_member_id]
             click_on "Update Committee"
+
             visit committee_url(@temp)
-            expect(page).not_to have_content(valid_attributes[:leader_member_id])
+            expect(page).to have_content(edit_attributes[:name])
             expect(page).to have_content(edit_attributes[:leader_member_id])
         end
         

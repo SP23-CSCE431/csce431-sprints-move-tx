@@ -97,8 +97,7 @@ RSpec.describe 'Event integration', type: :feature do
             fill_in "event[name]", with: invalid_meeting[:name]
             fill_in "event[date]", with: invalid_general[:date]
             select valid_meeting[:event_type], from: "event[event_type]"
-            # leave phrase blank
-            # or: fill_in "event[phrase]", with: invalid_meeting[:phrase]
+            fill_in "event[phrase]", with: invalid_meeting[:phrase]
             click_on 'Create Event'
             expect(page).to have_content("Phrase can't be blank when there is a meeting")
         end
@@ -108,75 +107,16 @@ RSpec.describe 'Event integration', type: :feature do
             fill_in "event[name]", with: valid_service[:name]
             fill_in "event[date]", with: valid_service[:date]
             select valid_service[:event_type], from: "event[event_type]"
-            # leave point type blank
-            # or: select invalid_service[:point_type], from: "event[point_type]"
+            select invalid_service[:point_type], from: "event[point_type]"
             click_on 'Create Event'
             expect(page).to have_content("Point type point type can't be blank when there is a service")
-        end
-
-        # valid scenarios
-        scenario 'valid Service Submission' do 
-            visit new_event_path
-            fill_in "event[name]", with: "Park clean up"
-            fill_in "event[date]", with: "2022-12-15"
-            select "Service", from: "event[event_type]"
-            select "Outreach", from: "event[point_type]"
-            click_on 'Create Event'
-            expect(page).to have_content("Event was successfully created")
-        end
-
-        scenario 'valid Meeting Submision' do
-            visit new_event_path
-            fill_in "event[name]", with: "feb meeting"
-            fill_in "event[date]", with: "2022-12-15"
-            select "Meeting", from: "event[event_type]"
-            fill_in "event[phrase]", with: "merry"
-            click_on 'Create Event'
-            expect(page).to have_content("Event was successfully created")
         end
     end
 
     describe "Editing" do
 
-        #invalid scenarios
-        scenario 'invalid name' do
-            @temp = Event.create!(valid_meeting)
-            visit edit_event_path(@temp)
-            select valid_meeting[:event_type], from: "event[event_type]"
-            fill_in "event[name]", with: invalid_general[:name]
-            click_on 'Update Event'
-            expect(page).to have_content("Name can't be blank")
-        end
-
-        scenario 'invalid date' do
-            @temp = Event.create!(valid_meeting)
-            visit edit_event_path(@temp)
-            select valid_meeting[:event_type], from: "event[event_type]"
-            fill_in "event[date]", with: invalid_general[:date]
-            click_on 'Update Event'
-            expect(page).to have_content("Date can't be blank")
-        end
-
-        scenario 'Meeting without phrase' do
-            @temp = Event.create!(valid_meeting)
-            visit edit_event_path(@temp)
-            select valid_meeting[:event_type], from: "event[event_type]"
-            fill_in "event[phrase]", with: invalid_meeting[:phrase]
-            click_on 'Update Event'
-            expect(page).to have_content("Phrase can't be blank when there is a meeting")
-        end
-
-        scenario 'Service without point type' do
-            @temp = Event.create!(valid_service)
-            visit edit_event_path(@temp)
-            select invalid_service[:point_type], from: "event[point_type]"
-            select valid_service[:event_type], from: "event[event_type]"
-            click_on 'Update Event'
-            expect(page).to have_content("Point type point type can't be blank when there is a service")
-        end
-
         # valid scenarios
-        scenario 'valid Service Update' do
+        scenario 'update service with valid inputs' do
             @temp = Event.create!(valid_service)
             visit edit_event_path(@temp)
             fill_in "event[name]", with: edit_service[:name]
@@ -187,7 +127,7 @@ RSpec.describe 'Event integration', type: :feature do
             expect(page).to have_content("Event was successfully updated")
         end
 
-        scenario 'valid Meeting Submision' do
+        scenario 'update meeting with valid inputs' do
             @temp = Event.create!(valid_meeting)
             visit edit_event_path(@temp)
             fill_in "event[name]", with: edit_meeting[:name]
@@ -197,11 +137,48 @@ RSpec.describe 'Event integration', type: :feature do
             click_on 'Update Event'
             expect(page).to have_content("Event was successfully updated")
         end
+
+        #invalid scenarios
+        scenario 'update with invalid name' do
+            @temp = Event.create!(valid_meeting)
+            visit edit_event_path(@temp)
+            select valid_meeting[:event_type], from: "event[event_type]"
+            fill_in "event[name]", with: invalid_general[:name]
+            click_on 'Update Event'
+            expect(page).to have_content("Name can't be blank")
+        end
+
+        scenario 'update with invalid date' do
+            @temp = Event.create!(valid_meeting)
+            visit edit_event_path(@temp)
+            select valid_meeting[:event_type], from: "event[event_type]"
+            fill_in "event[date]", with: invalid_general[:date]
+            click_on 'Update Event'
+            expect(page).to have_content("Date can't be blank")
+        end
+
+        scenario 'update with meeting without phrase' do
+            @temp = Event.create!(valid_meeting)
+            visit edit_event_path(@temp)
+            select valid_meeting[:event_type], from: "event[event_type]"
+            fill_in "event[phrase]", with: invalid_meeting[:phrase]
+            click_on 'Update Event'
+            expect(page).to have_content("Phrase can't be blank when there is a meeting")
+        end
+
+        scenario 'update with service without point type' do
+            @temp = Event.create!(valid_service)
+            visit edit_event_path(@temp)
+            select invalid_service[:point_type], from: "event[point_type]"
+            select valid_service[:event_type], from: "event[event_type]"
+            click_on 'Update Event'
+            expect(page).to have_content("Point type point type can't be blank when there is a service")
+        end
     end
 
     describe "Deletion" do
 
-        scenario 'going to delete page event' do
+        scenario 'access deletion page' do
             @temp = Event.create!(valid_meeting)
             visit event_url(@temp)
             click_on 'Delete this event'

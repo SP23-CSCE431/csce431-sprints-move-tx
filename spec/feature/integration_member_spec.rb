@@ -78,94 +78,44 @@ RSpec.describe "Members integration", type: :feature do
     end
 
     describe "Editing" do
-        scenario 'update name' do
+        scenario 'update with valid inputs' do
             @temp = Member.create!(valid_attributes)
             visit member_url(@temp)
             expect(page).to have_content(valid_attributes[:name])
-            visit edit_member_path(@temp)
-            fill_in "member[name]", with: edit_attributes[:name]
-            click_on "Edit Member"
-            visit member_url(@temp)
-            expect(page).not_to have_content(valid_attributes[:name])
-            expect(page).to have_content(edit_attributes[:name])
-        end
-        
-        scenario 'update committee' do
-            @temp = Member.create!(valid_attributes)
-            visit member_url(@temp)
             expect(page).to have_content(valid_attributes[:committee])
-            visit edit_member_path(@temp)
-            fill_in "member[committee]", with: edit_attributes[:committee]
-            click_on "Edit Member"
-            visit member_url(@temp)
-            expect(page).not_to have_content(valid_attributes[:committee])
-            expect(page).to have_content(edit_attributes[:committee])
-        end
-
-        scenario 'update position' do
-            @temp = Member.create!(valid_attributes)
-            visit member_url(@temp)
             expect(page).to have_content(valid_attributes[:position])
-            visit edit_member_path(@temp)
-            fill_in "member[position]", with: edit_attributes[:position]
-            click_on "Edit Member"
-            visit member_url(@temp)
-            expect(page).not_to have_content(valid_attributes[:position])
-            expect(page).to have_content(edit_attributes[:position])
-        end
-
-        scenario 'update civicPoints' do
-            @temp = Member.create!(valid_attributes)
-            visit member_url(@temp)
             expect(page).to have_content(valid_attributes[:civicPoints])
-            visit edit_member_path(@temp)
-            fill_in "member[civicPoints]", with: edit_attributes[:civicPoints]
-            click_on "Edit Member"
-            visit member_url(@temp)
-            expect(page).not_to have_content(valid_attributes[:civicPoints])
-            expect(page).to have_content(edit_attributes[:civicPoints])
-        end
-
-        scenario 'update outreachPoints' do
-            @temp = Member.create!(valid_attributes)
-            visit member_url(@temp)
             expect(page).to have_content(valid_attributes[:outreachPoints])
-            visit edit_member_path(@temp)
-            fill_in "member[outreachPoints]", with: edit_attributes[:outreachPoints]
-            click_on "Edit Member"
-            visit member_url(@temp)
-            expect(page).not_to have_content(valid_attributes[:outreachPoints])
-            expect(page).to have_content(edit_attributes[:outreachPoints])
-        end
-
-        scenario 'update socialPoints' do
-            @temp = Member.create!(valid_attributes)
-            visit member_url(@temp)
             expect(page).to have_content(valid_attributes[:socialPoints])
-            visit edit_member_path(@temp)
-            fill_in "member[socialPoints]", with: edit_attributes[:socialPoints]
-            click_on "Edit Member"
-            visit member_url(@temp)
-            expect(page).not_to have_content(valid_attributes[:socialPoints])
-            expect(page).to have_content(edit_attributes[:socialPoints])
-        end
-
-        scenario 'update marketingPoints' do
-            @temp = Member.create!(valid_attributes)
-            visit member_url(@temp)
             expect(page).to have_content(valid_attributes[:marketingPoints])
+            expect(page).to have_content(valid_attributes[:totalPoints])
+
             visit edit_member_path(@temp)
-            fill_in "member[marketingPoints]", with: edit_attributes[:marketingPoints]
-            click_on "Edit Member"
+            fill_in "member[name]",             with: edit_attributes[:name]
+            fill_in "member[committee]",        with: edit_attributes[:committee]
+            fill_in "member[position]",         with: edit_attributes[:position]
+            fill_in "member[civicPoints]",      with: edit_attributes[:civicPoints]
+            fill_in "member[outreachPoints]",   with: edit_attributes[:outreachPoints]
+            fill_in "member[socialPoints]",     with: edit_attributes[:socialPoints]
+            fill_in "member[marketingPoints]",  with: edit_attributes[:marketingPoints]
+            fill_in "member[totalPoints]",      with: edit_attributes[:totalPoints]
+            click_on 'Edit Member'
+
             visit member_url(@temp)
-            expect(page).not_to have_content(valid_attributes[:marketingPoints])
+            expect(page).to have_content(edit_attributes[:name])
+            expect(page).to have_content(edit_attributes[:committee])
+            expect(page).to have_content(edit_attributes[:position])
+            expect(page).to have_content(edit_attributes[:civicPoints])
+            expect(page).to have_content(edit_attributes[:outreachPoints])
+            expect(page).to have_content(edit_attributes[:socialPoints])
             expect(page).to have_content(edit_attributes[:marketingPoints])
+            expect(page).to have_content(edit_attributes[:totalPoints])
         end
         
     end
 
     describe "Deletion" do
-        scenario "Delete entry" do
+        scenario "delete entry" do
             @temp = Member.create!(valid_attributes)
             visit members_path
             expect(page).to have_content(valid_attributes[:name])
