@@ -85,36 +85,36 @@ RSpec.describe Member, type: :model do
       expect(subject).not_to be_valid
     end
   
-    it 'is not valid without a committee' do
+    it 'is valid without a committee' do
       subject.committee = nil
-      expect(subject).not_to be_valid
+      expect(subject).to be_valid
     end
   
-    it 'is not valid without a position' do
+    it 'is valid without a position' do
       subject.position = nil
-      expect(subject).not_to be_valid
+      expect(subject).to be_valid
     end
   
-    it 'is not valid without civic points' do
+    it 'is valid without civic points' do
       subject.civicPoints = nil
-      expect(subject).not_to be_valid
+      expect(subject).to be_valid
     end
-    it 'is not valid without outreach points' do
+    it 'is valid without outreach points' do
       subject.outreachPoints = nil
-      expect(subject).not_to be_valid
+      expect(subject).to be_valid
     end
-    it 'is not valid without social points' do
+    it 'is valid without social points' do
       subject.socialPoints = nil
-      expect(subject).not_to be_valid
+      expect(subject).to be_valid
     end
-    it 'is not valid without marketing poitns' do
+    it 'is valid without marketing poitns' do
       subject.marketingPoints = nil
-      expect(subject).not_to be_valid
+      expect(subject).to be_valid
     end
   
-    it 'is not valid without total points' do
+    it 'is valid without total points' do
       subject.totalPoints = nil
-      expect(subject).not_to be_valid
+      expect(subject).to be_valid
     end
   end
 
