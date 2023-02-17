@@ -1,16 +1,6 @@
 <%= link_to("Back to List", members_path, :class => 'back-link') %>
 
-<div class="members new">
-  <h2>Create Member</h2>
 
-  <%= form_for(@member) do |f| %>
-    <% # url: tasks_path, method: 'post' %>
+<%= render "form", member: @member %>
 
-    <%= render(partial: 'form', locals: {f: f}) %>
-
-    <div class="form-buttoms">
-      <%= f.submit("Create Member") %>
-    </div>
-
-  <% end %>
-</div>
+<br>

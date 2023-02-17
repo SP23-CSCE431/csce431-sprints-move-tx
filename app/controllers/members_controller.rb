@@ -13,10 +13,15 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(member_params)
-    if @member.save
-      redirect_to members_path
-    else
-      render('new')
+
+    respond_to do |format|
+      if @member.save
+        format.html { redirect_to member_url(@member), notice: "Member was successfully created." }
+        format.json { render :show, status: :created, location: @member }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @member.errors, status: :unprocessable_entity }
+      end
     end
   end
 
