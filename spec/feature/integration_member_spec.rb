@@ -99,7 +99,7 @@ RSpec.describe "Members integration", type: :feature do
             fill_in "member[socialPoints]",     with: edit_attributes[:socialPoints]
             fill_in "member[marketingPoints]",  with: edit_attributes[:marketingPoints]
             fill_in "member[totalPoints]",      with: edit_attributes[:totalPoints]
-            click_on 'Edit Member'
+            click_on 'Update Member'
 
             visit member_url(@temp)
             expect(page).to have_content(edit_attributes[:name])

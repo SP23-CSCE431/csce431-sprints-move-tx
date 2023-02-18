@@ -4,14 +4,15 @@ RSpec.describe "Member_Event integration", type: :feature do
 
     let(:member) {
         Member.create!(
-        name: "MyName"
+        name: "MyName1"
         )
     }
     let(:event) {
         Event.create!(
-          name: "MyName",
-          date: Date.parse("01-01-2023"),
-          event_type: "MyType"
+            name: "Park clean up",
+            date: Date.parse("2022-12-15"),
+            point_type: "Outreach",
+            event_type: "Service"
         )
     }
 
@@ -22,9 +23,10 @@ RSpec.describe "Member_Event integration", type: :feature do
     }
     let(:event2) {
         Event.create!(
-          name: "MyName2",
-          date: Date.parse("01-01-2023"),
-          event_type: "MyType"
+            name: "Jan Meeting",
+            date: Date.parse("2022-01-01"),
+            event_type: "Meeting",
+            phrase: "what's up"
         )
     }
 
