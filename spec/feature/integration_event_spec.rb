@@ -79,7 +79,7 @@ RSpec.describe 'Event integration', type: :feature do
             select valid_meeting[:event_type], from: "event[event_type]"
             fill_in "event[phrase]", with: valid_meeting[:phrase]
             click_on 'Create Event'
-            expect(page).to have_content("Name can't be blank")
+            expect(page).to have_content("Name cant be blank")
         end
 
         scenario 'create with invalid date' do
