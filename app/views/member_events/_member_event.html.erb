@@ -1,18 +1,20 @@
 <div id="<%= dom_id member_event %>">
   <p>
     <strong>Event:</strong>
-    <%= member_event.event_id %>
+    <%= Event.where(id: member_event.event_id).last.name %>
   </p>
 
   <p>
     <strong>Member:</strong>
-    <%= member_event.member_id %>
+    <%= Member.where(id: member_event.member_id).last.name %>
   </p>
 
   <p>
     <strong>Approved status:</strong>
     <%= member_event.approved_status %>
   </p>
+
+  <% if (!!member_event.approved_status) then %>
 
   <p>
     <strong>Approve date:</strong>
@@ -23,6 +25,8 @@
     <strong>Approve by:</strong>
     <%= member_event.approve_by %>
   </p>
+
+  <% end %>
 
   <p>
   <strong>File:</strong>
