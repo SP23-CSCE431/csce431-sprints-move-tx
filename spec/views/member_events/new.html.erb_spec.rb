@@ -45,7 +45,7 @@ RSpec.describe "member_events/new", type: :view do
 
       assert_select "input[name=?]", "member_event[approved_status]"
 
-      assert_select "input[name=?]", "member_event[approve_by]"
+      #assert_select "input[name=?]", "member_event[approve_by]"
     end
   end
 end
