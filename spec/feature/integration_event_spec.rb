@@ -1,7 +1,11 @@
 require 'rails_helper'
+require "support/test_user"
 
 # event creation feature test cases
 RSpec.describe 'Event integration', type: :feature do
+
+    # need to run the oauth before each test 
+    include_context 'test user'
 
     let(:valid_meeting) {
         {name: "Jan Meeting",

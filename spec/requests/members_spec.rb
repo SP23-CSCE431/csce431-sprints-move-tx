@@ -14,7 +14,9 @@ require 'rails_helper'
 
 
 RSpec.describe "/members", type: :request do
-  
+    # need to run the oauth before each test 
+    include_context 'test user requests'
+    
   # This should return the minimal set of attributes required to create a valid
   # Member. As you add validations to Member, be sure to
   # adjust the attributes here as well.
