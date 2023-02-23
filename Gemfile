@@ -32,6 +32,15 @@ gem 'jbuilder'
 # Add gem to manage db
 gem 'yaml_db'
 
+gem 'devise'
+
+gem 'omniauth'
+
+gem 'omniauth-google-oauth2'
+
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
+
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
