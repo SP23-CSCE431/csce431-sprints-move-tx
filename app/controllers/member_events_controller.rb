@@ -1,6 +1,12 @@
 class MemberEventsController < ApplicationController
   before_action :set_member_event, only: %i[ show edit update destroy ]
 
+  # sets the member before each action 
+  before_action :set_member 
+
+  # admin validation for certain pages (will be determined on later date)
+  before_action :authorize_admin, only: %i[index]
+
   # GET /member_events or /member_events.json
   def index
     @member_events = MemberEvent.all
@@ -67,4 +73,18 @@ class MemberEventsController < ApplicationController
     def member_event_params
       params.require(:member_event).permit(:event_id, :member_id, :approved_status, :approve_date, :approve_by, :file)
     end
+
+    # sets the member before each action
+    def set_member
+      @member = current_admin.member
+    end
+
+    # checks to see if member is an admin 
+    def authorize_admin
+      unless @member.position != "Member"
+        redirect_to root_path, alert: "You are not authorized to acces this page"
+      end
+    end
+
+
 end
