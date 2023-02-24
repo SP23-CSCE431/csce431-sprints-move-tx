@@ -249,6 +249,9 @@ Lint/UnusedMethodArgument:
 Lint/UselessMethodDefinition:
     Enabled: true
 
+Layout/SpaceInsidePercentLiteralDelimiters:
+    Enabled: false
+
 ###########################################################
 ######################## Metric ###########################
 ###########################################################
