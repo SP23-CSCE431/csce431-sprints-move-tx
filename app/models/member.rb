@@ -3,8 +3,8 @@ class Member < ApplicationRecord
   has_many :member_events, dependent: :destroy
 
   validates :name, presence: true
-  has_one :admin
 
-  
-  belongs_to :admin
+  # sets foreign key (admin) for member
+  has_one :admin
+  belongs_to :admin, optional: true
 end

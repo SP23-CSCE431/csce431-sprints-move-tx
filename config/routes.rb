@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :member_events
+  
   root "main#index"
 
   # root to: 'dashboards#show'

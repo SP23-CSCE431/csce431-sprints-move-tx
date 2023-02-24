@@ -81,8 +81,9 @@ class MemberEventsController < ApplicationController
 
     # checks to see if member is an admin 
     def authorize_admin
+      @member = current_admin.member
       unless @member.position != "Member"
-        redirect_to root_path, alert: "You are not authorized to acces this page"
+        redirect_to root_path, alert: "You are not authorized to access this page"
       end
     end
 
