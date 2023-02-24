@@ -14,7 +14,7 @@
     <%= member_event.approved_status %>
   </p>
 
-  <% if (!!member_event.approved_status) then %>
+  <% if (member_event.approved_status == true) then %>
 
   <p>
     <strong>Approve date:</strong>
