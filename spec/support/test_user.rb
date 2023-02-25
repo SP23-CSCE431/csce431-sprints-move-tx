@@ -17,6 +17,10 @@ shared_context "test user" do
       OmniAuth.config.test_mode = true
       visit "/admins/sign_in"
       click_on "Sign in with Google"
+      visit new_member_path
+      fill_in "member[name]", with: "wayland"
+      fill_in "member[committee]", with: "Outreach"
+      click_on "Create Member"
     end
   end
 
@@ -57,7 +61,8 @@ shared_context "test user" do
     })
     current_admin = Admin.create!(email: "waylandmoody55@tamu.edu", full_name: "Jerry Moody", id: 1) # create an admin for testing
     allow(view).to receive(:current_admin).and_return(current_admin) # stub current_admin method
-    member = Member.create!(position: "Vice President", id: 1, name: "wayland", admin_id: 1) # create a member with the admin as its foreign key
-    assign(:member, member) # assign the member to @member
+    user = Member.create!(position: "Vice President", id: 1, name: "wayland", admin_id: 1) # create a member with the admin as its foreign key
+    assign(:member, user) # assign the member to @member
+    assign(:user, user)
   end
 end

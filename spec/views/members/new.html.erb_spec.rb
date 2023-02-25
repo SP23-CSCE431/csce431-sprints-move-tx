@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "members/new", type: :view do
+
+  include_context 'admin oauth for views'
+  
   before(:each) do
     assign(:member, Member.new(
       name: "MyName",

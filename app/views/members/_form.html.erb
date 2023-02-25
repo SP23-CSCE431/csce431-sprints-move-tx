@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%# if user is not nill then user has an account so this is regular new account %>
+  <% if @user != nil%>
   <div>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
@@ -30,6 +32,15 @@
     <%= form.number_field :totalPoints %>
   </div>
 
+  <%# if user is not nil then this is a new account that needs  %>
+  <%else%>
+    <div>
+      <%= form.label :name, style: "display: block" %>
+      <%= form.text_field :name %>
+      <%= form.label :committee, style: "display: block" %>
+      <%= form.text_field :committee %>
+    </div>
+  <%end%>
   <div>
     <%= form.submit %>
   </div>
