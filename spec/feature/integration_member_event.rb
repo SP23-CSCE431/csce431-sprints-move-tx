@@ -1,6 +1,9 @@
 require 'rails_helper'
+require "support/test_user"
 
 RSpec.describe "Member_Event integration", type: :feature do
+    # need to run the oauth before each test 
+    include_context 'test user'
 
     let(:member) {
         Member.create!(
