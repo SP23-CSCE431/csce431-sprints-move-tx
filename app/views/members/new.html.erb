@@ -1,4 +1,13 @@
-<%= link_to("Back to List", members_path, :class => 'back-link') %>
+<%# if oauth connected to a member use regular view %>
+<% if @user %>
+    <%= link_to("Back to List", members_path, :class => 'back-link') %>
+    <h1>Create new member</h1>
+<%# if oauth not connected use new member view %>
+<%else%>
+    <h1>Welcome new member<h1>
+    <h2>Please enter your information below so we can register your account<h2>
+<%end%>
+
 
 
 <%= render "form", member: @member %>

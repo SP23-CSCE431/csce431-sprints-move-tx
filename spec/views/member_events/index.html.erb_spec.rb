@@ -1,12 +1,18 @@
 require 'rails_helper'
+require "support/test_user"
+
+
 
 RSpec.describe "member_events/index", type: :view do
+
+  # allow for oauth access
+  include_context 'admin oauth for views'
   
   let(:member) {
     Member.create!(
-      name: "MyName",
+      name: "wayland",
       committee: "MyCommittee",
-      position: "MyPosition",
+      position: "President",
       civicPoints: 1,
       outreachPoints: 1,
       socialPoints: 1,
@@ -25,6 +31,10 @@ RSpec.describe "member_events/index", type: :view do
     )
   }
 
+  let(:current_admin) {
+    current_admin.create()
+  }
+
   before(:each) do
     assign(:member, member)
     assign(:event, event)
@@ -33,13 +43,13 @@ RSpec.describe "member_events/index", type: :view do
         event_id: event.id,
         member_id: member.id,
         approved_status: false,
-        approve_by: "Approve By"
+        approve_by: "wayland"
       ),
       MemberEvent.create!(
         event_id: event.id,
         member_id: member.id,
         approved_status: false,
-        approve_by: "Approve By"
+        approve_by: "wayland"
       )
     ])
   end
@@ -50,6 +60,6 @@ RSpec.describe "member_events/index", type: :view do
     #assert_select cell_selector, text: Regexp.new(2.to_s), count: 2
     #assert_select cell_selector, text: Regexp.new(3.to_s), count: 2
     assert_select cell_selector, text: Regexp.new(false.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Approve By".to_s), count: 2
+    assert_select cell_selector, text: Regexp.new("Approve by".to_s), count: 2
   end
 end

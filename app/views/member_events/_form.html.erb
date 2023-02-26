@@ -18,7 +18,7 @@
 
   <div>
     <%= form.label :member_id, style: "display: block" %>
-    <%= form.select :member_id, Member.order(:name).map { |member| [member.name, member.id] } %>
+    <%= form.select :member_id, Member.where(name: @member.name).order(:name).map { |member| [member.name, member.id] } %>
   </div>
 
   <div>
@@ -31,10 +31,12 @@
     <%= form.date_field :approve_date %>
   </div>
 
+  <%# makes a dropdown to where you can only see admins %>
   <div>
     <%= form.label :approve_by, style: "display: block" %>
-    <%= form.text_field :approve_by %>
+    <%= form.select :approve_by, Member.where.not(position: "Member").order(:name).map { |member| [member.name]} %>
   </div>
+
 
   <div>
     <%= form.label :file, style: "display: block" %>

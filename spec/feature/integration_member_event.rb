@@ -77,4 +77,16 @@ RSpec.describe "Member_Event integration", type: :feature do
             expect(page).to have_content("Event was successfully destroyed")
         end
     end
+
+    # # testing admin view of member_event based on being asked to review
+    # describe "view" do
+    #     scenario "create with valid inputs with specific officer name" do
+    #         visit new_member_event_path
+    #         select valid_attributes[:event_id], from: "member_event[event_id]"
+    #         select valid_attributes[:member_id], from: "member_event[member_id]"
+    #         select
+    #         click_on 'Create Member event'
+    #         expect(page).to have_content("Member event successfully created")
+    #     end
+
 end
