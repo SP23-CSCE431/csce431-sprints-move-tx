@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "member_events/new", type: :view do
+
+  # allow for oauth access
+  include_context 'admin oauth for views'
   
   let(:member) {
     Member.create!(
@@ -45,7 +48,7 @@ RSpec.describe "member_events/new", type: :view do
 
       assert_select "input[name=?]", "member_event[approved_status]"
 
-      assert_select "input[name=?]", "member_event[approve_by]"
+      assert_select "select[name=?]", "member_event[approve_by]"
     end
   end
 end

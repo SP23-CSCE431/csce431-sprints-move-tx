@@ -5,10 +5,14 @@
 
 <div id="member_events">
   <% @member_events.each do |member_event| %>
+
+  <%# baseline for checking based off of admin name will need to change based off of oauth %>
+  <% if member_event.approve_by.include?(@member.name)%>
     <%= render member_event %>
     <p>
       <%= link_to "Show this member event", member_event %>
     </p>
+    <% end %>
   <% end %>
 </div>
 
