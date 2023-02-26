@@ -1,7 +1,11 @@
 require 'rails_helper'
+require "support/test_user"
 
 RSpec.describe "Navigation Integration:", type: :feature do
 
+  # need to run the oauth before each test 
+  include_context 'test user'
+  
   describe "Navigation:" do
     # Home button returns home
     scenario 'Navigation bar: Home' do

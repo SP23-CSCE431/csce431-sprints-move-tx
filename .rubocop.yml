@@ -468,3 +468,4 @@ RSpec/IdenticalEqualityAssertion: # (new in 2.4)
 
 RSpec/MultipleExpectations:
     Enabled: false
+

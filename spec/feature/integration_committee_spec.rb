@@ -1,6 +1,11 @@
 require 'rails_helper'
+require "support/test_user"
 
 RSpec.describe "Committee integration", type: :feature do
+
+    # need to run the oauth before each test 
+    include_context 'test user'
+    
     let(:valid_attributes) {
         {
             name: "MyName1",

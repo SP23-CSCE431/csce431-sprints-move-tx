@@ -14,6 +14,9 @@ require 'rails_helper'
 
 RSpec.describe "/member_events", type: :request do
   
+    # need to run the oauth before each test 
+    include_context 'test user requests'
+
   # This should return the minimal set of attributes required to create a valid
   # MemberEvent. As you add validations to MemberEvent, be sure to
   # adjust the attributes here as well.
