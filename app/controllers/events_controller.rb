@@ -1,3 +1,6 @@
+# require 'google/apis/calendar_v3'
+# require 'googleauth'
+# require 'googleauth/stores/file_token_store'
 class EventsController < ApplicationController
   before_action :set_event, :service_or_meeting, only: %i[ show edit update destroy ]
 
@@ -25,6 +28,9 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        # create event in Google calendar
+        create_google_calendar_event(@event)
+
         format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: @event }
       else
@@ -85,4 +91,25 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:name, :date, :point_type, :event_type, :phrase)
     end
+
+    # helper method to create a Google calendar event
+  def create_google_calendar_event(event)
+    # # create a new instance of the Google calendar API client
+    # client = Google::Apis::CalendarV3::CalendarService.new
+    # client.authorization = # authorize client with access token
+
+    # # create a new Google calendar event
+    # google_event = Google::Apis::CalendarV3::Event.new(
+    #   summary: event.name,
+    #   start: {
+    #     date_time: event.date.to_datetime.rfc3339
+    #   },
+    #   end: {
+    #     date_time: (event.date + 1.day).to_datetime.rfc3339
+    #   }
+    # )
+    # # insert the new Google calendar event
+    # client.insert_event('primary', google_event)
+  end
+
 end
