@@ -53,7 +53,7 @@ AllCops:
 ####################### Gemspec ###########################
 ###########################################################
 
-Gemspec/DateAssignment: # (new in 1.10)
+Gemspec/DeprecatedAttributeAssignment: # (new in 1.10)
     Enabled: true
 
 ###########################################################
@@ -468,3 +468,4 @@ RSpec/IdenticalEqualityAssertion: # (new in 2.4)
 
 RSpec/MultipleExpectations:
     Enabled: false
+

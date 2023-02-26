@@ -6,11 +6,44 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <!-- Navigation bar  -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+      <!--<%= link_to 'Home', root_path, class: "navbar_brand" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>-->
+      <!-- Collapse Section -->
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <!-- Navbar menu -->
+        <ul class="navbar-nav mr-auto">
+          <!-- Navbar Items -->
+          <%= image_tag "move tx logo.JPG", class: 'nav-logo'  %>
+          <li class="nav-item <%= active_class(root_path) %>">
+            <%= link_to 'Home', root_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item <%= active_class(members_path) %>">
+            <%= link_to "Member List", members_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item <%= active_class(committees_path) %>">
+            <%= link_to "Committees", committees_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item <%= active_class(events_path) %>">
+            <%= link_to "Events", events_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item <%= active_class(excuses_path) %>">
+            <%= link_to "Excuses", excuses_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item <%= active_class(member_events_path) %>">
+            <%= link_to "Member Events", member_events_path, class: 'nav-link' %>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

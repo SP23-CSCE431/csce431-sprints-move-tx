@@ -14,7 +14,9 @@ require 'rails_helper'
 
 
 RSpec.describe "/members", type: :request do
-  
+    # need to run the oauth before each test 
+    include_context 'test user requests'
+    
   # This should return the minimal set of attributes required to create a valid
   # Member. As you add validations to Member, be sure to
   # adjust the attributes here as well.
@@ -80,7 +82,7 @@ RSpec.describe "/members", type: :request do
 
     
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        skip("no worky")
+        skip("due to difference in creation, not yet implemented")
         post members_url, params: { member: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
