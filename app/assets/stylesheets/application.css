@@ -14,6 +14,10 @@
  *= require_self
  */
 
+ body {
+   background-color: #fff2d5
+ }
+
 /* Navbar CSS Style */
 .navbar {
   display: flex;
@@ -23,8 +27,8 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  border: 1px solid #e7e7e7;
-  background-color: #f3f3f3;
+  border: 1px solid #510000;
+  background-color: #510000;
 }
 
 .navbar-nav {
@@ -34,8 +38,8 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  border: 1px solid #e7e7e7;
-  background-color: #f3f3f3
+  border: 1px solid #510000;
+  background-color: #510000
 }
 
 .nav-item {
@@ -43,16 +47,36 @@
   color: #666;
   text-align: center;
   padding: 14px 16px;
-  text-decoration: none;
 }
 
 .nav-item:hover {
-  background-color: #ddd;
+  background-color: #;
   border-radius: 5px;
 }
 
 .nav-item.active {
   border-radius: 5px;
-  color: ffffff;
-  background-color: #000000
+  color: #510000;
+  background-color: #510000
+}
+
+.nav-link {
+  color: #fff2d5;
+  text-decoration: none;
+  overflow: hidden;
+  text-align: center;
+  display: inline-block;
+}
+
+.nav-link:hover {
+  color: #CEC5AF;
+}
+
+.nav-link:active {
+  color: #CEC5AF;
+}
+
+.nav-logo {
+  width: 10%;
+  height: 10%;
 }
