@@ -20,9 +20,16 @@ class Admins::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def after_omniauth_failure_path_for(_scope)
       new_admin_session_path
     end
-  
+    
+    # changes path based if you already have an account or not
     def after_sign_in_path_for(resource_or_scope)
-      stored_location_for(resource_or_scope) || root_path
+      # if admin is not linked to a member go to new member page
+      if current_admin.member.nil?
+        stored_location_for(resource_or_scope) || new_member_path
+      # if admin linked to member got to root_path
+      else
+        stored_location_for(resource_or_scope) || root_path
+      end
     end
   
     private

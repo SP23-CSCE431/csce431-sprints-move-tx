@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "members/edit", type: :view do
+  
+  include_context 'admin oauth for views'
+
   let(:member) {
     Member.create!(
       name: "MyName",
