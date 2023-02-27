@@ -18,7 +18,7 @@
 
   <div>
     <%= form.label :leader_member_id, style: "display: block" %>
-    <%= form.number_field :leader_member_id %>
+    <%= form.select :leader_member_id, Member.all.collect { |member| [ member.name, member.id] } %>
   </div>
 
   <div>
