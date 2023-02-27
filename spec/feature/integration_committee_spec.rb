@@ -5,6 +5,13 @@ RSpec.describe "Committee integration", type: :feature do
 
     # need to run the oauth before each test 
     include_context 'test user'
+
+    # create member instances to test dropdown menu functionality
+    let(:member1) {
+        Member.create!(
+            name: "John"
+        )
+    }
     
     let(:valid_attributes) {
         {
@@ -28,7 +35,7 @@ RSpec.describe "Committee integration", type: :feature do
         scenario 'create with valid inputs' do
             visit new_committee_path
             fill_in "committee[name]", with: valid_attributes[:name]
-            select valid_attributes[:leader_member_id], from: "committee[leader_member_id]"
+            select member1[:name], from: "committee[leader_member_id]"
             click_on "Create Committee"
             visit committees_path
             expect(page).to have_content(valid_attributes[:name])
