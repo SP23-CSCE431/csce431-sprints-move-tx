@@ -28,7 +28,7 @@ RSpec.describe "Committee integration", type: :feature do
         scenario 'create with valid inputs' do
             visit new_committee_path
             fill_in "committee[name]", with: valid_attributes[:name]
-            fill_in "committee[leader_member_id]", with: valid_attributes[:leader_member_id]
+            select valid_attributes[:leader_member_id], from: "committee[leader_member_id]"
             click_on "Create Committee"
             visit committees_path
             expect(page).to have_content(valid_attributes[:name])
