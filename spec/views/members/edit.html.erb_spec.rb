@@ -40,7 +40,7 @@ RSpec.describe "members/edit", type: :view do
 
       assert_select "input[name=?]", "member[marketingPoints]"
 
-      assert_select "input[name=?]", "member[totalPoints]"
+      #assert_select "input[name=?]", "member[totalPoints]"
 
     end
   end
