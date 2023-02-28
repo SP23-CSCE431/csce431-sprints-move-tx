@@ -1,20 +1,12 @@
 <div id="<%= dom_id member_event %>">
   <p>
     <strong>Event:</strong>
-<<<<<<< HEAD
-    <%= Event.where(id: member_event.event_id).last.name %>
-=======
     <%= member_event.event.name %>
->>>>>>> dev
   </p>
 
   <p>
     <strong>Member:</strong>
-<<<<<<< HEAD
-    <%= Member.where(id: member_event.member_id).last.name %>
-=======
     <%= member_event.member.name %>
->>>>>>> dev
   </p>
 
   <p>

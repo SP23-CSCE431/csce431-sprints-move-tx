@@ -4,6 +4,7 @@ class MemberEvent < ApplicationRecord
 
   has_one_attached :file
 
+  # when saving, update values given approval status
   before_save do
     self.approved_status = false if approved_status.nil?
     if (approved_status == true) then
