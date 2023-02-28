@@ -18,18 +18,21 @@
 
   <div>
     <%= form.label :member_id, style: "display: block" %>
-    <%= form.select :member_id, Member.where(name: @member.name).order(:name).map { |member| [member.name, member.id] } %>
+    <%= form.select :member_id, Member.order(:name).map { |member| [member.name, member.id] } %>
   </div>
+
 
   <div>
     <%= form.label :approved_status, style: "display: block" %>
     <%= form.check_box :approved_status %>
   </div>
 
+<!--
   <div>
     <%= form.label :approve_date, style: "display: block" %>
     <%= form.date_field :approve_date %>
   </div>
+-->
 
   <%# makes a dropdown to where you can only see admins %>
   <div>
