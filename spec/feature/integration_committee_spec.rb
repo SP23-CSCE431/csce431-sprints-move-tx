@@ -10,6 +10,7 @@ RSpec.describe "Committee integration", type: :feature do
     let(:member1) {
         Member.new(
             name: "John"
+            id: 1
         )
     }
     
@@ -35,7 +36,7 @@ RSpec.describe "Committee integration", type: :feature do
         scenario 'create with valid inputs' do
             visit new_committee_path
             fill_in "committee[name]", with: valid_attributes[:name]
-            select member1[:name], from: "committee[leader_member_id]"
+            select member1[:id], from: "committee[leader_member_id]"
             click_on "Create Committee"
             visit committees_path
             expect(page).to have_content(valid_attributes[:name])
