@@ -14,6 +14,8 @@
     <%= member_event.approved_status %>
   </p>
 
+  <% if (member_event.approved_status == true) then %>
+
   <p>
     <strong>Approve date:</strong>
     <%= member_event.approve_date %>
@@ -23,6 +25,8 @@
     <strong>Approve by:</strong>
     <%= member_event.approve_by %>
   </p>
+
+  <% end %>
 
   <p>
   <strong>File:</strong>

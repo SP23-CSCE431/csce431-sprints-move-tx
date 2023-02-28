@@ -4,7 +4,7 @@ RSpec.describe "member_events/show", type: :view do
   
   let(:member) {
     Member.create!(
-      name: "MyName",
+      name: "MyMemberName",
       committee: "MyCommittee",
       position: "MyPosition",
       civicPoints: 1,
@@ -17,7 +17,7 @@ RSpec.describe "member_events/show", type: :view do
 
   let(:event) {
     Event.create!(
-      name: "MyString",
+      name: "MyEventName",
       date: Date.parse("01-01-2023"),
       point_type: "MyString",
       event_type: "MyString",
@@ -38,9 +38,9 @@ RSpec.describe "member_events/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    #expect(rendered).to match(/2/)
-    #expect(rendered).to match(/3/)
+    expect(rendered).to match(/MyMemberName/)
+    expect(rendered).to match(/MyEventName/)
     expect(rendered).to match(/false/)
-    expect(rendered).to match(/Approve By/)
+    #expect(rendered).to match(/Approve By/)
   end
 end

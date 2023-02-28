@@ -23,7 +23,7 @@ RSpec.describe "member_events/index", type: :view do
 
   let(:event) {
     Event.create!(
-      name: "MyString",
+      name: "MyEventString",
       date: Date.parse("01-01-2023"),
       point_type: "MyString",
       event_type: "MyString",
@@ -42,13 +42,13 @@ RSpec.describe "member_events/index", type: :view do
       MemberEvent.create!(
         event_id: event.id,
         member_id: member.id,
-        approved_status: false,
+        approved_status: true,
         approve_by: "wayland"
       ),
       MemberEvent.create!(
         event_id: event.id,
         member_id: member.id,
-        approved_status: false,
+        approved_status: true,
         approve_by: "wayland"
       )
     ])
@@ -57,9 +57,9 @@ RSpec.describe "member_events/index", type: :view do
   it "renders a list of member_events" do
     render
     cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    #assert_select cell_selector, text: Regexp.new(2.to_s), count: 2
-    #assert_select cell_selector, text: Regexp.new(3.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(false.to_s), count: 2
+    assert_select cell_selector, text: Regexp.new(member[:name].to_s), count: 4
+    assert_select cell_selector, text: Regexp.new(event[:name].to_s), count: 2
+    assert_select cell_selector, text: Regexp.new(true.to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Approve by".to_s), count: 2
   end
 end
