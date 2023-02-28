@@ -8,7 +8,7 @@ RSpec.describe "Committee integration", type: :feature do
 
     # create member instances to test dropdown menu functionality
     let(:member1) {
-        Member.create!(
+        Member.new(
             name: "John"
         )
     }
