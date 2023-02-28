@@ -10,7 +10,7 @@ RSpec.describe "Committee integration", type: :feature do
     let(:member1) {
         Member.new(
             name: "John"
-            id: 1
+            id: "1"
         )
     }
     
