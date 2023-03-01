@@ -1,0 +1,15 @@
+<%= link_to "Back to Excuses", excuses_path %>
+
+<div class="delete">
+    <h1>Destroy Excuse</h1>
+    
+    <%= form_for(@excuse, method: 'delete') do |f| %>
+        <p>Are you sure you want to permanently delete this Excuse?</p>
+        <p>Description: <%= @excuse.description %></p>
+        <p>File: <%= @excuse.file.filename %></p>        
+
+        <div class="form-buttons">
+            <%= f.submit("Delete excuse") %>
+        </div>
+    <% end %>
+</div>
