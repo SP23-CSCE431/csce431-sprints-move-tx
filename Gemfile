@@ -94,3 +94,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem "google-api-client", "~> 0.53.0"
