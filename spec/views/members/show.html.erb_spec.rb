@@ -9,8 +9,7 @@ RSpec.describe "members/show", type: :view do
         civicPoints: 0,
         outreachPoints: 1,
         socialPoints: 2,
-        marketingPoints: 3,
-        totalPoints: 4
+        marketingPoints: 3
     ))
   end
 
@@ -23,6 +22,6 @@ RSpec.describe "members/show", type: :view do
     expect(rendered).to match(/1/)
     expect(rendered).to match(/2/)
     expect(rendered).to match(/3/)
-    expect(rendered).to match(/4/)
+    expect(rendered).to match(/6/)  # total points
   end
 end
