@@ -4,7 +4,6 @@ RSpec.describe "committees/edit", type: :view do
   let(:committee) {
     Committee.create!(
       name: "MyString",
-      leader_member_id: 1
     )
   }
 
@@ -19,7 +18,7 @@ RSpec.describe "committees/edit", type: :view do
 
       assert_select "input[name=?]", "committee[name]"
 
-      assert_select "input[name=?]", "committee[leader_member_id]"
+      assert_select "select[name=?]", "committee[member_id]"
     end
   end
 end

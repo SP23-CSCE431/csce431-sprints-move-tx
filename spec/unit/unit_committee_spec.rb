@@ -4,7 +4,7 @@ RSpec.describe Committee, type: :model do
     let(:valid_attributes) {
         {
             name: "MyName1",
-            leader_member_id: 12345
+            member_id: 12345
         }
     }
 
@@ -16,9 +16,9 @@ RSpec.describe Committee, type: :model do
         expect(subject).to be_valid
     end
     # Checks if the input is valid with empty inputs
-    it 'is valid without name' do
+    it 'is not valid without name' do
         subject.name = nil;
-        expect(subject).to be_valid
+        expect(subject).not_to be_valid
     end
     # Checks if the input is valid without leader member ID.
     it 'is valid without leader member id' do

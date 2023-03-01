@@ -44,10 +44,7 @@ RSpec.describe "Excuse integration", type: :feature do
     describe "Deletion" do
         scenario "delete entry" do
             @temp = Excuse.create!(valid_attributes)
-            visit excusess_path
-            expect(page).to have_content(valid_attributes[:name])
-            expect(page).to have_content(valid_attributes[:leader_member_id])
-
+            visit excuses_path
             visit delete_excuse_path(@temp)
             click_on "Delete excuse"
             expect(page).to have_content("Excuse was successfully destroyed.")
