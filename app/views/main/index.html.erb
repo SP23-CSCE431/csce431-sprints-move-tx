@@ -1,4 +1,4 @@
-<h1>Main Page</h1>
+<h1>Welcome <%= @user.name %></h1>
 <p>This is the main page</p>
 <!--
 <%= link_to("Member List", members_path) %>
@@ -10,3 +10,30 @@
 <%= link_to("Excuses", excuses_path) %>
 <br />
 <%= link_to("Member Events", member_events_path) %> -->
+
+<div class="members index">
+  <h2>Your Information:</h2>
+
+  <table class="listing" summary="Member list" style="width: 100%;">
+    <tr class="header">
+      <!-- <th>#</th>
+      <th>Member</th> -->
+      <th>Committee</th>
+      <th>Position</th>
+      <th>Civic Points</th>
+      <th>Outreach Points</th>
+      <th>Social Points</th>
+      <th>Marketing Points</th>
+      <th>Total Points</th>
+    </tr>
+    <tr>
+      <td> <%= @user.committee %></td>
+      <td> <%= @user.position %></td>
+      <td> <%= @user.civicPoints %></td>
+      <td> <%= @user.outreachPoints %></td>
+      <td> <%= @user.socialPoints %></td>
+      <td> <%= @user.marketingPoints %></td>
+      <td> <%= @user.totalPoints %></td>
+    </tr>
+  </table>
+</div>

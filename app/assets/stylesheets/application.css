@@ -26,7 +26,7 @@
   justify-content: space-between;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid #510000;
   background-color: #510000;
 }
@@ -46,7 +46,6 @@
   display: block;
   color: #666;
   text-align: center;
-  padding: 14px 16px;
 }
 
 .nav-item:hover {
@@ -62,21 +61,31 @@
 
 .nav-link {
   color: #fff2d5;
+  background-color: #510000;
   text-decoration: none;
   overflow: hidden;
   text-align: center;
   display: inline-block;
+  padding: 14px 20px;
 }
 
 .nav-link:hover {
   color: #CEC5AF;
+  background-color: #410100;
 }
 
 .nav-link:active {
   color: #CEC5AF;
+  background-color: #410100;
 }
 
 .nav-logo {
-  width: 10%;
-  height: 10%;
+  width: 117px;
+  height: 48px;
+}
+
+.nav-avatar {
+  padding: 10px;
+  height: 25px;
+  width: 25px;
 }

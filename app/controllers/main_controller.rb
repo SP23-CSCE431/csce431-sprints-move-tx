@@ -1,4 +1,6 @@
 class MainController < ApplicationController
+  before_action :set_user;
+
   def index
   end
 
@@ -21,5 +23,11 @@ class MainController < ApplicationController
   end
 
   def destory
+  end
+
+  private
+
+  def set_user
+    @user = current_admin.member
   end
 end
