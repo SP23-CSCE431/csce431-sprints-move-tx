@@ -5,7 +5,7 @@ class MemberEventsController < ApplicationController
   before_action :set_member 
 
   # admin validation for certain pages (will be determined on later date)
-  before_action :authorize_admin, only: %i[index]
+  before_action :authorize_admin, only: %i[edit update destroy]
 
   # GET /member_events or /member_events.json
   def index
@@ -28,6 +28,9 @@ class MemberEventsController < ApplicationController
   # POST /member_events or /member_events.json
   def create
     @member_event = MemberEvent.new(member_event_params)
+
+    # enters name of member so user doesnt have to do it in form
+    @member_event.member_id = @user.id
 
     respond_to do |format|
       if @member_event.save
@@ -76,16 +79,14 @@ class MemberEventsController < ApplicationController
 
     # sets the member before each action
     def set_member
-      @member = current_admin.member
+      @user = current_admin.member
     end
 
     # checks to see if member is an admin 
     def authorize_admin
-      @member = current_admin.member
-      if @member.nil? || @member.position == "Member" then
+      @user = current_admin.member
+      if @user.nil? || @user.position == "Member" then
         redirect_to root_path, alert: "You are not authorized to access this page"
       end
     end
-
-
 end

@@ -7,4 +7,13 @@ class Member < ApplicationRecord
   # sets foreign key (admin) for member
   has_one :admin
   belongs_to :admin, optional: true
+
+  # when saving, update points and total points
+  before_save do
+    self.civicPoints      = 0 if civicPoints.nil?     || civicPoints < 0
+    self.outreachPoints   = 0 if outreachPoints.nil?  || outreachPoints < 0
+    self.socialPoints     = 0 if socialPoints.nil?    || socialPoints < 0
+    self.marketingPoints  = 0 if marketingPoints.nil? || marketingPoints < 0
+    self.totalPoints = self.civicPoints + self.outreachPoints + self.socialPoints + self.marketingPoints
+  end
 end

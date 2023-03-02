@@ -16,11 +16,12 @@
     <%= form.select :event_id, Event.order(:name).map { |event| [event.name, event.id] } %>
   </div>
 
+<!-- this is no longer needed because name is automatically entered 
   <div>
     <%= form.label :member_id, style: "display: block" %>
     <%= form.select :member_id, Member.order(:name).map { |member| [member.name, member.id] } %>
   </div>
-
+-->
 
   <div>
     <%= form.label :approved_status, style: "display: block" %>

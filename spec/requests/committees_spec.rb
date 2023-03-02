@@ -21,13 +21,22 @@ RSpec.describe "/committees", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Committee. As you add validations to Committee, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    {
-      name: "Name"
-    }
-  }
 
-  let(:invalid_attributes) {
+  
+  let!(:member1) {
+    Member.create!(
+        name: "Wayland",
+    )
+}
+
+let!(:valid_attributes) {
+    { 
+        name: "Committee1",
+        member_id: member1.id
+    }
+}
+
+  let!(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
   }
 
