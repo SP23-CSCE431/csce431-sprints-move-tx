@@ -24,6 +24,12 @@ RSpec.describe "Member_Event integration", type: :feature do
           name: "MyName2"
         )
     }
+
+    let!(:member3) {
+        Member.create!(
+            name: "myName3"
+        )
+    }
     let!(:event2) {
         Event.create!(
             name: "Jan Meeting",
@@ -43,28 +49,35 @@ RSpec.describe "Member_Event integration", type: :feature do
         member_id: member2.id}
     }
 
-    let!(:invalid_attributes) {
+    let!(:valid_meeting) {
+        {
+        event_id: event2.id,
+        member_id: member3.id
+        }
+    }
+
+    
+
+    let(:invalid_attributes) {
         skip("Add a hash of attributes invalid for your model")
     }
 
     describe "Creation" do
         scenario "create with valid inputs" do
             visit new_member_event_path
-            select valid_attributes[:event_id], from: "member_event[event_id]"
-            select valid_attributes[:member_id], from: "member_event[member_id]"
-            # click_on 'Create Member event'
-            expect(page).to have_content("Member event successfully created")
+            select event.name, from: "member_event[event_id]"
+            # select valid_attributes[:member_id], from: "member_event[member_id]"
+            click_on 'Create Member event'
+            expect(page).to have_content("Member event was successfully created")
         end
     end
 
     describe "Editing" do
-
         scenario 'update with valid inputs' do
-            @temp = MemberEvent.create!(valid_attributes)
+            @temp = MemberEvent.create!(edit_attributes)
             visit edit_member_event_path(@temp)
-            save_and_open_page
-            select edit_attributes[:event_id], from: "member_event[event_id]"
-            select edit_attributes[:member_id], from: "member_event[member_id]"
+            select event.name, from: "member_event[event_id]"
+            # select edit_attributes[:member_id], from: "member_event[member_id]"
             click_on 'Update Member event'
             expect(page).to have_content("Member event was successfully updated")
         end
@@ -72,10 +85,10 @@ RSpec.describe "Member_Event integration", type: :feature do
 
     describe "Deletion" do
         scenario 'delete entry' do
-            @temp = MemberEvent.create!(valid_meeting)
-            visit delete_event_path(@temp)
+            @temp = MemberEvent.create!(valid_attributes)
+            visit member_event_path(@temp)
             click_on 'Destroy this member event'
-            expect(page).to have_content("Event was successfully destroyed")
+            expect(page).to have_content("Member event was successfully destroyed")
         end
     end
 

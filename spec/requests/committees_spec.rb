@@ -36,7 +36,7 @@ let!(:valid_attributes) {
     }
 }
 
-  let!(:invalid_attributes) {
+  let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
   }
 
