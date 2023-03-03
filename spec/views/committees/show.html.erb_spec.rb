@@ -13,7 +13,6 @@ RSpec.describe "committees/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Name/)
-    # expect(rendered).to match("#{newmember.id}") leaving this off because requries member id which we don't have access to 
+    expect(rendered).to match(/Name/) 
   end
 end
