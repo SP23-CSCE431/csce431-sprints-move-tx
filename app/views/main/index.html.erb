@@ -1,4 +1,4 @@
-<h1>Main Page</h1>
+<h1>Welcome <%= @user.name %></h1>
 <p>This is the main page</p>
 <!--
 <%= link_to("Member List", members_path) %>
@@ -10,3 +10,66 @@
 <%= link_to("Excuses", excuses_path) %>
 <br />
 <%= link_to("Member Events", member_events_path) %> -->
+
+<div class="members index">
+  <h2>Your Information:</h2>
+
+  <table class="listing" summary="Member list" style="width: 100%;">
+    <tr class="header">
+      <!-- <th>#</th>
+      <th>Member</th> -->
+      <th>Committee</th>
+      <th>Position</th>
+      <th>Civic Points</th>
+      <th>Outreach Points</th>
+      <th>Social Points</th>
+      <th>Marketing Points</th>
+      <th>Total Points</th>
+    </tr>
+    <tr>
+      <td> <%= @user.committee %></td>
+      <td> <%= @user.position %></td>
+      <td> <%= @user.civicPoints %></td>
+      <td> <%= @user.outreachPoints %></td>
+      <td> <%= @user.socialPoints %></td>
+      <td> <%= @user.marketingPoints %></td>
+      <td> <%= @user.totalPoints %></td>
+    </tr>
+  </table>
+  <h2>Your Previous Events: </h2>
+  <% @member_event.where(member_id: @user.id).find_each do |member_event| %>
+    <p>
+      <strong>Event:</strong>
+      <%= member_event.event.name %>
+    </p>
+
+    <p>
+      <strong>Member:</strong>
+      <%= member_event.member.name %>
+    </p>
+
+    <p>
+      <strong>Approved status:</strong>
+      <%= member_event.approved_status %>
+    </p>
+
+    <% if (member_event.approved_status == true) then %>
+
+    <p>
+      <strong>Approved date:</strong>
+      <%= member_event.approve_date %>
+    </p>
+
+    <p>
+      <strong>Approved by:</strong>
+      <%= member_event.approve_by %>
+    </p>
+
+    <% end %>
+
+    <p>
+    <strong>File:</strong>
+     <%= link_to member_event.file.filename, member_event.file if member_event.file.attached? %>
+    </p>
+  <% end %>
+</div>
