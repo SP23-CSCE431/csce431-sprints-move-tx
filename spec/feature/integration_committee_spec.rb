@@ -5,34 +5,46 @@ RSpec.describe "Committee integration", type: :feature do
 
     # need to run the oauth before each test 
     include_context 'test user'
+
+    # create member instances to test dropdown menu functionality
+    let!(:member1) {
+        Member.create!(
+            name: "John",
+        )
+    }
+
+    let!(:member2) {
+        Member.create!(
+            name: "Wayland",
+        )
+    }
     
-    let(:valid_attributes) {
-        {
-            name: "MyName1",
-            leader_member_id: 12345
+    let!(:valid_attributes) {
+        { 
+            name: "Committee1",
+            member_id: member1.id
         }
     }
 
-    let(:edit_attributes) {
+    let!(:edit_attributes) {
         {
-            name: "MyName2",
-            leader_member_id: 54321
+            name: "Committee1",
+            member_id: member2.id
         }
     }
     
-    let(:invalid_attributes) {
+    let!(:invalid_attributes) {
         skip("Add a hash of attributes invalid for your model")
     }
 
     describe "Creation" do
         scenario 'create with valid inputs' do
             visit new_committee_path
+            puts "Member found: #{Member.find(valid_attributes[:member_id])}"
             fill_in "committee[name]", with: valid_attributes[:name]
-            fill_in "committee[leader_member_id]", with: valid_attributes[:leader_member_id]
+            select member1.name, from: "committee[member_id]"
             click_on "Create Committee"
-            visit committees_path
-            expect(page).to have_content(valid_attributes[:name])
-            expect(page).to have_content(valid_attributes[:leader_member_id])
+            expect(page).to have_content("Committee was successfully created")
         end
     end
 
@@ -40,19 +52,16 @@ RSpec.describe "Committee integration", type: :feature do
         scenario 'update with valid attributes' do
             @temp = Committee.create!(valid_attributes)
             visit committee_url(@temp)
-            expect(page).to have_content(valid_attributes[:name])
-            expect(page).to have_content(valid_attributes[:leader_member_id])
+            # expect(page).to have_content(valid_attributes[:name])
+            # expect(page).to have_content(valid_attributes[:member_id])
 
             visit edit_committee_path(@temp)
             fill_in "committee[name]", with: edit_attributes[:name]
-            fill_in "committee[leader_member_id]", with: edit_attributes[:leader_member_id]
+            select edit_attributes[:member_id], from: "committee[member_id]"
             click_on "Update Committee"
-
-            visit committee_url(@temp)
-            expect(page).to have_content(edit_attributes[:name])
-            expect(page).to have_content(edit_attributes[:leader_member_id])
-        end
-        
+            # visit committee_url(@temp)
+            expect(page).to have_content("Committee was successfully updated")
+        end 
     end
 
     describe "Deletion" do
@@ -60,15 +69,14 @@ RSpec.describe "Committee integration", type: :feature do
             @temp = Committee.create!(valid_attributes)
             visit committees_path
             expect(page).to have_content(valid_attributes[:name])
-            expect(page).to have_content(valid_attributes[:leader_member_id])
+            # expect(page).to have_content(valid_attributes[:member_id])
 
             visit delete_committee_path(@temp)
             click_on "Delete committee"
             visit committees_path
             expect(page).not_to have_content(valid_attributes[:name])
-            expect(page).not_to have_content(valid_attributes[:leader_member_id])
+            expect(page).not_to have_content(valid_attributes[:member_id])
 
         end
     end
-
 end

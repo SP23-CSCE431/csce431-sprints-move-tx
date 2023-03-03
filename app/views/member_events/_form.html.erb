@@ -17,12 +17,6 @@
   </div>
 
   <div>
-    <%= form.label :member_id, style: "display: block" %>
-    <%= form.select :member_id, Member.order(:name).map { |member| [member.name, member.id] } %>
-  </div>
-
-
-  <div>
     <%= form.label :approved_status, style: "display: block" %>
     <%= form.check_box :approved_status %>
   </div>

@@ -17,8 +17,8 @@
   </div>
 
   <div>
-    <%= form.label :leader_member_id, style: "display: block" %>
-    <%= form.number_field :leader_member_id %>
+    <%= form.label :member_id, style: "display: block" %>
+    <%= form.select :member_id, Member.order(:name).map { |member| [ member.name, member.id] } %>
   </div>
 
   <div>

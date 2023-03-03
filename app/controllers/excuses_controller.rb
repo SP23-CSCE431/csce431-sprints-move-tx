@@ -47,6 +47,11 @@ class ExcusesController < ApplicationController
     end
   end
 
+  # for deletion page 
+  def delete
+    @excuse = Excuse.find(params[:id])
+  end
+
   # DELETE /excuses/1 or /excuses/1.json
   def destroy
     @excuse.destroy

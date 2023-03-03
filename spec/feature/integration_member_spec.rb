@@ -14,7 +14,7 @@ RSpec.describe "Members integration", type: :feature do
             outreachPoints: 10011,
             socialPoints: 10012,
             marketingPoints: 10013,
-            totalPoints: 10014
+            totalPoints: 40046
         }
     }
 
@@ -27,7 +27,7 @@ RSpec.describe "Members integration", type: :feature do
             outreachPoints: 10091,
             socialPoints: 10092,
             marketingPoints: 10093,
-            totalPoints: 10094
+            totalPoints: 40366
         }
     }
 
@@ -47,7 +47,6 @@ RSpec.describe "Members integration", type: :feature do
             fill_in "member[outreachPoints]",   with: valid_attributes[:outreachPoints]
             fill_in "member[socialPoints]",     with: valid_attributes[:socialPoints]
             fill_in "member[marketingPoints]",  with: valid_attributes[:marketingPoints]
-            fill_in "member[totalPoints]",      with: valid_attributes[:totalPoints]
             click_on "Create Member"
             visit members_path
             expect(page).to have_content(valid_attributes[:name])
@@ -68,7 +67,6 @@ RSpec.describe "Members integration", type: :feature do
             fill_in "member[outreachPoints]",   with: valid_attributes[:outreachPoints]
             fill_in "member[socialPoints]",     with: valid_attributes[:socialPoints]
             fill_in "member[marketingPoints]",  with: valid_attributes[:marketingPoints]
-            fill_in "member[totalPoints]",      with: valid_attributes[:totalPoints]
             click_on "Create Member"
             visit members_path
             expect(page).not_to have_content(valid_attributes[:committee])
@@ -102,7 +100,6 @@ RSpec.describe "Members integration", type: :feature do
             fill_in "member[outreachPoints]",   with: edit_attributes[:outreachPoints]
             fill_in "member[socialPoints]",     with: edit_attributes[:socialPoints]
             fill_in "member[marketingPoints]",  with: edit_attributes[:marketingPoints]
-            fill_in "member[totalPoints]",      with: edit_attributes[:totalPoints]
             click_on 'Update Member'
 
             visit member_url(@temp)

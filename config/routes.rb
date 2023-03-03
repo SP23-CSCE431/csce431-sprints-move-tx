@@ -23,7 +23,11 @@ Rails.application.routes.draw do
   end
 
   resources :committees
-  resources :excuses
+  resources :excuses do 
+    member do
+      get :delete
+    end
+  end
 
   resources :committees do
     member do

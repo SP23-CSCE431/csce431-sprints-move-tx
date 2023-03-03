@@ -11,7 +11,7 @@ RSpec.describe Member, type: :model do
             outreachPoints: 10011,
             socialPoints: 10012,
             marketingPoints: 10013,
-            totalPoints: 10014
+            totalPoints: 40046
         }
     }
 

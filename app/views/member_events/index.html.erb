@@ -1,13 +1,28 @@
 <%= link_to('Back to Home page', {controller: 'main', action: 'index'}) %><br />
 <p style="color: green"><%= notice %></p>
 
-<h1>Member events</h1>
+<h1>Member Events</h1>
 
+<%# shows events that need to be checked off on if user is an admin %>
 <div id="member_events">
+  <%if @user.position != "Member"%>
+    <h2> My Approvals: </h2>
+  <%end%>
   <% @member_events.each do |member_event| %>
 
   <%# baseline for checking based off of admin name will need to change based off of oauth %>
-  <% if member_event.approve_by.to_s.include?(@member.name)%>
+  <% if member_event.approve_by.to_s.include?(@user.name)%>
+    <%= render member_event %>
+    <p>
+      <%= link_to "Show this member event", member_event %>
+    </p>
+    <% end %>
+  <% end %>
+
+  <%# shows all events user has entered  %>
+  <h2> My Events: </h2>
+  <% @member_events.each do |member_event| %>
+  <% if member_event.member_id == @user.id%>
     <%= render member_event %>
     <p>
       <%= link_to "Show this member event", member_event %>
