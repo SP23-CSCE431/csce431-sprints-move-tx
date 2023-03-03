@@ -47,7 +47,6 @@ RSpec.describe "Members integration", type: :feature do
             fill_in "member[outreachPoints]",   with: valid_attributes[:outreachPoints]
             fill_in "member[socialPoints]",     with: valid_attributes[:socialPoints]
             fill_in "member[marketingPoints]",  with: valid_attributes[:marketingPoints]
-            #fill_in "member[totalPoints]",      with: valid_attributes[:totalPoints]
             click_on "Create Member"
             visit members_path
             expect(page).to have_content(valid_attributes[:name])
