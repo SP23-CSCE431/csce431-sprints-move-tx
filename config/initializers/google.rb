@@ -2,10 +2,10 @@ require 'google/apis/calendar_v3'
 require 'googleauth'
 require 'googleauth/stores/file_token_store'
 
-OOB_URI = 'urn:ietf:wg:oauth:2.0:oob'.freeze
-APPLICATION_NAME = 'My Calendar App'.freeze
-CREDENTIALS_PATH = 'cal_service_account.json'.freeze
-TOKEN_PATH = 'path/to/token.yaml'.freeze
+OOB_URI = 'urn:ietf:wg:oauth:2.0:oob'
+APPLICATION_NAME = 'My Calendar App'
+CREDENTIALS_PATH = 'cal_service_account.json'
+TOKEN_PATH = 'path/to/token.yaml'
 # Initialize the Google Calendar API client
 CALENDAR = Google::Apis::CalendarV3::CalendarService.new
 CALENDAR.client_options.application_name = APPLICATION_NAME
