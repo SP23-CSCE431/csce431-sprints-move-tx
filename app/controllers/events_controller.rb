@@ -100,8 +100,13 @@ class EventsController < ApplicationController
       # create a new Google calendar event
       google_event = Google::Apis::CalendarV3::Event.new(
         summary: event.name,
-        description: "Event type: " + event.event_type + "\nPoint type: " + event.point_type
-        date: event.date.to_s
+        description: "Event type: " + event.event_type + "\nPoint type: " + event.point_type,
+        start: {
+          date: event.date.to_s
+        }
+        end: {
+          date: event.date.to_s
+        }
       )
     
       # insert the new Google calendar event
