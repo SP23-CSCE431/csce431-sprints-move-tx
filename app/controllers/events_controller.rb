@@ -103,7 +103,7 @@ class EventsController < ApplicationController
         description: "Event type: " + event.event_type + "\nPoint type: " + event.point_type,
         start: {
           date: event.date.to_s
-        }
+        },
         end: {
           date: event.date.to_s
         }
