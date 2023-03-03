@@ -31,4 +31,6 @@
   <% end %>
 </div>
 
-<%= link_to "New member event", new_member_event_path %>
+<%= link_to "New Service event", new_member_event_path(version: 1) %>
+<br>
+<%= link_to "New Meeting", new_member_event_path(version: 2) %>

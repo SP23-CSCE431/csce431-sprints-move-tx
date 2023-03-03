@@ -19,6 +19,9 @@ class MemberEventsController < ApplicationController
   # GET /member_events/new
   def new
     @member_event = MemberEvent.new
+
+    # creates version of page for service or meeting that defaults to version 1
+    @version = params[:version] || 1
   end
 
   # GET /member_events/1/edit

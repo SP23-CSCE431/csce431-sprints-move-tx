@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+  <% if @version == 1 %>
   <div>
     <%= form.label :event_id, style: "display: block" %>
     <%= form.select :event_id, Event.order(:name).map { |event| [event.name, event.id] } %>
@@ -48,7 +49,8 @@
   </div>
 
   <br>
-  
+   <% end %>
+   
   <div>
     <%= form.submit %>
   </div>

@@ -39,6 +39,7 @@ RSpec.describe "Member_Event integration", type: :feature do
         )
     }
 
+
     let!(:valid_attributes) {
         {event_id: event.id,
         member_id: member.id}
@@ -63,12 +64,28 @@ RSpec.describe "Member_Event integration", type: :feature do
     }
 
     describe "Creation" do
-        scenario "create with valid inputs" do
-            visit new_member_event_path
+        scenario "create Service event with valid inputs" do
+            visit new_member_event_path(version: 1)
             select event.name, from: "member_event[event_id]"
             # select valid_attributes[:member_id], from: "member_event[member_id]"
             click_on 'Create Member event'
             expect(page).to have_content("Member event was successfully created")
+        end
+
+        scenario "create Meeting Event with correct phrase" do
+            visit new_member_event_path(version: 2)
+            select event.name, from: "member_event[event_id]"
+            fill_in "member_event[phrase]",  with: event2[:phrase]
+            click_on 'Sign into meeting'
+            expect(page).to have_content("You successfully signed into meeting")
+        end
+
+        scenario "create Meeting Event with wrong phrase" do
+            visit new_member_event_path(version: 2)
+            select event.name, from: "member_event[event_id]"
+            fill_in "member_event[phrase]",  with: "1234"
+            click_on 'Sign into meeting'
+            expect(page).to have_content("Entered wrong password try again")
         end
     end
 
