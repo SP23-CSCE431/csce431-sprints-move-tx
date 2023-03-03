@@ -100,8 +100,8 @@ class EventsController < ApplicationController
       # create a new Google calendar event
       google_event = Google::Apis::CalendarV3::Event.new(
         summary: event.name,
-        # temporarily removed descriptions because they cause RSpec to fail because of conversion from nil to string.
-        # description: "Event type: " + event.event_type + "\nPoint type: " + event.point_type,
+        # cool way to concatenate strings in ruby
+        description: "Event type: #{event.event_type || 'N/A'}\nPoint type: #{event.point_type || 'N/A'}",
         start: {
           date: event.date.to_s
         },
