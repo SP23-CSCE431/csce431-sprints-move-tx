@@ -1,8 +1,6 @@
 require 'rails_helper'
 require "support/test_user"
 
-
-
 RSpec.describe "Committee integration", type: :feature do
 
     # need to run the oauth before each test 
@@ -39,8 +37,6 @@ RSpec.describe "Committee integration", type: :feature do
         skip("Add a hash of attributes invalid for your model")
     }
 
-
-
     describe "Creation" do
         scenario 'create with valid inputs' do
             visit new_committee_path
@@ -65,8 +61,7 @@ RSpec.describe "Committee integration", type: :feature do
             click_on "Update Committee"
             # visit committee_url(@temp)
             expect(page).to have_content("Committee was successfully updated")
-        end
-        
+        end 
     end
 
     describe "Deletion" do
@@ -84,5 +79,4 @@ RSpec.describe "Committee integration", type: :feature do
 
         end
     end
-
 end
