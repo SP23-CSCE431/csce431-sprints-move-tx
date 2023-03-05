@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_04_232401) do
     t.string "phrase"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cal_event_id"
   end
 
   create_table "excuses", force: :cascade do |t|
