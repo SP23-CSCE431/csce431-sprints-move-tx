@@ -53,7 +53,7 @@ class EventsController < ApplicationController
     end
   end
 
-  # for deletion page 
+  # for deletion page
   def delete
     @event = Event.find(params[:id])
   end
@@ -74,7 +74,7 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
-    # condition that will automatically turn point type to nil if event type is meeting 
+    # condition that will automatically turn point type to nil if event type is meeting
     def service_or_meeting
       if @event.event_type == "Meeting"
         @event.point_type = nil
@@ -87,7 +87,7 @@ class EventsController < ApplicationController
       end
     end
 
-    # Only allow a list of trusted parameters through. 
+    # Only allow a list of trusted parameters through.
     def event_params
       params.require(:event).permit(:name, :date, :point_type, :event_type, :phrase)
     end
@@ -96,7 +96,7 @@ class EventsController < ApplicationController
 
     def create_google_calendar_event(event, access_token)
       calendar_id = '4e07b698012e5a6ca31301711bee1fcadccf292f6a330165b4a32afb8a850f39@group.calendar.google.com'
-    
+
       # create a new Google calendar event
       google_event = Google::Apis::CalendarV3::Event.new(
         summary: event.name,
@@ -109,9 +109,12 @@ class EventsController < ApplicationController
           date: event.date.to_s
         }
       )
-    
+
       # insert the new Google calendar event
       CALENDAR.insert_event(calendar_id, google_event, send_notifications: true)
     end
 
+    def set_member
+      @user = current_admin.member
+    end
 end

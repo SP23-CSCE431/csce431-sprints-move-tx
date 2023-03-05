@@ -1,7 +1,8 @@
 class MembersController < ApplicationController
 
-  # sets the member before each action 
+  # sets the member before each action
   before_action :set_member
+  before_action :authenticate_admin
 
   def index
     @members = Member.order(:id)
@@ -21,7 +22,7 @@ class MembersController < ApplicationController
     respond_to do |format|
       if @member.save
 
-        # if the member does not have connected account connect email to member 
+        # if the member does not have connected account connect email to member
         if @member.admin.nil? && @user.nil?
           @member.update(admin_id: current_admin.id, position: "Member", civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0)
         end
@@ -75,6 +76,12 @@ class MembersController < ApplicationController
   # sets the member before each action
   def set_member
     @user = current_admin.member
+  end
+
+  def authenticate_admin
+    if @user.position == 'Member'
+      redirect_to root_path
+    end
   end
 
 end

@@ -29,17 +29,21 @@
           <li class="nav-item <%= active_class(root_path) %>">
             <%= link_to 'Home', root_path, class: 'nav-link' %>
           </li>
-          <li class="nav-item <%= active_class(members_path) %>">
-            <%= link_to "Member List", members_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item <%= active_class(committees_path) %>">
-            <%= link_to "Committees", committees_path, class: 'nav-link' %>
-          </li>
+          <% if !@user.nil? %>
+            <% if @user.position != 'Member' %>
+              <li class="nav-item <%= active_class(members_path) %>">
+                <%= link_to "Member List", members_path, class: 'nav-link' %>
+              </li>
+              <li class="nav-item <%= active_class(committees_path) %>">
+                <%= link_to "Committees", committees_path, class: 'nav-link' %>
+              </li>
+              <li class="nav-item <%= active_class(excuses_path) %>">
+                <%= link_to "Excuses", excuses_path, class: 'nav-link' %>
+              </li>
+            <% end %>
+          <% end %>
           <li class="nav-item <%= active_class(events_path) %>">
             <%= link_to "Events", events_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item <%= active_class(excuses_path) %>">
-            <%= link_to "Excuses", excuses_path, class: 'nav-link' %>
           </li>
           <li class="nav-item <%= active_class(member_events_path) %>">
             <%= link_to "Member Events", member_events_path, class: 'nav-link' %>
