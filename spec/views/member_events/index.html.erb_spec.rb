@@ -59,6 +59,6 @@ RSpec.describe "member_events/index", type: :view do
     assert_select cell_selector, text: Regexp.new(member[:name].to_s), count: 4
     assert_select cell_selector, text: Regexp.new(event[:name].to_s), count: 2
     assert_select cell_selector, text: Regexp.new(true.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Approve by".to_s), count: 2
+    assert_select cell_selector, text: Regexp.new("Approved by".to_s), count: 2
   end
 end
