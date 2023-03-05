@@ -32,10 +32,13 @@ class MemberEventsController < ApplicationController
 
   # POST /member_events or /member_events.json
   def create
-    @member_event = MemberEvent.new(member_event_params)
+    custom_value = params[:member_event][:officer_ids].to_s
+    @member_event = MemberEvent.new(event_id: params[:member_event][:event_id], member_id: params[:member_event][:member_id], approved_status: params[:member_event][:approved_status], approve_date: params[:member_event][:approve_date], approve_by: params[:member_event][:approve_by], phrase: params[:member_event][:phrase], file: params[:member_event][:file])
+
 
     # enters name of member so user doesnt have to do it in form
     @member_event.member_id = @user.id
+    @member_event.approve_by = custom_value
 
     respond_to do |format|
       if @member_event.save
@@ -92,7 +95,7 @@ class MemberEventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def member_event_params
-      params.require(:member_event).permit(:event_id, :member_id, :approved_status, :approve_date, :approve_by, :file, :version, :phrase)
+      params.require(:member_event).permit(:event_id, :member_id, :approved_status, :approve_date, :approve_by, :file, :version, :phrase, :officer_ids)
     end
 
     # sets the member before each action

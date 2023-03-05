@@ -50,7 +50,7 @@ RSpec.describe "member_events/edit", type: :view do
 
       assert_select "input[name=?]", "member_event[approved_status]"
 
-      assert_select "select[name=?]", "member_event[approve_by]"
+      assert_select "input[type=?][name=?][value=?]", "checkbox", "member_event[officer_ids][]", "MyName"
     end
   end
 end
