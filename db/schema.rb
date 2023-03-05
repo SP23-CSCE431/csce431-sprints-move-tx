@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_23_063109) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_04_232401) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,9 +54,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_063109) do
 
   create_table "committees", force: :cascade do |t|
     t.string "name"
-    t.integer "leader_member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "member_id"
+    t.index ["member_id"], name: "index_committees_on_member_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -67,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_063109) do
     t.string "phrase"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cal_event_id"
   end
 
   create_table "excuses", force: :cascade do |t|
@@ -102,5 +104,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_063109) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "committees", "members"
   add_foreign_key "members", "admins"
 end

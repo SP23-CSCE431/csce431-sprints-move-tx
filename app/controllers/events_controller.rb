@@ -25,7 +25,7 @@ class EventsController < ApplicationController
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
-
+    @event.cal_event_id = SecureRandom.hex(16)
     respond_to do |format|
       if @event.save
         # create event in Google calendar
@@ -44,6 +44,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
         if @event.update(event_params)
+        update_google_calendar_event(@event, CALENDAR.authorization.fetch_access_token!)
         format.html { redirect_to event_url(@event), notice: "Event was successfully updated." }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -61,6 +62,9 @@ class EventsController < ApplicationController
   # DELETE /events/1 or /events/1.json
   def destroy
     @event.destroy
+    # delete event in Google calendar
+    delete_google_calendar_event(@event, CALENDAR.authorization.fetch_access_token!)
+
 
     respond_to do |format|
       format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
@@ -89,16 +93,20 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through. 
     def event_params
-      params.require(:event).permit(:name, :date, :point_type, :event_type, :phrase)
+      params.require(:event).permit(:name, :date, :point_type, :event_type, :phrase, :cal_event_id)
     end
 
     # helper method to create a Google calendar event
 
     def create_google_calendar_event(event, access_token)
       calendar_id = '4e07b698012e5a6ca31301711bee1fcadccf292f6a330165b4a32afb8a850f39@group.calendar.google.com'
-    
+      # event.cal_event_id = SecureRandom.uuid
+      # event.save
+      # print("CAL_EVENT_ID: ")
+      # print(event.cal_event_id)
       # create a new Google calendar event
       google_event = Google::Apis::CalendarV3::Event.new(
+        id: event.cal_event_id,
         summary: event.name,
         # cool way to concatenate strings in ruby
         description: "Event type: #{event.event_type || 'N/A'}\nPoint type: #{event.point_type || 'N/A'}",
@@ -112,6 +120,29 @@ class EventsController < ApplicationController
     
       # insert the new Google calendar event
       CALENDAR.insert_event(calendar_id, google_event, send_notifications: true)
+    end
+
+    def delete_google_calendar_event(event, access_token)
+
+      # find the event on the calendar by its event ID
+      calendar_id = '4e07b698012e5a6ca31301711bee1fcadccf292f6a330165b4a32afb8a850f39@group.calendar.google.com'
+      CALENDAR.delete_event(calendar_id, event.cal_event_id)
+
+    end
+
+    def update_google_calendar_event(event, access_token)
+      # find the event on the calendar by its event ID
+      calendar_id = '4e07b698012e5a6ca31301711bee1fcadccf292f6a330165b4a32afb8a850f39@group.calendar.google.com'
+      google_event = CALENDAR.get_event(calendar_id, event.cal_event_id)
+    
+      # update the fields of the Google calendar event
+      google_event.summary = event.name
+      google_event.description = "Event type: #{event.event_type || 'N/A'}\nPoint type: #{event.point_type || 'N/A'}"
+      google_event.start = Google::Apis::CalendarV3::EventDateTime.new(date: event.date.to_s)
+      google_event.end = Google::Apis::CalendarV3::EventDateTime.new(date: event.date.to_s)
+    
+      # update the Google calendar event
+      CALENDAR.update_event(calendar_id, google_event.id, google_event, send_notifications: true)
     end
 
 end
