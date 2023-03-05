@@ -20,8 +20,7 @@ RSpec.describe "member_events/show", type: :view do
       name: "MyEventName",
       date: Date.parse("01-01-2023"),
       point_type: "MyString",
-      event_type: "MyString",
-      phrase: "MyString"
+      event_type: "Service",
     )
   }
 
