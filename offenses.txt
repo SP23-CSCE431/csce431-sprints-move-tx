@@ -1,0 +1,1884 @@
+Inspecting 104 files
+...C..C.WCCCCC........C.C..CWCCCCCCCCCCCCC..CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCWCCCCCCCCCCCCCCCCCCCCCCCCCC...
+
+Offenses:
+
+app/controllers/admins/omniauth_callbacks_controller.rb:8:9: C: [Correctable] Layout/ClosingParenthesisIndentation: Indent ) to column 6 (not 8)
+        )
+        ^
+app/controllers/admins/omniauth_callbacks_controller.rb:12:27: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admins/omniauth_callbacks_controller.rb:13:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        sign_in_and_redirect admin, event: :authentication
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admins/omniauth_callbacks_controller.rb:15:25: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        flash[:alert] = t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admins/omniauth_callbacks_controller.rb:16:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        redirect_to new_admin_session_path
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admins/omniauth_callbacks_controller.rb:51:1: C: [Correctable] Layout/EmptyLinesAroundClassBody: Extra empty line detected at class body end.
+app/controllers/committees_controller.rb:28:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to committee_url(@committee), notice: "Committee was successfully created." }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/committees_controller.rb:29:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :created, location: @committee }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/committees_controller.rb:31:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :new, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/committees_controller.rb:32:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @committee.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/committees_controller.rb:41:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to committee_url(@committee), notice: "Committee was successfully updated." }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/committees_controller.rb:42:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :ok, location: @committee }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/committees_controller.rb:44:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :edit, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/committees_controller.rb:45:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @committee.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/committees_controller.rb:59:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      format.html { redirect_to committees_url, notice: "Committee was successfully destroyed." }
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/committees_controller.rb:60:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      format.json { head :no_content }
+                    ^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:34:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:35:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :created, location: @event }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:37:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :new, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:38:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:50:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to event_url(@event), notice: "Event was successfully updated." }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:51:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :ok, location: @event }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:53:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :edit, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:54:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:71:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:72:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      format.json { head :no_content }
+                    ^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:102:45: W: [Correctable] Lint/UnusedMethodArgument: Unused method argument - access_token. If it's necessary, use _ or _access_token as an argument name to indicate that it won't be used. If it's unnecessary, remove it.
+    def create_google_calendar_event(event, access_token)
+                                            ^^^^^^^^^^^^
+app/controllers/events_controller.rb:123:45: W: [Correctable] Lint/UnusedMethodArgument: Unused method argument - access_token. If it's necessary, use _ or _access_token as an argument name to indicate that it won't be used. If it's unnecessary, remove it.
+    def delete_google_calendar_event(event, access_token)
+                                            ^^^^^^^^^^^^
+app/controllers/events_controller.rb:128:43: W: Lint/UselessAssignment: Useless assignment to variable - e.
+      rescue Google::Apis::ClientError => e
+                                          ^
+app/controllers/events_controller.rb:133:45: W: [Correctable] Lint/UnusedMethodArgument: Unused method argument - access_token. If it's necessary, use _ or _access_token as an argument name to indicate that it won't be used. If it's unnecessary, remove it.
+    def update_google_calendar_event(event, access_token)
+                                            ^^^^^^^^^^^^
+app/controllers/events_controller.rb:148:43: W: Lint/UselessAssignment: Useless assignment to variable - e.
+      rescue Google::Apis::ClientError => e
+                                          ^
+app/controllers/events_controller.rb:152:1: C: [Correctable] Layout/EmptyLinesAroundClassBody: Extra empty line detected at class body end.
+app/controllers/excuses_controller.rb:28:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to excuse_url(@excuse), notice: "Excuse was successfully created." }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/excuses_controller.rb:29:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :created, location: @excuse }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/excuses_controller.rb:31:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :new, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/excuses_controller.rb:32:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @excuse.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/excuses_controller.rb:41:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to excuse_url(@excuse), notice: "Excuse was successfully updated." }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/excuses_controller.rb:42:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :ok, location: @excuse }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/excuses_controller.rb:44:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :edit, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/excuses_controller.rb:45:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @excuse.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/excuses_controller.rb:60:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      format.html { redirect_to excuses_url, notice: "Excuse was successfully destroyed." }
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/excuses_controller.rb:61:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      format.json { head :no_content }
+                    ^^^^^^^^^^^^^^^^
+app/controllers/main_controller.rb:2:45: C: [Correctable] Style/Semicolon: Do not use semicolons to terminate expressions.
+  before_action :set_user, :set_member_event;
+                                            ^
+app/controllers/member_events_controller.rb:25:1: C: [Correctable] Layout/EmptyLinesAroundMethodBody: Extra empty line detected at method body end.
+app/controllers/member_events_controller.rb:34:3: C: Metrics/AbcSize: Assignment Branch Condition size for create is too high. [<6, 49, 4> 49.53/45]
+  def create ...
+  ^^^^^^^^^^
+app/controllers/member_events_controller.rb:36:151: C: [Correctable] Layout/LineLength: Line is too long. [359/150]
+    @member_event = MemberEvent.new(event_id: params[:member_event][:event_id], member_id: params[:member_event][:member_id], approved_status: params[:member_event][:approved_status], approve_date: params[:member_event][:approve_date], approve_by: params[:member_event][:approve_by], phrase: params[:member_event][:phrase], file: params[:member_event][:file])
+                                                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/member_events_controller.rb:38:1: C: [Correctable] Layout/EmptyLines: Extra blank line detected.
+app/controllers/member_events_controller.rb:47:25: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          format.html { redirect_to member_event_url(@member_event), notice: "You successfully signed into meeting" }
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/member_events_controller.rb:49:25: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          format.html { redirect_to member_event_url(@member_event), notice: "Member event was successfully created." }
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/member_events_controller.rb:51:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :created, location: @member_event }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/member_events_controller.rb:54:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :new, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/member_events_controller.rb:55:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @member_event.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/member_events_controller.rb:67:24: C: [Correctable] Layout/SpaceInsideBlockBraces: Space missing inside {.
+          format.html {redirect_to member_event_url(@member_event), notice: "Member Sign in was successfully updated."}
+                       ^
+app/controllers/member_events_controller.rb:67:24: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          format.html {redirect_to member_event_url(@member_event), notice: "Member Sign in was successfully updated."}
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/member_events_controller.rb:67:119: C: [Correctable] Layout/SpaceInsideBlockBraces: Space missing inside }.
+          format.html {redirect_to member_event_url(@member_event), notice: "Member Sign in was successfully updated."}
+                                                                                                                      ^
+app/controllers/member_events_controller.rb:69:25: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          format.html { redirect_to member_event_url(@member_event), notice: "Member event was successfully updated." }
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/member_events_controller.rb:71:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :ok, location: @member_event }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/member_events_controller.rb:74:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :edit, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/member_events_controller.rb:75:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @member_event.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/member_events_controller.rb:85:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      format.html { redirect_to member_events_url, notice: "Member event was successfully destroyed." }
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/member_events_controller.rb:86:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      format.json { head :no_content }
+                    ^^^^^^^^^^^^^^^^
+app/controllers/member_events_controller.rb:98:151: C: [Correctable] Layout/LineLength: Line is too long. [151/150]
+      params.require(:member_event).permit(:event_id, :member_id, :approved_status, :approve_date, :approve_by, :file, :version, :phrase, :officer_ids)
+                                                                                                                                                      ^
+app/controllers/member_events_controller.rb:109:7: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if @user.nil? || @user.position == "Member" then
+      ^^
+app/controllers/member_events_controller.rb:109:51: C: [Correctable] Style/MultilineIfThen: Do not use then for multi-line if.
+      if @user.nil? || @user.position == "Member" then
+                                                  ^^^^
+app/controllers/member_events_controller.rb:110:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        redirect_to root_path, alert: "You are not authorized to access this page"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/members_controller.rb:2:1: C: [Correctable] Layout/EmptyLinesAroundClassBody: Extra empty line detected at class body beginning.
+app/controllers/members_controller.rb:26:151: C: [Correctable] Layout/LineLength: Line is too long. [160/150]
+          @member.update(admin_id: current_admin.id, position: "Member", civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0)
+                                                                                                                                                      ^^^^^^^^^^
+app/controllers/members_controller.rb:28:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to member_url(@member), notice: "Member was successfully created." }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/members_controller.rb:29:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :created, location: @member }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/members_controller.rb:31:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :new, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/members_controller.rb:32:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @member.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/members_controller.rb:44:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      redirect_to member_path(@member)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/members_controller.rb:57:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    redirect_to members_path
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/members_controller.rb:79:1: C: [Correctable] Layout/EmptyLinesAroundClassBody: Extra empty line detected at class body end.
+app/helpers/application_helper.rb:10:5: C: [Correctable] Style/RedundantReturn: Redundant return detected.
+    return 'active'
+    ^^^^^^
+app/helpers/application_helper.rb:12:5: C: [Correctable] Style/RedundantReturn: Redundant return detected.
+    return ''
+    ^^^^^^
+app/models/admin.rb:11:3: C: Rails/HasManyOrHasOneDependent: Specify a :dependent option.
+  has_one :member
+  ^^^^^^^
+app/models/committee.rb:3:5: C: Rails/HasManyOrHasOneDependent: Specify a :dependent option.
+    has_one :member
+    ^^^^^^^
+app/models/member.rb:8:3: C: Rails/HasManyOrHasOneDependent: Specify a :dependent option.
+  has_one :admin
+  ^^^^^^^
+app/models/member.rb:13:58: C: [Correctable] Style/NumericPredicate: Use civicPoints.negative? instead of civicPoints < 0.
+    self.civicPoints      = 0 if civicPoints.nil?     || civicPoints < 0
+                                                         ^^^^^^^^^^^^^^^
+app/models/member.rb:14:58: C: [Correctable] Style/NumericPredicate: Use outreachPoints.negative? instead of outreachPoints < 0.
+    self.outreachPoints   = 0 if outreachPoints.nil?  || outreachPoints < 0
+                                                         ^^^^^^^^^^^^^^^^^^
+app/models/member.rb:15:58: C: [Correctable] Style/NumericPredicate: Use socialPoints.negative? instead of socialPoints < 0.
+    self.socialPoints     = 0 if socialPoints.nil?    || socialPoints < 0
+                                                         ^^^^^^^^^^^^^^^^
+app/models/member.rb:16:58: C: [Correctable] Style/NumericPredicate: Use marketingPoints.negative? instead of marketingPoints < 0.
+    self.marketingPoints  = 0 if marketingPoints.nil? || marketingPoints < 0
+                                                         ^^^^^^^^^^^^^^^^^^^
+app/models/member.rb:17:24: C: [Correctable] Style/RedundantSelf: Redundant self detected.
+    self.totalPoints = self.civicPoints + self.outreachPoints + self.socialPoints + self.marketingPoints
+                       ^^^^
+app/models/member.rb:17:43: C: [Correctable] Style/RedundantSelf: Redundant self detected.
+    self.totalPoints = self.civicPoints + self.outreachPoints + self.socialPoints + self.marketingPoints
+                                          ^^^^
+app/models/member.rb:17:65: C: [Correctable] Style/RedundantSelf: Redundant self detected.
+    self.totalPoints = self.civicPoints + self.outreachPoints + self.socialPoints + self.marketingPoints
+                                                                ^^^^
+app/models/member.rb:17:85: C: [Correctable] Style/RedundantSelf: Redundant self detected.
+    self.totalPoints = self.civicPoints + self.outreachPoints + self.socialPoints + self.marketingPoints
+                                                                                    ^^^^
+app/models/member_event.rb:12:8: C: [Correctable] Style/ParenthesesAroundCondition: Don't use parentheses around the condition of an if.
+    if (approved_status == true) then
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/member_event.rb:12:34: C: [Correctable] Style/MultilineIfThen: Do not use then for multi-line if.
+    if (approved_status == true) then
+                                 ^^^^
+app/models/member_event.rb:21:8: C: [Correctable] Style/NonNilCheck: Prefer !self.event.nil? over self.event != nil.
+    if self.event != nil
+       ^^^^^^^^^^^^^^^^^
+app/models/member_event.rb:21:8: C: [Correctable] Style/RedundantSelf: Redundant self detected.
+    if self.event != nil
+       ^^^^
+app/models/member_event.rb:22:7: C: [Correctable] Style/SoleNestedConditional: Consider merging nested conditions into outer if conditions.
+      if self.event.event_type = "Meeting"
+      ^^
+app/models/member_event.rb:22:10: C: [Correctable] Style/RedundantSelf: Redundant self detected.
+      if self.event.event_type = "Meeting"
+         ^^^^
+app/models/member_event.rb:22:32: W: Lint/AssignmentInCondition: Use == if you meant to do a comparison or move the assignment up out of the condition.
+      if self.event.event_type = "Meeting"
+                               ^
+app/models/member_event.rb:23:65: C: [Correctable] Style/SoleNestedConditional: Consider merging nested conditions into outer if conditions.
+        errors.add(:phrase, "Entered wrong password try again") unless self.phrase == event.phrase
+                                                                ^^^^^^
+app/models/member_event.rb:23:72: C: [Correctable] Style/RedundantSelf: Redundant self detected.
+        errors.add(:phrase, "Entered wrong password try again") unless self.phrase == event.phrase
+                                                                       ^^^^
+app/views/committees/_committee.json.jbuilder:1:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.extract! committee, :id, :name, :member_id, :created_at, :updated_at
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/committees/_committee.json.jbuilder:2:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.url committee_url(committee, format: :json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/committees/index.json.jbuilder:1:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.array! @committees, partial: "committees/committee", as: :committee
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/committees/show.json.jbuilder:1:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.partial! "committees/committee", committee: @committee
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/events/_event.json.jbuilder:1:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.extract! event, :id, :name, :date, :point_type, :event_type, :phrase, :created_at, :updated_at
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/events/_event.json.jbuilder:2:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.url event_url(event, format: :json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/events/index.json.jbuilder:1:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.array! @events, partial: "events/event", as: :event
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/events/show.json.jbuilder:1:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.partial! "events/event", event: @event
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/excuses/_excuse.json.jbuilder:1:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.extract! excuse, :id, :description, :file, :created_at, :updated_at
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/excuses/_excuse.json.jbuilder:2:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.url excuse_url(excuse, format: :json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/excuses/_excuse.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.file url_for(excuse.file)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/excuses/index.json.jbuilder:1:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.array! @excuses, partial: "excuses/excuse", as: :excuse
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/excuses/show.json.jbuilder:1:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.partial! "excuses/excuse", excuse: @excuse
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/member_events/_member_event.json.jbuilder:1:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.extract! member_event, :id, :event_id, :member_id, :approved_status, :approve_date, :approve_by, :created_at, :updated_at
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/member_events/_member_event.json.jbuilder:2:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.url member_event_url(member_event, format: :json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/member_events/index.json.jbuilder:1:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.array! @member_events, partial: "member_events/member_event", as: :member_event
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/member_events/show.json.jbuilder:1:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.partial! "member_events/member_event", member_event: @member_event
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/members/_member.json.jbuilder:1:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.extract! member, :name, :committee, :position, :civicPoints, :outreachPoints, :socialPoints, :marketingPoints, :totalPoints
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/members/_member.json.jbuilder:2:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.url member_url(member, format: :json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_committee_spec.rb:4:1: C: [Correctable] Layout/EmptyLines: Extra blank line detected.
+spec/feature/integration_committee_spec.rb:5:1: C: [Correctable] Layout/EmptyLines: Extra blank line detected.
+spec/feature/integration_committee_spec.rb:6:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "Committee integration", type: :feature do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_committee_spec.rb:14:13: C: [Correctable] Layout/FirstArgumentIndentation: Indent the first argument one step more than the start of the previous line.
+            name: "John",
+            ^^^^^^^^^^^^
+spec/feature/integration_committee_spec.rb:14:25: C: [Correctable] Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.
+            name: "John",
+                        ^
+spec/feature/integration_committee_spec.rb:15:9: C: [Correctable] Layout/ClosingParenthesisIndentation: Indent ) to column 10 (not 8)
+        )
+        ^
+spec/feature/integration_committee_spec.rb:20:13: C: [Correctable] Layout/FirstArgumentIndentation: Indent the first argument one step more than the start of the previous line.
+            name: "Wayland",
+            ^^^^^^^^^^^^^^^
+spec/feature/integration_committee_spec.rb:20:28: C: [Correctable] Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.
+            name: "Wayland",
+                           ^
+spec/feature/integration_committee_spec.rb:21:9: C: [Correctable] Layout/ClosingParenthesisIndentation: Indent ) to column 10 (not 8)
+        )
+        ^
+spec/feature/integration_committee_spec.rb:42:1: C: [Correctable] Layout/EmptyLines: Extra blank line detected.
+spec/feature/integration_committee_spec.rb:43:1: C: [Correctable] Layout/EmptyLines: Extra blank line detected.
+spec/feature/integration_committee_spec.rb:50:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Committee was successfully created")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_committee_spec.rb:66:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Committee was successfully updated")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_committee_spec.rb:75:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:name])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_committee_spec.rb:81:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:name])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_committee_spec.rb:82:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:member_id])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:5:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe 'Event integration', type: :feature do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:65:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Event was successfully created")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:75:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Event was successfully created")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:86:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Name can't be blank")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:96:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Date can't be blank")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:106:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Phrase can't be blank when there is a meeting")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:116:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Point type point type can't be blank when there is a service")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:131:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Event was successfully updated")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:142:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Event was successfully updated")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:152:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Name can't be blank")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:161:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Date can't be blank")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:170:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Phrase can't be blank when there is a meeting")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:179:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Point type point type can't be blank when there is a service")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:189:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Are you sure you want to permanently delete this event?")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:196:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Event was successfully destroyed")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_excuse_spec.rb:4:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "Excuse integration", type: :feature do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_excuse_spec.rb:10:13: C: [Correctable] Layout/FirstHashElementIndentation: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
+            description: "MyDescription1"
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_excuse_spec.rb:16:13: C: [Correctable] Layout/FirstHashElementIndentation: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
+            description: "MyDescription2"
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_excuse_spec.rb:25:9: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+        scenario 'create with valid inputs' do
+        ^^^^^^^^
+spec/feature/integration_excuse_spec.rb:29:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Excuse was successfully created")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_excuse_spec.rb:34:9: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+        scenario 'update with valid attributes' do
+        ^^^^^^^^
+spec/feature/integration_excuse_spec.rb:36:36: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+            visit edit_excuse_path(@temp)
+                                   ^^^^^
+spec/feature/integration_excuse_spec.rb:39:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Excuse was successfully updated")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_excuse_spec.rb:45:9: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+        scenario "delete entry" do
+        ^^^^^^^^
+spec/feature/integration_excuse_spec.rb:48:38: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+            visit delete_excuse_path(@temp)
+                                     ^^^^^
+spec/feature/integration_excuse_spec.rb:50:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Excuse was successfully destroyed.")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_home_spec.rb:4:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "Home integration:", type: :feature do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_home_spec.rb:10:5: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+    scenario 'Information on Page' do
+    ^^^^^^^^
+spec/feature/integration_home_spec.rb:12:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(page).to have_content("Your Information:")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_home_spec.rb:13:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(page).to have_content("Committee")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_home_spec.rb:14:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(page).to have_content("Position")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_home_spec.rb:15:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(page).to have_content("Civic Points")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_home_spec.rb:16:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(page).to have_content("Outreach Points")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_home_spec.rb:17:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(page).to have_content("Social Points")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_home_spec.rb:18:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(page).to have_content("Marketing Points")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_home_spec.rb:19:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(page).to have_content("Total Points")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:4:1: C: RSpec/MultipleMemoizedHelpers: Example group has too many memoized helpers [9/7]
+RSpec.describe "Member_Event integration", type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:4:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "Member_Event integration", type: :feature do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:10:9: C: [Correctable] Layout/FirstArgumentIndentation: Indent the first argument one step more than the start of the previous line.
+        name: "MyName1"
+        ^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:11:9: C: [Correctable] Layout/ClosingParenthesisIndentation: Indent ) to column 6 (not 8)
+        )
+        ^
+spec/feature/integration_member_event_spec.rb:15:13: C: [Correctable] Layout/FirstArgumentIndentation: Indent the first argument one step more than the start of the previous line.
+            name: "Park clean up", ...
+            ^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:19:9: C: [Correctable] Layout/ClosingParenthesisIndentation: Indent ) to column 10 (not 8)
+        )
+        ^
+spec/feature/integration_member_event_spec.rb:22:5: C: RSpec/LetSetup: Do not use let! to setup objects not referenced in tests.
+    let!(:member2) {
+    ^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:30:13: C: [Correctable] Layout/FirstArgumentIndentation: Indent the first argument one step more than the start of the previous line.
+            name: "myName3"
+            ^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:31:9: C: [Correctable] Layout/ClosingParenthesisIndentation: Indent ) to column 10 (not 8)
+        )
+        ^
+spec/feature/integration_member_event_spec.rb:35:13: C: [Correctable] Layout/FirstArgumentIndentation: Indent the first argument one step more than the start of the previous line.
+            name: "Jan Meeting", ...
+            ^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:39:9: C: [Correctable] Layout/ClosingParenthesisIndentation: Indent ) to column 10 (not 8)
+        )
+        ^
+spec/feature/integration_member_event_spec.rb:42:1: C: [Correctable] Layout/EmptyLines: Extra blank line detected.
+spec/feature/integration_member_event_spec.rb:44:9: C: [Correctable] Layout/SpaceInsideHashLiteralBraces: Space inside { missing.
+        {event_id: event.id,
+        ^
+spec/feature/integration_member_event_spec.rb:44:10: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+        {event_id: event.id,
+         ^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:45:9: C: [Correctable] Layout/HashAlignment: Align the keys of a hash literal if they span more than one line.
+        member_id: member.id}
+        ^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:45:29: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+        member_id: member.id}
+                            ^
+spec/feature/integration_member_event_spec.rb:45:29: C: [Correctable] Layout/SpaceInsideHashLiteralBraces: Space inside } missing.
+        member_id: member.id}
+                            ^
+spec/feature/integration_member_event_spec.rb:49:9: C: [Correctable] Layout/SpaceInsideHashLiteralBraces: Space inside { missing.
+        {event_id: event.id,
+        ^
+spec/feature/integration_member_event_spec.rb:49:10: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+        {event_id: event.id,
+         ^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:50:9: C: [Correctable] Layout/HashAlignment: Align the keys of a hash literal if they span more than one line.
+        member_id: member.id}
+        ^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:50:29: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+        member_id: member.id}
+                            ^
+spec/feature/integration_member_event_spec.rb:50:29: C: [Correctable] Layout/SpaceInsideHashLiteralBraces: Space inside } missing.
+        member_id: member.id}
+                            ^
+spec/feature/integration_member_event_spec.rb:53:5: C: RSpec/LetSetup: Do not use let! to setup objects not referenced in tests.
+    let!(:valid_meeting) {
+    ^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:55:9: C: [Correctable] Layout/FirstHashElementIndentation: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
+        event_id: event2.id,
+        ^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:66:5: C: RSpec/MultipleMemoizedHelpers: Example group has too many memoized helpers [9/7]
+    describe "Creation" do ...
+    ^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:67:9: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+        scenario "create Service event with valid inputs" do
+        ^^^^^^^^
+spec/feature/integration_member_event_spec.rb:72:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Member event was successfully created")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:76:9: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+        scenario "create Meeting Event with correct phrase" do
+        ^^^^^^^^
+spec/feature/integration_member_event_spec.rb:79:44: C: [Correctable] Layout/ExtraSpacing: Unnecessary spacing detected.
+            fill_in "member_event[phrase]",  with: event2[:phrase]
+                                           ^
+spec/feature/integration_member_event_spec.rb:81:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("You successfully signed into meeting")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:85:9: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+        scenario "create Meeting Event with wrong phrase" do
+        ^^^^^^^^
+spec/feature/integration_member_event_spec.rb:88:44: C: [Correctable] Layout/ExtraSpacing: Unnecessary spacing detected.
+            fill_in "member_event[phrase]",  with: "1234"
+                                           ^
+spec/feature/integration_member_event_spec.rb:90:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Entered wrong password try again")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:94:5: C: RSpec/MultipleMemoizedHelpers: Example group has too many memoized helpers [9/7]
+    describe "Editing" do ...
+    ^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:96:9: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+        scenario 'Editing Service with valid inputs' do
+        ^^^^^^^^
+spec/feature/integration_member_event_spec.rb:98:42: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+            visit edit_member_event_path(@temp, version: 1)
+                                         ^^^^^
+spec/feature/integration_member_event_spec.rb:102:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Member event was successfully updated")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:106:5: C: RSpec/MultipleMemoizedHelpers: Example group has too many memoized helpers [9/7]
+    describe "Deletion" do ...
+    ^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:107:9: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+        scenario 'delete entry' do
+        ^^^^^^^^
+spec/feature/integration_member_event_spec.rb:109:37: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+            visit member_event_path(@temp)
+                                    ^^^^^
+spec/feature/integration_member_event_spec.rb:111:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content("Member event was successfully destroyed")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_event_spec.rb:124:5: C: [Correctable] Layout/CommentIndentation: Incorrect indentation detected (column 4 instead of 2).
+    #     end
+    ^^^^^^^^^
+spec/feature/integration_member_spec.rb:4:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "Members integration", type: :feature do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:50:13: C: [Correctable] Layout/LeadingCommentSpace: Missing space after #.
+            #fill_in "member[totalPoints]",      with: valid_attributes[:totalPoints]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:53:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:name])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:54:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:committee])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:55:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:position])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:56:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:civicPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:57:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:outreachPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:58:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:socialPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:59:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:marketingPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:60:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:totalPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:71:13: C: [Correctable] Layout/LeadingCommentSpace: Missing space after #.
+            #fill_in "member[totalPoints]",      with: valid_attributes[:totalPoints]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:74:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:committee])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:75:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:position])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:76:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:civicPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:77:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:outreachPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:78:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:socialPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:79:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:marketingPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:80:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:totalPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:88:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:name])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:89:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:committee])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:90:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:position])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:91:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:civicPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:92:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:outreachPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:93:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:socialPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:94:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:marketingPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:95:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:totalPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:105:13: C: [Correctable] Layout/LeadingCommentSpace: Missing space after #.
+            #fill_in "member[totalPoints]",      with: edit_attributes[:totalPoints]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:109:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(edit_attributes[:name])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:110:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(edit_attributes[:committee])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:111:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(edit_attributes[:position])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:112:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(edit_attributes[:civicPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:113:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(edit_attributes[:outreachPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:114:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(edit_attributes[:socialPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:115:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(edit_attributes[:marketingPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:116:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(edit_attributes[:totalPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:125:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:name])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:126:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:committee])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:127:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:position])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:128:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:civicPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:129:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:outreachPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:130:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:socialPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:131:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:marketingPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:132:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).to have_content(valid_attributes[:totalPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:137:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:name])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:138:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:committee])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:139:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:position])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:140:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:civicPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:141:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:outreachPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:142:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:socialPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:143:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:marketingPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:144:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(page).not_to have_content(valid_attributes[:totalPoints])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:4:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "Navigation Integration:", type: :feature do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:11:5: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+    scenario 'Navigation bar: Home' do
+    ^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:14:7: C: [Correctable] RSpec/Capybara/CurrentPathExpectation: Do not set an RSpec expectation on current_path in Capybara feature specs - instead, use the have_current_path matcher on page
+      expect(current_path).to eq '/'
+      ^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:14:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).to eq '/'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:14:31: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).to eq '/'
+                              ^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:16:5: C: [Correctable] RSpec/EmptyLineAfterExample: Add an empty line after scenario.
+    # Member List displays member list
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:17:5: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+    scenario 'Navigation bar: Member List' do
+    ^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:20:7: C: [Correctable] RSpec/Capybara/CurrentPathExpectation: Do not set an RSpec expectation on current_path in Capybara feature specs - instead, use the have_current_path matcher on page
+      expect(current_path).to eq '/members'
+      ^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:20:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).to eq '/members'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:20:31: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).to eq '/members'
+                              ^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:22:5: C: [Correctable] RSpec/EmptyLineAfterExample: Add an empty line after scenario.
+    # Committess button goes to committees
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:23:5: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+    scenario 'Navigation bar: Committees' do
+    ^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:26:7: C: [Correctable] RSpec/Capybara/CurrentPathExpectation: Do not set an RSpec expectation on current_path in Capybara feature specs - instead, use the have_current_path matcher on page
+      expect(current_path).to eq '/committees'
+      ^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:26:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).to eq '/committees'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:26:31: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).to eq '/committees'
+                              ^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:28:5: C: [Correctable] RSpec/EmptyLineAfterExample: Add an empty line after scenario.
+    # Events buttons goes to Events
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:29:5: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+    scenario 'Navigation bar: Events' do
+    ^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:32:7: C: [Correctable] RSpec/Capybara/CurrentPathExpectation: Do not set an RSpec expectation on current_path in Capybara feature specs - instead, use the have_current_path matcher on page
+      expect(current_path).to eq '/events'
+      ^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:32:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).to eq '/events'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:32:31: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).to eq '/events'
+                              ^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:34:5: C: [Correctable] RSpec/EmptyLineAfterExample: Add an empty line after scenario.
+    # Excuses button goes to Excuses
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:35:5: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+    scenario 'Navigation bar: Excuses' do
+    ^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:38:7: C: [Correctable] RSpec/Capybara/CurrentPathExpectation: Do not set an RSpec expectation on current_path in Capybara feature specs - instead, use the have_current_path matcher on page
+      expect(current_path).to eq '/excuses'
+      ^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:38:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).to eq '/excuses'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:38:31: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).to eq '/excuses'
+                              ^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:40:5: C: [Correctable] RSpec/EmptyLineAfterExample: Add an empty line after scenario.
+    # Member Events button goes to Member Events
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:41:5: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+    scenario 'Navigation bar: Member Events' do
+    ^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:44:7: C: [Correctable] RSpec/Capybara/CurrentPathExpectation: Do not set an RSpec expectation on current_path in Capybara feature specs - instead, use the have_current_path matcher on page
+      expect(current_path).to eq '/member_events'
+      ^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:44:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).to eq '/member_events'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:44:31: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).to eq '/member_events'
+                              ^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:46:5: C: [Correctable] RSpec/EmptyLineAfterExample: Add an empty line after scenario.
+    # Events button does not go to home
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:47:5: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+    scenario 'Navigation bar: Rainy Day' do
+    ^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:50:7: C: [Correctable] RSpec/Capybara/CurrentPathExpectation: Do not set an RSpec expectation on current_path in Capybara feature specs - instead, use the have_current_path matcher on page
+      expect(current_path).not_to eq '/'
+      ^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:50:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).not_to eq '/'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_navigation_bar_spec.rb:50:35: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(current_path).not_to eq '/'
+                                  ^^^^^^
+spec/helpers/committees_helper_spec.rb:13:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe CommitteesHelper, type: :helper do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/helpers/events_helper_spec.rb:13:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe EventsHelper, type: :helper do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/helpers/excuses_helper_spec.rb:13:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe ExcusesHelper, type: :helper do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/helpers/main_helper_spec.rb:13:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe MainHelper, type: :helper do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/helpers/member_events_helper_spec.rb:13:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe MemberEventsHelper, type: :helper do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/helpers/members_helper_spec.rb:13:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe MembersHelper, type: :helper do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/admin_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe Admin, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/committee_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe Committee, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/event_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe Event, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/excuse_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe Excuse, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/excuse_spec.rb:13:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(excuse).to be_invalid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/excuse_spec.rb:14:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(excuse.errors[:file]).to include("File size is too large (Size > 5MB)")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/excuse_spec.rb:24:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(excuse).to be_invalid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/excuse_spec.rb:25:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(excuse.errors[:file]).to include("File must be a PDF")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/member_event_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe MemberEvent, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/member_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe Member, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/rails_helper.rb:66:3: C: [Correctable] Layout/CommentIndentation: Incorrect indentation detected (column 2 instead of 0).
+  # config.filter_gems_from_backtrace("gem name")
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/rails_helper.rb:68:1: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+Capybara::Screenshot.register_driver(:selenium) do |driver, path| ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/rails_helper.rb:72:1: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+Capybara.save_path = "#{Rails.root}/tmp/screenshots"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/rails_helper.rb:72:22: C: Rails/FilePath: Prefer Rails.root.join('path/to').
+Capybara.save_path = "#{Rails.root}/tmp/screenshots"
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:16:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "/committees", type: :request do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:28:9: C: [Correctable] Layout/FirstArgumentIndentation: Indent the first argument one step more than the start of the previous line.
+        name: "Wayland",
+        ^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:28:24: C: [Correctable] Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.
+        name: "Wayland",
+                       ^
+spec/requests/committees_spec.rb:29:5: C: [Correctable] Layout/ClosingParenthesisIndentation: Indent ) to column 6 (not 4)
+    )
+    ^
+spec/requests/committees_spec.rb:30:1: C: [Correctable] Layout/BlockAlignment: } at 30, 0 is not aligned with let!(:member1) { at 26, 2.
+}
+^
+spec/requests/committees_spec.rb:32:1: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+let!(:valid_attributes) { ...
+^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:34:9: C: [Correctable] Layout/FirstHashElementIndentation: Use 2 spaces for indentation in a hash, relative to the start of the line where the left curly brace is.
+        name: "Committee1",
+        ^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:45:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      Committee.create! valid_attributes
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:47:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:53:19: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      committee = Committee.create! valid_attributes
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:55:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:62:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:68:19: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      committee = Committee.create! valid_attributes
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:70:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:77:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect { ...
+        ^^^^^^^^
+spec/requests/committees_spec.rb:78:11: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          post committees_url, params: { committee: valid_attributes }
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:84:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to redirect_to(committee_url(Committee.last))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:90:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect { ...
+        ^^^^^^^^
+spec/requests/committees_spec.rb:91:11: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          post committees_url, params: { committee: invalid_attributes }
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:98:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to have_http_status(:unprocessable_entity)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:113:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        committee = Committee.create! valid_attributes
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:120:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        committee = Committee.create! valid_attributes
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:123:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to redirect_to(committee_url(committee))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:130:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        committee = Committee.create! valid_attributes
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:132:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to have_http_status(:unprocessable_entity)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:140:19: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      committee = Committee.create! valid_attributes
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:141:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect { ...
+      ^^^^^^^^
+spec/requests/committees_spec.rb:142:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        delete committee_url(committee)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:147:19: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      committee = Committee.create! valid_attributes
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/committees_spec.rb:149:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to redirect_to(committees_url)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:15:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "/events", type: :request do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:22:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  let(:valid_attributes) { ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:30:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  let(:invalid_attributes) { ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:38:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /index" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:40:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      Event.create! valid_attributes
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:42:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:46:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /show" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:48:15: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      event = Event.create! valid_attributes
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:50:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:54:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /new" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:57:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:61:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /edit" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:63:15: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      event = Event.create! valid_attributes
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:65:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:69:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "POST /create" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:72:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect { ...
+        ^^^^^^^^
+spec/requests/events_spec.rb:73:11: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          post events_url, params: { event: valid_attributes }
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:79:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to redirect_to(event_url(Event.last))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:85:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect { ...
+        ^^^^^^^^
+spec/requests/events_spec.rb:86:11: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          post events_url, params: { event: invalid_attributes }
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:93:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to have_http_status(:unprocessable_entity)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:99:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "PATCH /update" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:110:17: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        event = Event.create! valid_attributes
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:117:17: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        event = Event.create! valid_attributes
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:120:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to redirect_to(event_url(event))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:128:17: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        event = Event.create! valid_attributes
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:130:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to have_http_status(:unprocessable_entity)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:136:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "DELETE /destroy" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:138:15: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      event = Event.create! valid_attributes
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:139:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect { ...
+      ^^^^^^^^
+spec/requests/events_spec.rb:140:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        delete event_url(event)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:145:15: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      event = Event.create! valid_attributes
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/events_spec.rb:147:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to redirect_to(events_url)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:15:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "/excuses", type: :request do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:22:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  let(:valid_attributes) { ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:26:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  let(:invalid_attributes) { ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:30:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /index" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:32:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      Excuse.create! valid_attributes
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:34:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:38:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /show" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:40:16: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      excuse = Excuse.create! valid_attributes
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:42:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:46:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /new" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:49:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:53:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /edit" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:55:16: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      excuse = Excuse.create! valid_attributes
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:57:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:61:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "POST /create" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:64:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect { ...
+        ^^^^^^^^
+spec/requests/excuses_spec.rb:65:11: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          post excuses_url, params: { excuse: valid_attributes }
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:71:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to redirect_to(excuse_url(Excuse.last))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:77:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect { ...
+        ^^^^^^^^
+spec/requests/excuses_spec.rb:78:11: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          post excuses_url, params: { excuse: invalid_attributes }
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:85:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to have_http_status(:unprocessable_entity)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:91:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "PATCH /update" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:98:18: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        excuse = Excuse.create! valid_attributes
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:105:18: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        excuse = Excuse.create! valid_attributes
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:108:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to redirect_to(excuse_url(excuse))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:115:18: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        excuse = Excuse.create! valid_attributes
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:117:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to have_http_status(:unprocessable_entity)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:123:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "DELETE /destroy" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:125:16: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      excuse = Excuse.create! valid_attributes
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:126:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect { ...
+      ^^^^^^^^
+spec/requests/excuses_spec.rb:127:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        delete excuse_url(excuse)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:132:16: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      excuse = Excuse.create! valid_attributes
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/excuses_spec.rb:134:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to redirect_to(excuses_url)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/main_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "Mains", type: :request do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/main_spec.rb:10:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to have_http_status(:success)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:4:1: C: [Correctable] Layout/EmptyLines: Extra blank line detected.
+spec/requests/member_events_spec.rb:17:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "/member_events", type: :request do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:25:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  let(:member) { ...
+  ^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:31:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  let(:event) { ...
+  ^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:39:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  let(:member2) { ...
+  ^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:45:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  let(:event2) { ...
+  ^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:53:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  let(:valid_attributes) { ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:61:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  let(:invalid_attributes) { ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:65:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /index" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:67:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      MemberEvent.create! valid_attributes
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:69:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:73:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /show" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:75:22: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      member_event = MemberEvent.create! valid_attributes
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:77:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:81:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /new" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:84:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:88:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /edit" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:90:22: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      member_event = MemberEvent.create! valid_attributes
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:92:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:96:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "POST /create" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:99:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect { ...
+        ^^^^^^^^
+spec/requests/member_events_spec.rb:100:11: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          post member_events_url, params: { member_event: valid_attributes }
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:106:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to redirect_to(member_event_url(MemberEvent.last))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:112:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect { ...
+        ^^^^^^^^
+spec/requests/member_events_spec.rb:113:11: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          post member_events_url, params: { member_event: invalid_attributes }
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:120:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to have_http_status(:unprocessable_entity)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:126:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "PATCH /update" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:136:24: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        member_event = MemberEvent.create! valid_attributes
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:143:24: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        member_event = MemberEvent.create! valid_attributes
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:146:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to redirect_to(member_event_url(member_event))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:153:24: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        member_event = MemberEvent.create! valid_attributes
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:155:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to have_http_status(:unprocessable_entity)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:161:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "DELETE /destroy" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:163:22: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      member_event = MemberEvent.create! valid_attributes
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:164:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect { ...
+      ^^^^^^^^
+spec/requests/member_events_spec.rb:165:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        delete member_event_url(member_event)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:170:22: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      member_event = MemberEvent.create! valid_attributes
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/member_events_spec.rb:172:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to redirect_to(member_events_url)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:16:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "/members", type: :request do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:23:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  let(:valid_attributes) { ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:27:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  let(:invalid_attributes) { ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:31:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /index" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:33:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      Member.create! valid_attributes
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:35:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:39:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /show" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:41:16: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      member = Member.create! valid_attributes
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:43:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:47:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /new" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:50:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:54:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "GET /edit" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:56:16: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      member = Member.create! valid_attributes
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:58:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to be_successful
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:62:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "POST /create" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:65:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect { ...
+        ^^^^^^^^
+spec/requests/members_spec.rb:66:11: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          post members_url, params: { member: valid_attributes }
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:72:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to redirect_to(member_url(Member.last))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:78:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect { ...
+        ^^^^^^^^
+spec/requests/members_spec.rb:79:11: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+          post members_url, params: { member: invalid_attributes }
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:87:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to have_http_status(:unprocessable_entity)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:93:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "PATCH /update" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:100:18: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        member = Member.create! valid_attributes
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:107:18: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        member = Member.create! valid_attributes
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:110:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to redirect_to(member_url(member))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:118:18: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        member = Member.create! valid_attributes
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:120:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(response).to have_http_status(:unprocessable_entity)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:126:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  describe "DELETE /destroy" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:128:16: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      member = Member.create! valid_attributes
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:129:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect { ...
+      ^^^^^^^^
+spec/requests/members_spec.rb:130:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        delete member_url(member)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:135:16: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      member = Member.create! valid_attributes
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/members_spec.rb:137:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(response).to redirect_to(members_url)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/committees_routing_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe CommitteesController, type: :routing do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/committees_routing_spec.rb:6:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/committees").to route_to("committees#index")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/committees_routing_spec.rb:10:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/committees/new").to route_to("committees#new")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/committees_routing_spec.rb:14:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/committees/1").to route_to("committees#show", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/committees_routing_spec.rb:18:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/committees/1/edit").to route_to("committees#edit", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/committees_routing_spec.rb:23:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(post: "/committees").to route_to("committees#create")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/committees_routing_spec.rb:27:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(put: "/committees/1").to route_to("committees#update", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/committees_routing_spec.rb:31:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(patch: "/committees/1").to route_to("committees#update", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/committees_routing_spec.rb:35:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(delete: "/committees/1").to route_to("committees#destroy", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/events_routing_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe EventsController, type: :routing do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/events_routing_spec.rb:6:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/events").to route_to("events#index")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/events_routing_spec.rb:10:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/events/new").to route_to("events#new")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/events_routing_spec.rb:14:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/events/1").to route_to("events#show", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/events_routing_spec.rb:18:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/events/1/edit").to route_to("events#edit", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/events_routing_spec.rb:23:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(post: "/events").to route_to("events#create")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/events_routing_spec.rb:27:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(put: "/events/1").to route_to("events#update", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/events_routing_spec.rb:31:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(patch: "/events/1").to route_to("events#update", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/events_routing_spec.rb:35:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(delete: "/events/1").to route_to("events#destroy", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/excuses_routing_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe ExcusesController, type: :routing do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/excuses_routing_spec.rb:6:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/excuses").to route_to("excuses#index")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/excuses_routing_spec.rb:10:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/excuses/new").to route_to("excuses#new")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/excuses_routing_spec.rb:14:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/excuses/1").to route_to("excuses#show", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/excuses_routing_spec.rb:18:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/excuses/1/edit").to route_to("excuses#edit", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/excuses_routing_spec.rb:23:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(post: "/excuses").to route_to("excuses#create")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/excuses_routing_spec.rb:27:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(put: "/excuses/1").to route_to("excuses#update", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/excuses_routing_spec.rb:31:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(patch: "/excuses/1").to route_to("excuses#update", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/excuses_routing_spec.rb:35:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(delete: "/excuses/1").to route_to("excuses#destroy", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/member_events_routing_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe MemberEventsController, type: :routing do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/member_events_routing_spec.rb:6:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/member_events").to route_to("member_events#index")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/member_events_routing_spec.rb:10:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/member_events/new").to route_to("member_events#new")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/member_events_routing_spec.rb:14:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/member_events/1").to route_to("member_events#show", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/member_events_routing_spec.rb:18:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(get: "/member_events/1/edit").to route_to("member_events#edit", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/member_events_routing_spec.rb:23:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(post: "/member_events").to route_to("member_events#create")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/member_events_routing_spec.rb:27:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(put: "/member_events/1").to route_to("member_events#update", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/member_events_routing_spec.rb:31:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(patch: "/member_events/1").to route_to("member_events#update", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/routing/member_events_routing_spec.rb:35:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(delete: "/member_events/1").to route_to("member_events#destroy", id: "1")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/support/test_user.rb:15:10: C: [Correctable] Style/TrailingCommaInHashLiteral: Avoid comma after the last item of a hash.
+        },
+         ^
+spec/support/test_user.rb:28:3: C: [Correctable] Layout/BlockAlignment: end at 28, 2 is not aligned with shared_context "test user" do at 6, 0.
+  end
+  ^^^
+spec/support/test_user.rb:31:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  shared_context "test user requests" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/support/test_user.rb:40:10: C: [Correctable] Style/TrailingCommaInHashLiteral: Avoid comma after the last item of a hash.
+        },
+         ^
+spec/support/test_user.rb:44:7: W: Lint/UselessAssignment: Useless assignment to variable - admin.
+      admin = Admin.create!(email: "waylandmoody55@tamu.edu", full_name: "Jerry Moody", id: 1)
+      ^^^^^
+spec/support/test_user.rb:45:7: W: Lint/UselessAssignment: Useless assignment to variable - event.
+      event = Event.create!(name: "christmas at the park", id: 1, event_type: "Service", date: Date.parse("2022-01-01"), point_type: "Outreach")
+      ^^^^^
+spec/support/test_user.rb:46:7: W: Lint/UselessAssignment: Useless assignment to variable - member.
+      member = Member.create!(position: "Vice President", id: 1, name: "wayland", admin_id: 1)
+      ^^^^^^
+spec/support/test_user.rb:47:7: W: Lint/UselessAssignment: Useless assignment to variable - member_event.
+      member_event =  MemberEvent.create(id: 1, member_id: 1, event_id: 1)
+      ^^^^^^^^^^^^
+spec/support/test_user.rb:47:20: C: [Correctable] Layout/SpaceAroundOperators: Operator = should be surrounded by a single space.
+      member_event =  MemberEvent.create(id: 1, member_id: 1, event_id: 1)
+                   ^
+spec/support/test_user.rb:47:21: C: [Correctable] Layout/ExtraSpacing: Unnecessary spacing detected.
+      member_event =  MemberEvent.create(id: 1, member_id: 1, event_id: 1)
+                    ^
+spec/support/test_user.rb:47:35: C: [Correctable] Rails/SaveBang: Use create! instead of create if the return value is not checked. Or check persisted? on model returned from create.
+      member_event =  MemberEvent.create(id: 1, member_id: 1, event_id: 1)
+                                  ^^^^^^
+spec/support/test_user.rb:54:3: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
+  shared_context "admin oauth for views" do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/support/test_user.rb:55:9: C: [Correctable] Style/MethodCallWithoutArgsParentheses: Do not use parentheses for method calls with no arguments.
+  before() do
+        ^^
+spec/support/test_user.rb:64:8: C: [Correctable] Style/TrailingCommaInHashLiteral: Avoid comma after the last item of a hash.
+      },
+       ^
+spec/support/test_user.rb:66:102: C: Style/InlineComment: Avoid trailing inline comments.
+    current_admin = Admin.create!(email: "waylandmoody55@tamu.edu", full_name: "Jerry Moody", id: 1) # create an admin for testing
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/support/test_user.rb:67:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    allow(view).to receive(:current_admin).and_return(current_admin) # stub current_admin method
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/support/test_user.rb:67:70: C: Style/InlineComment: Avoid trailing inline comments.
+    allow(view).to receive(:current_admin).and_return(current_admin) # stub current_admin method
+                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/support/test_user.rb:68:92: C: Style/InlineComment: Avoid trailing inline comments.
+    user = Member.create!(position: "Vice President", id: 1, name: "wayland", admin_id: 1) # create a member with the admin as its foreign key
+                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/support/test_user.rb:69:27: C: Style/InlineComment: Avoid trailing inline comments.
+    assign(:member, user) # assign the member to @member
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/support/test_user.rb:72:1: C: [Correctable] Layout/BlockAlignment: end at 72, 0 is not aligned with shared_context "admin oauth for views" do at 54, 2.
+end
+^^^
+spec/unit/unit_committee_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe Committee, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_committee_spec.rb:14:5: C: [Correctable] RSpec/EmptyLineAfterSubject: Add an empty line after subject.
+    # Checks if the input is valid with valid inputs
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_committee_spec.rb:16:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(subject).to be_valid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_committee_spec.rb:18:5: C: [Correctable] RSpec/EmptyLineAfterExample: Add an empty line after it.
+    # Checks if the input is valid with empty inputs
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_committee_spec.rb:21:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(subject).not_to be_valid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_committee_spec.rb:23:5: C: [Correctable] RSpec/EmptyLineAfterExample: Add an empty line after it.
+    # Checks if the input is valid without leader member ID.
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_committee_spec.rb:25:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(subject).to be_valid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_event_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe Event, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_event_spec.rb:38:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(subject).to be_valid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_event_spec.rb:43:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(subject).not_to be_valid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_event_spec.rb:48:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(subject).not_to be_valid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_event_spec.rb:53:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(subject).not_to be_valid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_event_spec.rb:64:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(subject).to be_valid
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_event_spec.rb:69:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(subject).not_to be_valid
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_event_spec.rb:82:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(subject).to be_valid
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_event_spec.rb:86:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(subject).not_to be_valid
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_excuse_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe Excuse, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_excuse_spec.rb:13:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(subject).to be_valid
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_excuse_spec.rb:17:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(subject).to be_valid
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_excuse_spec.rb:20:5: C: [Correctable] RSpec/EmptyLineAfterExampleGroup: Add an empty line after context.
+    # Checks with a file attached to the form
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_excuse_spec.rb:28:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(subject).to be_valid
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_excuse_spec.rb:33:13: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+            expect(subject).to be_valid
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_event_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe MemberEvent, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_event_spec.rb:30:5: C: [Correctable] RSpec/EmptyLineAfterSubject: Add an empty line after subject.
+    # Checks if valid with valid inputs
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_event_spec.rb:32:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(subject).to be_valid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_event_spec.rb:34:5: C: [Correctable] RSpec/EmptyLineAfterExample: Add an empty line after it.
+    # Checks if invalid without event
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_event_spec.rb:37:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(subject).not_to be_valid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_event_spec.rb:39:5: C: [Correctable] RSpec/EmptyLineAfterExample: Add an empty line after it.
+    # Checks if invalid without member name
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_event_spec.rb:42:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(subject).not_to be_valid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_event_spec.rb:44:5: C: [Correctable] RSpec/EmptyLineAfterExample: Add an empty line after it.
+    # Checks if invalid without valid event (Event does not exits)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_event_spec.rb:47:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(subject).not_to be_valid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_event_spec.rb:49:5: C: [Correctable] RSpec/EmptyLineAfterExample: Add an empty line after it.
+    # Checks if valid with missing member (Member does not exist)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_event_spec.rb:52:9: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        expect(subject).not_to be_valid
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe Member, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_spec.rb:21:5: C: [Correctable] RSpec/EmptyLineAfterSubject: Add an empty line after subject.
+    # It is valid with valid attributes
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_spec.rb:23:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(subject).to be_valid
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_spec.rb:28:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(subject).not_to be_valid
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_spec.rb:33:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(subject).to be_valid
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_spec.rb:38:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(subject).to be_valid
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_spec.rb:43:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(subject).to be_valid
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_spec.rb:48:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(subject).to be_valid
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_spec.rb:53:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(subject).to be_valid
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_spec.rb:58:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(subject).to be_valid
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_spec.rb:63:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      expect(subject).to be_valid
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/committees/edit.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "committees/edit", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/committees/edit.html.erb_spec.rb:6:23: C: [Correctable] Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.
+      name: "MyString",
+                      ^
+spec/views/committees/index.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "committees/index", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/committees/new.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "committees/new", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/committees/show.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "committees/show", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/committees/show.html.erb_spec.rb:16:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/Name/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/events/edit.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "events/edit", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/events/index.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "events/index", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/events/new.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "events/new", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/events/show.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "events/show", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/events/show.html.erb_spec.rb:16:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/Name/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/events/show.html.erb_spec.rb:17:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/Point Type/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/events/show.html.erb_spec.rb:18:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/Event Type/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/events/show.html.erb_spec.rb:19:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/Phrase/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/excuses/edit.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "excuses/edit", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/excuses/index.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "excuses/index", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/excuses/new.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "excuses/new", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/excuses/show.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "excuses/show", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/excuses/show.html.erb_spec.rb:13:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/MyText/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/excuses/show.html.erb_spec.rb:14:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(//)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/main/index.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "main/index.html.erb", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/member_events/edit.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "member_events/edit", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/member_events/edit.html.erb_spec.rb:23:28: C: [Correctable] Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.
+      event_type: "Service",
+                           ^
+spec/views/member_events/index.html.erb_spec.rb:4:1: C: [Correctable] Layout/EmptyLines: Extra blank line detected.
+spec/views/member_events/index.html.erb_spec.rb:5:1: C: [Correctable] Layout/EmptyLines: Extra blank line detected.
+spec/views/member_events/index.html.erb_spec.rb:6:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "member_events/index", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/member_events/index.html.erb_spec.rb:29:28: C: [Correctable] Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.
+      event_type: "Service",
+                           ^
+spec/views/member_events/index.html.erb_spec.rb:34:19: C: [Correctable] Rails/SaveBang: Use create! instead of create if the return value is not checked.
+    current_admin.create()
+                  ^^^^^^
+spec/views/member_events/index.html.erb_spec.rb:34:25: C: [Correctable] Style/MethodCallWithoutArgsParentheses: Do not use parentheses for method calls with no arguments.
+    current_admin.create()
+                        ^^
+spec/views/member_events/new.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "member_events/new", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/member_events/new.html.erb_spec.rb:26:28: C: [Correctable] Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.
+      event_type: "Service",
+                           ^
+spec/views/member_events/show.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "member_events/show", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/member_events/show.html.erb_spec.rb:23:28: C: [Correctable] Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.
+      event_type: "Service",
+                           ^
+spec/views/member_events/show.html.erb_spec.rb:40:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/MyMemberName/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/member_events/show.html.erb_spec.rb:41:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/MyEventName/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/member_events/show.html.erb_spec.rb:42:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/false/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/edit.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "members/edit", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/edit.html.erb_spec.rb:43:7: C: [Correctable] Layout/LeadingCommentSpace: Missing space after #.
+      #assert_select "input[name=?]", "member[totalPoints]"
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/index.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "members/index", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/new.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "members/new", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/new.html.erb_spec.rb:39:7: C: [Correctable] Layout/LeadingCommentSpace: Missing space after #.
+      #assert_select "input[name=?]", "member[totalPoints]"
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/show.html.erb_spec.rb:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe "members/show", type: :view do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/show.html.erb_spec.rb:18:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/MyName/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/show.html.erb_spec.rb:19:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/MyCommittee/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/show.html.erb_spec.rb:20:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/MyPosition/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/show.html.erb_spec.rb:21:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/0/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/show.html.erb_spec.rb:22:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/1/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/show.html.erb_spec.rb:23:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/2/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/show.html.erb_spec.rb:24:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/3/)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/show.html.erb_spec.rb:25:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(rendered).to match(/6/)  # total points
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/members/show.html.erb_spec.rb:25:37: C: Style/InlineComment: Avoid trailing inline comments.
+    expect(rendered).to match(/6/)  # total points
+                                    ^^^^^^^^^^^^^^
+
+104 files inspected, 635 offenses detected, 608 offenses autocorrectable
