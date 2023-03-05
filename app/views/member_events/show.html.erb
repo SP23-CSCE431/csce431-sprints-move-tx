@@ -3,7 +3,17 @@
 <%= render @member_event %>
 
 <div>
-  <%= link_to "Edit this member event", edit_member_event_path(@member_event) %> |
+
+  <%# go to version 1 if type is service %>
+  <% if @member_event.event.event_type == "Service" %>
+    <%= link_to "Edit this member event", edit_member_event_path(@member_event, version: 1 ) %> 
+  <% end %>
+
+ <%# go to version 2 if type is meeting %>
+  <% if @member_event.event.event_type == "Meeting" %>
+      <%= link_to "Edit this member event", edit_member_event_path(@member_event, version: 2) %> 
+  <% end %>
+
   <%= link_to "Back to member events", member_events_path %>
 
   <%= button_to "Destroy this member event", @member_event, method: :delete %>

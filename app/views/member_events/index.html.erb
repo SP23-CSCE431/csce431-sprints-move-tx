@@ -20,12 +20,23 @@
   <% end %>
 
   <%# shows all events user has entered  %>
-  <h2> My Events: </h2>
+  <h2> My Services: </h2>
   <% @member_events.each do |member_event| %>
-  <% if member_event.member_id == @user.id%>
+  <% if member_event.member_id == @user.id && member_event.event.event_type == "Service" %>
     <%= render member_event %>
     <p>
       <%= link_to "Show this member event", member_event %>
+    </p>
+    <% end %>
+  <% end %>
+
+  <%# shows all meetings user have attended %>
+  <h2> My Meetings: </h2>
+  <% @member_events.each do |member_event| %>
+  <% if member_event.member_id == @user.id && member_event.event.event_type == "Meeting"%>
+    <%= render member_event %>
+    <p>
+      <%= link_to "Show this Meeting", member_event %>
     </p>
     <% end %>
   <% end %>
@@ -33,4 +44,4 @@
 
 <%= link_to "New Service event", new_member_event_path(version: 1) %>
 <br>
-<%= link_to "New Meeting", new_member_event_path(version: 2) %>
+<%= link_to "Meeting Sign in", new_member_event_path(version: 2) %>

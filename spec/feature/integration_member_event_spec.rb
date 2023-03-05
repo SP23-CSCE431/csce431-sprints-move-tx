@@ -46,8 +46,8 @@ RSpec.describe "Member_Event integration", type: :feature do
     }
 
     let!(:edit_attributes) {
-        {event_id: event2.id,
-        member_id: member2.id}
+        {event_id: event.id,
+        member_id: member.id}
     }
 
     let!(:valid_meeting) {
@@ -72,17 +72,19 @@ RSpec.describe "Member_Event integration", type: :feature do
             expect(page).to have_content("Member event was successfully created")
         end
 
+        # Meeting creation sunny day scenario 
         scenario "create Meeting Event with correct phrase" do
             visit new_member_event_path(version: 2)
-            select event.name, from: "member_event[event_id]"
+            select event2.name, from: "member_event[event_id]"
             fill_in "member_event[phrase]",  with: event2[:phrase]
             click_on 'Sign into meeting'
             expect(page).to have_content("You successfully signed into meeting")
         end
-
+        
+        # Meeting creation rainy day scenario 
         scenario "create Meeting Event with wrong phrase" do
             visit new_member_event_path(version: 2)
-            select event.name, from: "member_event[event_id]"
+            select event2.name, from: "member_event[event_id]"
             fill_in "member_event[phrase]",  with: "1234"
             click_on 'Sign into meeting'
             expect(page).to have_content("Entered wrong password try again")
@@ -90,9 +92,10 @@ RSpec.describe "Member_Event integration", type: :feature do
     end
 
     describe "Editing" do
-        scenario 'update with valid inputs' do
+        # Service editing sunny day scenario
+        scenario 'Editing Service with valid inputs' do
             @temp = MemberEvent.create!(edit_attributes)
-            visit edit_member_event_path(@temp)
+            visit edit_member_event_path(@temp, version: 1)
             select event.name, from: "member_event[event_id]"
             # select edit_attributes[:member_id], from: "member_event[member_id]"
             click_on 'Update Member event'

@@ -11,30 +11,19 @@
     </div>
   <% end %>
 
-  <% if @version == 1 %>
+  <%# form submission for services %>
+  <% if @version == "1" || (member_event.errors[:phrase].any? == false && member_event.errors.any?) %>
   <div>
     <%= form.label :event_id, style: "display: block" %>
-    <%= form.select :event_id, Event.order(:name).map { |event| [event.name, event.id] } %>
+    <%# filters for membere vents that are services %>
+    <%= form.select :event_id, Event.where(event_type: "Service").order(:name).map { |event| [event.name, event.id] } %>
   </div>
-
-<!-- this is no longer needed because name is automatically entered 
-  <div>
-    <%= form.label :member_id, style: "display: block" %>
-    <%= form.select :member_id, Member.order(:name).map { |member| [member.name, member.id] } %>
-  </div>
--->
 
   <div>
     <%= form.label :approved_status, style: "display: block" %>
     <%= form.check_box :approved_status %>
   </div>
 
-<!--
-  <div>
-    <%= form.label :approve_date, style: "display: block" %>
-    <%= form.date_field :approve_date %>
-  </div>
--->
 
   <%# makes a dropdown to where you can only see admins %>
   <div>
@@ -49,9 +38,28 @@
   </div>
 
   <br>
+    <div>
+      <%= form.submit %>
+    </div>
    <% end %>
-   
-  <div>
-    <%= form.submit %>
-  </div>
+
+
+  <%# form submission for meetings %>
+   <% if @version == "2" || member_event.errors[:phrase].any?%>
+    <div>
+      <%= form.label :event_id, "Meeting", style: "display: block" %>
+      <%# filters for member events that are meetings  %>
+      <%= form.select :event_id, Event.where(event_type: "Meeting").order(:name).map { |event| [event.name, event.id] } %>
+    </div>
+
+    <div>
+      <%= form.label :phrase, style: "display: block" %>
+      <%= form.text_field :phrase %>
+    </div>
+
+  <br>
+    <div>
+      <%= form.submit "Sign into meeting"%>
+    </div>
+  <% end %>
 <% end %>
