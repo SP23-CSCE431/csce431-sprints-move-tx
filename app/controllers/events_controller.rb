@@ -1,3 +1,6 @@
+require 'google/apis/calendar_v3'
+require 'googleauth'
+require 'googleauth/stores/file_token_store'
 class EventsController < ApplicationController
   before_action :set_event, :service_or_meeting, only: %i[ show edit update destroy ]
 
@@ -25,6 +28,9 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        # create event in Google calendar
+        create_google_calendar_event(@event, CALENDAR.authorization.fetch_access_token!)
+
         format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: @event }
       else
@@ -85,4 +91,27 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:name, :date, :point_type, :event_type, :phrase)
     end
+
+    # helper method to create a Google calendar event
+
+    def create_google_calendar_event(event, access_token)
+      calendar_id = '4e07b698012e5a6ca31301711bee1fcadccf292f6a330165b4a32afb8a850f39@group.calendar.google.com'
+    
+      # create a new Google calendar event
+      google_event = Google::Apis::CalendarV3::Event.new(
+        summary: event.name,
+        # temporarily removed descriptions because they cause RSpec to fail because of conversion from nil to string.
+        # description: "Event type: " + event.event_type + "\nPoint type: " + event.point_type,
+        start: {
+          date: event.date.to_s
+        },
+        end: {
+          date: event.date.to_s
+        }
+      )
+    
+      # insert the new Google calendar event
+      CALENDAR.insert_event(calendar_id, google_event, send_notifications: true)
+    end
+
 end

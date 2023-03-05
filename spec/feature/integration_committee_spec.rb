@@ -33,14 +33,13 @@ RSpec.describe "Committee integration", type: :feature do
         }
     }
     
-    let!(:invalid_attributes) {
+    let(:invalid_attributes) {
         skip("Add a hash of attributes invalid for your model")
     }
 
     describe "Creation" do
         scenario 'create with valid inputs' do
             visit new_committee_path
-            puts "Member found: #{Member.find(valid_attributes[:member_id])}"
             fill_in "committee[name]", with: valid_attributes[:name]
             select member1.name, from: "committee[member_id]"
             click_on "Create Committee"
@@ -57,7 +56,7 @@ RSpec.describe "Committee integration", type: :feature do
 
             visit edit_committee_path(@temp)
             fill_in "committee[name]", with: edit_attributes[:name]
-            select edit_attributes[:member_id], from: "committee[member_id]"
+            select member2.name, from: "committee[member_id]"
             click_on "Update Committee"
             # visit committee_url(@temp)
             expect(page).to have_content("Committee was successfully updated")
