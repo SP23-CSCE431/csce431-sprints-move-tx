@@ -19,10 +19,15 @@ class MemberEventsController < ApplicationController
   # GET /member_events/new
   def new
     @member_event = MemberEvent.new
+
+    # creates version of page for service or meeting that defaults to version 1
+    @version = params[:version] || "1"
+
   end
 
   # GET /member_events/1/edit
   def edit
+    @version = params[:version] || "1"
   end
 
   # POST /member_events or /member_events.json
@@ -34,9 +39,15 @@ class MemberEventsController < ApplicationController
 
     respond_to do |format|
       if @member_event.save
-        format.html { redirect_to member_event_url(@member_event), notice: "Member event was successfully created." }
+        # if member_event is for a meeting then give a meeting message, if not give a member event message 
+        if @member_event.phrase?
+          format.html { redirect_to member_event_url(@member_event), notice: "You successfully signed into meeting" }
+        else
+          format.html { redirect_to member_event_url(@member_event), notice: "Member event was successfully created." }
+        end
         format.json { render :show, status: :created, location: @member_event }
       else
+        session[:version] = params[:version]
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @member_event.errors, status: :unprocessable_entity }
       end
@@ -47,8 +58,15 @@ class MemberEventsController < ApplicationController
   def update
     respond_to do |format|
       if @member_event.update(member_event_params)
-        format.html { redirect_to member_event_url(@member_event), notice: "Member event was successfully updated." }
+
+        # if member_event is for a meeting then give a meeting message, if not give a member event message 
+        if @member_event.phrase?
+          format.html {redirect_to member_event_url(@member_event), notice: "Member Sign in was successfully updated."}
+        else
+          format.html { redirect_to member_event_url(@member_event), notice: "Member event was successfully updated." }
+        end
         format.json { render :show, status: :ok, location: @member_event }
+
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @member_event.errors, status: :unprocessable_entity }
@@ -74,7 +92,7 @@ class MemberEventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def member_event_params
-      params.require(:member_event).permit(:event_id, :member_id, :approved_status, :approve_date, :approve_by, :file)
+      params.require(:member_event).permit(:event_id, :member_id, :approved_status, :approve_date, :approve_by, :file, :version, :phrase)
     end
 
     # sets the member before each action
