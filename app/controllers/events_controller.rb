@@ -44,7 +44,9 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
         if @event.update(event_params)
+        # update event in Google calendar
         update_google_calendar_event(@event, CALENDAR.authorization.fetch_access_token!)
+
         format.html { redirect_to event_url(@event), notice: "Event was successfully updated." }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -64,7 +66,6 @@ class EventsController < ApplicationController
     @event.destroy
     # delete event in Google calendar
     delete_google_calendar_event(@event, CALENDAR.authorization.fetch_access_token!)
-
 
     respond_to do |format|
       format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
@@ -96,15 +97,12 @@ class EventsController < ApplicationController
       params.require(:event).permit(:name, :date, :point_type, :event_type, :phrase, :cal_event_id)
     end
 
-    # helper method to create a Google calendar event
+    # helper methods for google calendar
 
     def create_google_calendar_event(event, access_token)
       calendar_id = '4e07b698012e5a6ca31301711bee1fcadccf292f6a330165b4a32afb8a850f39@group.calendar.google.com'
-      # event.cal_event_id = SecureRandom.uuid
-      # event.save
-      # print("CAL_EVENT_ID: ")
-      # print(event.cal_event_id)
-      # create a new Google calendar event
+  
+      # create new calendar event with necessary fields
       google_event = Google::Apis::CalendarV3::Event.new(
         id: event.cal_event_id,
         summary: event.name,
@@ -123,26 +121,33 @@ class EventsController < ApplicationController
     end
 
     def delete_google_calendar_event(event, access_token)
-
-      # find the event on the calendar by its event ID
       calendar_id = '4e07b698012e5a6ca31301711bee1fcadccf292f6a330165b4a32afb8a850f39@group.calendar.google.com'
-      CALENDAR.delete_event(calendar_id, event.cal_event_id)
-
+      begin
+        # delete calendar event
+        CALENDAR.delete_event(calendar_id, event.cal_event_id)
+      rescue Google::Apis::ClientError => e
+        # do nothing if event not found
+      end
     end
 
     def update_google_calendar_event(event, access_token)
-      # find the event on the calendar by its event ID
       calendar_id = '4e07b698012e5a6ca31301711bee1fcadccf292f6a330165b4a32afb8a850f39@group.calendar.google.com'
+
+      # find the event on the calendar by its event ID (cal_event_id)
       google_event = CALENDAR.get_event(calendar_id, event.cal_event_id)
     
-      # update the fields of the Google calendar event
-      google_event.summary = event.name
-      google_event.description = "Event type: #{event.event_type || 'N/A'}\nPoint type: #{event.point_type || 'N/A'}"
-      google_event.start = Google::Apis::CalendarV3::EventDateTime.new(date: event.date.to_s)
-      google_event.end = Google::Apis::CalendarV3::EventDateTime.new(date: event.date.to_s)
-    
-      # update the Google calendar event
-      CALENDAR.update_event(calendar_id, google_event.id, google_event, send_notifications: true)
+      begin
+        # update calendar event fields
+        google_event.summary = event.name
+        google_event.description = "Event type: #{event.event_type || 'N/A'}\nPoint type: #{event.point_type || 'N/A'}"
+        google_event.start = Google::Apis::CalendarV3::EventDateTime.new(date: event.date.to_s)
+        google_event.end = Google::Apis::CalendarV3::EventDateTime.new(date: event.date.to_s)
+  
+        # update calendar event
+        CALENDAR.update_event(calendar_id, google_event.id, google_event, send_notifications: true)
+      rescue Google::Apis::ClientError => e
+        # do nothing if event not found
+      end
     end
 
 end
