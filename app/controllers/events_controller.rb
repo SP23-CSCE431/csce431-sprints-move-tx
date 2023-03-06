@@ -3,6 +3,7 @@ require 'googleauth'
 require 'googleauth/stores/file_token_store'
 class EventsController < ApplicationController
   before_action :set_event, :service_or_meeting, only: %i[ show edit update destroy ]
+  before_action :set_member
 
   # GET /events or /events.json
   def index
@@ -56,7 +57,7 @@ class EventsController < ApplicationController
     end
   end
 
-  # for deletion page 
+  # for deletion page
   def delete
     @event = Event.find(params[:id])
   end
@@ -79,7 +80,7 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
-    # condition that will automatically turn point type to nil if event type is meeting 
+    # condition that will automatically turn point type to nil if event type is meeting
     def service_or_meeting
       if @event.event_type == 'Meeting'
         @event.point_type = nil
@@ -92,17 +93,23 @@ class EventsController < ApplicationController
       end
     end
 
-    # Only allow a list of trusted parameters through. 
+    # Only allow a list of trusted parameters through.
     def event_params
       params.require(:event).permit(:name, :date, :point_type, :event_type, :phrase, :cal_event_id)
+    end
+
+    # Set member for authentication
+    def set_member
+      @user = current_admin.member
     end
 
     # helper methods for google calendar
 
     def create_google_calendar_event(event, access_token)
       calendar_id = '4e07b698012e5a6ca31301711bee1fcadccf292f6a330165b4a32afb8a850f39@group.calendar.google.com'
-  
+
       # create new calendar event with necessary fields
+
       google_event = Google::Apis::CalendarV3::Event.new(
         id: event.cal_event_id,
         summary: event.name,
@@ -115,7 +122,7 @@ class EventsController < ApplicationController
           date: event.date.to_s
         }
       )
-    
+
       # insert the new Google calendar event
       CALENDAR.insert_event(calendar_id, google_event, send_notifications: true)
     end
@@ -135,19 +142,18 @@ class EventsController < ApplicationController
 
       # find the event on the calendar by its event ID (cal_event_id)
       google_event = CALENDAR.get_event(calendar_id, event.cal_event_id)
-    
+
       begin
         # update calendar event fields
         google_event.summary = event.name
         google_event.description = "Event type: #{event.event_type || 'N/A'}\nPoint type: #{event.point_type || 'N/A'}"
         google_event.start = Google::Apis::CalendarV3::EventDateTime.new(date: event.date.to_s)
         google_event.end = Google::Apis::CalendarV3::EventDateTime.new(date: event.date.to_s)
-  
+
         # update calendar event
         CALENDAR.update_event(calendar_id, google_event.id, google_event, send_notifications: true)
       rescue Google::Apis::ClientError => e
         # do nothing if event not found
       end
     end
-
 end
