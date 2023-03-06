@@ -20,4 +20,10 @@ class Event < ApplicationRecord
       errors.add(:point_type, "point type can't be blank when there is a service")
     end
   end
+  
+  def non_event_point_type
+    if (event_type == 'Personal/Non-Event') && point_type.blank?
+      errors.add(:point_type, "point type can't be blank when there is a non-event")
+    end
+  end
 end
