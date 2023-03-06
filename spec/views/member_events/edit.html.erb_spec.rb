@@ -20,8 +20,7 @@ RSpec.describe "member_events/edit", type: :view do
       name: "MyString",
       date: Date.parse("01-01-2023"),
       point_type: "MyString",
-      event_type: "MyString",
-      phrase: "MyString"
+      event_type: "Service",
     )
   }
   
@@ -41,13 +40,13 @@ RSpec.describe "member_events/edit", type: :view do
   end
 
   it "renders the edit member_event form" do
+    @version = "1"
+
     render
 
     assert_select "form[action=?][method=?]", member_event_path(member_event), "post" do
 
       assert_select "select[name=?]", "member_event[event_id]"
-
-      # assert_select "select[name=?]", "member_event[member_id]" this is no longer needed
 
       assert_select "input[name=?]", "member_event[approved_status]"
 
