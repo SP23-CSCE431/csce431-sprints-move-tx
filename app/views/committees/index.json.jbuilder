@@ -1,1 +1,1 @@
-json.array! @committees, partial: "committees/committee", as: :committee
+json.array! @committees, partial: 'committees/committee', as: :committee

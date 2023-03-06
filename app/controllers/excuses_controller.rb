@@ -26,7 +26,7 @@ class ExcusesController < ApplicationController
 
     respond_to do |format|
       if @excuse.save
-        format.html { redirect_to excuse_url(@excuse), notice: "Excuse was successfully created." }
+        format.html { redirect_to excuse_url(@excuse), notice: 'Excuse was successfully created.' }
         format.json { render :show, status: :created, location: @excuse }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class ExcusesController < ApplicationController
   def update
     respond_to do |format|
       if @excuse.update(excuse_params)
-        format.html { redirect_to excuse_url(@excuse), notice: "Excuse was successfully updated." }
+        format.html { redirect_to excuse_url(@excuse), notice: 'Excuse was successfully updated.' }
         format.json { render :show, status: :ok, location: @excuse }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -58,7 +58,7 @@ class ExcusesController < ApplicationController
     @excuse.destroy
 
     respond_to do |format|
-      format.html { redirect_to excuses_url, notice: "Excuse was successfully destroyed." }
+      format.html { redirect_to excuses_url, notice: 'Excuse was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

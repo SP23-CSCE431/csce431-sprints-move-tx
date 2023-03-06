@@ -26,13 +26,13 @@ class EventsController < ApplicationController
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
-
+    @event.cal_event_id = SecureRandom.hex(16)
     respond_to do |format|
       if @event.save
         # create event in Google calendar
         create_google_calendar_event(@event, CALENDAR.authorization.fetch_access_token!)
 
-        format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
+        format.html { redirect_to event_url(@event), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -45,7 +45,10 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
         if @event.update(event_params)
-        format.html { redirect_to event_url(@event), notice: "Event was successfully updated." }
+        # update event in Google calendar
+        update_google_calendar_event(@event, CALENDAR.authorization.fetch_access_token!)
+
+        format.html { redirect_to event_url(@event), notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -62,9 +65,11 @@ class EventsController < ApplicationController
   # DELETE /events/1 or /events/1.json
   def destroy
     @event.destroy
+    # delete event in Google calendar
+    delete_google_calendar_event(@event, CALENDAR.authorization.fetch_access_token!)
 
     respond_to do |format|
-      format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
+      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -77,12 +82,12 @@ class EventsController < ApplicationController
 
     # condition that will automatically turn point type to nil if event type is meeting
     def service_or_meeting
-      if @event.event_type == "Meeting"
+      if @event.event_type == 'Meeting'
         @event.point_type = nil
         @event.save
       end
 
-      if @event.event_type == "Service"
+      if @event.event_type == 'Service'
         @event.phrase = nil
         @event.save
       end
@@ -90,19 +95,21 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :date, :point_type, :event_type, :phrase)
+      params.require(:event).permit(:name, :date, :point_type, :event_type, :phrase, :cal_event_id)
     end
 
-    # helper method to create a Google calendar event
+    # helper methods for google calendar
 
     def create_google_calendar_event(event, access_token)
       calendar_id = '4e07b698012e5a6ca31301711bee1fcadccf292f6a330165b4a32afb8a850f39@group.calendar.google.com'
+  
+      # create new calendar event with necessary fields
 
-      # create a new Google calendar event
       google_event = Google::Apis::CalendarV3::Event.new(
+        id: event.cal_event_id,
         summary: event.name,
-        # temporarily removed descriptions because they cause RSpec to fail because of conversion from nil to string.
-        # description: "Event type: " + event.event_type + "\nPoint type: " + event.point_type,
+        # cool way to concatenate strings in ruby
+        description: "Event type: #{event.event_type || 'N/A'}\nPoint type: #{event.point_type || 'N/A'}",
         start: {
           date: event.date.to_s
         },
@@ -114,8 +121,34 @@ class EventsController < ApplicationController
       # insert the new Google calendar event
       CALENDAR.insert_event(calendar_id, google_event, send_notifications: true)
     end
+    
+    def delete_google_calendar_event(event, access_token)
+      calendar_id = '4e07b698012e5a6ca31301711bee1fcadccf292f6a330165b4a32afb8a850f39@group.calendar.google.com'
+      begin
+        # delete calendar event
+        CALENDAR.delete_event(calendar_id, event.cal_event_id)
+      rescue Google::Apis::ClientError => e
+        # do nothing if event not found
+      end
+    end
 
-    def set_member
-      @user = current_admin.member
+    def update_google_calendar_event(event, access_token)
+      calendar_id = '4e07b698012e5a6ca31301711bee1fcadccf292f6a330165b4a32afb8a850f39@group.calendar.google.com'
+
+      # find the event on the calendar by its event ID (cal_event_id)
+      google_event = CALENDAR.get_event(calendar_id, event.cal_event_id)
+    
+      begin
+        # update calendar event fields
+        google_event.summary = event.name
+        google_event.description = "Event type: #{event.event_type || 'N/A'}\nPoint type: #{event.point_type || 'N/A'}"
+        google_event.start = Google::Apis::CalendarV3::EventDateTime.new(date: event.date.to_s)
+        google_event.end = Google::Apis::CalendarV3::EventDateTime.new(date: event.date.to_s)
+  
+        # update calendar event
+        CALENDAR.update_event(calendar_id, google_event.id, google_event, send_notifications: true)
+      rescue Google::Apis::ClientError => e
+        # do nothing if event not found
+      end
     end
 end

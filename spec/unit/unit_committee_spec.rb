@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Committee, type: :model do
     let(:valid_attributes) {
         {
-            name: "MyName1",
+            name: 'MyName1',
             member_id: 12345
         }
     }
