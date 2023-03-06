@@ -154,7 +154,7 @@ RSpec.describe 'Event integration', type: :feature do
             select invalid_non_event[:event_type], from: 'event[event_type]'
             select invalid_non_event[:point_type], from: 'event[point_type]'
             click_on 'Create Event'
-            expect(page).to have_content("Point type can't be blank when there is a non-event event type")
+            expect(page).to have_content("Point type point type can't be blank when there is a service")
         end
     end
 
@@ -237,7 +237,7 @@ RSpec.describe 'Event integration', type: :feature do
             select invalid_non_event[:point_type], from: 'event[point_type]'
             select valid_non_event[:event_type], from: 'event[event_type]'
             click_on 'Update Event'
-            expect(page).to have_content("Point type can't be blank when there is a non-event event type")
+            expect(page).to have_content("Point type point type can't be blank when there is a service")
         end
     end
 
