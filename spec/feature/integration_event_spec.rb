@@ -22,12 +22,10 @@ RSpec.describe 'Event integration', type: :feature do
     }
 
     let(:valid_non-event) {
-        {
-            name: 'Personal Event',
-            date: Date.parse('2023-03-05'),
-            point_type: 'Marketing',
-            event_type: 'Personal/Non-Event'
-        }
+        {name: 'Personal Event',
+        date: Date.parse('2023-03-05'),
+        point_type: 'Marketing',
+        event_type: 'Personal/Non-Event'}
     }
 
     let(:edit_meeting) {
@@ -44,13 +42,11 @@ RSpec.describe 'Event integration', type: :feature do
         event_type: 'Marketing'}
     }
 
-    let(edit_non-event) {
-        {
-            name: 'Personal Community Outreach',
-            date: Date.parse('2023-03-07'),
-            point_type: 'Outreach',
-            event_type: 'Personal/Non-Event'
-        }
+    let(:edit_non-event) {
+        {name: 'Personal Community Outreach',
+        date: Date.parse('2023-03-07'),
+        point_type: 'Outreach',
+        event_type: 'Personal/Non-Event'}
     }
 
     let(:invalid_general) {
@@ -73,12 +69,10 @@ RSpec.describe 'Event integration', type: :feature do
     }
 
     let(:invalid_non-event) {
-        {
-            name: 'Personal Event',
-            date: Date.parse('2023-03-05'),
-            point_type: '',
-            event_type: 'Personal/Non-Event'
-        }
+        {name: 'Personal Event',
+        date: Date.parse('2023-03-05'),
+        point_type: '',
+        event_type: 'Personal/Non-Event'}
     }
 
     describe 'Creation' do
