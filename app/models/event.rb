@@ -5,6 +5,7 @@ class Event < ApplicationRecord
   validates :date, :name, :event_type, presence: true
   validate :meeting_phrase
   validate :service_point_type
+  validate :non_event_point_type
 
 
   private
@@ -21,6 +22,7 @@ class Event < ApplicationRecord
     end
   end
   
+  # if there is a non-event needs to have point type
   def non_event_point_type
     if (event_type == 'Personal/Non-Event') && point_type.blank?
       errors.add(:point_type, "point type can't be blank when there is a non-event")
