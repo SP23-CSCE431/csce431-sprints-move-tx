@@ -76,7 +76,7 @@ RSpec.describe 'Event integration', type: :feature do
         {
             name: 'Personal Event',
             date: Date.parse('2023-03-05'),
-            point_type: ''
+            point_type: '',
             event_type: 'Personal/Non-Event'
         }
     }
