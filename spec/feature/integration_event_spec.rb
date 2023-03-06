@@ -21,7 +21,7 @@ RSpec.describe 'Event integration', type: :feature do
         event_type: 'Service'}
     }
 
-    let(:valid_non-event) {
+    let(:valid_non_event) {
         {name: 'Personal Event',
         date: Date.parse('2023-03-05'),
         point_type: 'Marketing',
@@ -42,7 +42,7 @@ RSpec.describe 'Event integration', type: :feature do
         event_type: 'Marketing'}
     }
 
-    let(:edit_non-event) {
+    let(:edit_non_event) {
         {name: 'Personal Community Outreach',
         date: Date.parse('2023-03-07'),
         point_type: 'Outreach',
@@ -68,7 +68,7 @@ RSpec.describe 'Event integration', type: :feature do
         event_type: 'Service'}
     }
 
-    let(:invalid_non-event) {
+    let(:invalid_non_event) {
         {name: 'Personal Event',
         date: Date.parse('2023-03-05'),
         point_type: '',
@@ -98,10 +98,10 @@ RSpec.describe 'Event integration', type: :feature do
 
         scenario 'create non-event with valid inputs' do
             visit new_event_path
-            fill_in 'event[name]', with: valid_non-event[:name]
-            fill_in 'event[date]', with: valid_non-event[:date]
-            select valid_non-event[:event_type], from: 'event[event_type]'
-            select valid_non-event[:point_type], from: 'event[point_type]'
+            fill_in 'event[name]', with: valid_non_event[:name]
+            fill_in 'event[date]', with: valid_non_event[:date]
+            select valid_non_event[:event_type], from: 'event[event_type]'
+            select valid_non_event[:point_type], from: 'event[point_type]'
             click_on 'Create Event'
             expect(page).to have_content('Event was successfully created')
         end
@@ -149,10 +149,10 @@ RSpec.describe 'Event integration', type: :feature do
 
         scenario 'create non-event without point type' do
             visit new_event_path
-            fill_in 'event[name]', with: invalid_non-event[:name]
-            fill_in 'event[date]', with: invalid_non-event[:date]
-            select invalid_non-event[:event_type], from: 'event[event_type]'
-            select invalid_non-event[:point_type], from: 'event[point_type]'
+            fill_in 'event[name]', with: invalid_non_event[:name]
+            fill_in 'event[date]', with: invalid_non_event[:date]
+            select invalid_non_event[:event_type], from: 'event[event_type]'
+            select invalid_non_event[:point_type], from: 'event[point_type]'
             click_on 'Create Event'
             expect(page).to have_content("Point type can't be blank when there is a non-event event type")
         end
@@ -173,12 +173,12 @@ RSpec.describe 'Event integration', type: :feature do
         end
 
         scenario 'update non-event with valid inputs' do
-            @temp = Event.create!(valid_non-event)
+            @temp = Event.create!(valid_non_event)
             visit edit_event_path(@temp)
-            fill_in 'event[name]', with: edit_non-event[:name]
-            fill_in 'event[date]', with: edit_non-event[:date]
-            select edit_non-event[:point_type], from: 'event[point_type]'
-            select edit_non-event[:event_type], from: 'event[event_type]'
+            fill_in 'event[name]', with: edit_non_event[:name]
+            fill_in 'event[date]', with: edit_non_event[:date]
+            select edit_non_event[:point_type], from: 'event[point_type]'
+            select edit_non_event[:event_type], from: 'event[event_type]'
             click_on 'Update Event'
             expect(page).to have_content('Event was successfully updated')
         end
@@ -232,10 +232,10 @@ RSpec.describe 'Event integration', type: :feature do
         end
 
         scenario 'update non-event without point type' do
-            @temp = Event.create!(valid_non-event)
+            @temp = Event.create!(valid_non_event)
             visit edit_event_path(@temp)
-            select invalid_non-event[:point_type], from: 'event[point_type]'
-            select valid_non-event[:event_type], from: 'event[event_type]'
+            select invalid_non_event[:point_type], from: 'event[point_type]'
+            select valid_non_event[:event_type], from: 'event[event_type]'
             click_on 'Update Event'
             expect(page).to have_content("Point type can't be blank when there is a non-event event type")
         end
