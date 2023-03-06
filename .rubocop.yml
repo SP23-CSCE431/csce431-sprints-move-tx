@@ -414,7 +414,7 @@ Style/KeywordParametersOrder:
     Enabled: true
 
 Style/MethodCallWithArgsParentheses:
-    Enabled: true
+    Enabled: false # temporary, may need to instead exclude files
 
 Style/MissingElse:
     Enabled: false
@@ -466,7 +466,7 @@ Style/StringConcatenation:
 
 Style/StringLiterals:
     enabled: true
-    EnforcedStyle: double_quotes
+    EnforcedStyle: single_quotes
 
 Style/SwapValues: # (new in 1.1)
     Enabled: true

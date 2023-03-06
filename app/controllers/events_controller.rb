@@ -31,7 +31,7 @@ class EventsController < ApplicationController
         # create event in Google calendar
         create_google_calendar_event(@event, CALENDAR.authorization.fetch_access_token!)
 
-        format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
+        format.html { redirect_to event_url(@event), notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,7 +47,7 @@ class EventsController < ApplicationController
         # update event in Google calendar
         update_google_calendar_event(@event, CALENDAR.authorization.fetch_access_token!)
 
-        format.html { redirect_to event_url(@event), notice: "Event was successfully updated." }
+        format.html { redirect_to event_url(@event), notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -68,7 +68,7 @@ class EventsController < ApplicationController
     delete_google_calendar_event(@event, CALENDAR.authorization.fetch_access_token!)
 
     respond_to do |format|
-      format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
+      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -81,12 +81,12 @@ class EventsController < ApplicationController
 
     # condition that will automatically turn point type to nil if event type is meeting 
     def service_or_meeting
-      if @event.event_type == "Meeting"
+      if @event.event_type == 'Meeting'
         @event.point_type = nil
         @event.save
       end
 
-      if @event.event_type == "Service"
+      if @event.event_type == 'Service'
         @event.phrase = nil
         @event.save
       end
