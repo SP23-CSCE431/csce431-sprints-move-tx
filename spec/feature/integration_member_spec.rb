@@ -40,6 +40,7 @@ RSpec.describe 'Members integration', type: :feature do
     describe 'Creation' do
         scenario 'create with valid inputs' do
             visit new_member_path
+            
             fill_in 'member[name]',             with: valid_attributes[:name]
             fill_in 'member[committee]',        with: valid_attributes[:committee]
             fill_in 'member[position]',         with: valid_attributes[:position]
@@ -49,6 +50,7 @@ RSpec.describe 'Members integration', type: :feature do
             fill_in 'member[marketingPoints]',  with: valid_attributes[:marketingPoints]
             #fill_in "member[totalPoints]",      with: valid_attributes[:totalPoints]
             click_on 'Create Member'
+            
             visit members_path
             expect(page).to have_content(valid_attributes[:name])
             expect(page).to have_content(valid_attributes[:committee])
@@ -62,6 +64,7 @@ RSpec.describe 'Members integration', type: :feature do
 
         scenario 'create with invalid name' do
             visit new_member_path
+            
             fill_in 'member[committee]',        with: valid_attributes[:committee]
             fill_in 'member[position]',         with: valid_attributes[:position]
             fill_in 'member[civicPoints]',      with: valid_attributes[:civicPoints]
@@ -70,6 +73,7 @@ RSpec.describe 'Members integration', type: :feature do
             fill_in 'member[marketingPoints]',  with: valid_attributes[:marketingPoints]
             #fill_in "member[totalPoints]",      with: valid_attributes[:totalPoints]
             click_on 'Create Member'
+            
             visit members_path
             expect(page).not_to have_content(valid_attributes[:committee])
             expect(page).not_to have_content(valid_attributes[:position])
@@ -95,6 +99,7 @@ RSpec.describe 'Members integration', type: :feature do
             expect(page).to have_content(valid_attributes[:totalPoints])
 
             visit edit_member_path(@temp)
+
             fill_in 'member[name]',             with: edit_attributes[:name]
             fill_in 'member[committee]',        with: edit_attributes[:committee]
             fill_in 'member[position]',         with: edit_attributes[:position]
@@ -103,8 +108,8 @@ RSpec.describe 'Members integration', type: :feature do
             fill_in 'member[socialPoints]',     with: edit_attributes[:socialPoints]
             fill_in 'member[marketingPoints]',  with: edit_attributes[:marketingPoints]
             #fill_in "member[totalPoints]",      with: edit_attributes[:totalPoints]
-            click_on 'Update Member'
 
+            click_on 'Update Member'
             visit member_url(@temp)
             expect(page).to have_content(edit_attributes[:name])
             expect(page).to have_content(edit_attributes[:committee])
