@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe "members/edit", type: :view do
+RSpec.describe 'members/edit', type: :view do
   
   include_context 'admin oauth for views'
 
   let(:member) {
     Member.create!(
-      name: "MyName",
-      committee: "MyCommittee",
-      position: "MyPosition",
+      name: 'MyName',
+      committee: 'MyCommittee',
+      position: 'MyPosition',
       civicPoints: 1,
       outreachPoints: 1,
       socialPoints: 1,
@@ -21,24 +21,24 @@ RSpec.describe "members/edit", type: :view do
     assign(:member, member)
   end
 
-  it "renders the edit member form" do
+  it 'renders the edit member form' do
     render
 
-    assert_select "form[action=?][method=?]", member_path(member), "post" do
+    assert_select 'form[action=?][method=?]', member_path(member), 'post' do
 
-      assert_select "input[name=?]", "member[name]"
+      assert_select 'input[name=?]', 'member[name]'
 
-      assert_select "input[name=?]", "member[committee]"
+      assert_select 'input[name=?]', 'member[committee]'
 
-      assert_select "input[name=?]", "member[position]"
+      assert_select 'input[name=?]', 'member[position]'
 
-      assert_select "input[name=?]", "member[civicPoints]"
+      assert_select 'input[name=?]', 'member[civicPoints]'
 
-      assert_select "input[name=?]", "member[outreachPoints]"
+      assert_select 'input[name=?]', 'member[outreachPoints]'
 
-      assert_select "input[name=?]", "member[socialPoints]"
+      assert_select 'input[name=?]', 'member[socialPoints]'
 
-      assert_select "input[name=?]", "member[marketingPoints]"
+      assert_select 'input[name=?]', 'member[marketingPoints]'
 
       #assert_select "input[name=?]", "member[totalPoints]"
 

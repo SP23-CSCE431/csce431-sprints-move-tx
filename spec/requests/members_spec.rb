@@ -13,7 +13,7 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 
-RSpec.describe "/members", type: :request do
+RSpec.describe '/members', type: :request do
     # need to run the oauth before each test 
     include_context 'test user requests'
     
@@ -21,60 +21,60 @@ RSpec.describe "/members", type: :request do
   # Member. As you add validations to Member, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {name: "MyName"}
+    {name: 'MyName'}
   }
 
   let(:invalid_attributes) {
     {name: nil}
   }
 
-  describe "GET /index" do
-    it "renders a successful response" do
+  describe 'GET /index' do
+    it 'renders a successful response' do
       Member.create! valid_attributes
       get members_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
+  describe 'GET /show' do
+    it 'renders a successful response' do
       member = Member.create! valid_attributes
       get member_url(member)
       expect(response).to be_successful
     end
   end
 
-  describe "GET /new" do
-    it "renders a successful response" do
+  describe 'GET /new' do
+    it 'renders a successful response' do
       get new_member_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /edit" do
-    it "renders a successful response" do
+  describe 'GET /edit' do
+    it 'renders a successful response' do
       member = Member.create! valid_attributes
       get edit_member_url(member)
       expect(response).to be_successful
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Member" do
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      it 'creates a new Member' do
         expect {
           post members_url, params: { member: valid_attributes }
         }.to change(Member, :count).by(1)
       end
 
-      it "redirects to the members table" do
+      it 'redirects to the members table' do
         post members_url, params: { member: valid_attributes }
         expect(response).to redirect_to(member_url(Member.last))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new Member" do
+    context 'with invalid parameters' do
+      it 'does not create a new Member' do
         expect {
           post members_url, params: { member: invalid_attributes }
         }.to change(Member, :count).by(0)
@@ -82,7 +82,7 @@ RSpec.describe "/members", type: :request do
 
     
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        skip("due to difference in creation, not yet implemented")
+        skip('due to difference in creation, not yet implemented')
         post members_url, params: { member: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -90,20 +90,20 @@ RSpec.describe "/members", type: :request do
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
       let(:new_attributes) {
-        {name: "MyName2"}
+        {name: 'MyName2'}
       }
 
-      it "updates the requested member" do
+      it 'updates the requested member' do
         member = Member.create! valid_attributes
         patch member_url(member), params: { member: new_attributes }
         member.reload
-        skip("Add assertions for updated state")
+        skip('Add assertions for updated state')
       end
 
-      it "redirects to the member" do
+      it 'redirects to the member' do
         member = Member.create! valid_attributes
         patch member_url(member), params: { member: new_attributes }
         member.reload
@@ -111,10 +111,10 @@ RSpec.describe "/members", type: :request do
       end
     end
 
-    context "with invalid parameters" do
+    context 'with invalid parameters' do
     
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        skip("due to difference in creation, not yet implemented")
+        skip('due to difference in creation, not yet implemented')
         member = Member.create! valid_attributes
         patch member_url(member), params: { member: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
@@ -123,15 +123,15 @@ RSpec.describe "/members", type: :request do
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested member" do
+  describe 'DELETE /destroy' do
+    it 'destroys the requested member' do
       member = Member.create! valid_attributes
       expect {
         delete member_url(member)
       }.to change(Member, :count).by(-1)
     end
 
-    it "redirects to the events list" do
+    it 'redirects to the events list' do
       member = Member.create! valid_attributes
       delete member_url(member)
       expect(response).to redirect_to(members_url)

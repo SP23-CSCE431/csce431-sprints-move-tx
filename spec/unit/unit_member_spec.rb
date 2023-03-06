@@ -4,9 +4,9 @@ RSpec.describe Member, type: :model do
     # Test Inputs
     let(:valid_attributes) {
         {
-            name: "MyName1",
-            committee: "MyCommittee1",
-            position: "MyPosition1",
+            name: 'MyName1',
+            committee: 'MyCommittee1',
+            position: 'MyPosition1',
             civicPoints: 10010,
             outreachPoints: 10011,
             socialPoints: 10012,
