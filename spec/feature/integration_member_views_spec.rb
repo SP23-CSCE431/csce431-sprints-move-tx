@@ -5,11 +5,39 @@ RSpec.describe "Member's View based on position", type: :feature do
 
   include_context 'member user'
 
+  # Checks pages as if the user is a member not admin
   describe 'Member' do
 
+    # Tests for the member trying to view restricted pages
     scenario 'Visit Members List' do
-      visit root_path
+      visit members_path
       expect(current_path).to eq '/'
+    end
+
+    scenario 'Visit Committees' do
+      visit committees_path
+      expect(current_path).to eq '/'
+    end
+
+    scenario 'Visit Excuses' do
+      visit excuses_path
+      expect(current_path).to eq '/excuses'
+    end
+
+    # Rainy Test for the member trying ot view the pages
+    scenario 'Visit Members List' do
+      visit members_path
+      expect(current_path).not_to  eq '/members'
+    end
+
+    scenario 'Visit Committees' do
+      visit committees_path
+      expect(current_path).not_to eq '/committees'
+    end
+
+    scenario 'Visit Excuses' do
+      visit excuses_path
+      expect(current_path).not_to eq '/'
     end
   end
 end

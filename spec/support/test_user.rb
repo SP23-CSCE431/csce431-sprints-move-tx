@@ -20,14 +20,12 @@ shared_context "test user" do
       visit new_member_path
       fill_in "member[name]", with: "wayland"
       fill_in "member[committee]", with: "Outreach"
+      fill_in "member[admin_password]", with: "Officer"
       click_on "Create Member"
-      click_on "Edit"
-      fill_in "member[position]", with: "President"
-      click_on "Update Member"
     end
   end
 
-  # function is used to set up oath before each request test 
+  # function is used to set up oath before each request test
   shared_context "test user requests" do
     before(:each) do
       OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({

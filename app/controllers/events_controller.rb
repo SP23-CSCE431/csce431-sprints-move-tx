@@ -3,6 +3,7 @@ require 'googleauth'
 require 'googleauth/stores/file_token_store'
 class EventsController < ApplicationController
   before_action :set_event, :service_or_meeting, only: %i[ show edit update destroy ]
+  before_action :set_member
 
   # GET /events or /events.json
   def index

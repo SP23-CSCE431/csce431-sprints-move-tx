@@ -37,10 +37,10 @@
               <li class="nav-item <%= active_class(committees_path) %>">
                 <%= link_to "Committees", committees_path, class: 'nav-link' %>
               </li>
-              <li class="nav-item <%= active_class(excuses_path) %>">
-                <%= link_to "Excuses", excuses_path, class: 'nav-link' %>
-              </li>
             <% end %>
+            <li class="nav-item <%= active_class(excuses_path) %>">
+              <%= link_to "Excuses", excuses_path, class: 'nav-link' %>
+            </li>
           <% end %>
           <li class="nav-item <%= active_class(events_path) %>">
             <%= link_to "Events", events_path, class: 'nav-link' %>

@@ -17,14 +17,26 @@ class MembersController < ApplicationController
   end
 
   def create
-    @member = Member.new(member_params)
+    @member = Member.new(name: params[:member][:name],
+      committee: params[:member][:committee],
+      position: params[:member][:position],
+      civicPoints: params[:member][:civicPoints],
+      outreachPoints: params[:member][:outreachPoints],
+      socialPoints: params[:member][:socialPoints],
+      marketingPoints: params[:member][:marketingPoints],
+      totalPoints: params[:member][:totalPoints],
+      admin_id: params[:member][:admin_id]
+    )
 
     respond_to do |format|
       if @member.save
-
         # if the member does not have connected account connect email to member
         if @member.admin.nil? && @user.nil?
-          @member.update(admin_id: current_admin.id, position: "Member", civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0)
+          if params[:member][:admin_password] == "Officer"
+            @member.update(admin_id: current_admin.id, position: "Admin", civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0)
+          else
+            @member.update(admin_id: current_admin.id, position: "Member", civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0)
+          end
         end
         format.html { redirect_to member_url(@member), notice: "Member was successfully created." }
         format.json { render :show, status: :created, location: @member }
@@ -69,7 +81,8 @@ class MembersController < ApplicationController
       :socialPoints,
       :marketingPoints,
       :totalPoints,
-      :admin_id
+      :admin_id,
+      :admin_password
     )
   end
 
@@ -79,8 +92,10 @@ class MembersController < ApplicationController
   end
 
   def authenticate_admin
-    if @user.position == 'Member'
-      redirect_to root_path
+    if !@user.nil?
+      if @user.position == 'Member'
+        redirect_to root_path
+      end
     end
   end
 

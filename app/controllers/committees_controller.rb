@@ -1,5 +1,7 @@
 class CommitteesController < ApplicationController
   before_action :set_committee, only: %i[ show edit update destroy ]
+  before_action :set_member
+  before_action :authenticate_admin
 
   # GET /committees or /committees.json
   def index
@@ -70,5 +72,17 @@ class CommitteesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def committee_params
       params.require(:committee).permit(:name, :member_id)
+    end
+
+    def set_member
+      @user = current_admin.member
+    end
+
+    def authenticate_admin
+      if !@user.nil?
+        if @user.position == 'Member'
+          redirect_to root_path
+        end
+      end
     end
 end

@@ -1,5 +1,6 @@
 class ExcusesController < ApplicationController
   before_action :set_excuse, only: %i[ show edit update destroy ]
+  before_action :set_member
 
   # GET /excuses or /excuses.json
   def index
@@ -47,7 +48,7 @@ class ExcusesController < ApplicationController
     end
   end
 
-  # for deletion page 
+  # for deletion page
   def delete
     @excuse = Excuse.find(params[:id])
   end
@@ -72,4 +73,9 @@ class ExcusesController < ApplicationController
     def excuse_params
       params.require(:excuse).permit(:description, :file)
     end
+    # Set member
+    def set_member
+      @user = current_admin.member
+    end
+
 end

@@ -21,9 +21,6 @@ shared_context "member user" do
       fill_in "member[name]", with: "wayland"
       fill_in "member[committee]", with: "Outreach"
       click_on "Create Member"
-      click_on "Edit"
-      fill_in "member[position]", with: "Member"
-      click_on "Update Member"
     end
   end
 
