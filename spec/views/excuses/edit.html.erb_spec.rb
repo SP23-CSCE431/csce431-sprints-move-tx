@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "excuses/edit", type: :view do
+RSpec.describe 'excuses/edit', type: :view do
   let(:excuse) {
     Excuse.create!(
-      description: "MyText",
+      description: 'MyText',
       file: nil
     )
   }
@@ -12,14 +12,14 @@ RSpec.describe "excuses/edit", type: :view do
     assign(:excuse, excuse)
   end
 
-  it "renders the edit excuse form" do
+  it 'renders the edit excuse form' do
     render
 
-    assert_select "form[action=?][method=?]", excuse_path(excuse), "post" do
+    assert_select 'form[action=?][method=?]', excuse_path(excuse), 'post' do
 
-      assert_select "textarea[name=?]", "excuse[description]"
+      assert_select 'textarea[name=?]', 'excuse[description]'
 
-      assert_select "input[name=?]", "excuse[file]"
+      assert_select 'input[name=?]', 'excuse[file]'
     end
   end
 end

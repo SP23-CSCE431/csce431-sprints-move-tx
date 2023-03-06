@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe "member_events/show", type: :view do
+RSpec.describe 'member_events/show', type: :view do
   
   let(:member) {
     Member.create!(
-      name: "MyMemberName",
-      committee: "MyCommittee",
-      position: "MyPosition",
+      name: 'MyMemberName',
+      committee: 'MyCommittee',
+      position: 'MyPosition',
       civicPoints: 1,
       outreachPoints: 1,
       socialPoints: 1,
@@ -17,10 +17,10 @@ RSpec.describe "member_events/show", type: :view do
 
   let(:event) {
     Event.create!(
-      name: "MyEventName",
-      date: Date.parse("01-01-2023"),
-      point_type: "MyString",
-      event_type: "Service",
+      name: 'MyEventName',
+      date: Date.parse('01-01-2023'),
+      point_type: 'MyString',
+      event_type: 'Service',
     )
   }
 
@@ -31,11 +31,11 @@ RSpec.describe "member_events/show", type: :view do
       event_id: event.id,
       member_id: member.id,
       approved_status: false,
-      approve_by: "Approve By"
+      approve_by: 'Approve By'
     ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(/MyMemberName/)
     expect(rendered).to match(/MyEventName/)

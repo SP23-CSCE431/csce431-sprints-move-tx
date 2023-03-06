@@ -12,7 +12,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/events", type: :request do
+RSpec.describe '/events', type: :request do
     # need to run the oauth before each test 
     include_context 'test user requests'
     
@@ -21,9 +21,9 @@ RSpec.describe "/events", type: :request do
   # adjust the attributes here as well.
   let(:valid_attributes) {
     {
-      name: "MyName",
-      date: Date.parse("01-01-2023"),
-      event_type: "MyType"
+      name: 'MyName',
+      date: Date.parse('01-01-2023'),
+      event_type: 'MyType'
     }
   }
 
@@ -35,53 +35,53 @@ RSpec.describe "/events", type: :request do
     }
   }
 
-  describe "GET /index" do
-    it "renders a successful response" do
+  describe 'GET /index' do
+    it 'renders a successful response' do
       Event.create! valid_attributes
       get events_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
+  describe 'GET /show' do
+    it 'renders a successful response' do
       event = Event.create! valid_attributes
       get event_url(event)
       expect(response).to be_successful
     end
   end
 
-  describe "GET /new" do
-    it "renders a successful response" do
+  describe 'GET /new' do
+    it 'renders a successful response' do
       get new_event_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /edit" do
-    it "renders a successful response" do
+  describe 'GET /edit' do
+    it 'renders a successful response' do
       event = Event.create! valid_attributes
       get edit_event_url(event)
       expect(response).to be_successful
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Event" do
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      it 'creates a new Event' do
         expect {
           post events_url, params: { event: valid_attributes }
         }.to change(Event, :count).by(1)
       end
 
-      it "redirects to the created event" do
+      it 'redirects to the created event' do
         post events_url, params: { event: valid_attributes }
         expect(response).to redirect_to(event_url(Event.last))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new Event" do
+    context 'with invalid parameters' do
+      it 'does not create a new Event' do
         expect {
           post events_url, params: { event: invalid_attributes }
         }.to change(Event, :count).by(0)
@@ -96,24 +96,24 @@ RSpec.describe "/events", type: :request do
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
       let(:new_attributes) {
         {
-          name: "MyName2",
-          date: Date.parse("01-02-2023"),
-          event_type: "MyType2"
+          name: 'MyName2',
+          date: Date.parse('01-02-2023'),
+          event_type: 'MyType2'
         }
       }
 
-      it "updates the requested event" do
+      it 'updates the requested event' do
         event = Event.create! valid_attributes
         patch event_url(event), params: { event: new_attributes }
         event.reload
-        skip("Add assertions for updated state")
+        skip('Add assertions for updated state')
       end
 
-      it "redirects to the event" do
+      it 'redirects to the event' do
         event = Event.create! valid_attributes
         patch event_url(event), params: { event: new_attributes }
         event.reload
@@ -121,7 +121,7 @@ RSpec.describe "/events", type: :request do
       end
     end
 
-    context "with invalid parameters" do
+    context 'with invalid parameters' do
     
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         #skip("no worky (but should)")
@@ -133,15 +133,15 @@ RSpec.describe "/events", type: :request do
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested event" do
+  describe 'DELETE /destroy' do
+    it 'destroys the requested event' do
       event = Event.create! valid_attributes
       expect {
         delete event_url(event)
       }.to change(Event, :count).by(-1)
     end
 
-    it "redirects to the events list" do
+    it 'redirects to the events list' do
       event = Event.create! valid_attributes
       delete event_url(event)
       expect(response).to redirect_to(events_url)

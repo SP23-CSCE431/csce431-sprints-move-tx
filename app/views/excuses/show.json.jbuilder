@@ -1,1 +1,1 @@
-json.partial! "excuses/excuse", excuse: @excuse
+json.partial! 'excuses/excuse', excuse: @excuse

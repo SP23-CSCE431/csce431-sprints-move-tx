@@ -23,9 +23,14 @@ class MembersController < ApplicationController
 
         # if the member does not have connected account connect email to member 
         if @member.admin.nil? && @user.nil?
-          @member.update(admin_id: current_admin.id, position: "Member", civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0)
+          @member.update(admin_id: current_admin.id, position: 'Member',
+                         civicPoints: 0,
+                         outreachPoints: 0,
+                         socialPoints: 0,
+                         marketingPoints: 0, 
+                         totalPoints: 0)
         end
-        format.html { redirect_to member_url(@member), notice: "Member was successfully created." }
+        format.html { redirect_to member_url(@member), notice: 'Member was successfully created.' }
         format.json { render :show, status: :created, location: @member }
       else
         format.html { render :new, status: :unprocessable_entity }
