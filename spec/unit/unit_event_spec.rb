@@ -23,6 +23,13 @@ RSpec.describe Event, type: :model do
         }
     }
 
+    let(:valid_non_event) {
+        {
+            point_type: 'Marketing',
+            event_type: 'Personal/Non-Event'
+        }
+    }
+
     subject do
         described_class.new(valid_service)
     end
@@ -86,6 +93,23 @@ RSpec.describe Event, type: :model do
             expect(subject).not_to be_valid
         end
     end
+
+    # if there is a service there needs to be a point type
+    context 'when event_type is Personal/Non-Event' do
+        before do
+            subject.event_type = valid_non_event[:event_type]
+            subject.point_type = valid_non_event[:point_type]
+        end
+        
+        it 'is valid when there is a point_type' do
+            expect(subject).to be_valid
+        end
+        it 'is not valid when there is not a point_type' do
+            subject.point_type = nil
+            expect(subject).not_to be_valid
+        end
+    end
+    
     # if service needs to be point_type
 
     # right now it is set up to where you can enter point_type with meeting as the event type but it is changed
