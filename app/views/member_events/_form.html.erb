@@ -16,7 +16,7 @@
   <div>
     <%= form.label :event_id, style: "display: block" %>
     <%# filters for membere vents that are services %>
-    <%= form.select :event_id, Event.where(event_type: "Service").order(:name).map { |event| [event.name, event.id] } %>
+    <%= form.select :event_id, Event.where(event_type: ["Service","Personal/Non-Event"]).order(:name).map { |event| [event.name, event.id] } %>
   </div>
 
   <div>
