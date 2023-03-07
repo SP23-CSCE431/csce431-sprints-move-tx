@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe "members/show", type: :view do
+RSpec.describe 'members/show', type: :view do
   before(:each) do
     assign(:member, Member.create!(
-        name: "MyName",
-        committee: "MyCommittee",
-        position: "MyPosition",
+        name: 'MyName',
+        committee: 'MyCommittee',
+        position: 'MyPosition',
         civicPoints: 0,
         outreachPoints: 1,
         socialPoints: 2,
@@ -13,7 +13,7 @@ RSpec.describe "members/show", type: :view do
     ))
   end
 
-  it "renders attributes" do
+  it 'renders attributes' do
     render
     expect(rendered).to match(/MyName/)
     expect(rendered).to match(/MyCommittee/)

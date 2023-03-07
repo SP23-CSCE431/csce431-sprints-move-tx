@@ -1,1 +1,1 @@
-json.partial! "committees/committee", committee: @committee
+json.partial! 'committees/committee', committee: @committee

@@ -8,13 +8,13 @@ class Excuse < ApplicationRecord
 
   def file_size
     if file.blob.byte_size > 5.megabytes
-      errors.add(:file, "File size is too large (Size > 5MB)")
+      errors.add(:file, 'File size is too large (Size > 5MB)')
     end
   end
 
   def file_type
-    if !file.blob.content_type.starts_with?("application/pdf")
-      errors.add(:file, "File must be a PDF")
+    if !file.blob.content_type.starts_with?('application/pdf')
+      errors.add(:file, 'File must be a PDF')
     end
   end
 

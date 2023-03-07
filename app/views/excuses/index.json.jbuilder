@@ -1,1 +1,1 @@
-json.array! @excuses, partial: "excuses/excuse", as: :excuse
+json.array! @excuses, partial: 'excuses/excuse', as: :excuse

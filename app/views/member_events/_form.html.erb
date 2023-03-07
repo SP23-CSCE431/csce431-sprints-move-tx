@@ -24,14 +24,21 @@
     <%= form.check_box :approved_status %>
   </div>
 
+  <br>
+
 
   <%# makes a dropdown to where you can only see admins %>
-  <div>
-    <%= form.label :approve_by, style: "display: block" %>
-    <%= form.select :approve_by, Member.where.not(position: "Member").order(:name).map { |member| [member.name]} %>
-  </div>
+    <% Member.where.not(position: "Member").each do |officer| %>
+      <div>
+        <%= form.label :officer_ids, officer.name, style: "disply: block"%>
+        <%= form.check_box :officer_ids, {multiple: true}, officer.name, nil %>
+      </div>
+    <% end %>
 
 
+
+
+  <br>
   <div>
     <%= form.label :file, style: "display: block" %>
     <%= form.file_field :file %>

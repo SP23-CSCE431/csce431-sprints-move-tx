@@ -106,6 +106,7 @@ Layout/LineEndStringConcatenationIndentation: # (new in 1.18)
 
 Layout/LineLength:
     Max: 150
+    AllowedPatterns: ['(\A|\s)#']
     Exclude:
         - "**/spec/**/*"
 
@@ -302,6 +303,18 @@ Naming/InclusiveLanguage: # (new in 1.18)
 Naming/PredicateName:
   Enabled: true
 
+Naming/ClassAndModuleCamelCase:
+  Enabled: true
+
+Naming/MethodName:
+  Enabled: true
+  EnforcedStyle: snake_case
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: true
+  EnforcedStyleForLeadingUnderscores: disallowed
+  Safe: false
+
 ###########################################################
 ######################## Style ############################
 ###########################################################
@@ -357,6 +370,10 @@ Style/ExplicitBlockArgument:
 Style/GlobalStdStream:
     Enabled: true
 
+Style/GlobalVars:
+    Enabled: true
+    AllowedPatterns: ['\A$']
+
 Style/GuardClause:
     Enabled: false
 
@@ -397,7 +414,7 @@ Style/KeywordParametersOrder:
     Enabled: true
 
 Style/MethodCallWithArgsParentheses:
-    Enabled: true
+    Enabled: false # temporary, may need to instead exclude files
 
 Style/MissingElse:
     Enabled: false
@@ -446,6 +463,10 @@ Style/StringChars: # (new in 1.12)
 
 Style/StringConcatenation:
     Enabled: true
+
+Style/StringLiterals:
+    enabled: true
+    EnforcedStyle: single_quotes
 
 Style/SwapValues: # (new in 1.1)
     Enabled: true

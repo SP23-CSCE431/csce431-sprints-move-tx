@@ -1,5 +1,7 @@
 class CommitteesController < ApplicationController
   before_action :set_committee, only: %i[ show edit update destroy ]
+  before_action :set_member
+  before_action :authenticate_admin
 
   # GET /committees or /committees.json
   def index
@@ -25,7 +27,7 @@ class CommitteesController < ApplicationController
 
     respond_to do |format|
       if @committee.save
-        format.html { redirect_to committee_url(@committee), notice: "Committee was successfully created." }
+        format.html { redirect_to committee_url(@committee), notice: 'Committee was successfully created.' }
         format.json { render :show, status: :created, location: @committee }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +40,7 @@ class CommitteesController < ApplicationController
   def update
     respond_to do |format|
       if @committee.update(committee_params)
-        format.html { redirect_to committee_url(@committee), notice: "Committee was successfully updated." }
+        format.html { redirect_to committee_url(@committee), notice: 'Committee was successfully updated.' }
         format.json { render :show, status: :ok, location: @committee }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,7 +58,7 @@ class CommitteesController < ApplicationController
     @committee.destroy
 
     respond_to do |format|
-      format.html { redirect_to committees_url, notice: "Committee was successfully destroyed." }
+      format.html { redirect_to committees_url, notice: 'Committee was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,5 +72,17 @@ class CommitteesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def committee_params
       params.require(:committee).permit(:name, :member_id)
+    end
+
+    def set_member
+      @user = current_admin.member
+    end
+
+    def authenticate_admin
+      if !@user.nil?
+        if @user.position == 'Member'
+          redirect_to root_path
+        end
+      end
     end
 end
