@@ -1,11 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe 'member_events/edit', type: :view do
-  
+  let(:committee1) {
+    Committee.create!(
+      name: "MyCommittee"
+    )
+  }
   let(:member) {
     Member.create!(
       name: 'MyName',
-      committee: 'MyCommittee',
+      committee_id: committee1.id,
       position: 'MyPosition',
       civicPoints: 1,
       outreachPoints: 1,

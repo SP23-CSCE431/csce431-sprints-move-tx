@@ -19,7 +19,7 @@ shared_context "member user" do
       click_on "Sign in with Google"
       visit new_member_path
       fill_in "member[name]", with: "wayland"
-      fill_in "member[committee]", with: "Outreach"
+      select "None", from: 'member[committee_id]'
       click_on "Create Member"
     end
   end

@@ -4,10 +4,16 @@ RSpec.describe 'members/new', type: :view do
 
   include_context 'admin oauth for views'
   
+  let(:committee1) {
+    Committee.create!(
+      name: "MyCommittee"
+    )
+  }
+
   before(:each) do
     assign(:member, Member.new(
       name: 'MyName',
-      committee: 'MyCommittee',
+      committee_id: committee1.id,
       position: 'MyPosition',
       civicPoints: 0,
       outreachPoints: 1,
@@ -24,7 +30,7 @@ RSpec.describe 'members/new', type: :view do
 
       assert_select 'input[name=?]', 'member[name]'
 
-      assert_select 'input[name=?]', 'member[committee]'
+      assert_select 'select[name=?]', 'member[committee_id]'
 
       assert_select 'input[name=?]', 'member[position]'
 

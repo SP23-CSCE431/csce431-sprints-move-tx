@@ -14,9 +14,10 @@
     </tr>
     <tr>
       <th>Committee</th>
-      <td><%= @member.committee %></td>
-      <% if @member.committee %>
-        <%= @member.committee %>
+      <% if @member.committee_id != nil %>
+        <td><%= @member.committee.name %><td>
+      <%else%>
+        <td>None</td>
       <% end %>
     </tr>
     <tr>
