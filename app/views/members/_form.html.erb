@@ -16,8 +16,8 @@
   <div>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
-    <%= form.label :committee, style: "display: block" %>
-    <%= form.text_field :committee %>
+    <%= form.label :committee_id, style: "display: block" %>
+    <%= form.select :committee_id, Committee.order(:name).map { |committee| [ committee.name, committee.id] }, include_blank: "None" %>
     <%= form.label :position, style: "display: block" %>
     <%= form.text_field :position %>
     <%= form.label :civicPoints, style: "display: block" %>
@@ -39,8 +39,8 @@
     <div>
       <%= form.label :name, style: "display: block" %>
       <%= form.text_field :name %>
-      <%= form.label :committee, style: "display: block" %>
-      <%= form.text_field :committee %>
+      <%= form.label :committee_id, style: "display: block" %>
+      <%= form.select :committee_id, Committee.order(:name).map { |committee| [ committee.name, committee.id] }, include_blank: "None" %>
       <%= form.label :admin_password, style: "display: block" %>
       <%= form.text_field :admin_password %>
     </div>

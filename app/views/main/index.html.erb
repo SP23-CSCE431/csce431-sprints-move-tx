@@ -27,7 +27,11 @@
       <th>Total Points</th>
     </tr>
     <tr>
-      <td> <%= @user.committee %></td>
+      <%if @user.committee != nil%>
+        <td> <%= @user.committee.name %></td>
+      <%else%>
+        <td>None</td>
+      <%end%>
       <td> <%= @user.position %></td>
       <td> <%= @user.civicPoints %></td>
       <td> <%= @user.outreachPoints %></td>

@@ -4,10 +4,16 @@ RSpec.describe 'members/edit', type: :view do
   
   include_context 'admin oauth for views'
 
+  let(:committee1) {
+    Committee.create!(
+      name: "MyCommittee"
+    )
+  }
+
   let(:member) {
     Member.create!(
       name: 'MyName',
-      committee: 'MyCommittee',
+      committee_id: committee1.id,
       position: 'MyPosition',
       civicPoints: 1,
       outreachPoints: 1,
@@ -28,7 +34,7 @@ RSpec.describe 'members/edit', type: :view do
 
       assert_select 'input[name=?]', 'member[name]'
 
-      assert_select 'input[name=?]', 'member[committee]'
+      assert_select 'select[name=?]', 'member[committee_id]'
 
       assert_select 'input[name=?]', 'member[position]'
 

@@ -1,10 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe 'members/show', type: :view do
+
+  let(:committee1) {
+    Committee.create!(
+      name: "MyCommittee"
+    )
+  }
+
   before(:each) do
     assign(:member, Member.create!(
         name: 'MyName',
-        committee: 'MyCommittee',
+        committee_id: committee1.id,
         position: 'MyPosition',
         civicPoints: 0,
         outreachPoints: 1,

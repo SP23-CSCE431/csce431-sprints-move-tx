@@ -1,6 +1,7 @@
 class MainController < ApplicationController
   before_action :set_user, :set_member_event;
 
+
   def index
   end
 
