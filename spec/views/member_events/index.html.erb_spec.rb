@@ -8,10 +8,16 @@ RSpec.describe 'member_events/index', type: :view do
   # allow for oauth access
   include_context 'admin oauth for views'
   
+  let(:committee1) {
+    Committee.create!(
+      name: "MyCommittee"
+    )
+  }
+
   let(:member) {
     Member.create!(
       name: 'wayland',
-      committee: 'MyCommittee',
+      committee_id: committee1.id,
       position: 'President',
       civicPoints: 1,
       outreachPoints: 1,

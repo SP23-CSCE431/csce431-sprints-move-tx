@@ -8,6 +8,10 @@ class Member < ApplicationRecord
   has_one :admin
   belongs_to :admin, optional: true
 
+  # set foreign key (committee) for member
+  has_one :committee
+  belongs_to :committee, optional: true
+
   # when saving, update points and total points
   before_save do
     self.civicPoints      = 0 if civicPoints.nil?     || civicPoints < 0

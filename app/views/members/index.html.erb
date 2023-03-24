@@ -21,7 +21,11 @@
     <tr>
       <td> <%= member.id %></td>
       <td> <%= member.name %></td>
-      <td> <%= member.committee %></td>
+      <%if member.committee != nil%>
+        <td> <%= member.committee.name %></td>
+      <%else%>
+        <td>None</td>
+      <%end%>
       <td> <%= member.position %></td>
       <td> <%= member.civicPoints %></td>
       <td> <%= member.outreachPoints %></td>

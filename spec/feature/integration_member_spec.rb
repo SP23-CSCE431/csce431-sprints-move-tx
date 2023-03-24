@@ -5,10 +5,25 @@ RSpec.describe 'Members integration', type: :feature do
     # need to run the oauth before each test 
     include_context 'test user'
 
-    let(:valid_attributes) {
+    let!(:committee1) {
+        Committee.create!(
+            name: 'MyCommittee1'
+        )
+    }
+    let!(:committee2) {
+        Committee.create!(
+            name: 'MyCommittee2'
+        )
+    }
+    let!(:committee3) {
+        Committee.create!(
+            name: 'MyCommittee4'
+        )
+    }
+    let!(:valid_attributes) {
         {
             name: 'MyName1',
-            committee: 'MyCommittee1',
+            committee_id: committee1.id,
             position: 'MyPosition1',
             civicPoints: 10010,
             outreachPoints: 10011,
@@ -18,10 +33,10 @@ RSpec.describe 'Members integration', type: :feature do
         }
     }
 
-    let(:edit_attributes) {
+    let!(:edit_attributes) {
         {
             name: 'MyName2',
-            committee: 'MyCommittee2',
+            committee_id: committee2.id,
             position: 'MyPosition2',
             civicPoints: 10090,
             outreachPoints: 10091,
@@ -31,7 +46,7 @@ RSpec.describe 'Members integration', type: :feature do
         }
     }
 
-    let(:invalid_attributes) {
+    let!(:invalid_attributes) {
         {
             name: nil
         }
@@ -42,7 +57,7 @@ RSpec.describe 'Members integration', type: :feature do
             visit new_member_path
             
             fill_in 'member[name]',             with: valid_attributes[:name]
-            fill_in 'member[committee]',        with: valid_attributes[:committee]
+            select committee1.name,             from: 'member[committee_id]'
             fill_in 'member[position]',         with: valid_attributes[:position]
             fill_in 'member[civicPoints]',      with: valid_attributes[:civicPoints]
             fill_in 'member[outreachPoints]',   with: valid_attributes[:outreachPoints]
@@ -53,7 +68,7 @@ RSpec.describe 'Members integration', type: :feature do
             
             visit members_path
             expect(page).to have_content(valid_attributes[:name])
-            expect(page).to have_content(valid_attributes[:committee])
+            expect(page).to have_content(committee1.name)
             expect(page).to have_content(valid_attributes[:position])
             expect(page).to have_content(valid_attributes[:civicPoints])
             expect(page).to have_content(valid_attributes[:outreachPoints])
@@ -65,7 +80,7 @@ RSpec.describe 'Members integration', type: :feature do
         scenario 'create with invalid name' do
             visit new_member_path
             
-            fill_in 'member[committee]',        with: valid_attributes[:committee]
+            select committee2.name,             from: 'member[committee_id]'
             fill_in 'member[position]',         with: valid_attributes[:position]
             fill_in 'member[civicPoints]',      with: valid_attributes[:civicPoints]
             fill_in 'member[outreachPoints]',   with: valid_attributes[:outreachPoints]
@@ -75,7 +90,7 @@ RSpec.describe 'Members integration', type: :feature do
             click_on 'Create Member'
             
             visit members_path
-            expect(page).not_to have_content(valid_attributes[:committee])
+            expect(page).not_to have_content(committee2.name)
             expect(page).not_to have_content(valid_attributes[:position])
             expect(page).not_to have_content(valid_attributes[:civicPoints])
             expect(page).not_to have_content(valid_attributes[:outreachPoints])
@@ -90,7 +105,7 @@ RSpec.describe 'Members integration', type: :feature do
             @temp = Member.create!(valid_attributes)
             visit member_url(@temp)
             expect(page).to have_content(valid_attributes[:name])
-            expect(page).to have_content(valid_attributes[:committee])
+            expect(page).to have_content(committee1.name)
             expect(page).to have_content(valid_attributes[:position])
             expect(page).to have_content(valid_attributes[:civicPoints])
             expect(page).to have_content(valid_attributes[:outreachPoints])
@@ -101,7 +116,7 @@ RSpec.describe 'Members integration', type: :feature do
             visit edit_member_path(@temp)
 
             fill_in 'member[name]',             with: edit_attributes[:name]
-            fill_in 'member[committee]',        with: edit_attributes[:committee]
+            select committee1.name,             from: 'member[committee_id]'
             fill_in 'member[position]',         with: edit_attributes[:position]
             fill_in 'member[civicPoints]',      with: edit_attributes[:civicPoints]
             fill_in 'member[outreachPoints]',   with: edit_attributes[:outreachPoints]
@@ -112,7 +127,7 @@ RSpec.describe 'Members integration', type: :feature do
             click_on 'Update Member'
             visit member_url(@temp)
             expect(page).to have_content(edit_attributes[:name])
-            expect(page).to have_content(edit_attributes[:committee])
+            expect(page).to have_content(committee1.name)
             expect(page).to have_content(edit_attributes[:position])
             expect(page).to have_content(edit_attributes[:civicPoints])
             expect(page).to have_content(edit_attributes[:outreachPoints])
@@ -128,7 +143,7 @@ RSpec.describe 'Members integration', type: :feature do
             @temp = Member.create!(valid_attributes)
             visit members_path
             expect(page).to have_content(valid_attributes[:name])
-            expect(page).to have_content(valid_attributes[:committee])
+            expect(page).to have_content(committee1.name)
             expect(page).to have_content(valid_attributes[:position])
             expect(page).to have_content(valid_attributes[:civicPoints])
             expect(page).to have_content(valid_attributes[:outreachPoints])
@@ -140,7 +155,7 @@ RSpec.describe 'Members integration', type: :feature do
             click_on 'Delete Member'
             visit members_path
             expect(page).not_to have_content(valid_attributes[:name])
-            expect(page).not_to have_content(valid_attributes[:committee])
+            expect(page).not_to have_content(committee1.name)
             expect(page).not_to have_content(valid_attributes[:position])
             expect(page).not_to have_content(valid_attributes[:civicPoints])
             expect(page).not_to have_content(valid_attributes[:outreachPoints])

@@ -2,10 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Member, type: :model do
     # Test Inputs
+    let!(:committee1) {
+      Committee.create!(
+          name: 'MyCommittee1'
+      )
+  }
     let(:valid_attributes) {
         {
             name: 'MyName1',
-            committee: 'MyCommittee1',
+            committee_id: committee1.id,
             position: 'MyPosition1',
             civicPoints: 10010,
             outreachPoints: 10011,
