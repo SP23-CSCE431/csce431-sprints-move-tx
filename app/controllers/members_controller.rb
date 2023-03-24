@@ -18,7 +18,7 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(name: params[:member][:name],
-      committee: params[:member][:committee],
+      committee_id: params[:member][:committee_id],
       position: params[:member][:position],
       civicPoints: params[:member][:civicPoints],
       outreachPoints: params[:member][:outreachPoints],
@@ -74,7 +74,7 @@ class MembersController < ApplicationController
 
   def member_params
     params.require(:member).permit(:name,
-      :committee,
+      :committee_id,
       :position,
       :civicPoints,
       :outreachPoints,

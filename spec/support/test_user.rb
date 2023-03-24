@@ -18,8 +18,8 @@ shared_context 'test user' do
       visit '/admins/sign_in'
       click_on 'Sign in with Google'
       visit new_member_path
-      fill_in "member[name]", with: "wayland"
-      fill_in "member[committee]", with: "Outreach"
+      fill_in 'member[name]', with: "wayland"
+      select "None", from: 'member[committee_id]'
       fill_in "member[admin_password]", with: "Officer"
       click_on "Create Member"
     end
