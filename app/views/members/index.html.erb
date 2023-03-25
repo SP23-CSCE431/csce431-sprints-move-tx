@@ -5,17 +5,23 @@
 
   <%= link_to("Add New Member", new_member_path, class: 'action new') %>
 
-  <table class="listing" summary="Member list" style="width: 100%;">
+  <%= form_tag(members_path, method: :get) do %>
+    <p> Search for a Member </p>
+    <%= text_field_tag(:search, params[:search]) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+
+  <table class="listing" id="Member list" summary="Member list" style="width: 100%;">
     <tr class="header">
-      <th>#</th>
-      <th>Member</th>
-      <th>Committee</th>
-      <th>Position</th>
-      <th>Civic Points</th>
-      <th>Outreach Points</th>
-      <th>Social Points</th>
-      <th>Marketing Points</th>
-      <th>Total Points</th>
+      <th class="table-head"><%= link_to "Member ID", :sort => "id", class: 'table-sort'%></th>
+      <th class="table-head"><%= link_to "Member Name", :sort => "name", class: 'table-sort'%></th>
+      <th class="table-head"><%= link_to "Committee", :sort => "committee_id", class: 'table-sort'%></th>
+      <th class="table-head"><%= link_to "Position", :sort => "position", class: 'table-sort'%></th>
+      <th class="table-head">Civic Points</th>
+      <th class="table-head">Outreach Points</th>
+      <th class="table-head">Social Points</th>
+      <th class="table-head">Marketing Points</th>
+      <th class="table-head">Total Points</th>
     </tr>
     <% @members.each do |member| %>
     <tr>

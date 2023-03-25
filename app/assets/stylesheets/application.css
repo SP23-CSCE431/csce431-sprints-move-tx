@@ -18,6 +18,73 @@
    background-color: #fff2d5
  }
 
+ /* Table CSS Style */
+
+ td {
+  border: 1px solid #000;
+  padding: 8px;
+ }
+
+ tr{
+   background-color: #fff2d5;
+ }
+
+ tr:nth-child(2n+0){
+   background-color: #fff2dd;
+ }
+
+ tr:hover{
+   background-color: #ffecd1;
+ }
+
+ th{
+   text-decoration: none;
+   padding-top: 12px;
+   padding-bottom: 12px;
+   text-align: left;
+   background-color: #510000;
+   color: #fff2d5;
+ }
+
+ .table-head {
+   text-align: center;
+   text-decoration: none;
+   color: #fff2d5
+ }
+
+ .table-head:hover {
+   text-decoration: none;
+   text-align: center;
+ }
+
+ .table-head:active {
+   text-decoration: none;
+   background-color: #410100;
+   border-radius: 5px;
+ }
+
+ .table-sort {
+   color: #fff2d5;
+   background-color: #510000;
+   text-decoration: none;
+   overflow: hidden;
+   text-align: center;
+   display: inline-block;
+   padding: 14px 20px;
+ }
+
+ .table-sort:hover {
+   text-decoration: none;
+   color: #CEC5AF;
+   background-color: #410100;
+ }
+
+ .table-sort:active {
+   text-decoration: none;
+   color: #CEC5AF;
+   background-color: #410100;
+ }
+
 /* Navbar CSS Style */
 .navbar {
   display: flex;
@@ -56,7 +123,7 @@
 .nav-item.active {
   border-radius: 5px;
   color: #510000;
-  background-color: #510000
+  background-color: #510000;
 }
 
 .nav-link {
@@ -76,7 +143,7 @@
 
 .nav-link:active {
   color: #CEC5AF;
-  background-color: #410100;
+  background-color: #2e0100;
 }
 
 .nav-logo {

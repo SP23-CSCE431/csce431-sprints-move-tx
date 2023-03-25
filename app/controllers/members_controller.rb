@@ -4,8 +4,27 @@ class MembersController < ApplicationController
   before_action :set_member
   before_action :authenticate_admin
 
+  @@sorting = ""
+
   def index
-    @members = Member.order(:id)
+    if params[:search]
+      search_members
+    end
+    if params[:sort] == @@sorting
+      @members = Member.order(params[:sort]).reverse
+      @@sorting = ""
+    elsif params[:sort] != @@sorting
+      @members = Member.order(params[:sort])
+      @@sorting = params[:sort]
+    else
+      @members = Member.all
+    end
+  end
+
+  def search_members
+    if @member = Member.all.find{|member| member.name.include? (params[:search])}
+      redirect_to member_path(@member)
+    end
   end
 
   def show
