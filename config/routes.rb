@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :member_events
-  
+
   root "main#index"
 
   # root to: 'dashboards#show'
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
 
   get 'main/index'
+  resources :faq
   # get 'members/index'
   # get 'members/new'
   # get 'members/edit'
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   resources :committees
-  resources :excuses do 
+  resources :excuses do
     member do
       get :delete
     end
@@ -40,11 +41,11 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :events do
-    member do 
+    member do
       get :delete
     end
   end
-  
+
   resources :events
 
 end
