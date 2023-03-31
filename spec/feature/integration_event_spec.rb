@@ -14,6 +14,13 @@ RSpec.describe 'Event integration', type: :feature do
         phrase: "what's up"}
     }
 
+    let(:valid_meeting2) {
+        {name: 'january second meeting',
+        date: Date.parse('2022-01-03'),
+        event_type: 'Meeting',
+        phrase: "what's up"}
+    }
+
     let(:valid_service) {
         {name: 'Park clean up',
         date: Date.parse('2022-12-15'),
@@ -259,9 +266,9 @@ RSpec.describe 'Event integration', type: :feature do
     end
     
     # As an admin, I would like to be able to filter events/services/nonevents so that I can efficiently navigate between them 
-    describe 'Event Filtering' do
+    describe 'Event Filtering no meeting type' do
         # sunny day case
-        scenario 'correctly filtering event' do
+        scenario 'correctly filtering event no meeting type' do
             visit events_path
             @temp = Event.create!(valid_meeting)
             @temp2 = Event.create!(valid_service)
@@ -272,7 +279,7 @@ RSpec.describe 'Event integration', type: :feature do
         end
         
         #rainy day case: selecting only year option or only month option
-        scenario 'incorrectly filtering event' do
+        scenario 'incorrectly filtering event no meeting type' do
             visit events_path
             @temp = Event.create!(valid_meeting)
             @temp2 = Event.create!(valid_service)
@@ -280,5 +287,43 @@ RSpec.describe 'Event integration', type: :feature do
             click_on 'Search'
             expect(page).to have_content('Please enter month and year')
         end
+    end
+
+    describe 'Event Filtering with meeting type' do
+        # sunny day cases
+        scenario 'correctly filtering event with type Meeting' do
+            visit events_path
+            @temp = Event.create!(valid_meeting)
+            @temp2 = Event.create!(valid_service)
+            select 'January', from: 'date[month]'
+            select '2022', from: 'date[year]'
+            select 'Meeting', from: 'event[event_type]'
+            click_on 'Search'
+            expect(page).to have_content('Jan Meeting')
+        end
+
+        scenario 'correctly filtering event with type service' do
+            visit events_path
+            @temp = Event.create!(valid_meeting)
+            @temp2 = Event.create!(valid_service)
+            select 'Febuary', from: 'date[month]'
+            select '2022', from: 'date[year]'
+            select 'Service', from: 'event[event_type]'
+            click_on 'Search'
+            expect(page).to have_content('Park clean up')
+        end
+
+        scenario 'correctly filtering event with any event type' do
+            visit events_path
+            @temp = Event.create!(valid_meeting)
+            @temp2 = Event.create!(valid_service)
+            select 'Febuary', from: 'date[month]'
+            select '2022', from: 'date[year]'
+            select 'Any', from: 'event[event_type]'
+            click_on 'Search'
+            expect(page).to have_content('Park clean up')
+        end
+
+        # there should not be any rainy day cases for meeting type 
     end
 end
