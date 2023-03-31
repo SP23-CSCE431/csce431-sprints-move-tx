@@ -12,14 +12,19 @@
   scrolling="no">
 </iframe>
 
+
+<%# form submission for filtering events by month year etc %>
 <%= form_tag events_path, method: :get do %>
 
   <%= select_tag "date[month]", options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index+1] }), prompt: "Select month" %>
   <%= select_tag "date[year]", options_for_select((Time.now.year-1..Time.now.year+1).to_a.reverse), prompt: "Select year" %>
-
   <%= submit_tag "Search", class: "btn btn-primary" %>
+  
 <% end %>
 
+<%= link_to "All Events", events_path%>
+
+<%# regular code for showing the events  %>
 <div id="events">
   <% @events.each do |event| %>
     <%= render event %>

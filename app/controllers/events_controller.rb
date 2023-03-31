@@ -9,28 +9,24 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
 
-    # if params[:query].present?
-    #   puts "fe87d0av827389rhf"
-    #   @events = @events.where("name LIKE ?", "%#{params[:query]}%")
-    # end
-
+    # condition that checks if the month and year are presents and queries the database to return all events satisfying the months and dates
     if params[:date].present?
       if params[:date][:year].present? && params[:date][:month].present?
         start_date = Date.new(params[:date][:year].to_i, params[:date][:month].to_i, 1)
         end_date = start_date.end_of_month
         formatted_date_beg = start_date.strftime("%Y-%m-%d")
         formatted_date_end = end_date.strftime("%Y-%m-%d")
-        @events = Event.where("date >= ? AND date <= ?", formatted_date_beg, formatted_date_end).all
+          @events = Event.where("date >= ? AND date <= ?", formatted_date_beg, formatted_date_end).all
       else
         flash[:notice] = "Please enter month and year"
       end
     end
+
+    # if no events found flash a notice
     if @events.any? == false && params[:date].present?
       flash[:notice] = "no Events found"
-      return
-    else 
-      # do not change the flash notice
     end
+
     @events = @events.paginate(page: params[:page], per_page: 2)
   end
 

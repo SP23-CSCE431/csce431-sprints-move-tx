@@ -262,20 +262,23 @@ RSpec.describe 'Event integration', type: :feature do
     describe 'Event Filtering' do
         # sunny day case
         scenario 'correctly filtering event' do
+            visit events_path
             @temp = Event.create!(valid_meeting)
             @temp2 = Event.create!(valid_service)
             select 'January', from: 'date[month]'
             select '2022', from: 'date[year]'
+            click_on 'Search'
             expect(page).to have_content('Jan Meeting')
         end
         
         #rainy day case: selecting only year option or only month option
         scenario 'incorrectly filtering event' do
+            visit events_path
             @temp = Event.create!(valid_meeting)
             @temp2 = Event.create!(valid_service)
             select 'January', from: 'date[month]'
-            select '2022', from: 'date[year]'
-            expect(page).to have_content('Jan Meeting')
+            click_on 'Search'
+            expect(page).to have_content('Please enter month and year')
         end
     end
 end
