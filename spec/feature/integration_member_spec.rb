@@ -7,17 +7,17 @@ RSpec.describe 'Members integration', type: :feature do
 
     let!(:committee1) {
         Committee.create!(
-            name: 'MyCommittee1'
+          name: 'MyCommittee1'
         )
     }
     let!(:committee2) {
         Committee.create!(
-            name: 'MyCommittee2'
+          name: 'MyCommittee2'
         )
     }
     let!(:committee3) {
         Committee.create!(
-            name: 'MyCommittee4'
+          name: 'MyCommittee4'
         )
     }
     let!(:valid_attributes) {

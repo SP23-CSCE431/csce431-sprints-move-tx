@@ -79,10 +79,6 @@ class CommitteesController < ApplicationController
     end
 
     def authenticate_admin
-      if !@user.nil?
-        if @user.position == 'Member'
-          redirect_to root_path
-        end
-      end
+      redirect_to root_path if !@user.nil? && (@user.position == 'Member')
     end
 end

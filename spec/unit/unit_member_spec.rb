@@ -4,7 +4,7 @@ RSpec.describe Member, type: :model do
     # Test Inputs
     let!(:committee1) {
       Committee.create!(
-          name: 'MyCommittee1'
+        name: 'MyCommittee1'
       )
   }
     let(:valid_attributes) {

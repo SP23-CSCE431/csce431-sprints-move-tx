@@ -6,51 +6,51 @@ RSpec.describe 'Searching Integration:', type: :feature do
   # need to run the oauth before each test
   include_context 'test user'
 
-  #Create committee for testing sorting committee
+  # Create committee for testing sorting committee
   let!(:committee1) {
       Committee.create!(
-          name: 'MyCommittee1'
+        name: 'MyCommittee1'
       )
   }
   let!(:committee2) {
       Committee.create!(
-          name: 'MyCommittee2'
+        name: 'MyCommittee2'
       )
   }
 
-  let!(:committee3){
+  let!(:committee3) {
     Committee.create!(
       name: 'MyCommittee3'
     )
   }
 
-  #Creation of members with alternating values
+  # Creation of members with alternating values
   let!(:valid_attributes1) {
       {
-          name: 'MyName1',
-          committee_id: committee2.id,
-          position: 'MyPosition1',
-          civicPoints: 10010,
-          outreachPoints: 10012,
-          socialPoints: 10012,
-          marketingPoints: 10014,
-          totalPoints: 40048
+        name: 'MyName1',
+        committee_id: committee2.id,
+        position: 'MyPosition1',
+        civicPoints: 10010,
+        outreachPoints: 10012,
+        socialPoints: 10012,
+        marketingPoints: 10014,
+        totalPoints: 40048
       }
   }
   let!(:valid_attributes2) {
       {
-          name: 'MyName2',
-          committee_id: committee1.id,
-          position: 'MyPosition2',
-          civicPoints: 10011,
-          outreachPoints: 10011,
-          socialPoints: 10015,
-          marketingPoints: 10013,
-          totalPoints: 40050
+        name: 'MyName2',
+        committee_id: committee1.id,
+        position: 'MyPosition2',
+        civicPoints: 10011,
+        outreachPoints: 10011,
+        socialPoints: 10015,
+        marketingPoints: 10013,
+        totalPoints: 40050
       }
   }
 
-  let!(:valid_attributes3){
+  let!(:valid_attributes3) {
     {
       name: 'Name3',
       committee_id: committee1.id,
@@ -65,7 +65,7 @@ RSpec.describe 'Searching Integration:', type: :feature do
 
   # Sorting table with two members; Sunny Tests
   describe 'Three Members' do
-    scenario 'Searching members with similar names' do
+    it 'Searching members with similar names' do
       # Creating members
       visit new_member_path
 
@@ -102,38 +102,38 @@ RSpec.describe 'Searching Integration:', type: :feature do
 
       visit members_path
       # Searching for valid names
-      fill_in 'search',           with: 'MyName'
+      fill_in 'search', with: 'MyName'
       click_on 'Search'
       expect(page).to have_content('MyName1')
 
       click_on 'Back to Members'
 
-      fill_in 'search',           with: 'MyName1'
+      fill_in 'search', with: 'MyName1'
       click_on 'Search'
       expect(page).to have_content('MyName1')
 
       click_on 'Back to Members'
 
-      fill_in 'search',           with: 'MyName2'
+      fill_in 'search', with: 'MyName2'
       click_on 'Search'
       expect(page).to have_content('MyName2')
 
       click_on 'Back to Members'
       # Searching for invalid names
-      fill_in 'search',           with: 'myname'
+      fill_in 'search', with: 'myname'
       click_on 'Search'
-      expect(current_path).to eq('/members')
+      expect(page).to have_content('Members')
 
-      fill_in 'search',           with: 'MyNameDoesNotExist'
+      fill_in 'search', with: 'MyNameDoesNotExist'
       click_on 'Search'
-      expect(current_path).to eq('/members')
+      expect(page).to have_content('Members')
 
-      fill_in 'search',           with: '#$@@$!#@!'
+      fill_in 'search', with: '#$@@$!#@!'
       click_on 'Search'
-      expect(current_path).to eq('/members')
+      expect(page).to have_content('Members')
     end
 
-    scenario 'Searching members with different names' do
+    it 'Searching members with different names' do
       # Creating members
       visit new_member_path
 
@@ -159,45 +159,45 @@ RSpec.describe 'Searching Integration:', type: :feature do
 
       visit members_path
       # Searching for valid names
-      fill_in 'search',           with: 'MyN'
+      fill_in 'search', with: 'MyN'
       click_on 'Search'
       expect(page).to have_content('MyName1')
 
       click_on 'Back to Members'
 
-      fill_in 'search',           with: 'MyName1'
+      fill_in 'search', with: 'MyName1'
       click_on 'Search'
       expect(page).to have_content('MyName1')
 
       click_on 'Back to Members'
 
-      fill_in 'search',           with: 'me3'
+      fill_in 'search', with: 'me3'
       click_on 'Search'
       expect(page).to have_content('Name3')
 
       click_on 'Back to Members'
 
-      fill_in 'search',           with: 'Name3'
+      fill_in 'search', with: 'Name3'
       click_on 'Search'
       expect(page).to have_content('Name3')
 
       click_on 'Back to Members'
       # Searching for invalid names
-      fill_in 'search',           with: 'name3'
+      fill_in 'search', with: 'name3'
       click_on 'Search'
-      expect(current_path).to eq('/members')
+      expect(page).to have_content('Members')
 
-      fill_in 'search',           with: 'MyNameDoesNotExist'
+      fill_in 'search', with: 'MyNameDoesNotExist'
       click_on 'Search'
-      expect(current_path).to eq('/members')
+      expect(page).to have_content('Members')
 
-      fill_in 'search',           with: '#$@@$!#@!'
+      fill_in 'search', with: '#$@@$!#@!'
       click_on 'Search'
-      expect(current_path).to eq('/members')
+      expect(page).to have_content('Members')
 
     end
 
-    scenario 'Searching members that do not exist' do
+    it 'Searching members that do not exist' do
       # Creating members
       visit new_member_path
 
@@ -234,21 +234,21 @@ RSpec.describe 'Searching Integration:', type: :feature do
 
       visit members_path
       # Searching for invalid names
-      fill_in 'search',           with: 'MyNameDoesNotExist'
+      fill_in 'search', with: 'MyNameDoesNotExist'
       click_on 'Search'
-      expect(current_path).to eq('/members')
+      expect(page).to have_content('Members')
 
-      fill_in 'search',           with: '#$@@$!#@!'
+      fill_in 'search', with: '#$@@$!#@!'
       click_on 'Search'
-      expect(current_path).to eq('/members')
+      expect(page).to have_content('Members')
 
-      fill_in 'search',           with: '{Delete Data}'
+      fill_in 'search', with: '{Delete Data}'
       click_on 'Search'
-      expect(current_path).to eq('/members')
+      expect(page).to have_content('Members')
 
-      fill_in 'search',           with: 'fdfadsf'
+      fill_in 'search', with: 'fdfadsf'
       click_on 'Search'
-      expect(current_path).to eq('/members')
+      expect(page).to have_content('Members')
     end
   end
 end

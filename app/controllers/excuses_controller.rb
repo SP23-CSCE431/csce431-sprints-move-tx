@@ -73,9 +73,9 @@ class ExcusesController < ApplicationController
     def excuse_params
       params.require(:excuse).permit(:description, :file)
     end
+
     # Set member
     def set_member
       @user = current_admin.member
     end
-
 end
