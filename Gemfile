@@ -40,6 +40,10 @@ gem 'omniauth-google-oauth2'
 
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
+gem 'will_paginate'
+
+gem 'factory_bot_rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
