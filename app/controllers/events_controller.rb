@@ -29,15 +29,12 @@ class EventsController < ApplicationController
         else 
           @events = Event.where("date >= ? AND date <= ?", formatted_date_beg, formatted_date_end).all
         end
+
+        # redirect to same page with error message if month and year are not entered 
       else
-        flash[:notice] = "Please enter month and year"
+        redirect_to events_path, notice: "Please enter month and year"
       end
   end
-
-    # if no events found flash a notice
-    if @events.any? == false && params[:date].present?
-      flash[:notice] = "no Events found"
-    end
 
     @events = @events.paginate(page: params[:page], per_page: 2)
   end
