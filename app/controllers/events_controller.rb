@@ -16,11 +16,23 @@ class EventsController < ApplicationController
         end_date = start_date.end_of_month
         formatted_date_beg = start_date.strftime("%Y-%m-%d")
         formatted_date_end = end_date.strftime("%Y-%m-%d")
+
+        # filter events if event type is present in submission
+        if params[:event_type].present?
+          if params[:event_type] != "Any"
+            event_type = params[:event_type]
+            @events = Event.where("date >= ? AND date <= ? AND event_type = ?", formatted_date_beg, formatted_date_end, event_type).all
+          else
+            @events = Event.where("date >= ? AND date <= ?", formatted_date_beg, formatted_date_end).all
+          end
+        # if event type not present do regular filtering
+        else 
           @events = Event.where("date >= ? AND date <= ?", formatted_date_beg, formatted_date_end).all
+        end
       else
         flash[:notice] = "Please enter month and year"
       end
-    end
+  end
 
     # if no events found flash a notice
     if @events.any? == false && params[:date].present?

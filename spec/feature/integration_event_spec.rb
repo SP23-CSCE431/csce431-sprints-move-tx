@@ -297,7 +297,7 @@ RSpec.describe 'Event integration', type: :feature do
             @temp2 = Event.create!(valid_service)
             select 'January', from: 'date[month]'
             select '2022', from: 'date[year]'
-            select 'Meeting', from: 'event[event_type]'
+            select 'Meeting', from: 'event_type'
             click_on 'Search'
             expect(page).to have_content('Jan Meeting')
         end
@@ -306,9 +306,9 @@ RSpec.describe 'Event integration', type: :feature do
             visit events_path
             @temp = Event.create!(valid_meeting)
             @temp2 = Event.create!(valid_service)
-            select 'Febuary', from: 'date[month]'
+            select 'December', from: 'date[month]'
             select '2022', from: 'date[year]'
-            select 'Service', from: 'event[event_type]'
+            select 'Service', from: 'event_type'
             click_on 'Search'
             expect(page).to have_content('Park clean up')
         end
@@ -317,11 +317,13 @@ RSpec.describe 'Event integration', type: :feature do
             visit events_path
             @temp = Event.create!(valid_meeting)
             @temp2 = Event.create!(valid_service)
-            select 'Febuary', from: 'date[month]'
+            @temp3 = Event.create!(valid_meeting2)
+            select 'January', from: 'date[month]'
             select '2022', from: 'date[year]'
-            select 'Any', from: 'event[event_type]'
+            select 'Any', from: 'event_type'
             click_on 'Search'
-            expect(page).to have_content('Park clean up')
+            expect(page).to have_content('Jan Meeting')
+            expect(page).to have_content('january second meeting')
         end
 
         # there should not be any rainy day cases for meeting type 
