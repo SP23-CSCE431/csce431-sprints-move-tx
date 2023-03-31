@@ -66,8 +66,13 @@ class MemberEventsController < ApplicationController
   # PATCH/PUT /member_events/1 or /member_events/1.json
   def update
     respond_to do |format|
-      if @member_event.update(member_event_params)
-
+      if @member_event.update(event_id: params[:member_event][:event_id],
+                                    approved_status: params[:member_event][:approved_status],
+                                    approve_date: params[:member_event][:approve_date],
+                                    phrase: params[:member_event][:phrase],
+                                    file: params[:member_event][:file],
+                                    approve_by: params[:member_event][:officer_ids].to_s)
+   
         # if member_event is for a meeting then give a meeting message, if not give a member event message 
         if @member_event.phrase?
           format.html {redirect_to member_event_url(@member_event), notice: 'Member Sign in was successfully updated.'}
