@@ -7,9 +7,11 @@ class MembersController < ApplicationController
   @@sorting = ""
 
   def index
+    # Searching for members
     if params[:search]
       search_members
     end
+    # Sorting the members table based on if it was clicked already or not
     if params[:sort] == @@sorting
       @members = Member.order(params[:sort]).reverse
       @@sorting = ""
@@ -22,6 +24,7 @@ class MembersController < ApplicationController
   end
 
   def search_members
+    # Search for member
     if @member = Member.all.find{|member| member.name.include? (params[:search])}
       redirect_to member_path(@member)
     end

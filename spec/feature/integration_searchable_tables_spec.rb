@@ -101,7 +101,7 @@ RSpec.describe 'Searching Integration:', type: :feature do
       click_on 'Create Member'
 
       visit members_path
-
+      # Searching for valid names
       fill_in 'search',           with: 'MyName'
       click_on 'Search'
       expect(page).to have_content('MyName1')
@@ -119,7 +119,7 @@ RSpec.describe 'Searching Integration:', type: :feature do
       expect(page).to have_content('MyName2')
 
       click_on 'Back to Members'
-
+      # Searching for invalid names
       fill_in 'search',           with: 'myname'
       click_on 'Search'
       expect(current_path).to eq('/members')
@@ -158,7 +158,7 @@ RSpec.describe 'Searching Integration:', type: :feature do
       click_on 'Create Member'
 
       visit members_path
-
+      # Searching for valid names
       fill_in 'search',           with: 'MyN'
       click_on 'Search'
       expect(page).to have_content('MyName1')
@@ -182,7 +182,7 @@ RSpec.describe 'Searching Integration:', type: :feature do
       expect(page).to have_content('Name3')
 
       click_on 'Back to Members'
-
+      # Searching for invalid names
       fill_in 'search',           with: 'name3'
       click_on 'Search'
       expect(current_path).to eq('/members')
@@ -233,7 +233,7 @@ RSpec.describe 'Searching Integration:', type: :feature do
       click_on 'Create Member'
 
       visit members_path
-
+      # Searching for invalid names
       fill_in 'search',           with: 'MyNameDoesNotExist'
       click_on 'Search'
       expect(current_path).to eq('/members')
