@@ -6,6 +6,8 @@ class MemberEventsController < ApplicationController
 
   # admin validation for certain pages (will be determined on later date)
   before_action :authorize_admin, only: %i[edit update destroy]
+  before_action :member_admin_deletion_protection
+  before_action :authenticate_user
 
   # GET /member_events or /member_events.json
   def index
@@ -114,12 +116,26 @@ class MemberEventsController < ApplicationController
     def set_member
       @user = current_admin.member
     end
-
+    
+    # protects against site crashing when deleting members
+    def member_admin_deletion_protection
+      if @user.nil?
+        redirect_to new_member_path
+      end
+    end
+    
     # checks to see if member is an admin 
     def authorize_admin
       @user = current_admin.member
       if @user.nil? || @user.position == 'Member' then
         redirect_to root_path, alert: 'You are not authorized to access this page'
+      end
+    end
+    
+      # allows admins to check off on who has access to site
+    def authenticate_user
+      if @user.status == nil
+        redirect_to root_path notice: "Pending Leadership approval"
       end
     end
 end
