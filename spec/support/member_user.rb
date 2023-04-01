@@ -21,6 +21,8 @@ shared_context "member user" do
       fill_in "member[name]", with: "wayland"
       select "None", from: 'member[committee_id]'
       click_on "Create Member"
+      member = Member.find_by(name: "wayland")
+      member.update(status: "true")
     end
   end
 

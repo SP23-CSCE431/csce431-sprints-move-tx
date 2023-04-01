@@ -4,6 +4,9 @@ require 'googleauth/stores/file_token_store'
 class EventsController < ApplicationController
   before_action :set_event, :service_or_meeting, only: %i[ show edit update destroy ]
   before_action :set_member
+  before_action :member_admin_deletion_protection
+  before_action :authenticate_user
+
 
   # GET /events or /events.json
   def index
@@ -183,6 +186,20 @@ class EventsController < ApplicationController
         CALENDAR.update_event(calendar_id, google_event.id, google_event, send_notifications: true)
       rescue Google::Apis::ClientError => e
         # do nothing if event not found
+      end
+    end
+
+    # protects against site crashing when deleting members
+    def member_admin_deletion_protection
+      if @user.nil?
+        redirect_to new_member_path
+      end
+    end
+
+    # allows admins to check off on who has access to site
+    def authenticate_user
+      if @user.status == nil
+        redirect_to root_path notice: "Pending Leadership approval"
       end
     end
 end
