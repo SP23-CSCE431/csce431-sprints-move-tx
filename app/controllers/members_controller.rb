@@ -3,6 +3,9 @@ class MembersController < ApplicationController
   # sets the member before each action
   before_action :set_member
   before_action :authenticate_admin
+  before_action :member_admin_deletion_protection, only: %i[edit update destroy index]
+  before_action :authenticate_user
+
 
   def index
     @members = Member.order(:id)
@@ -33,7 +36,7 @@ class MembersController < ApplicationController
         # if the member does not have connected account connect email to member
         if @member.admin.nil? && @user.nil?
           if params[:member][:admin_password] == "Officer"
-            @member.update(admin_id: current_admin.id, position: "Admin", civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0)
+            @member.update(admin_id: current_admin.id, position: "Admin", civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0, status: "true")
           else
             @member.update(admin_id: current_admin.id, position: "Member", civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0)
           end
@@ -67,7 +70,35 @@ class MembersController < ApplicationController
   def destroy
     @member = Member.find(params[:id])
     @member.destroy
+    Admin.all.each do |admin|
+      if admin.member.nil?
+        admin.destroy
+      end
+    end
     redirect_to members_path
+  end
+
+  def update_status
+    @members = Member.order(:id)
+
+    if request.post?
+      if params[:members].present?
+        params[:members].each do |id, attrs|
+          member = Member.find(id)
+          member.update(status: attrs[:status])
+        end
+      end
+
+      Member.where(status: nil).destroy_all
+      Admin.all.each do |admin|
+        if admin.member.nil?
+          admin.destroy
+        end
+      end
+
+      # Member.where(status: false).destory_all
+      redirect_to members_path, notice: "Members Accepted"
+    end
   end
 
   private
@@ -91,10 +122,26 @@ class MembersController < ApplicationController
     @user = current_admin.member
   end
 
+  def member_admin_deletion_protection
+    if @user.nil?
+      redirect_to new_member_path
+    end
+  end
+
+  # only lets admins on certain pages
   def authenticate_admin
     if !@user.nil?
       if @user.position == 'Member'
         redirect_to root_path
+      end
+    end
+  end
+
+  # allows admins to check off on who has access to site
+  def authenticate_user
+    if @user != nil
+      if @user.status == nil
+        redirect_to root_path notice: "Pending Leadership approval"
       end
     end
   end

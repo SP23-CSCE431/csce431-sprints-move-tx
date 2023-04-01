@@ -1,0 +1,17 @@
+
+<%# form that allows admin to check off on who has access to the site %>
+<%= form_tag update_status_path, method: :post do %>
+  <% @members.each do |member| %>
+    <div>
+    <% if member.status.nil? %>
+      <%= check_box_tag "members[#{member.id}][status]", true, member.status %>
+      <% if !member.admin.nil?%>
+        <%= label_tag "members[#{member.id}][status]", "#{member.name} (#{member.admin.email})" %>
+      <%else%>
+        <%= label_tag "members[#{member.id}][status]", "#{member.name}: no email attached" %>
+      <%end%>
+    <% end %>
+    </div>
+  <% end %>
+  <%= submit_tag "Confirm Statuses" %>
+<% end %>
