@@ -17,7 +17,7 @@ shared_context 'test user' do
       OmniAuth.config.test_mode = true
       visit '/admins/sign_in'
       click_on 'Sign in with Google'
-      visit new_member_pat
+      visit new_member_path
       fill_in 'member[name]', with: 'wayland'
       select 'None', from: 'member[committee_id]'
       fill_in 'member[admin_password]', with: 'Officer'
