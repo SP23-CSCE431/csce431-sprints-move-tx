@@ -91,6 +91,9 @@ RSpec.describe 'Event integration', type: :feature do
             fill_in 'event[phrase]', with: valid_meeting[:phrase]
             click_on 'Create Event'
             expect(page).to have_content('Event was successfully created')
+            click_on 'Delete this event'
+            click_on 'Delete event'
+
         end
 
         scenario 'create service with valid inputs' do
@@ -101,6 +104,8 @@ RSpec.describe 'Event integration', type: :feature do
             select valid_service[:point_type], from: 'event[point_type]'
             click_on 'Create Event'
             expect(page).to have_content('Event was successfully created')
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
 
         scenario 'create non-event with valid inputs' do
@@ -111,6 +116,8 @@ RSpec.describe 'Event integration', type: :feature do
             select valid_non_event[:point_type], from: 'event[point_type]'
             click_on 'Create Event'
             expect(page).to have_content('Event was successfully created')
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
 
         # invalid scenarios
@@ -122,6 +129,8 @@ RSpec.describe 'Event integration', type: :feature do
             fill_in 'event[phrase]', with: valid_meeting[:phrase]
             click_on 'Create Event'
             expect(page).to have_content("Name can't be blank")
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
 
         scenario 'create with invalid date' do
@@ -132,6 +141,8 @@ RSpec.describe 'Event integration', type: :feature do
             fill_in 'event[phrase]', with: valid_meeting[:phrase]
             click_on 'Create Event'
             expect(page).to have_content("Date can't be blank")
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
 
         scenario 'create meeting without phrase' do
@@ -142,6 +153,8 @@ RSpec.describe 'Event integration', type: :feature do
             fill_in 'event[phrase]', with: invalid_meeting[:phrase]
             click_on 'Create Event'
             expect(page).to have_content("Phrase can't be blank when there is a meeting")
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
 
         scenario 'create service without point type' do
@@ -152,6 +165,8 @@ RSpec.describe 'Event integration', type: :feature do
             select invalid_service[:point_type], from: 'event[point_type]'
             click_on 'Create Event'
             expect(page).to have_content("Point type point type can't be blank when there is a service")
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
 
         scenario 'create non-event without point type' do
@@ -162,6 +177,8 @@ RSpec.describe 'Event integration', type: :feature do
             select invalid_non_event[:point_type], from: 'event[point_type]'
             click_on 'Create Event'
             expect(page).to have_content("Point type point type can't be blank when there is a non-event")
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
     end
 
@@ -177,6 +194,8 @@ RSpec.describe 'Event integration', type: :feature do
             select valid_service[:event_type], from: 'event[event_type]'
             click_on 'Update Event'
             expect(page).to have_content('Event was successfully updated')
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
 
         scenario 'update non-event with valid inputs' do
@@ -188,6 +207,8 @@ RSpec.describe 'Event integration', type: :feature do
             select edit_non_event[:event_type], from: 'event[event_type]'
             click_on 'Update Event'
             expect(page).to have_content('Event was successfully updated')
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
 
         scenario 'update meeting with valid inputs' do
@@ -199,6 +220,8 @@ RSpec.describe 'Event integration', type: :feature do
             fill_in 'event[phrase]', with: edit_meeting[:phrase]
             click_on 'Update Event'
             expect(page).to have_content('Event was successfully updated')
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
 
         #invalid scenarios
@@ -209,6 +232,8 @@ RSpec.describe 'Event integration', type: :feature do
             fill_in 'event[name]', with: invalid_general[:name]
             click_on 'Update Event'
             expect(page).to have_content("Name can't be blank")
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
 
         scenario 'update with invalid date' do
@@ -218,6 +243,8 @@ RSpec.describe 'Event integration', type: :feature do
             fill_in 'event[date]', with: invalid_general[:date]
             click_on 'Update Event'
             expect(page).to have_content("Date can't be blank")
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
 
         scenario 'update with meeting without phrase' do
@@ -227,6 +254,8 @@ RSpec.describe 'Event integration', type: :feature do
             fill_in 'event[phrase]', with: invalid_meeting[:phrase]
             click_on 'Update Event'
             expect(page).to have_content("Phrase can't be blank when there is a meeting")
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
 
         scenario 'update with service without point type' do
@@ -236,6 +265,8 @@ RSpec.describe 'Event integration', type: :feature do
             select valid_service[:event_type], from: 'event[event_type]'
             click_on 'Update Event'
             expect(page).to have_content("Point type point type can't be blank when there is a service")
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
 
         scenario 'update non-event without point type' do
@@ -245,6 +276,8 @@ RSpec.describe 'Event integration', type: :feature do
             select valid_non_event[:event_type], from: 'event[event_type]'
             click_on 'Update Event'
             expect(page).to have_content("Point type point type can't be blank when there is a non-event")
+            click_on 'Delete this event'
+            click_on 'Delete event'
         end
     end
 
@@ -255,6 +288,7 @@ RSpec.describe 'Event integration', type: :feature do
             visit event_url(@temp)
             click_on 'Delete this event'
             expect(page).to have_content('Are you sure you want to permanently delete this event?')
+            click_on 'Delete event'
         end
 
         scenario 'delete entry' do

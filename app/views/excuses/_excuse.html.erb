@@ -3,10 +3,20 @@
     <strong>Description:</strong>
     <%= excuse.description %>
   </p>
-
   <p>
     <strong>File:</strong>
     <%= link_to excuse.file.filename, excuse.file if excuse.file.attached? %>
   </p>
-
+  <p>
+    <strong>Event:</strong>
+    <%= excuse.event.name %>
+  </p>
+  <p>
+    <strong>Member:</strong>
+    <%= excuse.member.name %>
+  </p>
+  <p>
+    <strong>Date:</strong>
+    <%= excuse.created_at.strftime("%Y-%m-%d") %>
+  </p>
 </div>

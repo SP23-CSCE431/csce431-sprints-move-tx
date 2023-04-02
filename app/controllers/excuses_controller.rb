@@ -7,7 +7,13 @@ class ExcusesController < ApplicationController
 
   # GET /excuses or /excuses.json
   def index
-    @excuses = Excuse.all
+      if @user.position == 'Member' then
+        @excuses = Excuse.all
+        render 'index'
+      else
+        @excuses = Excuse.where(member_id: current_admin.member.id)
+        render 'member_index'
+    end
   end
 
   # GET /excuses/1 or /excuses/1.json
@@ -26,6 +32,8 @@ class ExcusesController < ApplicationController
   # POST /excuses or /excuses.json
   def create
     @excuse = Excuse.new(excuse_params)
+    @excuse.member_id = @user.id
+
 
     respond_to do |format|
       if @excuse.save
@@ -74,7 +82,7 @@ class ExcusesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def excuse_params
-      params.require(:excuse).permit(:description, :file)
+      params.require(:excuse).permit(:description, :file, :event_id, :member_id)
     end
     # Set member
     def set_member
