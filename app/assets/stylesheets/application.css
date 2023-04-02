@@ -64,6 +64,10 @@
    border-radius: 5px;
  }
 
+ .table-link {
+   text-decoration: none;
+ }
+
  /* .table-sort {
    color: #fff2d5;
    background-color: #510000;
