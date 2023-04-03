@@ -1,6 +1,18 @@
 <h1>Welcome <%= @user.name %></h1>
 <p>This is the main page</p>
+<!--
+<%= link_to("Member List", members_path) %>
+<br />
+<%= link_to("Committees", committees_path) %>
+<br />
+<%= link_to("Events", events_path) %>
+<br />
+<%= link_to("Excuses", excuses_path) %>
+<br />
+<%= link_to("Member Events", member_events_path) %> -->
 
+<%# first check if member has been approved by admin then displays information %>
+<%if @user.status == true%>
 <div class="members index">
   <h2>Your Information:</h2>
 
@@ -67,3 +79,6 @@
     </p>
   <% end %>
 </div>
+<%else%>
+<p>Pending admin approval</p>
+<%end%>

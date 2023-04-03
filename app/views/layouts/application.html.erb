@@ -25,8 +25,12 @@
           <li class="nav-item <%= active_class(root_path) %>">
             <%= link_to 'Home', root_path, class: 'nav-link' %>
           </li>
+          <%# admin specific display  %>
           <% if !@user.nil? %>
             <% if @user.position != 'Member' %>
+              <li class="nav-item <%= active_class(member_events_path) %>">
+                <%= link_to "New Member Approval", update_status_path, class: 'nav-link' %>
+              </li>
               <li class="nav-item <%= active_class(members_path) %>">
                 <%= link_to "Member List", members_path, class: 'nav-link' %>
               </li>
@@ -44,6 +48,7 @@
           <li class="nav-item <%= active_class(member_events_path) %>">
             <%= link_to "Member Events", member_events_path, class: 'nav-link' %>
           </li>
+
           <!-- Checks if the user is logged in as to not display invalid information -->
           <% if !@user.nil? %>
             <li class="nav-item">

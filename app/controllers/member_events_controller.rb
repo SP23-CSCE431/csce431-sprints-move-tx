@@ -6,6 +6,8 @@ class MemberEventsController < ApplicationController
 
   # admin validation for certain pages (will be determined on later date)
   before_action :authorize_admin, only: %i[edit update destroy]
+  before_action :member_admin_deletion_protection
+  before_action :authenticate_user
 
   # GET /member_events or /member_events.json
   def index
@@ -66,8 +68,13 @@ class MemberEventsController < ApplicationController
   # PATCH/PUT /member_events/1 or /member_events/1.json
   def update
     respond_to do |format|
-      if @member_event.update(member_event_params)
-
+      if @member_event.update(event_id: params[:member_event][:event_id],
+                              approved_status: params[:member_event][:approved_status],
+                              approve_date: params[:member_event][:approve_date],
+                              phrase: params[:member_event][:phrase],
+                              file: params[:member_event][:file],
+                              approve_by: params[:member_event][:officer_ids].to_s)
+   
         # if member_event is for a meeting then give a meeting message, if not give a member event message 
         if @member_event.phrase?
           format.html {redirect_to member_event_url(@member_event), notice: 'Member Sign in was successfully updated.'}
@@ -109,12 +116,26 @@ class MemberEventsController < ApplicationController
     def set_member
       @user = current_admin.member
     end
-
+    
+    # protects against site crashing when deleting members
+    def member_admin_deletion_protection
+      if @user.nil?
+        redirect_to new_member_path
+      end
+    end
+    
     # checks to see if member is an admin 
     def authorize_admin
       @user = current_admin.member
       if @user.nil? || @user.position == 'Member' then
         redirect_to root_path, alert: 'You are not authorized to access this page'
+      end
+    end
+    
+      # allows admins to check off on who has access to site
+    def authenticate_user
+      if @user.status.nil?
+        redirect_to root_path notice: 'Pending Leadership approval'
       end
     end
 end

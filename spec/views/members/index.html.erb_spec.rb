@@ -5,10 +5,12 @@ RSpec.describe 'members/index', type: :view do
   before(:each) do
     assign(:members, [
       Member.create!(
-        name: 'MyString'
+        name: 'MyString',
+        status: true
       ),
       Member.create!(
-        name: 'MyString'
+        name: 'MyString',
+        status: true
       )
     ])
   end

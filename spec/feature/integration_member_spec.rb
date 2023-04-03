@@ -15,11 +15,13 @@ RSpec.describe 'Members integration', type: :feature do
           name: 'MyCommittee2'
         )
     }
+=begin
     let!(:committee3) {
         Committee.create!(
-          name: 'MyCommittee4'
+            name: 'MyCommittee3'
         )
     }
+=end
     let!(:valid_attributes) {
         {
             name: 'MyName1',
@@ -29,7 +31,8 @@ RSpec.describe 'Members integration', type: :feature do
             outreachPoints: 10011,
             socialPoints: 10012,
             marketingPoints: 10013,
-            totalPoints: 40046
+            totalPoints: 40046,
+            status: true
         }
     }
 
@@ -42,7 +45,8 @@ RSpec.describe 'Members integration', type: :feature do
             outreachPoints: 10091,
             socialPoints: 10092,
             marketingPoints: 10093,
-            totalPoints: 40366
+            totalPoints: 40366,
+            status: true
         }
     }
 
@@ -65,6 +69,9 @@ RSpec.describe 'Members integration', type: :feature do
             fill_in 'member[marketingPoints]',  with: valid_attributes[:marketingPoints]
             #fill_in "member[totalPoints]",      with: valid_attributes[:totalPoints]
             click_on 'Create Member'
+            visit update_status_path
+            check(valid_attributes[:names])
+            click_on "Confirm Statuses"
             
             visit members_path
             expect(page).to have_content(valid_attributes[:name])
