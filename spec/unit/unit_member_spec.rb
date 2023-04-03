@@ -30,9 +30,9 @@ RSpec.describe Member, type: :model do
         described_class.new(valid_attributes)
     end
     # It is valid with valid attributes
-        it 'is valid with valid attributes' do
-        expect(subject).to be_valid
-    end
+    it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+end
 
     # Checks that it is not valid without a name
     it 'is not valid without a name' do

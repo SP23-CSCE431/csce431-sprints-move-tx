@@ -1,9 +1,7 @@
 class FaqController < ApplicationController
-  before_action :set_user, :set_member_event;
+  before_action :set_user, :set_member_event
 
-  def index
-
-  end
+  def index; end
 
   private
 

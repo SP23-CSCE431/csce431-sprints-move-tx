@@ -132,7 +132,7 @@ class MemberEventsController < ApplicationController
       end
     end
     
-      # allows admins to check off on who has access to site
+    # allows admins to check off on who has access to site
     def authenticate_user
       if @user.status.nil?
         redirect_to root_path notice: 'Pending Leadership approval'

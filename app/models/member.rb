@@ -28,17 +28,9 @@ class Member < ApplicationRecord
   # ensure that correct input formats are used
   def formatting
     # name only has letters, numbers, apostraphes, and space characters
-    unless name.nil?
-      unless name.match?(/^[\w'\s]*$/)
-        errors.add(:name, "name cannot have non-word characters")
-      end
-    end
+    errors.add(:name, 'name cannot have non-word characters') if !name.nil? && !name.match?(/^[\w'\s]*$/)
 
     # position only has letters, numbers, apostraphes, and space characters
-    unless position.nil?
-      unless position.match?(/^[\w'\s]*$/)
-        errors.add(:position, "position cannot have non-word characters")
-      end
-    end
+    errors.add(:position, 'position cannot have non-word characters') if !position.nil? && !position.match?(/^[\w'\s]*$/)
   end
 end

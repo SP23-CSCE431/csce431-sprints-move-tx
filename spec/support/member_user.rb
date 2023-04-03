@@ -36,13 +36,13 @@ shared_context 'member user requests' do
           full_name: 'Jerry Moody',
           email: 'waylandmoody55@tamu.edu',
           avatar_url: 'ttps://lh3.googleusercontent.com/a/AEdFTp7UsnwxgB_OIuTYM-Y-ZDDYUaVlD6w9nitamNJ7=s96-c'
-        },
+        }
       })
 
       OmniAuth.config.test_mode = true
       admin = Admin.create!(email: 'waylandmoody55@tamu.edu', full_name: 'Jerry Moody', id: 1)
       member = Member.create!(position: 'Member', id: 1, name: 'wayland', admin_id: 1)
-      member_event =  MemberEvent.create!(id: 1, member_id: 1, event_id: 1)
+      member_event = MemberEvent.create!(id: 1, member_id: 1, event_id: 1)
       get '/admins/auth/google_oauth2/callback'
 
     end

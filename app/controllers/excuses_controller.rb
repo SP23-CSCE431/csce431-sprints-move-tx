@@ -83,15 +83,11 @@ class ExcusesController < ApplicationController
     
     # protects against site crashing when deleting members
     def member_admin_deletion_protection
-      if @user.nil?
-        redirect_to new_member_path
-      end
+      redirect_to new_member_path if @user.nil?
     end
 
     # allows admins to check off on who has access to site
     def authenticate_user
-      if @user.status.nil?
-        redirect_to root_path notice: 'Pending Leadership approval'
-      end
+      redirect_to root_path notice: 'Pending Leadership approval' if @user.status.nil?
     end
 end

@@ -21,11 +21,11 @@ class EventsController < ApplicationController
 
         # filter events if event type is present in submission
         if params[:event_type].present?
-          if params[:event_type] != 'Any'
+          if params[:event_type] == 'Any'
+            @events = Event.where('date >= ? AND date <= ?', formatted_date_beg, formatted_date_end).all
+          else
             event_type = params[:event_type]
             @events = Event.where('date >= ? AND date <= ? AND event_type = ?', formatted_date_beg, formatted_date_end, event_type).all
-          else
-            @events = Event.where('date >= ? AND date <= ?', formatted_date_beg, formatted_date_end).all
           end
         # if event type not present do regular filtering
         else 
@@ -190,15 +190,11 @@ class EventsController < ApplicationController
 
     # protects against site crashing when deleting members
     def member_admin_deletion_protection
-      if @user.nil?
-        redirect_to new_member_path
-      end
+      redirect_to new_member_path if @user.nil?
     end
 
     # allows admins to check off on who has access to site
     def authenticate_user
-      if @user.status.nil?
-        redirect_to root_path notice: 'Pending Leadership approval'
-      end
+      redirect_to root_path notice: 'Pending Leadership approval' if @user.status.nil?
     end
 end
