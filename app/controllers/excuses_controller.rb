@@ -7,11 +7,21 @@ class ExcusesController < ApplicationController
 
   # GET /excuses or /excuses.json
   def index
-      if @user.position == 'Member' then
-        @excuses = Excuse.all
+      if @user.position == 'Admin' then
+        @excuses = Excuse.all.order(created_at: :desc)
+        @members = Member.all.order(name: :asc)
+        @events = Event.all.order(date: :asc)
+
+        if params[:member_name].present?
+          @excuses = @excuses.joins(:member).where("members.id = ?", params[:member_name])
+        end
+
+        if params[:event_name].present?
+          @excuses = @excuses.joins(:event).where("events.id = ?", params[:event_name])
+        end
         render 'index'
       else
-        @excuses = Excuse.where(member_id: current_admin.member.id)
+        @excuses = Excuse.where(member_id: @user.id).order(created_at: :desc)
         render 'member_index'
     end
   end

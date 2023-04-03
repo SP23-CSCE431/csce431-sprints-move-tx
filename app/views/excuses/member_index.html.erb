@@ -2,9 +2,8 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>My Excuses</h1>
-<p>Current Admin ID: <%= current_admin.member.id %></p>
-<div id="myexcuses">
-  <% Excuse.where(member_id: current_admin.member.id) do |excuse| %>
+<div id="excuses">
+  <% @excuses.each do |excuse| %>
     <%= render excuse %>
     <p>
       <%= link_to "Show this excuse", excuse %>
