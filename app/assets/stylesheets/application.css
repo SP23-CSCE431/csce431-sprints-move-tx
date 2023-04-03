@@ -18,6 +18,10 @@
    background-color: #fff2d5
  }
 
+ h1 {
+   text-align: center;
+ }
+
  /* Table CSS Style */
 
  td {

@@ -6,6 +6,7 @@ class MembersController < ApplicationController
   before_action :member_admin_deletion_protection, only: %i[edit update destroy index]
   before_action :authenticate_user
 
+
   @@sorting = ''
 
   def index
@@ -113,7 +114,7 @@ class MembersController < ApplicationController
       end
 
       # Member.where(status: false).destory_all
-      redirect_to members_path, notice: 'Members Accepted'
+      redirect_to members_path, notice: "Members Accepted"
     end
   end
 
@@ -154,6 +155,15 @@ class MembersController < ApplicationController
     unless @user.nil?
       if @user.status.nil?
         redirect_to root_path notice: 'Pending Leadership approval'
+      end
+    end
+  end
+
+  # allows admins to check off on who has access to site
+  def authenticate_user
+    if @user != nil
+      if @user.status == nil
+        redirect_to root_path notice: "Pending Leadership approval"
       end
     end
   end
