@@ -83,11 +83,7 @@ class CommitteesController < ApplicationController
 
     # only lets admins on certain pages
     def authenticate_admin
-      unless @user.nil?
-        if @user.position == 'Member'
-          redirect_to root_path
-        end
-      end
+      redirect_to root_path if !@user.nil? && (@user.position == 'Member')
     end
 
     # protects against site crashing when deleting members

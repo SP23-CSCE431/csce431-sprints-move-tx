@@ -41,5 +41,4 @@ class Member < ApplicationRecord
       end
     end
   end
-
 end

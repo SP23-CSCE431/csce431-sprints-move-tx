@@ -6,8 +6,26 @@ class MembersController < ApplicationController
   before_action :member_admin_deletion_protection, only: %i[edit update destroy index]
   before_action :authenticate_user
 
+  @@sorting = ''
+
   def index
-    @members = Member.order(:id)
+    # Searching for members
+    search_members if params[:search]
+    # Sorting the members table based on if it was clicked already or not
+    if params[:sort] == @@sorting
+      @members = Member.order(params[:sort]).reverse
+      @@sorting = ''
+    elsif params[:sort] != @@sorting
+      @members = Member.order(params[:sort])
+      @@sorting = params[:sort]
+    else
+      @members = Member.all
+    end
+  end
+
+  def search_members
+    # Search for member
+    redirect_to member_path(@member) if @member = Member.all.find { |member| member.name.include?(params[:search]) }
   end
 
   def show
@@ -29,7 +47,6 @@ class MembersController < ApplicationController
                          totalPoints: params[:member][:totalPoints],
                          admin_id: params[:member][:admin_id]
     )
-
     respond_to do |format|
       if @member.save
         # if the member does not have connected account connect email to member
@@ -129,11 +146,7 @@ class MembersController < ApplicationController
 
   # only lets admins on certain pages
   def authenticate_admin
-    if !@user.nil?
-      if @user.position == 'Member'
-        redirect_to root_path
-      end
-    end
+    redirect_to root_path if !@user.nil? && (@user.position == 'Member')
   end
 
   # allows admins to check off on who has access to site

@@ -80,7 +80,7 @@ class ExcusesController < ApplicationController
     def set_member
       @user = current_admin.member
     end
-
+    
     # protects against site crashing when deleting members
     def member_admin_deletion_protection
       if @user.nil?
