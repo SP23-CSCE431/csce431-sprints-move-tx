@@ -4,10 +4,41 @@ require 'googleauth/stores/file_token_store'
 class EventsController < ApplicationController
   before_action :set_event, :service_or_meeting, only: %i[ show edit update destroy ]
   before_action :set_member
+  before_action :member_admin_deletion_protection
+  before_action :authenticate_user
 
   # GET /events or /events.json
   def index
     @events = Event.all
+
+    # condition that checks if the month and year are presents and queries the database to return all events satisfying the months and dates
+    if params[:date].present?
+      if params[:date][:year].present? && params[:date][:month].present?
+        start_date = Date.new(params[:date][:year].to_i, params[:date][:month].to_i, 1)
+        end_date = start_date.end_of_month
+        formatted_date_beg = start_date.strftime('%Y-%m-%d')
+        formatted_date_end = end_date.strftime('%Y-%m-%d')
+
+        # filter events if event type is present in submission
+        if params[:event_type].present?
+          if params[:event_type] != 'Any'
+            event_type = params[:event_type]
+            @events = Event.where('date >= ? AND date <= ? AND event_type = ?', formatted_date_beg, formatted_date_end, event_type).all
+          else
+            @events = Event.where('date >= ? AND date <= ?', formatted_date_beg, formatted_date_end).all
+          end
+        # if event type not present do regular filtering
+        else 
+          @events = Event.where('date >= ? AND date <= ?', formatted_date_beg, formatted_date_end).all
+        end
+
+        # redirect to same page with error message if month and year are not entered 
+      else
+        redirect_to events_path, notice: 'Please enter month and year'
+      end
+  end
+
+    @events = @events.paginate(page: params[:page], per_page: 2)
   end
 
   # GET /events/1 or /events/1.json
@@ -154,6 +185,20 @@ class EventsController < ApplicationController
         CALENDAR.update_event(calendar_id, google_event.id, google_event, send_notifications: true)
       rescue Google::Apis::ClientError => e
         # do nothing if event not found
+      end
+    end
+
+    # protects against site crashing when deleting members
+    def member_admin_deletion_protection
+      if @user.nil?
+        redirect_to new_member_path
+      end
+    end
+
+    # allows admins to check off on who has access to site
+    def authenticate_user
+      if @user.status.nil?
+        redirect_to root_path notice: 'Pending Leadership approval'
       end
     end
 end

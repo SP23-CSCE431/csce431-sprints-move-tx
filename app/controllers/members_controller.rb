@@ -7,8 +7,26 @@ class MembersController < ApplicationController
   before_action :authenticate_user
 
 
+  @@sorting = ''
+
   def index
-    @members = Member.order(:id)
+    # Searching for members
+    search_members if params[:search]
+    # Sorting the members table based on if it was clicked already or not
+    if params[:sort] == @@sorting
+      @members = Member.order(params[:sort]).reverse
+      @@sorting = ''
+    elsif params[:sort] != @@sorting
+      @members = Member.order(params[:sort])
+      @@sorting = params[:sort]
+    else
+      @members = Member.all
+    end
+  end
+
+  def search_members
+    # Search for member
+    redirect_to member_path(@member) if @member = Member.all.find { |member| member.name.include?(params[:search]) }
   end
 
   def show
@@ -21,24 +39,23 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(name: params[:member][:name],
-      committee_id: params[:member][:committee_id],
-      position: params[:member][:position],
-      civicPoints: params[:member][:civicPoints],
-      outreachPoints: params[:member][:outreachPoints],
-      socialPoints: params[:member][:socialPoints],
-      marketingPoints: params[:member][:marketingPoints],
-      totalPoints: params[:member][:totalPoints],
-      admin_id: params[:member][:admin_id]
+                         committee_id: params[:member][:committee_id],
+                         position: params[:member][:position],
+                         civicPoints: params[:member][:civicPoints],
+                         outreachPoints: params[:member][:outreachPoints],
+                         socialPoints: params[:member][:socialPoints],
+                         marketingPoints: params[:member][:marketingPoints],
+                         totalPoints: params[:member][:totalPoints],
+                         admin_id: params[:member][:admin_id]
     )
-
     respond_to do |format|
       if @member.save
         # if the member does not have connected account connect email to member
         if @member.admin.nil? && @user.nil?
-          if params[:member][:admin_password] == "Officer"
-            @member.update(admin_id: current_admin.id, position: "Admin", civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0, status: "true")
+          if params[:member][:admin_password] == 'Officer'
+            @member.update(admin_id: current_admin.id, position: 'Admin', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0, status: "true")
           else
-            @member.update(admin_id: current_admin.id, position: "Member", civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0)
+            @member.update(admin_id: current_admin.id, position: 'Member', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0)
           end
         end
         format.html { redirect_to member_url(@member), notice: 'Member was successfully created.' }
@@ -130,9 +147,14 @@ class MembersController < ApplicationController
 
   # only lets admins on certain pages
   def authenticate_admin
-    if !@user.nil?
-      if @user.position == 'Member'
-        redirect_to root_path
+    redirect_to root_path if !@user.nil? && (@user.position == 'Member')
+  end
+
+  # allows admins to check off on who has access to site
+  def authenticate_user
+    unless @user.nil?
+      if @user.status.nil?
+        redirect_to root_path notice: 'Pending Leadership approval'
       end
     end
   end

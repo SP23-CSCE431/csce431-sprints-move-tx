@@ -4,7 +4,7 @@ RSpec.describe 'members/show', type: :view do
 
   let(:committee1) {
     Committee.create!(
-      name: "MyCommittee"
+      name: 'MyCommittee'
     )
   }
 

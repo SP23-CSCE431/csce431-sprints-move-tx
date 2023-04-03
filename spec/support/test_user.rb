@@ -18,15 +18,15 @@ shared_context 'test user' do
       visit '/admins/sign_in'
       click_on 'Sign in with Google'
       visit new_member_path
-      fill_in 'member[name]', with: "wayland"
-      select "None", from: 'member[committee_id]'
-      fill_in "member[admin_password]", with: "Officer"
-      click_on "Create Member"
+      fill_in 'member[name]', with: 'wayland'
+      select 'None', from: 'member[committee_id]'
+      fill_in 'member[admin_password]', with: 'Officer'
+      click_on 'Create Member'
     end
   end
 
   # function is used to set up oath before each request test
-  shared_context "test user requests" do
+  shared_context 'test user requests' do
     before(:each) do
       OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
         provider: 'google_oauth2',
@@ -41,7 +41,7 @@ shared_context 'test user' do
       OmniAuth.config.test_mode = true
       admin = Admin.create!(email: 'waylandmoody55@tamu.edu', full_name: 'Jerry Moody', id: 1)
       event = Event.create!(name: 'christmas at the park', id: 1, event_type: 'Service', date: Date.parse('2022-01-01'), point_type: 'Outreach')
-      member = Member.create!(position: 'Vice President', id: 1, name: 'wayland', admin_id: 1)
+      member = Member.create!(position: 'Vice President', id: 1, name: 'wayland', admin_id: 1, status: true)
       member_event =  MemberEvent.create(id: 1, member_id: 1, event_id: 1)
       get '/admins/auth/google_oauth2/callback'
 

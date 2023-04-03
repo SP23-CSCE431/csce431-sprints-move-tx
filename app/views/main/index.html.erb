@@ -1,12 +1,12 @@
 <h1>Welcome <%= @user.name %></h1>
 
+<%# first check if member has been approved by admin then displays information %>
+<%if @user.status == true%>
 <div class="members index">
   <h2>Your Information:</h2>
 
   <table class="listing" summary="Member list" style="width: 100%;">
     <tr class="header">
-      <!-- <th>#</th>
-      <th>Member</th> -->
       <th>Committee</th>
       <th>Position</th>
       <th>Civic Points</th>
@@ -66,3 +66,6 @@
     </p>
   <% end %>
 </div>
+<%else%>
+<p>Pending admin approval</p>
+<%end%>
