@@ -68,13 +68,43 @@ class MemberEventsController < ApplicationController
   # PATCH/PUT /member_events/1 or /member_events/1.json
   def update
     respond_to do |format|
+      approval_change = false
+      previous_approval = @member_event.approved_status
+      approve_by_placeholder = @member_event.approve_by
       if @member_event.update(event_id: params[:member_event][:event_id],
                                     approved_status: params[:member_event][:approved_status],
                                     approve_date: params[:member_event][:approve_date],
                                     phrase: params[:member_event][:phrase],
-                                    file: params[:member_event][:file],
-                                    approve_by: params[:member_event][:officer_ids].to_s)
-   
+                                    file: params[:member_event][:file])
+        
+        # updates member points based on what type of event it is 
+        @member_event.approve_by = approve_by_placeholder
+        if previous_approval != @member_event.approved_status
+          if @member_event.approved_status == true
+            if @member_event.event.point_type == "Civic Engagement"
+              @member_event.member.civicPoints += 1
+            elsif @member_event.event.point_type == "Marketing"
+              @member_event.member.marketingPoints += 1
+            elsif @member_event.event.point_type == "Chapter Development"
+              @member_event.member.socialPoints += 1
+            elsif @member_event.event.point_type == "Outreach"
+              @member_event.member.outreachPoints += 1
+            end
+            @member_event.member.save
+          end
+          if @member_event.approved_status == false
+            if @member_event.event.point_type == "Civic Engagement"
+              @member_event.member.civicPoints -= 1
+            elsif @member_event.event.point_type == "Marketing"
+              @member_event.member.marketingPoints -=1
+            elsif @member_event.event.point_type == "Chapter Development"
+              @member_event.member.socialPoints -= 1
+            elsif @member_event.event.point_type == "Outreach"
+              @member_event.member.outreachPoints -=1
+            end
+            @member_event.member.save
+          end
+        end
         # if member_event is for a meeting then give a meeting message, if not give a member event message 
         if @member_event.phrase?
           format.html {redirect_to member_event_url(@member_event), notice: 'Member Sign in was successfully updated.'}
