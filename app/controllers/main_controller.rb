@@ -2,7 +2,6 @@ class MainController < ApplicationController
   before_action :set_user, :set_member_event;
   before_action :member_admin_deletion_protection
 
-
   def index
   end
 

@@ -4,7 +4,6 @@ class ExcusesController < ApplicationController
   before_action :member_admin_deletion_protection
   before_action :authenticate_user
 
-
   # GET /excuses or /excuses.json
   def index
     @excuses = Excuse.all
@@ -76,6 +75,7 @@ class ExcusesController < ApplicationController
     def excuse_params
       params.require(:excuse).permit(:description, :file)
     end
+    
     # Set member
     def set_member
       @user = current_admin.member
@@ -90,9 +90,8 @@ class ExcusesController < ApplicationController
 
     # allows admins to check off on who has access to site
     def authenticate_user
-      if @user.status == nil
-        redirect_to root_path notice: "Pending Leadership approval"
+      if @user.status.nil?
+        redirect_to root_path notice: 'Pending Leadership approval'
       end
     end
-
 end

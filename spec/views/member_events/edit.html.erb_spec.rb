@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'member_events/edit', type: :view do
   let(:committee1) {
     Committee.create!(
-      name: "MyCommittee"
+      name: 'MyCommittee'
     )
   }
   let(:member) {

@@ -83,7 +83,7 @@ class CommitteesController < ApplicationController
 
     # only lets admins on certain pages
     def authenticate_admin
-      if !@user.nil?
+      unless @user.nil?
         if @user.position == 'Member'
           redirect_to root_path
         end
@@ -99,8 +99,8 @@ class CommitteesController < ApplicationController
 
     # allows admins to check off on who has access to site 
     def authenticate_user
-      if @user.status == nil
-        redirect_to root_path notice: "Pending Leadership approval"
+      if @user.status.nil?
+        redirect_to root_path notice: 'Pending Leadership approval'
       end
     end
 end

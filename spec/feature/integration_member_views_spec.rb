@@ -17,27 +17,21 @@ RSpec.describe "Member's View based on position", type: :feature do
     scenario 'Visit Committees' do
       visit committees_path
       expect(current_path).to eq '/'
-    end
-
-    scenario 'Visit Excuses' do
-      visit excuses_path
-      expect(current_path).to eq '/excuses'
-    end
-
-    # Rainy Test for the member trying ot view the pages
-    scenario 'Visit Members List' do
-      visit members_path
-      expect(current_path).not_to  eq '/members'
-    end
-
-    scenario 'Visit Committees' do
-      visit committees_path
+      # moved from duplicate setup (and duplicate named) test for rainy day case
       expect(current_path).not_to eq '/committees'
     end
 
     scenario 'Visit Excuses' do
       visit excuses_path
+      expect(current_path).to eq '/excuses'
+      # moved from duplicate setup (and duplicate named) test for rainy day case
       expect(current_path).not_to eq '/'
+    end
+
+    # Rainy Test for the member trying ot view the pages
+    scenario 'Visit Members List' do
+      visit members_path
+      expect(current_path).not_to eq '/members'
     end
   end
 end

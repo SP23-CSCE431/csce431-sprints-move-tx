@@ -15,11 +15,13 @@ RSpec.describe 'Members integration', type: :feature do
             name: 'MyCommittee2'
         )
     }
+=begin
     let!(:committee3) {
         Committee.create!(
-            name: 'MyCommittee4'
+            name: 'MyCommittee3'
         )
     }
+=end
     let!(:valid_attributes) {
         {
             name: 'MyName1',
