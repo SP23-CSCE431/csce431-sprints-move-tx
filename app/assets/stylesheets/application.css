@@ -48,10 +48,14 @@
    color: #fff2d5;
  }
 
+ th:active {
+   background-color: #fff;
+ }
+
  .table-head {
    text-align: center;
    text-decoration: none;
-   color: #fff2d5
+   color: #fff2d5;
  }
 
  .table-head:hover {
@@ -66,6 +70,7 @@
 
  .table-link {
    text-decoration: none;
+   color: #fff2d5
  }
 
  /* .table-sort {
