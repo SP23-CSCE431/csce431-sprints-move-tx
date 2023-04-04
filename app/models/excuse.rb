@@ -16,8 +16,8 @@ class Excuse < ApplicationRecord
   end
 
   def file_type
-    if !file.blob.content_type.starts_with?('application/pdf')
-      errors.add(:file, 'File must be a PDF')
+    if !file.blob.content_type.in?(%w(application/pdf image/jpeg image/png image/gif application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document))
+      errors.add(:file, 'File must be a PDF, JPEG, PNG, GIF, DOC, or DOCX')
     end
   end
 
