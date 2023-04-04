@@ -9,6 +9,27 @@ class MembersController < ApplicationController
 
   def index
     @members = Member.order(:id)
+
+    if params[:name].present?
+      @members = Member.where("name = ?", params[:name]).all
+    end
+
+    if params[:id].present?
+      @members = Member.where("id = ?", params[:id]).all      
+    end
+
+    if params[:committee].present? && params[:committee] != "None"
+      com_id = Committee.find_by("name = ?", params[:committee]).id
+      @members = Member.where("committee_id = ?", com_id).all
+    elsif params[:committee] == "None"
+      @members = Member.where("committee_id is null").all
+    end
+
+    if params[:position].present? && params[:position] != "Any"
+      @members = Member.where("position = ?", params[:position]).all
+    elsif params[:committee] == "Any"
+      @members = Member.where("position = Admin or Member").all
+    end
   end
 
   def show

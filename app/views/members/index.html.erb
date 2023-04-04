@@ -5,6 +5,15 @@
 
   <%= link_to("Add New Member", new_member_path, class: 'action new') %>
 
+  <p>Filter By:</p>
+  <%= form_tag members_path, method: :get do %>
+    Member Number: <%= text_field_tag :id %>
+    Member: <%= text_field_tag :name %>
+    Committee: <%= text_field_tag :committee %>
+    Position: <%= select_tag :position, options_for_select(["Any", "Admin", "Member"]) %>
+    <%= submit_tag "Filter", class: "btn btn-primary" %>
+  <% end %>
+
   <table class="listing" summary="Member list" style="width: 100%;">
     <tr class="header">
       <th>#</th>
