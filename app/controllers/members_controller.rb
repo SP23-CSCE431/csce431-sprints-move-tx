@@ -10,25 +10,36 @@ class MembersController < ApplicationController
   def index
     @members = Member.order(:id)
 
+    # check if user filtered by name
+    # return members that have name starting with input
     if params[:name].present?
-      @members = Member.where("name = ?", params[:name]).all
+      @members = Member.where("name like ?", params[:name] + "%").all
     end
 
+    # check if user filtered by id
+    # return member with the corresponding id
     if params[:id].present?
       @members = Member.where("id = ?", params[:id]).all      
     end
 
+    # check if user filtered by committee
+    # find committee user specified if they did not put none
     if params[:committee].present? && params[:committee] != "None"
       com_id = Committee.find_by("name = ?", params[:committee]).id
       @members = Member.where("committee_id = ?", com_id).all
+    # find all members with no committee
     elsif params[:committee] == "None"
       @members = Member.where("committee_id is null").all
     end
 
+    # check if user filtered by position
+    # return members that are either admins or members based on what the
+    # user specified
     if params[:position].present? && params[:position] != "Any"
       @members = Member.where("position = ?", params[:position]).all
+    # return all members if user wants any
     elsif params[:committee] == "Any"
-      @members = Member.where("position = Admin or Member").all
+      @members = Member.where("position = Admin or position = Member").all
     end
   end
 
