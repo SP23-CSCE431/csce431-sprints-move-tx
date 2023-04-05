@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   # get 'members/new'
   # get 'members/edit'
 
+  # routs for the member status pages
+  get 'members/update_status', to: 'members#update_status', as: 'edit_status'
+  post 'members/update_status', to: 'members#update_status', as: 'update_status'
+
+
   resources :members do
     member do
       get :delete

@@ -19,6 +19,8 @@
     </tr>
     <% @members.each do |member| %>
     <tr>
+    <%# checks if member has been approved by admin %>
+    <% if member.status == true%>
       <td> <%= member.id %></td>
       <td> <%= member.name %></td>
       <%if member.committee != nil%>
@@ -38,6 +40,7 @@
         <%= link_to("Delete", delete_member_path(member), class: 'action delete') %>
       </td>
     </tr>
+    <%end%>
     <% end %>
   </table>
 </div>
