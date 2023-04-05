@@ -1,11 +1,11 @@
 <%# title for services  %>
 <% if @version == "1" %>
-  <h1>New member event</h1>
+  <h2>New member event</h2>
 <% end %>
 
 <%# title for meetings %>
 <% if @version == "2" %>
-  <h1>Meeting Sign In</h1>
+  <h2>Meeting Sign In</h2>
 <% end %>
 
 <%= render "form", member_event: @member_event %>

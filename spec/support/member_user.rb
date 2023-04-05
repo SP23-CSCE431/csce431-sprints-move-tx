@@ -49,7 +49,7 @@ shared_context 'member user requests' do
 end
 
 # function is used to set up oath before each view test
-shared_context 'admin oauth for views' do
+shared_context 'admin oauth for views (member)' do
   before(:each) do
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({

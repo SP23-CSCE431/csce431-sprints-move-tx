@@ -1,36 +1,52 @@
 <div id="<%= dom_id member_event %>">
-  <p>
-    <strong>Event:</strong>
-    <%= member_event.event.name %>
-  </p>
+  <% if member_event.event.event_type == "Service"%>
+    <p>
+      <strong>Event:</strong>
+      <%= member_event.event.name %>
+    </p>
 
-  <p>
-    <strong>Member:</strong>
-    <%= member_event.member.name %>
-  </p>
+    <p>
+      <strong>Member:</strong>
+      <%= member_event.member.name %>
+    </p>
 
-  <p>
-    <strong>Approved status:</strong>
-    <%= member_event.approved_status %>
-  </p>
+    <p>
+      <strong>Approved status:</strong>
+      <%= member_event.approved_status %>
+    </p>
 
-  <% if (member_event.approved_status == true) then %>
+    <% if (member_event.approved_status == true) then %>
 
-  <p>
-    <strong>Approved date:</strong>
-    <%= member_event.approve_date %>
-  </p>
-   <% end %>
+    <p>
+      <strong>Approved date:</strong>
+      <%= member_event.approve_date %>
+    </p>
+    <% end %>
 
-  <p>
-    <strong>Approved by:</strong>
-    <%= member_event.approve_by %>
-  </p>
+    <p>
+      <strong>Approved by:</strong>
+      <%= member_event.approve_by %>
+    </p>
 
 
-  <p>
-  <strong>File:</strong>
-   <%= link_to member_event.file.filename, member_event.file if member_event.file.attached? %>
-  </p>
+    <p>
+    <strong>File:</strong>
+    <%= link_to member_event.file.filename, member_event.file if member_event.file.attached? %>
+    </p>
+  <% end %>
 
+  <% if member_event.event.event_type == "Meeting" %>
+    <p>
+      <strong>Event:</strong>
+      <%= member_event.event.name %>
+    </p>
+      <strong>Date:</strong>
+      <%= member_event.event.date %>
+    <p>
+    <p>
+      <strong>Member:</strong>
+      <%= member_event.member.name %>
+    </p>
+
+  <% end %>
 </div>
