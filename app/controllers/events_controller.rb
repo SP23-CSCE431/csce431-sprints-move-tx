@@ -31,14 +31,40 @@ class EventsController < ApplicationController
         else 
           @events = Event.where('date >= ? AND date <= ?', formatted_date_beg, formatted_date_end).all
         end
+        
+      # need to have year if month is selected
+      elsif (!params[:date][:year].present? && params[:date][:month].present?) || (!params[:date][:year].present? && params[:date][:month].present?)
+        redirect_to events_path, notice: 'Month needs a year for submission'
+      
+      # if year but no months
+      elsif (params[:date][:year].present?)
+        start_date = Date.new(params[:date][:year].to_i, 1, 1)
+        end_date = start_date.end_of_year
+        formatted_date_beg = start_date.strftime('%Y-%m-%d')
+        formatted_date_end = end_date.strftime('%Y-%m-%d')
+        if params[:event_type].present?
+          if params[:event_type] == 'Any'
+            @events = Event.where('date >= ? AND date <= ?', formatted_date_beg, formatted_date_end).all
+          else
+            event_type = params[:event_type]
+            @events = Event.where('date >= ? AND date <= ? AND event_type = ?', formatted_date_beg, formatted_date_end, event_type).all
+          end
+        else 
+          @events = Event.where('date >= ? AND date <= ?', formatted_date_beg, formatted_date_end).all
+        end
 
-        # redirect to same page with error message if month and year are not entered 
-      else
-        redirect_to events_path, notice: 'Please enter month and year'
+      # if only event_type is entered
+      elsif params[:event_type].present?
+        event_type = params[:event_type]
+        if event_type == 'Any'
+          @events = Event.all
+        else
+          @events = Event.where('event_type = ?', event_type).all
+        end
       end
   end
 
-    @events = @events.paginate(page: params[:page], per_page: 2)
+    @events = @events.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /events/1 or /events/1.json
