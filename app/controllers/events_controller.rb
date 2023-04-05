@@ -7,7 +7,6 @@ class EventsController < ApplicationController
   before_action :member_admin_deletion_protection
   before_action :authenticate_user
 
-
   # GET /events or /events.json
   def index
     @events = Event.all
@@ -17,25 +16,25 @@ class EventsController < ApplicationController
       if params[:date][:year].present? && params[:date][:month].present?
         start_date = Date.new(params[:date][:year].to_i, params[:date][:month].to_i, 1)
         end_date = start_date.end_of_month
-        formatted_date_beg = start_date.strftime("%Y-%m-%d")
-        formatted_date_end = end_date.strftime("%Y-%m-%d")
+        formatted_date_beg = start_date.strftime('%Y-%m-%d')
+        formatted_date_end = end_date.strftime('%Y-%m-%d')
 
         # filter events if event type is present in submission
         if params[:event_type].present?
-          if params[:event_type] != "Any"
-            event_type = params[:event_type]
-            @events = Event.where("date >= ? AND date <= ? AND event_type = ?", formatted_date_beg, formatted_date_end, event_type).all
+          if params[:event_type] == 'Any'
+            @events = Event.where('date >= ? AND date <= ?', formatted_date_beg, formatted_date_end).all
           else
-            @events = Event.where("date >= ? AND date <= ?", formatted_date_beg, formatted_date_end).all
+            event_type = params[:event_type]
+            @events = Event.where('date >= ? AND date <= ? AND event_type = ?', formatted_date_beg, formatted_date_end, event_type).all
           end
         # if event type not present do regular filtering
         else 
-          @events = Event.where("date >= ? AND date <= ?", formatted_date_beg, formatted_date_end).all
+          @events = Event.where('date >= ? AND date <= ?', formatted_date_beg, formatted_date_end).all
         end
 
         # redirect to same page with error message if month and year are not entered 
       else
-        redirect_to events_path, notice: "Please enter month and year"
+        redirect_to events_path, notice: 'Please enter month and year'
       end
   end
 
@@ -191,15 +190,11 @@ class EventsController < ApplicationController
 
     # protects against site crashing when deleting members
     def member_admin_deletion_protection
-      if @user.nil?
-        redirect_to new_member_path
-      end
+      redirect_to new_member_path if @user.nil?
     end
 
     # allows admins to check off on who has access to site
     def authenticate_user
-      if @user.status == nil
-        redirect_to root_path notice: "Pending Leadership approval"
-      end
+      redirect_to root_path notice: 'Pending Leadership approval' if @user.status.nil?
     end
 end

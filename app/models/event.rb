@@ -6,6 +6,7 @@ class Event < ApplicationRecord
   validate :meeting_phrase
   validate :service_point_type
   validate :non_event_point_type
+  validate :formatting
 
 
   private
@@ -26,6 +27,14 @@ class Event < ApplicationRecord
   def non_event_point_type
     if (event_type == 'Personal/Non-Event') && point_type.blank?
       errors.add(:point_type, "point type can't be blank when there is a non-event")
+    end
+  end
+
+  # ensure that correct input formats are used
+  def formatting
+    # name only has letters, numbers, apostraphes, and space characters
+    if !name.nil? && !name.match?(/^[\w'\s]*$/)
+        errors.add(:name, 'name cannot have non-word characters')
     end
   end
 end
