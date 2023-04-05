@@ -2,7 +2,6 @@ class MainController < ApplicationController
   before_action :set_user, :set_member_event;
   before_action :member_admin_deletion_protection
 
-
   def index
   end
 
@@ -35,9 +34,7 @@ class MainController < ApplicationController
 
   # protects against site crashing when deleting members
   def member_admin_deletion_protection
-    if @user.nil?
-      redirect_to new_member_path
-    end
+    redirect_to new_member_path if @user.nil?
   end
 
   def set_member_event

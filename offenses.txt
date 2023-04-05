@@ -1,4 +1,211 @@
-Inspecting 104 files
-........................................................................................................
+Inspecting 107 files
+......C.WCCCC...............................C.C...CC........................W.....C........................
 
-104 files inspected, no offenses detected
+Offenses:
+
+app/controllers/committees_controller.rb:87:9: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+        if @user.position == 'Member'
+        ^^
+app/controllers/committees_controller.rb:87:9: C: [Correctable] Style/SoleNestedConditional: Consider merging nested conditions into outer unless conditions.
+        if @user.position == 'Member'
+        ^^
+app/controllers/committees_controller.rb:95:7: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if @user.nil?
+      ^^
+app/controllers/committees_controller.rb:102:7: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if @user.status.nil?
+      ^^
+app/controllers/events_controller.rb:17:31: W: [Correctable] Lint/NumberConversion: Replace unsafe number conversion with number class parsing, instead of using params[:date][:year].to_i, use stricter Integer(params[:date][:year], 10).
+        start_date = Date.new(params[:date][:year].to_i, params[:date][:month].to_i, 1)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:17:58: W: [Correctable] Lint/NumberConversion: Replace unsafe number conversion with number class parsing, instead of using params[:date][:month].to_i, use stricter Integer(params[:date][:month], 10).
+        start_date = Date.new(params[:date][:year].to_i, params[:date][:month].to_i, 1)
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:24:11: C: Metrics/BlockNesting: Avoid more than 3 levels of block nesting.
+          if params[:event_type] != 'Any' ...
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:24:11: C: [Correctable] Style/NegatedIfElseCondition: Invert the negated condition and swap the if-else branches.
+          if params[:event_type] != 'Any' ...
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/events_controller.rb:193:7: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if @user.nil?
+      ^^
+app/controllers/events_controller.rb:200:7: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if @user.status.nil?
+      ^^
+app/controllers/excuses_controller.rb:86:7: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if @user.nil?
+      ^^
+app/controllers/excuses_controller.rb:93:7: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if @user.status.nil?
+      ^^
+app/controllers/main_controller.rb:37:5: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if @user.nil?
+    ^^
+app/controllers/member_events_controller.rb:135:7: C: [Correctable] Layout/CommentIndentation: Incorrect indentation detected (column 6 instead of 4).
+      # allows admins to check off on who has access to site
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/members_controller.rb:21:3: C: Metrics/AbcSize: Assignment Branch Condition size for create is too high. [<2, 52, 7> 52.51/45]
+  def create ...
+  ^^^^^^^^^^
+app/controllers/members_controller.rb:31:5: C: [Correctable] Layout/ClosingParenthesisIndentation: Align ) with (.
+    )
+    ^
+app/controllers/members_controller.rb:38:151: C: [Correctable] Layout/LineLength: Line is too long. [177/150]
+            @member.update(admin_id: current_admin.id, position: 'Admin', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0, status: "true")
+                                                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/members_controller.rb:38:171: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+            @member.update(admin_id: current_admin.id, position: 'Admin', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0, status: "true")
+                                                                                                                                                                          ^^^^^^
+app/controllers/members_controller.rb:40:151: C: [Correctable] Layout/LineLength: Line is too long. [162/150]
+            @member.update(admin_id: current_admin.id, position: 'Member', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0)
+                                                                                                                                                      ^^^^^^^^^^^^
+app/controllers/members_controller.rb:73:7: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if admin.member.nil?
+      ^^
+app/controllers/members_controller.rb:93:9: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+        if admin.member.nil?
+        ^^
+app/controllers/members_controller.rb:125:5: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if @user.nil?
+    ^^
+app/controllers/members_controller.rb:132:5: C: [Correctable] Style/NegatedIf: Favor unless over if for negative conditions.
+    if !@user.nil? ...
+    ^^^^^^^^^^^^^^
+app/controllers/members_controller.rb:133:7: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if @user.position == 'Member'
+      ^^
+app/controllers/members_controller.rb:133:7: C: [Correctable] Style/SoleNestedConditional: Consider merging nested conditions into outer if conditions.
+      if @user.position == 'Member'
+      ^^
+app/controllers/members_controller.rb:142:7: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if @user.status.nil?
+      ^^
+app/controllers/members_controller.rb:142:7: C: [Correctable] Style/SoleNestedConditional: Consider merging nested conditions into outer unless conditions.
+      if @user.status.nil?
+      ^^
+spec/factories/events.rb:4:17: C: Rails/Date: Do not use Date.today without zone. Use Time.zone.today instead.
+    date { Date.today }
+                ^^^^^
+spec/factories/events.rb:9:4: C: [Correctable] Layout/TrailingEmptyLines: Final newline missing.
+end
+   
+spec/feature/integration_event_spec.rb:5:1: C: RSpec/MultipleMemoizedHelpers: Example group has too many memoized helpers [11/9]
+RSpec.describe 'Event integration', type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:85:5: C: RSpec/MultipleMemoizedHelpers: Example group has too many memoized helpers [11/9]
+    describe 'Creation' do ...
+    ^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:168:5: C: RSpec/MultipleMemoizedHelpers: Example group has too many memoized helpers [11/9]
+    describe 'Editing' do ...
+    ^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:251:5: C: RSpec/MultipleMemoizedHelpers: Example group has too many memoized helpers [11/9]
+    describe 'Deletion' do ...
+    ^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:269:5: C: RSpec/MultipleMemoizedHelpers: Example group has too many memoized helpers [11/9]
+    describe 'Event Filtering no meeting type' do ...
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:292:5: C: RSpec/MultipleMemoizedHelpers: Example group has too many memoized helpers [11/9]
+    describe 'Event Filtering with meeting type' do ...
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_event_spec.rb:329:9: C: [Correctable] Layout/CommentIndentation: Incorrect indentation detected (column 8 instead of 6).
+        # there should not be any rainy day cases for meeting type 
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:10:13: C: [Correctable] Layout/FirstArgumentIndentation: Indent the first argument one step more than the start of the previous line.
+            name: 'MyCommittee1'
+            ^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:11:9: C: [Correctable] Layout/ClosingParenthesisIndentation: Indent ) to column 10 (not 8)
+        )
+        ^
+spec/feature/integration_member_spec.rb:15:13: C: [Correctable] Layout/FirstArgumentIndentation: Indent the first argument one step more than the start of the previous line.
+            name: 'MyCommittee2'
+            ^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:16:9: C: [Correctable] Layout/ClosingParenthesisIndentation: Indent ) to column 10 (not 8)
+        )
+        ^
+spec/feature/integration_member_spec.rb:18:1: C: [Correctable] Style/BlockComments: Do not use block comments.
+=begin ...
+^^^^^^
+spec/feature/integration_member_spec.rb:18:1: C: Style/InlineComment: Avoid trailing inline comments.
+=begin ...
+^^^^^^
+spec/feature/integration_member_spec.rb:53:5: C: RSpec/LetSetup: Do not use let! to setup objects not referenced in tests.
+    let!(:invalid_attributes) {
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_spec.rb:74:22: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+            click_on "Confirm Statuses"
+                     ^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_views_spec.rb:12:5: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+    scenario 'Visit Members List' do
+    ^^^^^^^^
+spec/feature/integration_member_views_spec.rb:12:5: C: RSpec/RepeatedDescription: Don't repeat descriptions within an example group.
+    scenario 'Visit Members List' do
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_views_spec.rb:14:7: C: [Correctable] RSpec/Capybara/CurrentPathExpectation: Do not set an RSpec expectation on current_path in Capybara feature specs - instead, use the have_current_path matcher on page
+      expect(current_path).to eq '/'
+      ^^^^^^
+spec/feature/integration_member_views_spec.rb:17:5: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+    scenario 'Visit Committees' do
+    ^^^^^^^^
+spec/feature/integration_member_views_spec.rb:19:7: C: [Correctable] RSpec/Capybara/CurrentPathExpectation: Do not set an RSpec expectation on current_path in Capybara feature specs - instead, use the have_current_path matcher on page
+      expect(current_path).to eq '/'
+      ^^^^^^
+spec/feature/integration_member_views_spec.rb:21:7: C: [Correctable] RSpec/Capybara/CurrentPathExpectation: Do not set an RSpec expectation on current_path in Capybara feature specs - instead, use the have_current_path matcher on page
+      expect(current_path).not_to eq '/committees'
+      ^^^^^^
+spec/feature/integration_member_views_spec.rb:24:5: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+    scenario 'Visit Excuses' do
+    ^^^^^^^^
+spec/feature/integration_member_views_spec.rb:26:7: C: [Correctable] RSpec/Capybara/CurrentPathExpectation: Do not set an RSpec expectation on current_path in Capybara feature specs - instead, use the have_current_path matcher on page
+      expect(current_path).to eq '/excuses'
+      ^^^^^^
+spec/feature/integration_member_views_spec.rb:28:7: C: [Correctable] RSpec/Capybara/CurrentPathExpectation: Do not set an RSpec expectation on current_path in Capybara feature specs - instead, use the have_current_path matcher on page
+      expect(current_path).not_to eq '/'
+      ^^^^^^
+spec/feature/integration_member_views_spec.rb:32:5: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+    scenario 'Visit Members List' do
+    ^^^^^^^^
+spec/feature/integration_member_views_spec.rb:32:5: C: RSpec/RepeatedDescription: Don't repeat descriptions within an example group.
+    scenario 'Visit Members List' do
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_member_views_spec.rb:34:7: C: [Correctable] RSpec/Capybara/CurrentPathExpectation: Do not set an RSpec expectation on current_path in Capybara feature specs - instead, use the have_current_path matcher on page
+      expect(current_path).not_to eq '/members'
+      ^^^^^^
+spec/support/member_user.rb:39:10: C: [Correctable] Style/TrailingCommaInHashLiteral: Avoid comma after the last item of a hash.
+        },
+         ^
+spec/support/member_user.rb:43:7: W: Lint/UselessAssignment: Useless assignment to variable - admin.
+      admin = Admin.create!(email: 'waylandmoody55@tamu.edu', full_name: 'Jerry Moody', id: 1)
+      ^^^^^
+spec/support/member_user.rb:44:7: W: Lint/UselessAssignment: Useless assignment to variable - member.
+      member = Member.create!(position: 'Member', id: 1, name: 'wayland', admin_id: 1)
+      ^^^^^^
+spec/support/member_user.rb:45:7: W: Lint/UselessAssignment: Useless assignment to variable - member_event.
+      member_event =  MemberEvent.create!(id: 1, member_id: 1, event_id: 1)
+      ^^^^^^^^^^^^
+spec/support/member_user.rb:45:20: C: [Correctable] Layout/SpaceAroundOperators: Operator = should be surrounded by a single space.
+      member_event =  MemberEvent.create!(id: 1, member_id: 1, event_id: 1)
+                   ^
+spec/support/member_user.rb:45:21: C: [Correctable] Layout/ExtraSpacing: Unnecessary spacing detected.
+      member_event =  MemberEvent.create!(id: 1, member_id: 1, event_id: 1)
+                    ^
+spec/support/member_user.rb:64:102: C: Style/InlineComment: Avoid trailing inline comments.
+    current_admin = Admin.create!(email: 'waylandmoody55@tamu.edu', full_name: 'Jerry Moody', id: 1) # create an admin for testing
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/support/member_user.rb:65:70: C: Style/InlineComment: Avoid trailing inline comments.
+    allow(view).to receive(:current_admin).and_return(current_admin) # stub current_admin method
+                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/support/member_user.rb:66:84: C: Style/InlineComment: Avoid trailing inline comments.
+    user = Member.create!(position: 'Member', id: 1, name: 'wayland', admin_id: 1) # create a member with the admin as its foreign key
+                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/support/member_user.rb:67:27: C: Style/InlineComment: Avoid trailing inline comments.
+    assign(:member, user) # assign the member to @member
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_spec.rb:7:11: C: [Correctable] Layout/FirstArgumentIndentation: Indent the first argument one step more than the start of the previous line.
+          name: 'MyCommittee1'
+          ^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_member_spec.rb:8:7: C: [Correctable] Layout/ClosingParenthesisIndentation: Indent ) to column 8 (not 6)
+      )
+      ^
+
+107 files inspected, 68 offenses detected, 48 offenses autocorrectable
