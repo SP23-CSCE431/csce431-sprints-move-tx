@@ -9,19 +9,24 @@
     <%= event.date %>
   </p>
 
-  <p>
-    <strong>Point type:</strong>
-    <%= event.point_type %>
-  </p>
+  <% if event.point_type? %>
+    <p>
+      <strong>Point type:</strong>
+      <%= event.point_type %>
+    </p>
+  <% end%>
 
   <p>
     <strong>Event type:</strong>
     <%= event.event_type %>
   </p>
 
-  <p>
-    <strong>Phrase:</strong>
-    <%= event.phrase %>
-  </p>
-
+  <% if event.phrase? %>
+    <% if @user.position != "Member" %>
+      <p>
+        <strong>Phrase:</strong>
+        <%= event.phrase %>
+      </p>
+    <% end %>
+  <% end %>
 </div>

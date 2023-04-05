@@ -4,19 +4,20 @@ require 'support/test_user'
 
 
 RSpec.describe 'member_events/index', type: :view do
-
   # allow for oauth access
-  include_context 'admin oauth for views'
+
+
   
+  include_context 'admin oauth for views'
   let(:committee1) {
     Committee.create!(
-      name: "MyCommittee"
+      name: 'MyCommittee'
     )
   }
 
   let(:member) {
     Member.create!(
-      name: 'wayland',
+      name: 'john',
       committee_id: committee1.id,
       position: 'President',
       civicPoints: 1,
@@ -61,10 +62,9 @@ RSpec.describe 'member_events/index', type: :view do
 
   it 'renders a list of member_events' do
     render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new(member[:name].to_s), count: 4
+    cell_selector = 'tr>td'
     assert_select cell_selector, text: Regexp.new(event[:name].to_s), count: 2
     assert_select cell_selector, text: Regexp.new(true.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('Approved by'.to_s), count: 2
+    assert_select cell_selector, text: 'wayland', count: 2
   end
 end

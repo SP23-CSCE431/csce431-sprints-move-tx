@@ -4,46 +4,13 @@ class ExcusesController < ApplicationController
   before_action :member_admin_deletion_protection
   before_action :authenticate_user
 
-  def approve
-    @excuse = Excuse.find(params[:id])
-    @excuse.update(approved: true)
-    redirect_to @excuse
-  end
-  
-  def unapprove
-    @excuse = Excuse.find(params[:id])
-    @excuse.update(approved: false)
-    redirect_to @excuse
-  end
-
   # GET /excuses or /excuses.json
   def index
-    if @user.position == 'Admin' then
-      @excuses = Excuse.all.order(created_at: :desc)
-      @members = Member.all.order(name: :asc)
-      @events = Event.all.order(date: :asc)
-
-      if params[:member_name].present?
-        @excuses = @excuses.joins(:member).where("members.id = ?", params[:member_name])
-      end
-
-      if params[:event_name].present?
-        @excuses = @excuses.joins(:event).where("events.id = ?", params[:event_name])
-      end
-      render 'index'
-    else
-      @excuses = Excuse.where(member_id: @user.id).order(created_at: :desc)
-      render 'member_index'
-    end
+    @excuses = Excuse.all
   end
 
   # GET /excuses/1 or /excuses/1.json
   def show
-    if @user.position == 'Admin' then
-      render 'show'
-    else
-      render 'member_show'
-    end
   end
 
   # GET /excuses/new
@@ -58,8 +25,6 @@ class ExcusesController < ApplicationController
   # POST /excuses or /excuses.json
   def create
     @excuse = Excuse.new(excuse_params)
-    @excuse.member_id = @user.id
-
 
     respond_to do |format|
       if @excuse.save
@@ -110,23 +75,19 @@ class ExcusesController < ApplicationController
     def excuse_params
       params.require(:excuse).permit(:description, :file)
     end
+    
     # Set member
     def set_member
       @user = current_admin.member
     end
-
+    
     # protects against site crashing when deleting members
     def member_admin_deletion_protection
-      if @user.nil?
-        redirect_to new_member_path
-      end
+      redirect_to new_member_path if @user.nil?
     end
 
     # allows admins to check off on who has access to site
     def authenticate_user
-      if @user.status == nil
-        redirect_to root_path notice: "Pending Leadership approval"
-      end
+      redirect_to root_path notice: 'Pending Leadership approval' if @user.status.nil?
     end
-
 end

@@ -314,7 +314,7 @@ RSpec.describe 'Event integration', type: :feature do
             @temp2 = Event.create!(valid_service)
             select 'January', from: 'date[month]'
             click_on 'Search'
-            expect(page).to have_content('Please enter month and year')
+            expect(page).to have_content('Month needs a year for submission')
         end
     end
 
@@ -355,6 +355,6 @@ RSpec.describe 'Event integration', type: :feature do
             expect(page).to have_content('january second meeting')
         end
 
-        # there should not be any rainy day cases for meeting type 
+      # there should not be any rainy day cases for meeting type 
     end
 end
