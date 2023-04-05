@@ -19,4 +19,8 @@
     <strong>Date:</strong>
     <%= excuse.created_at.strftime("%Y-%m-%d") %>
   </p>
+  <p>
+    <strong>Status:</strong> 
+    <%= excuse.approved ? 'Approved' : 'Pending' %>
+  </p>
 </div>

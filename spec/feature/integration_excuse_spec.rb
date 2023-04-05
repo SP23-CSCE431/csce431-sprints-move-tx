@@ -8,6 +8,8 @@ RSpec.describe 'Excuse integration', type: :feature do
     let(:valid_attributes) {
         {
             description: 'MyDescription1'
+            member_name: 'myName'
+            event_name: 'Jan Meeting'
         }
     }
     
@@ -39,7 +41,6 @@ RSpec.describe 'Excuse integration', type: :feature do
         scenario 'create with valid inputs' do
             visit new_excuse_path
             fill_in 'excuse[description]', with: valid_attributes[:description]
-            select event.name, from: 'member_event[event_id]'
             click_on 'Create Excuse'
             expect(page).to have_content('Excuse was successfully created')
         end
