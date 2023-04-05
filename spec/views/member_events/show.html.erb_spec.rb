@@ -1,6 +1,15 @@
 require 'rails_helper'
 
+
 RSpec.describe 'member_events/show', type: :view do
+
+  setup do 
+    MemberEvent.delete_all
+  end
+
+  # allow for oauth access
+  include_context 'admin oauth for views'
+
   let(:committee1) {
     Committee.create!(
       name: 'MyCommittee'

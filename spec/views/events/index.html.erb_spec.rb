@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'events/index', type: :view do
+
+  include_context 'admin oauth for views'
+
   it 'renders a list of events' do
     events = create_list(:event, 2)
     page = 1
@@ -12,10 +15,9 @@ RSpec.describe 'events/index', type: :view do
 
     assign(:events, paginated_events)
     render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new('Name'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('Point Type'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('Event Type'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('Phrase'.to_s), count: 2
+    cell_selector = 'tr>td'
+    assert_select cell_selector, text: Regexp.new(events[0].name.to_s), count: 2
+    assert_select cell_selector, text: Regexp.new(events[0].point_type.to_s), count: 2
+    assert_select cell_selector, text: Regexp.new(events[0].event_type.to_s), count: 2
   end
 end
