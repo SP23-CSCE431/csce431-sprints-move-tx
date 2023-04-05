@@ -7,8 +7,8 @@ RSpec.describe 'events/index', type: :view do
     per_page = 2
     total_entries = 4
     paginated_events = WillPaginate::Collection.create(page, per_page, total_entries) do |pager|
-        pager.replace(events)
-      end
+      pager.replace(events)
+    end
 
     assign(:events, paginated_events)
     render

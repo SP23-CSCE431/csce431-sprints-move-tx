@@ -1,5 +1,3 @@
-<%= link_to('Back to Home page', {controller: 'main', action: 'index'}) %><br />
-
 <div class="members index">
   <h2>Members</h2>
 
@@ -14,22 +12,29 @@
     <%= submit_tag "Filter", class: "btn btn-primary" %>
   <% end %>
 
-  <table class="listing" summary="Member list" style="width: 100%;">
+  <!-- Search for members -->
+  <%= form_tag(members_path, method: :get) do %>
+    <p> Search for a Member </p>
+    <%= text_field_tag(:search, params[:search]) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+
+  <table class="listing" id="Member list" summary="Member list" style="width: 100%;">
+    <!-- table heads -->
     <tr class="header">
-      <th>#</th>
-      <th>Member</th>
-      <th>Committee</th>
-      <th>Position</th>
-      <th>Civic Points</th>
-      <th>Outreach Points</th>
-      <th>Social Points</th>
-      <th>Marketing Points</th>
-      <th>Total Points</th>
+      <th class="table-head"><%= link_to "Member ID", {:sort => "id"}, class: 'table-link'%></th>
+      <th class="table-head"><%= link_to "Member Name", {:sort => "name"}, class: 'table-link'%></th>
+      <th class="table-head"><%= link_to "Committee", {:sort => "committee_id"}, class: 'table-link'%></th>
+      <th class="table-head"><%= link_to "Position", {:sort => "position"}, class: 'table-link'%></th>
+      <th class="table-head">Civic Points</th>
+      <th class="table-head">Outreach Points</th>
+      <th class="table-head">Social Points</th>
+      <th class="table-head">Marketing Points</th>
+      <th class="table-head">Total Points</th>
     </tr>
+    <!-- Display each member -->
     <% @members.each do |member| %>
     <tr>
-    <%# checks if member has been approved by admin %>
-    <% if member.status == true%>
       <td> <%= member.id %></td>
       <td> <%= member.name %></td>
       <%if member.committee != nil%>
@@ -43,13 +48,13 @@
       <td> <%= member.socialPoints %></td>
       <td> <%= member.marketingPoints %></td>
       <td> <%= member.totalPoints %></td>
+      <!-- Actions for each member -->
       <td class="actions">
         <%= link_to("Show", member_path(member), class: 'action show') %>
         <%= link_to("Edit", edit_member_path(member), class: 'action edit') %>
         <%= link_to("Delete", delete_member_path(member), class: 'action delete') %>
       </td>
     </tr>
-    <%end%>
     <% end %>
   </table>
 </div>
