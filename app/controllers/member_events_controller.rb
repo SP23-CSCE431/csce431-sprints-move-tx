@@ -105,6 +105,7 @@ class MemberEventsController < ApplicationController
             @member_event.member.save
           end
         end
+
         # if member_event is for a meeting then give a meeting message, if not give a member event message 
         if @member_event.phrase?
           format.html {redirect_to member_event_url(@member_event), notice: 'Member Sign in was successfully updated.'}
@@ -162,10 +163,10 @@ class MemberEventsController < ApplicationController
       end
     end
     
-      # allows admins to check off on who has access to site
+    # allows admins to check off on who has access to site
     def authenticate_user
-      if @user.status == nil
-        redirect_to root_path notice: "Pending Leadership approval"
+      if @user.status.nil?
+        redirect_to root_path notice: 'Pending Leadership approval'
       end
     end
 end

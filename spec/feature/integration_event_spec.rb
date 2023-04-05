@@ -326,6 +326,6 @@ RSpec.describe 'Event integration', type: :feature do
             expect(page).to have_content('january second meeting')
         end
 
-        # there should not be any rainy day cases for meeting type 
+      # there should not be any rainy day cases for meeting type 
     end
 end

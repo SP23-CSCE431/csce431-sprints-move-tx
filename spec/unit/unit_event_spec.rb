@@ -30,6 +30,12 @@ RSpec.describe Event, type: :model do
         }
     }
 
+    let(:invalid_attributes) {
+        {
+            name: '!nval!d'
+        }
+    }
+
     subject do
         described_class.new(valid_service)
     end
@@ -52,6 +58,10 @@ RSpec.describe Event, type: :model do
     
     it 'is not valid without name' do
         subject.name = nil
+        expect(subject).not_to be_valid
+    end
+    it 'is not valid with invalid name' do
+        subject.name = invalid_attributes[:name]
         expect(subject).not_to be_valid
     end
     
