@@ -19,10 +19,11 @@
     <%= form.select :event_id, Event.where(event_type: ["Service","Personal/Non-Event"]).order(:name).map { |event| [event.name, event.id] } %>
   </div>
 
-  <div>
-    <%= form.label :approved_status, style: "display: block" %>
-    <%= form.check_box :approved_status %>
-  </div>
+
+    <div>
+      <%= form.label :approved_status, style: "display: block" %>
+      <%= form.check_box :approved_status %>
+    </div>
 
   <br>
 
