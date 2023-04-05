@@ -10,7 +10,7 @@ RSpec.describe 'member_events/index', type: :view do
   
   let(:committee1) {
     Committee.create!(
-      name: "MyCommittee"
+      name: 'MyCommittee'
     )
   }
 

@@ -69,11 +69,11 @@ class MemberEventsController < ApplicationController
   def update
     respond_to do |format|
       if @member_event.update(event_id: params[:member_event][:event_id],
-                                    approved_status: params[:member_event][:approved_status],
-                                    approve_date: params[:member_event][:approve_date],
-                                    phrase: params[:member_event][:phrase],
-                                    file: params[:member_event][:file],
-                                    approve_by: params[:member_event][:officer_ids].to_s)
+                              approved_status: params[:member_event][:approved_status],
+                              approve_date: params[:member_event][:approve_date],
+                              phrase: params[:member_event][:phrase],
+                              file: params[:member_event][:file],
+                              approve_by: params[:member_event][:officer_ids].to_s)
    
         # if member_event is for a meeting then give a meeting message, if not give a member event message 
         if @member_event.phrase?
@@ -132,10 +132,10 @@ class MemberEventsController < ApplicationController
       end
     end
     
-      # allows admins to check off on who has access to site
+    # allows admins to check off on who has access to site
     def authenticate_user
-      if @user.status == nil
-        redirect_to root_path notice: "Pending Leadership approval"
+      if @user.status.nil?
+        redirect_to root_path notice: 'Pending Leadership approval'
       end
     end
 end

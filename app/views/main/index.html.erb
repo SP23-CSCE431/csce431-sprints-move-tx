@@ -1,15 +1,4 @@
 <h1>Welcome <%= @user.name %></h1>
-<p>This is the main page</p>
-<!--
-<%= link_to("Member List", members_path) %>
-<br />
-<%= link_to("Committees", committees_path) %>
-<br />
-<%= link_to("Events", events_path) %>
-<br />
-<%= link_to("Excuses", excuses_path) %>
-<br />
-<%= link_to("Member Events", member_events_path) %> -->
 
 <%# first check if member has been approved by admin then displays information %>
 <%if @user.status == true%>
@@ -18,8 +7,6 @@
 
   <table class="listing" summary="Member list" style="width: 100%;">
     <tr class="header">
-      <!-- <th>#</th>
-      <th>Member</th> -->
       <th>Committee</th>
       <th>Position</th>
       <th>Civic Points</th>
@@ -82,5 +69,3 @@
 <%else%>
 <p>Pending admin approval</p>
 <%end%>
-
-
