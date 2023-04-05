@@ -1,15 +1,21 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Events</h1>
+<h2>Events</h2>
 
-<iframe
-  src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FChicago&showTitle=0&showPrint=0&showCalendars=0&src=NGUwN2I2OTgwMTJlNWE2Y2EzMTMwMTcxMWJlZTFmY2FkY2NmMjkyZjZhMzMwMTY1YjRhMzJhZmI4YTg1MGYzOUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%234285F4"
-  style="border:solid 1px #777"
-  width="800"
-  height="600"
-  frameborder="0"
-  scrolling="no">
-</iframe>
+<% if @user.position != "Member"%>
+  <div>
+    <%= link_to "New event", new_event_path %>
+  </div>
+<% end %>
+
+  <iframe
+    src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FChicago&showTitle=0&showPrint=0&showCalendars=0&src=NGUwN2I2OTgwMTJlNWE2Y2EzMTMwMTcxMWJlZTFmY2FkY2NmMjkyZjZhMzMwMTY1YjRhMzJhZmI4YTg1MGYzOUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%234285F4"
+    style="border:solid 1px #777"
+    width="800"
+    height="600"
+    frameborder="0"
+    scrolling="no">
+  </iframe>
 
 
 <%# form submission for filtering events by month year etc %>
@@ -26,17 +32,41 @@
 
 <%# regular code for showing the events  %>
 <div id="events">
-  <% @events.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
-  <% end %>
+  <table class="listing" id="Member list" summary="Member list" style="width: 100%;">
+    <!-- table heads -->
+    <tr class="header">
+      <th class="table-head">Name</th>
+      <th class="table-head">Date</th>
+      <th class="table-head">Point Type</th>
+      <th class="table-head">Event Type</th>
+      <th class="table-head">Phrase</th>
+      <% @events.each do |event| %>
+        <tr>
+          <td> <%= event.name %></td>
+          <td> <%= event.date %></td>
+          <% if event.point_type? %>
+            <td> <%= event.point_type %></td>
+          <% else %>
+            <td>n/a</td>
+          <% end %>
+          <td> <%= event.event_type %></td>
+          <% if @user.position != "Member"%>
+            <% if event.phrase? %>
+              <td> <%= event.phrase %></td>
+            <% else %>
+              <td> n/a </td>
+            <% end %>
+          <% end %>
+          <!-- Actions for each member -->
+          <td class="actions">
+            <%= link_to("Show this event", event_path(event), class: 'action show') %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
 </div>
 
 <%# allow for you to seperate events to different pages for easier viewing%>
 <%if @events.present?%>
   <%= will_paginate @events %>
 <%end%>
-
-<%= link_to "New event", new_event_path %>
