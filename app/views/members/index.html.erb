@@ -3,10 +3,9 @@
 
   <%= link_to("Add New Member", new_member_path, class: 'action new') %>
 
+  <!-- Filter members by committee or position -->
   <p>Filter By:</p>
   <%= form_tag members_path, method: :get do %>
-    Member Number: <%= text_field_tag :id %>
-    Member: <%= text_field_tag :name %>
     Committee: <%= text_field_tag :committee %>
     Position: <%= select_tag :position, options_for_select(["Any", "Admin", "Member"]) %>
     <%= submit_tag "Filter", class: "btn btn-primary" %>
@@ -33,7 +32,7 @@
       <th class="table-head">Total Points</th>
     </tr>
     <!-- Display each member -->
-    <% @members.each do |member| %>
+    <% $members.each do |member| %>
     <tr>
       <td> <%= member.id %></td>
       <td> <%= member.name %></td>

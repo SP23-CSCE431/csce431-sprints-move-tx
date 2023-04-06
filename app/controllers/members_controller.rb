@@ -7,53 +7,58 @@ class MembersController < ApplicationController
   before_action :authenticate_user
 
   @@sorting = ''
+  $members = Member.order(:id)
 
   def index
-    @members = Member.order(:id)
+    if params[:committee].present? || params[:position].present?
+      $members = Member.order(:id)
 
-    # check if user filtered by name
-    # return members that have name starting with input
-    if params[:name].present?
-      @members = Member.where("name like ?", params[:name] + "%").all
-    end
+      # check if user filtered by committee
+      # find committee user specified if they did not put none
+      if params[:committee].present? && params[:committee] != "None"
+        com_id = Committee.find_by("name = ?", params[:committee]).id
+        $members = Member.where("committee_id = ?", com_id).all.order(params[:sort]).all
+      # find all members with no committee
+      elsif params[:committee] == "None"
+        $members = Member.where("committee_id is null").all
+      end
 
-    # check if user filtered by id
-    # return member with the corresponding id
-    if params[:id].present?
-      @members = Member.where("id = ?", params[:id]).all      
-    end
-
-    # check if user filtered by committee
-    # find committee user specified if they did not put none
-    if params[:committee].present? && params[:committee] != "None"
-      com_id = Committee.find_by("name = ?", params[:committee]).id
-      @members = Member.where("committee_id = ?", com_id).all
-    # find all members with no committee
-    elsif params[:committee] == "None"
-      @members = Member.where("committee_id is null").all
-    end
-
-    # check if user filtered by position
-    # return members that are either admins or members based on what the
-    # user specified
-    if params[:position].present? && params[:position] != "Any"
-      @members = Member.where("position = ?", params[:position]).all
-    # return all members if user wants any
-    elsif params[:committee] == "Any"
-      @members = Member.where("position = Admin or position = Member").all
+      # check if user filtered by position
+      # return members that are either admins or members based on what the
+      # user specified
+      if params[:position].present? && params[:position] != "Any"
+        $members = Member.where("position = ?", params[:position]).all
+      # return all members if user wants any position
+      elsif params[:committee] == "Any"
+        $members = Member.where("position = Admin or position = Member").all
+      end
     end
 
     # Searching for members
     search_members if params[:search]
     # Sorting the members table based on if it was clicked already or not
-    if params[:sort] == @@sorting
-      @members = Member.order(params[:sort]).reverse
+    if params[:sort] == @@sorting # if this is so, then items need to be reversed
+      if params[:sort] == "id"
+        $members = $members.sort_by { |member| member.id }.reverse
+      elsif params[:sort] == "name"
+        $members = $members.sort_by { |member| member.name }.reverse
+      elsif params[:sort] == "committee_id"
+        $members = $members.sort_by { |member| (member.committee_id.present?) ? member.committee_id : -1 }.reverse
+      elsif params[:sort] == "position"
+        $members = $members.sort_by { |member| member.position }.reverse
+      end
       @@sorting = ''
-    elsif params[:sort] != @@sorting
-      @members = Member.order(params[:sort])
+    elsif params[:sort] != @@sorting # if this is so, items don't need to be reversed
+      if params[:sort] == "id"
+        $members = $members.sort_by { |member| member.id } # must be sort by for array
+      elsif params[:sort] == "name"
+        $members = $members.sort_by { |member| member.name }
+      elsif params[:sort] == "committee_id"
+        $members = $members.sort_by { |member| (member.committee_id.present?) ? member.committee_id : -1 }
+      elsif params[:sort] == "position"
+        $members = $members.sort_by { |member| member.position }
+      end
       @@sorting = params[:sort]
-    else
-      @members = Member.all
     end
   end
 
