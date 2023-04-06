@@ -30,7 +30,9 @@ RSpec.describe 'Members integration', type: :feature do
             socialPoints: 10012,
             marketingPoints: 10013,
             totalPoints: 40046,
-            status: true
+            status: true,
+            com_filter: '',
+            pos_filter: 'Any'
         }
     }
 
@@ -44,7 +46,9 @@ RSpec.describe 'Members integration', type: :feature do
             socialPoints: 10092,
             marketingPoints: 10093,
             totalPoints: 40366,
-            status: true
+            status: true,
+            com_filter: '',
+            pos_filter: 'Any'
         }
     }
 
