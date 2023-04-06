@@ -5,26 +5,22 @@ RSpec.describe 'Excuse integration', type: :feature do
     # need to run the oauth before each test 
     include_context 'test user'
 
+    let!(:member) { Member.create!(name: 'MyName1') }
+    let!(:event) do
+        Event.create!(
+            name: 'Park clean up',
+            date: Date.parse('2022-12-15'),
+            point_type: 'Outreach',
+            event_type: 'Service'
+        )
+    end
+
     let(:valid_attributes) {
         {
-            description: 'MyDescription1'
-            member_name: 'myName'
-            event_name: 'Jan Meeting'
+            description: 'MyDescription1',
+            member_id: member.id,
+            event_id: event.id
         }
-    }
-    
-    let!(:member) {
-        Member.create!(
-            name: 'myName'
-        )
-    }
-    let!(:event) {
-        Event.create!(
-            name: 'Jan Meeting',
-            date: Date.parse('2022-01-01'),
-            event_type: 'Meeting',
-            phrase: "what's up"
-        )
     }
 
     let(:edit_attributes) {
@@ -41,6 +37,7 @@ RSpec.describe 'Excuse integration', type: :feature do
         scenario 'create with valid inputs' do
             visit new_excuse_path
             fill_in 'excuse[description]', with: valid_attributes[:description]
+            select event.name, from: 'excuse[event_id]'
             click_on 'Create Excuse'
             expect(page).to have_content('Excuse was successfully created')
         end
