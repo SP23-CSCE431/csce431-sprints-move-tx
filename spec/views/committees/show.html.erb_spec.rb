@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'committees/show', type: :view do
+  include_context 'admin oauth for views'
+
   before(:each) do
     newmember = Member.create!(
       name: 'John'
@@ -13,6 +15,6 @@ RSpec.describe 'committees/show', type: :view do
 
   it 'renders attributes in <p>' do
     render
-    expect(rendered).to match(/Name/) 
+    expect(rendered).to match(/Name/)
   end
 end

@@ -11,7 +11,7 @@ class Member < ApplicationRecord
   belongs_to :admin, optional: true
 
   # set foreign key (committee) for member
-  has_one :committee, dependent: :nullify
+  has_one :committee
   belongs_to :committee, optional: true
 
   # when saving, update points and total points

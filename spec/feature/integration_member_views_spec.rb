@@ -16,7 +16,7 @@ RSpec.describe "Member's View based on position", type: :feature do
 
     it 'Visit Committees' do
       visit committees_path
-      expect(page).to have_current_path '/'
+      expect(page).to have_current_path '/committees'
     end
 
     it 'Visit Excuses' do
@@ -32,7 +32,7 @@ RSpec.describe "Member's View based on position", type: :feature do
 
     it 'Visit Committees' do
       visit committees_path
-      expect(page).to have_no_current_path '/committees'
+      expect(page).to have_no_current_path '/'
     end
 
     it 'Visit Excuses' do
