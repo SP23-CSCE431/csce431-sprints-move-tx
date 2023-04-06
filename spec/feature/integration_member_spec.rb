@@ -15,11 +15,11 @@ RSpec.describe 'Members integration', type: :feature do
           name: 'MyCommittee2'
         )
     }
-    #     let!(:committee3) {
-    #         Committee.create!(
-    #             name: 'MyCommittee3'
-    #         )
-    #     }
+    let!(:committee3) {
+        Committee.create!(
+            name: 'MyCommittee3'
+        )
+    }
     let!(:valid_attributes) {
         {
             name: 'MyName1',
@@ -30,9 +30,7 @@ RSpec.describe 'Members integration', type: :feature do
             socialPoints: 10012,
             marketingPoints: 10013,
             totalPoints: 40046,
-            status: true,
-            com_filter: '',
-            pos_filter: 'Any'
+            status: true
         }
     }
 
@@ -46,15 +44,21 @@ RSpec.describe 'Members integration', type: :feature do
             socialPoints: 10092,
             marketingPoints: 10093,
             totalPoints: 40366,
-            status: true,
-            com_filter: '',
-            pos_filter: 'Any'
+            status: true
         }
     }
 
     let!(:invalid_attributes) {
         {
-            name: nil
+            name: nil,
+            committee_id: committee3.id,
+            position: 'MyPosition3',
+            civicPoints: 10100,
+            outreachPoints: 10101,
+            socialPoints: 10102,
+            marketingPoints: 10103,
+            totalPoints: 40406,
+            status: true
         }
     }
 
@@ -89,23 +93,23 @@ RSpec.describe 'Members integration', type: :feature do
         scenario 'create with invalid name' do
             visit new_member_path
             
-            select committee2.name,             from: 'member[committee_id]'
-            fill_in 'member[position]',         with: valid_attributes[:position]
-            fill_in 'member[civicPoints]',      with: valid_attributes[:civicPoints]
-            fill_in 'member[outreachPoints]',   with: valid_attributes[:outreachPoints]
-            fill_in 'member[socialPoints]',     with: valid_attributes[:socialPoints]
-            fill_in 'member[marketingPoints]',  with: valid_attributes[:marketingPoints]
+            select committee3.name,             from: 'member[committee_id]'
+            fill_in 'member[position]',         with: invalid_attributes[:position]
+            fill_in 'member[civicPoints]',      with: invalid_attributes[:civicPoints]
+            fill_in 'member[outreachPoints]',   with: invalid_attributes[:outreachPoints]
+            fill_in 'member[socialPoints]',     with: invalid_attributes[:socialPoints]
+            fill_in 'member[marketingPoints]',  with: invalid_attributes[:marketingPoints]
             #fill_in "member[totalPoints]",      with: valid_attributes[:totalPoints]
             click_on 'Create Member'
             
             visit members_path
-            expect(page).not_to have_content(committee2.name)
-            expect(page).not_to have_content(valid_attributes[:position])
-            expect(page).not_to have_content(valid_attributes[:civicPoints])
-            expect(page).not_to have_content(valid_attributes[:outreachPoints])
-            expect(page).not_to have_content(valid_attributes[:socialPoints])
-            expect(page).not_to have_content(valid_attributes[:marketingPoints])
-            expect(page).not_to have_content(valid_attributes[:totalPoints])
+            expect(page).not_to have_content(committee3.name)
+            expect(page).not_to have_content(invalid_attributes[:position])
+            expect(page).not_to have_content(invalid_attributes[:civicPoints])
+            expect(page).not_to have_content(invalid_attributes[:outreachPoints])
+            expect(page).not_to have_content(invalid_attributes[:socialPoints])
+            expect(page).not_to have_content(invalid_attributes[:marketingPoints])
+            expect(page).not_to have_content(invalid_attributes[:totalPoints])
         end
     end
 
