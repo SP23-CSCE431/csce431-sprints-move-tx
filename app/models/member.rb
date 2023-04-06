@@ -3,7 +3,7 @@ class Member < ApplicationRecord
   has_many :member_events, dependent: :destroy
 
   validates :name, presence: true
-  
+
   validate :formatting
 
   # sets foreign key (admin) for member
@@ -24,7 +24,7 @@ class Member < ApplicationRecord
   end
 
   private
-  
+
   # ensure that correct input formats are used
   def formatting
     # name only has letters, numbers, apostraphes, and space characters

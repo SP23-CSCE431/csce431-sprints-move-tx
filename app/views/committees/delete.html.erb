@@ -2,12 +2,18 @@
 
 <div class="delete">
     <h1>Destroy Committe</h1>
-    
+
     <%= form_for(@committee, method: 'delete') do |f| %>
         <p>Are you sure you want to permanently delete this committee?</p>
         <p>Name: <%= @committee.name %></p>
-        <p>Leader Member ID: <%= @committee.member_id %></p>        
-
+        <p>Director: <%= @committee.member.name %></p>
+        <p>Members:</p>
+        <% @members.each do |member| %>
+          <% if member.committee_id == @committee.id %>
+            <li><%= member.name %></li>
+          <% end %>
+        <% end %>
+        <br>
         <div class="form-buttons">
             <%= f.submit("Delete committee") %>
         </div>

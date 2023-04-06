@@ -52,10 +52,10 @@ class MembersController < ApplicationController
         # if the member does not have connected account connect email to member
         if @member.admin.nil? && @user.nil?
           if params[:member][:admin_password] == 'Officer'
-            @member.update(admin_id: current_admin.id, position: 'Admin', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
+            @member.update(admin_id: current_admin.id, position: 'Admin', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0,
                            totalPoints: 0, status: 'true')
           else
-            @member.update(admin_id: current_admin.id, position: 'Member', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
+            @member.update(admin_id: current_admin.id, position: 'Member', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0,
                            totalPoints: 0)
           end
         end
@@ -87,6 +87,12 @@ class MembersController < ApplicationController
 
   def destroy
     @member = Member.find(params[:id])
+    Committee.all.each do |committee|
+      if committee.member_id == @member.id
+        committee.member_id = nil
+        committee.save
+      end
+    end
     @member.destroy
     Admin.all.each do |admin|
       admin.destroy if admin.member.nil?
