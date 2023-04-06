@@ -20,6 +20,11 @@ RSpec.describe 'Members integration', type: :feature do
             name: 'MyCommittee3'
         )
     }
+    let!(:committee4) {
+        Committee.create!(
+            name: 'MyCommittee4'
+        )
+    }
     let!(:valid_attributes) {
         {
             name: 'MyName1',
@@ -44,6 +49,20 @@ RSpec.describe 'Members integration', type: :feature do
             socialPoints: 10092,
             marketingPoints: 10093,
             totalPoints: 40366,
+            status: true
+        }
+    }
+
+    let!(:delete_attributes) {
+        {
+            name: 'MyName4',
+            committee_id: committee4.id,
+            position: 'MyPosition4',
+            civicPoints: 10200,
+            outreachPoints: 10201,
+            socialPoints: 10202,
+            marketingPoints: 10203,
+            totalPoints: 40806,
             status: true
         }
     }
@@ -153,28 +172,28 @@ RSpec.describe 'Members integration', type: :feature do
 
     describe 'Deletion' do
         scenario 'delete entry' do
-            @temp = Member.create!(valid_attributes)
+            @temp = Member.create!(delete_attributes)
             visit members_path
-            expect(page).to have_content(valid_attributes[:name])
-            expect(page).to have_content(committee1.name)
-            expect(page).to have_content(valid_attributes[:position])
-            expect(page).to have_content(valid_attributes[:civicPoints])
-            expect(page).to have_content(valid_attributes[:outreachPoints])
-            expect(page).to have_content(valid_attributes[:socialPoints])
-            expect(page).to have_content(valid_attributes[:marketingPoints])
-            expect(page).to have_content(valid_attributes[:totalPoints])
+            expect(page).to have_content(delete_attributes[:name])
+            expect(page).to have_content(committee4.name)
+            expect(page).to have_content(delete_attributes[:position])
+            expect(page).to have_content(delete_attributes[:civicPoints])
+            expect(page).to have_content(delete_attributes[:outreachPoints])
+            expect(page).to have_content(delete_attributes[:socialPoints])
+            expect(page).to have_content(delete_attributes[:marketingPoints])
+            expect(page).to have_content(delete_attributes[:totalPoints])
 
             visit delete_member_path(@temp)
             click_on 'Delete Member'
             visit members_path
-            expect(page).not_to have_content(valid_attributes[:name])
-            expect(page).not_to have_content(committee1.name)
-            expect(page).not_to have_content(valid_attributes[:position])
-            expect(page).not_to have_content(valid_attributes[:civicPoints])
-            expect(page).not_to have_content(valid_attributes[:outreachPoints])
-            expect(page).not_to have_content(valid_attributes[:socialPoints])
-            expect(page).not_to have_content(valid_attributes[:marketingPoints])
-            expect(page).not_to have_content(valid_attributes[:totalPoints])
+            expect(page).not_to have_content(delete_attributes[:name])
+            expect(page).not_to have_content(committee4.name)
+            expect(page).not_to have_content(delete_attributes[:position])
+            expect(page).not_to have_content(delete_attributes[:civicPoints])
+            expect(page).not_to have_content(delete_attributes[:outreachPoints])
+            expect(page).not_to have_content(delete_attributes[:socialPoints])
+            expect(page).not_to have_content(delete_attributes[:marketingPoints])
+            expect(page).not_to have_content(delete_attributes[:totalPoints])
 
         end
     end
