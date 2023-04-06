@@ -10,7 +10,7 @@
 
 <% if @excuse.approved %>
   <%= form_tag unapprove_excuse_path(@excuse), method: :patch do %>
-    <%= submit_tag "Disapprove" %>
+    <%= submit_tag "Undo Approval" %>
   <% end %>
 <% end %>
 

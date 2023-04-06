@@ -2,25 +2,59 @@
 
 <h1>Excuses</h1> 
 
+<%= link_to "New excuse", new_excuse_path %>
+
 <%= form_tag excuses_path, method: :get do %>
   <div>
-    <%= label_tag :member_name, "Member Name:" %>
-    <%= select_tag :member_name, options_for_select(Member.all.map{ |m| [m.name, m.id] }), prompt: "Select member name" %>
+    <div class="filter-field">
+      <%= label_tag :event_name, "Event Name:" %>
+      <%= select_tag :event_name, options_for_select(Event.all.map{ |e| [e.name, e.id] }), prompt: "Select event name" %>
+    </div>
+
+    <div class="filter-field">
+      <%= label_tag :member_name, "Member Name:" %>
+      <%= select_tag :member_name, options_for_select(Member.all.map{ |m| [m.name, m.id] }), prompt: "Select member name" %>
+    </div>
+
+    <%= submit_tag "Filter" %>
   </div>
-  <div>
-    <%= label_tag :event_name, "Event Name:" %>
-    <%= select_tag :event_name, options_for_select(Event.all.map{ |e| [e.name, e.id] }), prompt: "Select event name" %>
-  </div>
-  <%= submit_tag "Filter" %>
 <% end %>
 
-<div id="excuses">
-  <% @excuses.each do |excuse| %>
-    <%= render excuse %>
-    <p>
-      <%= link_to "Show this excuse", excuse %>
-    </p>
-  <% end %>
-</div>
 
-<%= link_to "New excuse", new_excuse_path %>
+<style>
+  .filter-field {
+    display: inline-block;
+    margin-right: 30px;
+  }
+</style>
+
+
+
+<table class="listing" id="Excuse list" summary="Excuse list" style="width: 100%;">
+    <!-- table heads -->
+    <tr class="header">
+      <th class="table-head">Event Name</th>
+      <th class="table-head">Member Name</th>
+      <th class="table-head">Date</th>
+      <th class="table-head">File</th>
+      <th class="table-head">Approved</th>
+    </tr>
+    <!-- Display each member -->
+    <% @excuses.each do |excuse| %>
+    <tr>
+      <td> <%= excuse.event.name %></td>
+      <td> <%= excuse.member.name %></td>
+      <td> <%= excuse.created_at.strftime("%Y-%m-%d") %></td>
+      <td> <%= link_to excuse.file.filename, excuse.file if excuse.file.attached? %></td>
+      <td> <%= excuse.approved ? 'Approved' : 'Not Approved' %></td>
+
+      <!-- Actions for each member -->
+      <td class="actions">
+        <%= link_to("Show", excuse_path(excuse), class: 'action show') %>
+        <%= link_to("Edit", edit_excuse_path(excuse), class: 'action edit') %>
+        <%= link_to("Delete", delete_excuse_path(excuse), class: 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
