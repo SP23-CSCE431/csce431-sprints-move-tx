@@ -6,9 +6,9 @@
   <!-- Filter members by committee or position -->
   <p>Filter By:</p>
   <%= form_tag members_path, method: :get do %>
-    Committee: <%= text_field_tag :committee %>
-    Position: <%= select_tag :position, options_for_select(["Any", "Admin", "Member"]) %>
-    <%= submit_tag "Filter", class: "btn btn-primary" %>
+    Committee: <%= text_field_tag :com_filter %>
+    Position: <%= select_tag :pos_filter, options_for_select(["Any", "Admin", "Member"]) %>
+    <%= submit_tag "Filter" %>
   <% end %>
 
   <!-- Search for members -->

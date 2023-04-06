@@ -10,26 +10,26 @@ class MembersController < ApplicationController
   $members = Member.order(:id)
 
   def index
-    if params[:committee].present? || params[:position].present?
+    if params[:com_filter].present? || params[:pos_filter].present?
       $members = Member.order(:id)
 
       # check if user filtered by committee
       # find committee user specified if they did not put none
-      if params[:committee].present? && params[:committee] != "None"
-        com_id = Committee.find_by("name = ?", params[:committee]).id
+      if params[:com_filter].present? && params[:com_filter] != "None"
+        com_id = Committee.find_by("name = ?", params[:com_filter]).id
         $members = Member.where("committee_id = ?", com_id).all.order(params[:sort]).all
       # find all members with no committee
-      elsif params[:committee] == "None"
+      elsif params[:com_filter] == "None"
         $members = Member.where("committee_id is null").all
       end
 
       # check if user filtered by position
       # return members that are either admins or members based on what the
       # user specified
-      if params[:position].present? && params[:position] != "Any"
-        $members = Member.where("position = ?", params[:position]).all
+      if params[:pos_filter].present? && params[:pos_filter] != "Any"
+        $members = Member.where("position = ?", params[:pos_filter]).all
       # return all members if user wants any position
-      elsif params[:committee] == "Any"
+      elsif params[:pos_filter] == "Any"
         $members = Member.where("position = Admin or position = Member").all
       end
     end
