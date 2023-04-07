@@ -175,6 +175,7 @@ RSpec.describe 'Members integration', type: :feature do
             visit new_member_path
             
             select committee4.name,             from: 'member[committee_id]'
+            fill_in 'member[name]',             with: delete_attributes[:name]
             fill_in 'member[position]',         with: delete_attributes[:position]
             fill_in 'member[civicPoints]',      with: delete_attributes[:civicPoints]
             fill_in 'member[outreachPoints]',   with: delete_attributes[:outreachPoints]
