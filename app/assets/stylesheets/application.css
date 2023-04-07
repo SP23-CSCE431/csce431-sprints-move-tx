@@ -52,10 +52,6 @@
    color: #fff2d5;
  }
 
- th:active {
-   background-color: #fff;
- }
-
  .table-head {
    text-align: center;
    text-decoration: none;

@@ -1,8 +1,9 @@
 <div class="members index">
   <h2>Members</h2>
 
-  <%= link_to("Add New Member", new_member_path, class: 'action new') %>
-
+  <!-- Only for testing member function -->
+  <%# <%= link_to("Add New Member", new_member_path, class: 'action new') %> %>
+  
   <!-- Search for members -->
   <%= form_tag(members_path, method: :get) do %>
     <p> Search for a Member </p>

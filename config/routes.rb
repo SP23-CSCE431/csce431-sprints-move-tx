@@ -44,6 +44,13 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
+  resources :excuses do
+    member do
+      patch :approve
+      patch :unapprove
+    end
+  end
+
   resources :events do
     member do 
       get :delete
