@@ -1,35 +1,7 @@
+<%= link_to('Back to Home page', {controller: 'main', action: 'index'}) %><br />
 <p style="color: green"><%= notice %></p>
 
-<h1>Excuses</h1> 
-
-<%= link_to "New excuse", new_excuse_path %>
-
-<%= form_tag excuses_path, method: :get do %>
-  <div>
-    <div class="filter-field">
-      <%= label_tag :event_name, "Event Name:" %>
-      <%= select_tag :event_name, options_for_select(Event.all.map{ |e| [e.name, e.id] }), prompt: "Select event name" %>
-    </div>
-
-    <div class="filter-field">
-      <%= label_tag :member_name, "Member Name:" %>
-      <%= select_tag :member_name, options_for_select(Member.all.map{ |m| [m.name, m.id] }), prompt: "Select member name" %>
-    </div>
-
-    <%= submit_tag "Filter" %>
-  </div>
-<% end %>
-
-
-<style>
-  .filter-field {
-    display: inline-block;
-    margin-right: 30px;
-  }
-</style>
-
-
-
+<h1>My Excuses</h1>
 <table class="listing" id="Excuse list" summary="Excuse list" style="width: 100%;">
     <!-- table heads -->
     <tr class="header">
@@ -58,3 +30,4 @@
     <% end %>
   </table>
 
+<%= link_to "New excuse", new_excuse_path %>

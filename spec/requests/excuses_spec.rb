@@ -15,12 +15,27 @@ require 'rails_helper'
 RSpec.describe '/excuses', type: :request do
     # need to run the oauth before each test 
     include_context 'test user requests'
+
+    let!(:member) { Member.create!(name: 'MyName1') }
+    let!(:event) do
+      Event.create!(
+        name: 'Park clean up',
+        date: Date.parse('2022-12-15'),
+        point_type: 'Outreach',
+        event_type: 'Service'
+      )
+    end
     
   # This should return the minimal set of attributes required to create a valid
   # Excuse. As you add validations to Excuse, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {file: nil}
+    {
+      member_id: member.id,
+      event_id: event.id,
+      description: 'I was sick',
+      file: nil
+    }
   }
 
   let(:invalid_attributes) {
