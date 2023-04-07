@@ -3,12 +3,12 @@
 <%= render @event %>
 
 <div>
-  <% if @user.position != "Member" %>
+  <% unless @user.position == "Member" %>
     <%= link_to "Edit this event", edit_event_path(@event) %> |
   <% end %>
   <%= link_to "Back to events", events_path %>
 
-  <% if @user.position != "Member" %>
+  <% unless @user.position == "Member" %>
     <%= link_to "Delete this event", delete_event_path(@event), class: "action delete" %> |
   <% end %>
 </div>
