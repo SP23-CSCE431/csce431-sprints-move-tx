@@ -224,16 +224,20 @@ RSpec.describe 'Member_Event integration', type: :feature do
         scenario 'correctly filtering event for approved services' do
             visit member_events_path
             @temp = MemberEvent.create!(valid_attributes)
-            select 'Approved', from: 'option'
-            click_on 'submit'
-            expect(page).to have_content('Jan Meeting')
+            @temp1 = MemberEvent.create!(valid_attributes_pending)
+            select 'Approved', from: 'service_status'
+            click_on 'Search'
+            expect(page).to have_content('true')
+            expect(page).not_to have_content('false')
         end
         scenario 'correctly filtering event for pending services' do
             visit member_events_path
             @temp = MemberEvent.create!(valid_attributes_pending)
-            select 'Pending', from: 'option'
-            click_on 'submit'
-            expect(page).to have_content('Jan Meeting')
+            @temp1 = MemberEvent.create!(valid_attributes)
+            select 'Pending', from: 'service_status'
+            click_on 'Search'
+            expect(page).to have_content('false')
+            expect(page).not_to have_content('true')
         end
     end
 end

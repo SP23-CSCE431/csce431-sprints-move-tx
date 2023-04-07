@@ -10,6 +10,12 @@
   <%if @user.position != "Member"%>
     <h2> My Approvals: </h2>
 
+    <%# form submission for filtering service events by approval status %>
+    <%= form_tag member_events_path, method: :get do %>
+      <%= select_tag :service_status, options_for_select((["All", "Approved", "Pending"])), prompt: "Approval Status"%> 
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+      
+    <% end %>
     <table class="listing" id="Approve By list" summary="Approve By list" style="width: 100%;">
       <!-- table heads -->
       <tr class="header">
@@ -21,7 +27,7 @@
         <th class="table-head">File</th>
       </tr>
       <!-- Display each member -->
-      <% @member_events.each do |member_event| %>
+      <% @service_events.each do |member_event| %>
 
         <% if member_event.approve_by.to_s.include?(@user.name)%>
           <tr>

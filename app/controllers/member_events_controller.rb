@@ -12,7 +12,22 @@ class MemberEventsController < ApplicationController
   # GET /member_events or /member_events.json
   def index
     @member_events = MemberEvent.all
-  end
+    @service_events = MemberEvent.all
+
+    # filter service if event type present in submission
+    if params[:service_status].present?
+      if params[:service_status] == 'All'
+        @service_events = MemberEvent.all
+      elsif params[:service_status] == 'Approved'
+        @service_events = MemberEvent.where('approved_status = true').all
+      elsif params[:service_status] == 'Pending'
+        @service_events = MemberEvent.where('approved_status = false').all
+      end
+      # if service_status not present do regular filtering
+      else 
+        @service_events = MemberEvent.all
+      end
+    end
 
   # GET /member_events/1 or /member_events/1.json
   def show
