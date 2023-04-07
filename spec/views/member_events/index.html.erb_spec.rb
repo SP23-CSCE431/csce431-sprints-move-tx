@@ -58,6 +58,20 @@ RSpec.describe 'member_events/index', type: :view do
         approve_by: 'wayland'
       )
     ])
+    assign(:service_events , [
+      MemberEvent.create!(
+        event_id: event.id,
+        member_id: member.id,
+        approved_status: true,
+        approve_by: 'wayland'
+      ),
+      MemberEvent.create!(
+        event_id: event.id,
+        member_id: member.id,
+        approved_status: true,
+        approve_by: 'wayland'
+      )
+    ])
   end
 
   it 'renders a list of member_events' do
