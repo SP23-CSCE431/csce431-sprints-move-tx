@@ -42,7 +42,16 @@ RSpec.describe 'Member_Event integration', type: :feature do
 
     let!(:valid_attributes) {
         {event_id: event.id,
-        member_id: member.id}
+        member_id: member.id,
+        approve_by: 'wayland',
+        approved_status: 'true'}
+    }
+
+    let!(:valid_attributes_pending) {
+        {event_id: event.id,
+        member_id: member.id,
+        approve_by: 'wayland',
+        approved_status: 'false'}
     }
 
     let!(:edit_attributes) {
@@ -56,6 +65,7 @@ RSpec.describe 'Member_Event integration', type: :feature do
         member_id: member3.id
         }
     }
+
 
     let!(:valid_member_attributes) {
         {
@@ -209,4 +219,21 @@ RSpec.describe 'Member_Event integration', type: :feature do
         end
     end
 
+    describe 'Approval filtering' do
+        # sunny day cases
+        scenario 'correctly filtering event for approved services' do
+            visit member_events_path
+            @temp = MemberEvent.create!(valid_attributes)
+            select 'Approved', from: 'option'
+            click_on 'submit'
+            expect(page).to have_content('Jan Meeting')
+        end
+        scenario 'correctly filtering event for pending services' do
+            visit member_events_path
+            @temp = MemberEvent.create!(valid_attributes_pending)
+            select 'Pending', from: 'option'
+            click_on 'submit'
+            expect(page).to have_content('Jan Meeting')
+        end
+    end
 end
