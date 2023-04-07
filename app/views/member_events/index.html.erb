@@ -1,12 +1,21 @@
 <p style="color: green"><%= notice %></p>
 
-<h2>Member Events</h2>
+<h2>Activities</h2>
+<%= link_to "Meeting Sign In", new_member_event_path(version: 2) %>
+<br>
+<%= link_to "New Service Submission", new_member_event_path(version: 1) %>
 
 <div id="member_events">
   <%# shows events that need to be checked off on if user is an admin %>
   <%if @user.position != "Member"%>
     <h2> My Approvals: </h2>
 
+    <%# form submission for filtering service events by approval status %>
+    <%= form_tag member_events_path, method: :get do %>
+      <%= select_tag :service_status, options_for_select((["All", "Approved", "Pending"])), prompt: "Approval Status"%> 
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+      
+    <% end %>
     <table class="listing" id="Approve By list" summary="Approve By list" style="width: 100%;">
       <!-- table heads -->
       <tr class="header">
@@ -18,7 +27,7 @@
         <th class="table-head">File</th>
       </tr>
       <!-- Display each member -->
-      <% @member_events.each do |member_event| %>
+      <% @service_events.each do |member_event| %>
 
         <% if member_event.approve_by.to_s.include?(@user.name)%>
           <tr>
@@ -35,12 +44,13 @@
 
             <!-- Actions for each member event -->
             <td class="actions">
-              <%= link_to("Show this member event", member_event_path(member_event), class: 'action show') %>
+              <%= link_to("Show this approval", member_event_path(member_event), class: 'action show') %>
             </td>
           </tr>
         <% end %>
       <% end %>
     </table>
+    <br>
   <% end %>
 
   <%# shows all events user has entered  %>
@@ -57,7 +67,7 @@
       <!-- Display each member -->
       <% @member_events.each do |member_event| %>
 
-        <% if member_event.member_id == @user.id && member_event.event.event_type == "Service" %>
+        <% if (member_event.member_id == @user.id && member_event.event.event_type == "Service") || (member_event.member_id == @user.id && member_event.event.event_type == "Personal/Non-Event")%>
           <tr>
             <td> <%= member_event.event.name %></td>
             <td> <%= member_event.event.date %></td>
@@ -71,7 +81,7 @@
 
             <!-- Actions for each member event -->
             <td class="actions">
-              <%= link_to("Show this member event", member_event_path(member_event), class: 'action show') %>
+              <%= link_to("Show this service", member_event_path(member_event), class: 'action show') %>
             </td>
           </tr>
         <% end %>
@@ -96,14 +106,10 @@
 
             <!-- Actions for each member event -->
             <td class="actions">
-              <%= link_to("Show this member event", member_event_path(member_event), class: 'action show') %>
+              <%= link_to("Show this meeting attendance", member_event_path(member_event), class: 'action show') %>
             </td>
           </tr>
         <% end %>
       <% end %>
     </table>
 </div>
-
-<%= link_to "New Service event", new_member_event_path(version: 1) %>
-<br>
-<%= link_to "Meeting Sign in", new_member_event_path(version: 2) %>

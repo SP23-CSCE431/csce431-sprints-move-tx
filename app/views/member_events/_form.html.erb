@@ -19,6 +19,7 @@
     <%= form.select :event_id, Event.where(event_type: ["Service","Personal/Non-Event"]).order(:name).map { |event| [event.name, event.id] } %>
   </div>
 
+
   <% unless @user.position == "Member" %>
 
     <div>
@@ -34,7 +35,7 @@
   <%# makes a dropdown to where you can only see admins %>
     <% Member.where.not(position: "Member").each do |officer| %>
       <div>
-        <%= form.label :officer_ids, officer.name, style: "disply: block"%>
+        <%= form.label :officer_ids, officer.name, style: "display: block"%>
         <%= form.check_box :officer_ids, {multiple: true}, officer.name, nil %>
       </div>
     <% end %>
@@ -43,14 +44,23 @@
 
 
   <br>
-  <div>
-    <%= form.label :file, style: "display: block" %>
-    <%= form.file_field :file %>
-  </div>
+
+  <% if member_event.file.attached? %>
+    <div>
+      <%= form.label :file, style: "display: block" %>
+      <%= form.file_field :file, value: member_event.file %>
+    </div>
+  <% else %>
+    <div>
+      <%= form.label :file, style: "display: block" %>
+      <%= form.file_field :file, value: member_event.file.url %>
+    <div>
+  <% end %>
 
   <br>
     <div>
-      <%= form.submit %>
+      <%= form.submit "Submit service" %>
+      
     </div>
    <% end %>
 
