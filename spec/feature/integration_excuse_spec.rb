@@ -61,7 +61,6 @@ RSpec.describe 'Excuse integration', type: :feature do
             visit delete_excuse_path(@temp)
             click_on 'Delete excuse'
             expect(page).to have_content('Excuse was successfully destroyed.')
-
         end
     end
 end
