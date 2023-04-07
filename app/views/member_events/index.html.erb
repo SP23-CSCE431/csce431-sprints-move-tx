@@ -1,6 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
 <h2>Member Events</h2>
+<%= link_to "Meeting Sign in", new_member_event_path(version: 2) %>
+<br>
+<%= link_to "New Service event", new_member_event_path(version: 1) %>
 
 <div id="member_events">
   <%# shows events that need to be checked off on if user is an admin %>
@@ -41,6 +44,7 @@
         <% end %>
       <% end %>
     </table>
+    <br>
   <% end %>
 
   <%# shows all events user has entered  %>
@@ -57,7 +61,7 @@
       <!-- Display each member -->
       <% @member_events.each do |member_event| %>
 
-        <% if member_event.member_id == @user.id && member_event.event.event_type == "Service" %>
+        <% if (member_event.member_id == @user.id && member_event.event.event_type == "Service") || (member_event.member_id == @user.id && member_event.event.event_type == "Personal/Non-Event")%>
           <tr>
             <td> <%= member_event.event.name %></td>
             <td> <%= member_event.event.date %></td>
@@ -103,7 +107,3 @@
       <% end %>
     </table>
 </div>
-
-<%= link_to "New Service event", new_member_event_path(version: 1) %>
-<br>
-<%= link_to "Meeting Sign in", new_member_event_path(version: 2) %>

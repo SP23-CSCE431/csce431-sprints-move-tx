@@ -34,8 +34,13 @@
   <%# makes a dropdown to where you can only see admins %>
     <% Member.where.not(position: "Member").each do |officer| %>
       <div>
-        <%= form.label :officer_ids, officer.name, style: "disply: block"%>
-        <%= form.check_box :officer_ids, {multiple: true}, officer.name, nil %>
+        <% if member_event.approve_by.to_s.include?(officer.name) %>
+          <%= form.label :officer_ids, officer.name, style: "disply: block" %>
+          <%= form.check_box :officer_ids, {multiple: true}, officer.name, checked: member_event.approve_by.to_s.include?(officer.name) %>
+        <% else %>
+          <%= form.label :officer_ids, officer.name, style: "disply: block" %>
+          <%= form.check_box :officer_ids, {multiple: true}, officer.name, checked: false %>
+        <% end %>
       </div>
     <% end %>
 
@@ -43,10 +48,19 @@
 
 
   <br>
-  <div>
-    <%= form.label :file, style: "display: block" %>
-    <%= form.file_field :file %>
-  </div>
+  <% if member_event.file.attached? %>
+    <div>
+      <%= form.label :file, style: "display: block" %>
+      <%= form.file_field :file, value: member_event.file %>
+    </div>
+  <% else %>
+    <div>
+      <%= form.label :file, style: "display: block" %>
+      <%= form.file_field :file, value: member_event.file.url %>
+    <div>
+  <% end %>
+
+
 
   <br>
     <div>

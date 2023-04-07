@@ -69,16 +69,19 @@ class MemberEventsController < ApplicationController
   def update
     respond_to do |format|
       approval_change = false
+      custom_value = params[:member_event][:officer_ids].to_s
+      @member_event.approve_by = custom_value
       previous_approval = @member_event.approved_status
-      approve_by_placeholder = @member_event.approve_by
-      if @member_event.update(event_id: params[:member_event][:event_id],
-                                    approved_status: params[:member_event][:approved_status],
-                                    approve_date: params[:member_event][:approve_date],
-                                    phrase: params[:member_event][:phrase],
-                                    file: params[:member_event][:file])
+
+      # get rid of officer_ids before updating 
+      params[:member_event].delete(:officer_ids)
+
+      # approve_by_placeholder = @member_event.approve_by
+
+      if @member_event.update(member_event_params)
         
         # updates member points based on what type of event it is 
-        @member_event.approve_by = approve_by_placeholder
+        # @member_event.approve_by = approve_by_placeholder
         if previous_approval != @member_event.approved_status
           if @member_event.approved_status == true
             if @member_event.event.point_type == "Civic Engagement"
