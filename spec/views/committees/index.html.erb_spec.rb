@@ -1,6 +1,9 @@
 require 'rails_helper'
+require 'support/test_user'
 
 RSpec.describe 'committees/index', type: :view do
+  include_context 'admin oauth for views'
+
   before(:each) do
     newmember = Member.create!(
       name: 'John'

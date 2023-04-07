@@ -2,6 +2,18 @@
 
 <%= render @excuse %>
 
+<% if !@excuse.approved %>
+  <%= form_tag approve_excuse_path(@excuse), method: :patch do %>
+    <%= submit_tag "Approve" %>
+  <% end %>
+<% end %>
+
+<% if @excuse.approved %>
+  <%= form_tag unapprove_excuse_path(@excuse), method: :patch do %>
+    <%= submit_tag "Undo Approval" %>
+  <% end %>
+<% end %>
+
 <div>
   <%= link_to "Edit this excuse", edit_excuse_path(@excuse) %> |
   <%= link_to "Back to excuses", excuses_path %>
