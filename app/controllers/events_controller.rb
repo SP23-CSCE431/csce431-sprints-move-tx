@@ -6,6 +6,8 @@ class EventsController < ApplicationController
   before_action :set_member
   before_action :member_admin_deletion_protection
   before_action :authenticate_user
+  before_action :authenticate_admin, only: %i[ edit update destroy new delete create]
+
 
   # GET /events or /events.json
   def index
@@ -217,6 +219,11 @@ class EventsController < ApplicationController
     # protects against site crashing when deleting members
     def member_admin_deletion_protection
       redirect_to new_member_path if @user.nil?
+    end
+
+    # only lets admins on certain pages
+    def authenticate_admin
+      redirect_to root_path if !@user.nil? && (@user.position == 'Member')
     end
 
     # allows admins to check off on who has access to site
