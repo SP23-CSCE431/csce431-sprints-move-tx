@@ -18,7 +18,7 @@ class MemberEvent < ApplicationRecord
 
   # checks to see if phrase matches the meetings phrase
   def phrase_matches_event_phrase
-    if self.event != nil
+    unless self.event.nil?
       if self.event.event_type == 'Meeting'
         errors.add(:phrase, 'Entered wrong password try again') unless self.phrase == event.phrase
       end

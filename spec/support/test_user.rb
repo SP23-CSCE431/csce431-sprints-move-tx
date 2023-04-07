@@ -18,15 +18,15 @@ shared_context 'test user' do
       visit '/admins/sign_in'
       click_on 'Sign in with Google'
       visit new_member_path
-      fill_in 'member[name]', with: "wayland"
-      select "None", from: 'member[committee_id]'
-      fill_in "member[admin_password]", with: "Officer"
-      click_on "Create Member"
+      fill_in 'member[name]', with: 'wayland'
+      select 'None', from: 'member[committee_id]'
+      fill_in 'member[admin_password]', with: 'Officer'
+      click_on 'Create Member'
     end
   end
 
   # function is used to set up oath before each request test
-  shared_context "test user requests" do
+  shared_context 'test user requests' do
     before(:each) do
       OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
         provider: 'google_oauth2',
@@ -50,7 +50,7 @@ shared_context 'test user' do
 
   # function is used to set up oath before each view test
   shared_context 'admin oauth for views' do
-  before() do
+  before(:each) do
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
       provider: 'google_oauth2',
@@ -63,7 +63,7 @@ shared_context 'test user' do
     })
     current_admin = Admin.create!(email: 'waylandmoody55@tamu.edu', full_name: 'Jerry Moody', id: 1) # create an admin for testing
     allow(view).to receive(:current_admin).and_return(current_admin) # stub current_admin method
-    user = Member.create!(position: 'Vice President', id: 1, name: 'wayland', admin_id: 1) # create a member with the admin as its foreign key
+    user = Member.create!(position: 'Vice President', id: 1, name: 'wayland', admin_id: 1, status: true) # create a member with the admin as its foreign key
     assign(:member, user) # assign the member to @member
     assign(:user, user)
   end

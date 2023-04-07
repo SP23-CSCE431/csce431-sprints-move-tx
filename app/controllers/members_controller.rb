@@ -6,9 +6,26 @@ class MembersController < ApplicationController
   before_action :member_admin_deletion_protection, only: %i[edit update destroy index]
   before_action :authenticate_user
 
+  @@sorting = ''
 
   def index
-    @members = Member.order(:id)
+    # Searching for members
+    search_members if params[:search]
+    # Sorting the members table based on if it was clicked already or not
+    if params[:sort] == @@sorting
+      @members = Member.order(params[:sort]).reverse
+      @@sorting = ''
+    elsif params[:sort] != @@sorting
+      @members = Member.order(params[:sort])
+      @@sorting = params[:sort]
+    else
+      @members = Member.all
+    end
+  end
+
+  def search_members
+    # Search for member
+    redirect_to member_path(@member) if @member = Member.all.find { |member| member.name.include?(params[:search]) }
   end
 
   def show
@@ -21,24 +38,25 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(name: params[:member][:name],
-      committee_id: params[:member][:committee_id],
-      position: params[:member][:position],
-      civicPoints: params[:member][:civicPoints],
-      outreachPoints: params[:member][:outreachPoints],
-      socialPoints: params[:member][:socialPoints],
-      marketingPoints: params[:member][:marketingPoints],
-      totalPoints: params[:member][:totalPoints],
-      admin_id: params[:member][:admin_id]
-    )
-
+                         committee_id: params[:member][:committee_id],
+                         position: params[:member][:position],
+                         civicPoints: params[:member][:civicPoints],
+                         outreachPoints: params[:member][:outreachPoints],
+                         socialPoints: params[:member][:socialPoints],
+                         marketingPoints: params[:member][:marketingPoints],
+                         totalPoints: params[:member][:totalPoints],
+                         admin_id: params[:member][:admin_id]
+                        )
     respond_to do |format|
       if @member.save
         # if the member does not have connected account connect email to member
         if @member.admin.nil? && @user.nil?
-          if params[:member][:admin_password] == "Officer"
-            @member.update(admin_id: current_admin.id, position: "Admin", civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0, status: "true")
+          if params[:member][:admin_password] == 'Officer'
+            @member.update(admin_id: current_admin.id, position: 'Admin', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
+                           totalPoints: 0, status: 'true')
           else
-            @member.update(admin_id: current_admin.id, position: "Member", civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, totalPoints: 0)
+            @member.update(admin_id: current_admin.id, position: 'Member', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
+                           totalPoints: 0)
           end
         end
         format.html { redirect_to member_url(@member), notice: 'Member was successfully created.' }
@@ -71,9 +89,7 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     @member.destroy
     Admin.all.each do |admin|
-      if admin.member.nil?
-        admin.destroy
-      end
+      admin.destroy if admin.member.nil?
     end
     redirect_to members_path
   end
@@ -91,13 +107,11 @@ class MembersController < ApplicationController
 
       Member.where(status: nil).destroy_all
       Admin.all.each do |admin|
-        if admin.member.nil?
-          admin.destroy
-        end
+        admin.destroy if admin.member.nil?
       end
 
       # Member.where(status: false).destory_all
-      redirect_to members_path, notice: "Members Accepted"
+      redirect_to members_path, notice: 'Members Accepted'
     end
   end
 
@@ -123,27 +137,22 @@ class MembersController < ApplicationController
   end
 
   def member_admin_deletion_protection
-    if @user.nil?
-      redirect_to new_member_path
-    end
+    redirect_to new_member_path if @user.nil?
   end
 
   # only lets admins on certain pages
   def authenticate_admin
-    if !@user.nil?
-      if @user.position == 'Member'
-        redirect_to root_path
-      end
-    end
+    redirect_to root_path if !@user.nil? && (@user.position == 'Member')
   end
 
   # allows admins to check off on who has access to site
   def authenticate_user
-    if @user != nil
-      if @user.status == nil
-        redirect_to root_path notice: "Pending Leadership approval"
-      end
-    end
+    redirect_to root_path notice: 'Pending Leadership approval' if !@user.nil? && @user.status.nil?
+  end
+
+  # allows admins to check off on who has access to site
+  def authenticate_user
+    redirect_to root_path notice: 'Pending Leadership approval' if !@user.nil? && @user.status.nil?
   end
 
 end

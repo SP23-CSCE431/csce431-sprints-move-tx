@@ -9,35 +9,35 @@ RSpec.describe "Member's View based on position", type: :feature do
   describe 'Member' do
 
     # Tests for the member trying to view restricted pages
-    scenario 'Visit Members List' do
+    it 'Visit Members List' do
       visit members_path
-      expect(current_path).to eq '/'
+      expect(page).to have_current_path '/'
     end
 
-    scenario 'Visit Committees' do
+    it 'Visit Committees' do
       visit committees_path
-      expect(current_path).to eq '/'
+      expect(page).to have_current_path '/'
     end
 
-    scenario 'Visit Excuses' do
+    it 'Visit Excuses' do
       visit excuses_path
-      expect(current_path).to eq '/excuses'
+      expect(page).to have_current_path '/excuses'
     end
 
     # Rainy Test for the member trying ot view the pages
-    scenario 'Visit Members List' do
+    it 'Visit Members List' do
       visit members_path
-      expect(current_path).not_to  eq '/members'
+      expect(page).to have_no_current_path '/members'
     end
 
-    scenario 'Visit Committees' do
+    it 'Visit Committees' do
       visit committees_path
-      expect(current_path).not_to eq '/committees'
+      expect(page).to have_no_current_path '/committees'
     end
 
-    scenario 'Visit Excuses' do
+    it 'Visit Excuses' do
       visit excuses_path
-      expect(current_path).not_to eq '/'
+      expect(page).to have_no_current_path '/'
     end
   end
 end

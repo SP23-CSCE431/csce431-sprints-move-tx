@@ -11,10 +11,15 @@
 
  <%# go to version 2 if type is meeting %>
   <% if @member_event.event.event_type == "Meeting" %>
-      <%= link_to "Edit this member event", edit_member_event_path(@member_event, version: 2) %> 
+      <% unless @user.position == "Member" %>
+        <%= link_to "Edit this member event", edit_member_event_path(@member_event, version: 2) %> 
+      <% end %>
   <% end %>
 
   <%= link_to "Back to member events", member_events_path %>
 
-  <%= button_to "Destroy this member event", @member_event, method: :delete %>
+  <% unless @user.position == "Member" %>
+    <%= button_to "Destroy this member event", @member_event, method: :delete %>
+  <% end %>
+
 </div>

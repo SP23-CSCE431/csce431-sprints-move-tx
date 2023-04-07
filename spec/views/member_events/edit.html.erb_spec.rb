@@ -1,9 +1,22 @@
 require 'rails_helper'
+require 'support/test_user'
+
 
 RSpec.describe 'member_events/edit', type: :view do
+
+  setup do 
+    MemberEvent.delete_all
+    Member.delete_all
+    Event.delete_all
+    Admin.delete_all
+  end
+  
+  # allow for oauth access
+  include_context 'admin oauth for views'
+
   let(:committee1) {
     Committee.create!(
-      name: "MyCommittee"
+      name: 'MyCommittee'
     )
   }
   let(:member) {

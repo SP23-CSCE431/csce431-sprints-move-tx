@@ -7,19 +7,19 @@ RSpec.describe 'Members integration', type: :feature do
 
     let!(:committee1) {
         Committee.create!(
-            name: 'MyCommittee1'
+          name: 'MyCommittee1'
         )
     }
     let!(:committee2) {
         Committee.create!(
-            name: 'MyCommittee2'
+          name: 'MyCommittee2'
         )
     }
-    let!(:committee3) {
-        Committee.create!(
-            name: 'MyCommittee4'
-        )
-    }
+    #     let!(:committee3) {
+    #         Committee.create!(
+    #             name: 'MyCommittee3'
+    #         )
+    #     }
     let!(:valid_attributes) {
         {
             name: 'MyName1',
@@ -69,7 +69,7 @@ RSpec.describe 'Members integration', type: :feature do
             click_on 'Create Member'
             visit update_status_path
             check(valid_attributes[:names])
-            click_on "Confirm Statuses"
+            click_on 'Confirm Statuses'
             
             visit members_path
             expect(page).to have_content(valid_attributes[:name])
