@@ -2,8 +2,19 @@ require 'rails_helper'
 
 RSpec.describe Excuse, type: :model do
 
+    let!(:member) { Member.create!(name: 'MyName1') }
+    let!(:event) do
+      Event.create!(
+        name: 'Park clean up',
+        date: Date.parse('2022-12-15'),
+        point_type: 'Outreach',
+        event_type: 'Service'
+      )
+    end
+    
+
     subject do
-        described_class.new(description: 'MyDescription')
+        described_class.new(description: 'MyDescription', member_id: member.id, event_id: event.id)
     end
 
     # Checks if the file input is valid with or without file present

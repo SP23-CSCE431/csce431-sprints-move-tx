@@ -22,7 +22,7 @@ RSpec.describe Excuse, type: :model do
       end
       it 'is invalid' do
         expect(excuse).to be_invalid
-        expect(excuse.errors[:file]).to include('File must be a PDF')
+        expect(excuse.errors[:file]).to include('File must be a PDF, JPEG, PNG, GIF, DOC, or DOCX')
       end
     end
   end

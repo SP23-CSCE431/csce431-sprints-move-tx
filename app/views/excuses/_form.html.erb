@@ -16,6 +16,11 @@
     <%= form.text_area :description %>
   </div>
 
+  <div class="field">
+    <%= form.label :event_id %>
+    <%= form.collection_select :event_id, Event.all, :id, :name %>
+  </div>
+
   <div>
     <%= form.label :file, style: "display: block" %>
     <%= form.file_field :file %>

@@ -7,9 +7,13 @@
     <%= render committee %>
     <p>
       <%= link_to "Show this committee", committee %>
-      <%= link_to "Delete this committee", delete_committee_path(committee), class: "action delete" %>
+      <%if @user.position != "Member"%> |
+        <%= link_to "Edit this committee", edit_committee_path(committee) %> |
+        <%= link_to "Delete this committee", delete_committee_path(committee), class: "action delete" %>
+      <% end %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "New committee", new_committee_path %>
+<%if @user.position != "Member"%>
+  <%= link_to "New committee", new_committee_path %>
+<% end %>
