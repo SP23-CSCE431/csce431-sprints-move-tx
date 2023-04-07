@@ -30,7 +30,7 @@ class MembersController < ApplicationController
         $members = Member.where("position = ?", params[:pos_filter]).all
       # return all members if user wants any position
       elsif params[:pos_filter] == "Any"
-        $members = Member.where("position = Admin or position = Member").all
+        $members = Member.where("position = 'Admin' or position = 'Member'").all
       end
     end
 
