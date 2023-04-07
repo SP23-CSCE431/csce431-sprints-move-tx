@@ -40,7 +40,7 @@ RSpec.describe 'Navigation Integration:', type: :feature do
     # Member Events button goes to Member Events
     scenario 'Navigation bar: Member Events' do
       visit root_path
-      click_on 'Member Events'
+      click_on 'Activities'
       expect(current_path).to eq '/member_events'
     end
     # Events button does not go to home

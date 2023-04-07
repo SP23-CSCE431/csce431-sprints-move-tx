@@ -34,13 +34,8 @@
   <%# makes a dropdown to where you can only see admins %>
     <% Member.where.not(position: "Member").each do |officer| %>
       <div>
-        <% if member_event.approve_by.to_s.include?(officer.name) %>
-          <%= form.label :officer_ids, officer.name, style: "disply: block" %>
-          <%= form.check_box :officer_ids, {multiple: true}, officer.name, checked: member_event.approve_by.to_s.include?(officer.name) %>
-        <% else %>
-          <%= form.label :officer_ids, officer.name, style: "disply: block" %>
-          <%= form.check_box :officer_ids, {multiple: true}, officer.name, checked: false %>
-        <% end %>
+        <%= form.label :officer_ids, officer.name, style: "display: block"%>
+        <%= form.check_box :officer_ids, {multiple: true}, officer.name, nil %>
       </div>
     <% end %>
 
@@ -64,7 +59,7 @@
 
   <br>
     <div>
-      <%= form.submit %>
+      <%= form.submit "Submit service" %>
     </div>
    <% end %>
 

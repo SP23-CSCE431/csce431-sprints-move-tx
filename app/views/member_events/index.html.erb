@@ -1,9 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
-<h2>Member Events</h2>
-<%= link_to "Meeting Sign in", new_member_event_path(version: 2) %>
+<h2>Activities</h2>
+<%= link_to "Meeting Sign In", new_member_event_path(version: 2) %>
 <br>
-<%= link_to "New Service event", new_member_event_path(version: 1) %>
+<%= link_to "New Service Submission", new_member_event_path(version: 1) %>
 
 <div id="member_events">
   <%# shows events that need to be checked off on if user is an admin %>
@@ -38,7 +38,7 @@
 
             <!-- Actions for each member event -->
             <td class="actions">
-              <%= link_to("Show this member event", member_event_path(member_event), class: 'action show') %>
+              <%= link_to("Show this approval", member_event_path(member_event), class: 'action show') %>
             </td>
           </tr>
         <% end %>
@@ -75,7 +75,7 @@
 
             <!-- Actions for each member event -->
             <td class="actions">
-              <%= link_to("Show this member event", member_event_path(member_event), class: 'action show') %>
+              <%= link_to("Show this service", member_event_path(member_event), class: 'action show') %>
             </td>
           </tr>
         <% end %>
@@ -100,7 +100,7 @@
 
             <!-- Actions for each member event -->
             <td class="actions">
-              <%= link_to("Show this member event", member_event_path(member_event), class: 'action show') %>
+              <%= link_to("Show this meeting attendance", member_event_path(member_event), class: 'action show') %>
             </td>
           </tr>
         <% end %>

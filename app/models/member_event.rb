@@ -29,4 +29,5 @@ class MemberEvent < ApplicationRecord
   def event_exists?
     event.present?
   end
+
 end
