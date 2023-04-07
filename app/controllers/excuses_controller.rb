@@ -18,7 +18,7 @@ class ExcusesController < ApplicationController
 
   # GET /excuses or /excuses.json
   def index
-    if @user.position == 'Admin' then
+    if @user.position != 'Member' then
       @excuses = Excuse.all.order(created_at: :desc)
       @members = Member.all.order(name: :asc)
       @events = Event.all.order(date: :asc)
@@ -39,7 +39,7 @@ class ExcusesController < ApplicationController
 
   # GET /excuses/1 or /excuses/1.json
   def show
-    if @user.position == 'Admin' then
+    if @user.position != 'Member' then
       render 'show'
     else
       render 'member_show'

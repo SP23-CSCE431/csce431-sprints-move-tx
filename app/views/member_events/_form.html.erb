@@ -19,7 +19,8 @@
     <%= form.select :event_id, Event.where(event_type: ["Service","Personal/Non-Event"]).order(:name).map { |event| [event.name, event.id] } %>
   </div>
 
-  <% if @user.position != "Member" %>
+
+  <% unless @user.position == "Member" %>
 
     <div>
       <%= form.label :approved_status, style: "display: block" %>
@@ -43,6 +44,7 @@
 
 
   <br>
+
   <% if member_event.file.attached? %>
     <div>
       <%= form.label :file, style: "display: block" %>
@@ -55,11 +57,10 @@
     <div>
   <% end %>
 
-
-
   <br>
     <div>
       <%= form.submit "Submit service" %>
+      
     </div>
    <% end %>
 

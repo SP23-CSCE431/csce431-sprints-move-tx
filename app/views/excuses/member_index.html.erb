@@ -1,7 +1,10 @@
-<%= link_to('Back to Home page', {controller: 'main', action: 'index'}) %><br />
 <p style="color: green"><%= notice %></p>
 
 <h1>My Excuses</h1>
+
+<%= link_to "New excuse", new_excuse_path %>
+
+<%# table containing all of the excuse information - for members, this will only contain their own excuses %>
 <table class="listing" id="Excuse list" summary="Excuse list" style="width: 100%;">
     <!-- table heads -->
     <tr class="header">
@@ -30,4 +33,3 @@
     <% end %>
   </table>
 
-<%= link_to "New excuse", new_excuse_path %>

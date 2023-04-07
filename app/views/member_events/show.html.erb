@@ -18,7 +18,7 @@
 
   <%= link_to "Back to activities", member_events_path %>
 
-  <% if @user.position != "Member"%>
+  <% unless @user.position == "Member" %>
     <% if @member_event.event.event_type == "Meeting"%>
       <%= button_to "Destroy this meeting submission", @member_event, method: :delete %>
     <% elsif @member_event.event.event_type == "Service" || @member_event.event.event_type == "Personal/Non-Event" %>

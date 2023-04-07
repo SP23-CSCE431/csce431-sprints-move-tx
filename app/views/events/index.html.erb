@@ -50,7 +50,7 @@
             <td>n/a</td>
           <% end %>
           <td> <%= event.event_type %></td>
-          <% if @user.position != "Member"%>
+          <% unless @user.position == "Member" %>
             <% if event.phrase? %>
               <td> <%= event.phrase %></td>
             <% else %>
