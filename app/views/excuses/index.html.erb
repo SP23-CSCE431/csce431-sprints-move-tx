@@ -4,6 +4,7 @@
 
 <%= link_to "New excuse", new_excuse_path %>
 
+<%# form submission for filtering excuses by member and by event %>
 <%= form_tag excuses_path, method: :get do %>
   <div>
     <div class="filter-field">
@@ -20,7 +21,7 @@
   </div>
 <% end %>
 
-
+<%# just makes the filter look a bit better %>
 <style>
   .filter-field {
     display: inline-block;
@@ -29,7 +30,7 @@
 </style>
 
 
-
+<%# table containing all of the excuse information - for admins, this will contain all member's excuses %>
 <table class="listing" id="Excuse list" summary="Excuse list" style="width: 100%;">
     <!-- table heads -->
     <tr class="header">
