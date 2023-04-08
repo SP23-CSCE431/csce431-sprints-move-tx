@@ -171,19 +171,8 @@ RSpec.describe 'Members integration', type: :feature do
 
     describe 'Deletion' do
         scenario 'delete entry' do
-            visit new_member_path
-            
-            select committee4.name,             from: 'member[committee_id]'
-            fill_in 'member[name]',             with: delete_attributes[:name]
-            fill_in 'member[position]',         with: delete_attributes[:position]
-            fill_in 'member[civicPoints]',      with: delete_attributes[:civicPoints]
-            fill_in 'member[outreachPoints]',   with: delete_attributes[:outreachPoints]
-            fill_in 'member[socialPoints]',     with: delete_attributes[:socialPoints]
-            fill_in 'member[marketingPoints]',  with: delete_attributes[:marketingPoints]
-            #fill_in "member[totalPoints]",      with: valid_attributes[:totalPoints]
-            click_on 'Create Member'
+            @temp = Member.create!(delete_attributes)
 
-            visit members_path
             expect(page).to have_content(delete_attributes[:name])
             expect(page).to have_content(committee4.name)
             expect(page).to have_content(delete_attributes[:position])
@@ -193,7 +182,7 @@ RSpec.describe 'Members integration', type: :feature do
             expect(page).to have_content(delete_attributes[:marketingPoints])
             expect(page).to have_content(delete_attributes[:totalPoints])
 
-            visit delete_member_url(@temp)
+            visit delete_member_path(@temp)
             click_on 'Delete Member'
             visit members_path
             expect(page).not_to have_content(delete_attributes[:name])
