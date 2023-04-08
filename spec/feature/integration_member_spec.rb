@@ -173,6 +173,7 @@ RSpec.describe 'Members integration', type: :feature do
         scenario 'delete entry' do
             @temp = Member.create!(delete_attributes)
 
+            visit members_path
             expect(page).to have_content(delete_attributes[:name])
             expect(page).to have_content(committee4.name)
             expect(page).to have_content(delete_attributes[:position])
