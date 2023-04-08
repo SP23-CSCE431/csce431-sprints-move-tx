@@ -21,8 +21,12 @@
     <% end %>
   <% end %>
 
-  <% if @member_event.event.event_type == "Service" || @member_event.event.event_type == "Personal/Non-Event" %>
+  <% if @member_event.event.event_type == "Service" %>
     <%= link_to "Edit this service", edit_member_event_path(@member_event, version: 1 ) %> |
+  <% end %>
+
+  <% if @member_event.event.event_type == "Personal/Non-Event" %>
+    <%= link_to "Edit this Personal/Non-Event", edit_member_event_path(@member_event, version: 3) %> |
   <% end %>
 
  <%# go to version 2 if type is meeting %>

@@ -4,6 +4,9 @@
 <%= link_to "Meeting Sign In", new_member_event_path(version: 2) %>
 <br>
 <%= link_to "New Service Submission", new_member_event_path(version: 1) %>
+<br>
+<%= link_to "New Personal/Non-Event Submission", new_member_event_path(version: 3) %>
+
 
 <div id="member_events">
   <%# shows events that need to be checked off on if user is an admin %>
@@ -49,7 +52,12 @@
               <% elsif member_event.approved_status == true %>
                 <%= link_to("Unapprove", member_event_path(member_event), class: 'action show') %>
               <% end %>
-              <%= link_to("Edit", edit_member_event_path(member_event), class: 'action edit') %>
+
+              <% if member_event.event.event_type == 'Service' %>
+                <%= link_to("Edit", edit_member_event_path(member_event, version: 1), class: 'action edit') %>
+              <% elsif member_event.event.event_type == 'Personal/Non-Event' %>
+                <%= link_to("Edit", edit_member_event_path(member_event, version: 3), class: 'action edit') %>
+              <% end %>
               <%= link_to("Delete", delete_member_event_path(member_event), class: 'action delete') %>
             </td>
           </tr>
@@ -59,8 +67,8 @@
     <br>
   <% end %>
 
-  <%# shows all events user has entered  %>
-  <h2> My Services: </h2>
+  <%# shows all events and Personal/Non-Events user has entered  %>
+  <h2> My Services and Non-Event Submissions: </h2>
     <table class="listing" id="My Services" summary="My Services" style="width: 100%;">
       <!-- table heads -->
       <tr class="header">
@@ -89,7 +97,11 @@
             <td class="actions">
               <%= link_to("Show", member_event_path(member_event), class: 'action show') %>
               <% if @user.position != "Member" %>
-                <%= link_to("Edit", edit_member_event_path(member_event), class: 'action edit') %>
+                <% if member_event.event.event_type == 'Service' %>
+                  <%= link_to("Edit", edit_member_event_path(member_event, version: 1), class: 'action edit') %>
+                <% elsif member_event.event.event_type == 'Personal/Non-Event' %>
+                  <%= link_to("Edit", edit_member_event_path(member_event, version: 3), class: 'action edit') %>
+                <% end %>
                 <%= link_to("Delete", delete_member_event_path(member_event), class: 'action delete') %>
               <% end %>
             </td>
