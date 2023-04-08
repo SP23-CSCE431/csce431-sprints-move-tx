@@ -1,0 +1,45 @@
+<%= link_to "Back to Activities", member_events_path %>
+
+<% if @member_event.event.event_type == "Service" || @member_event.event.event_type == "Personal/Non-Event"%>
+    <div class="delete">
+        <h2>Destroy Service</h2>
+        <%= form_for(@member_event, method: 'delete') do |f| %>
+            <p>Are you sure you want to permanently delete this Submission?</p>
+            <p>Event: <%= @member_event.event.name %></p>
+            <p>Member: <%= @member_event.member.name %></p>
+            <% if @member_event.event.event_type == "Personal/Non-Event" %>
+                <p>Description: <%= @member_event.description%> <p>
+            <% end %>
+
+            <p>Approved status: <%= @member_event.approved_status %></p>
+            <% if (@member_event.approved_status == true) then %>
+                <p>Approved date: <%= @member_event.approve_date %></p>
+            <% end %>
+
+            <p>Approve by: <%= @member_event.approve_by %></p>
+            <% if @member_event.file.attached?%>
+                <p>File: <%= link_to @member_event.file.filename, @member_event.file  %></p>
+            <% else %>
+                <p>File: n/a</p>
+            <% end %>
+
+            <div class="form-buttons">
+                <%= f.submit("Delete service") %>
+            </div>
+        <% end %>
+    </div>
+<% end %>
+
+<% if @member_event.event.event_type == "Meeting" %>
+    <div class="delete">
+        <h2>Destroy Meeting</h2>
+        <%= form_for(@member_event, method: 'delete') do |f| %>
+            <p>Are you sure you want to permanently delete this meeting submission?</p>
+            <p>Event: <%= @member_event.event.name %></p>
+            <p>Member: <%= @member_event.member.name %></p>
+            <div class="form-buttons">
+                <%= f.submit("Delete meeting") %>
+            </div>
+        <% end %>
+    </div>
+<% end %>
