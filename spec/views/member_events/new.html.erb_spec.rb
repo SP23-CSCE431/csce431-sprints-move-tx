@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'support/test_user'
+
 
 RSpec.describe 'member_events/new', type: :view do
 
@@ -49,8 +51,6 @@ RSpec.describe 'member_events/new', type: :view do
     assert_select 'form[action=?][method=?]', member_events_path, 'post' do
 
       assert_select 'select[name=?]', 'member_event[event_id]'
-
-      assert_select 'input[name=?]', 'member_event[approved_status]'
 
       assert_select 'input[type=?][name=?][value=?]', 'checkbox', 'member_event[officer_ids][]', 'MyName'
     end

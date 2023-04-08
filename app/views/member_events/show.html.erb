@@ -5,24 +5,44 @@
 <div>
 
   <%# go to version 1 if type is service %>
-  <% if @member_event.event.event_type == "Service" || @member_event.event.event_type == "Personal/Non-Event" %>
-    <%= link_to "Approve this service", edit_member_event_path(@member_event, version: 1 ) %> 
+  
+  <%# give admins the ability to approve/disapprove services %>
+  <% if @user.position != "Member" && (@member_event.event.event_type == "Service" || @member_event.event.event_type == "Personal/Non-Event") %>
+    <% if !@member_event.approved_status %>
+      <%= form_tag approve_member_event_path(@member_event), method: :patch do %>
+        <%= submit_tag "Approve" %>
+      <% end %>
+    <% end %>
+
+    <% if @member_event.approved_status %>
+      <%= form_tag unapprove_member_event_path(@member_event), method: :patch do %>
+        <%= submit_tag "Undo Approval" %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if @member_event.event.event_type == "Service" %>
+    <%= link_to "Edit this service", edit_member_event_path(@member_event, version: 1 ) %> |
+  <% end %>
+
+  <% if @member_event.event.event_type == "Personal/Non-Event" %>
+    <%= link_to "Edit this Personal/Non-Event", edit_member_event_path(@member_event, version: 3) %> |
   <% end %>
 
  <%# go to version 2 if type is meeting %>
   <% if @member_event.event.event_type == "Meeting" %>
       <% if @user.position != "Member"%>
-        <%= link_to "Edit this meeting submission", edit_member_event_path(@member_event, version: 2) %> 
+        <%= link_to "Edit this meeting submission", edit_member_event_path(@member_event, version: 2) %> |
       <% end %>
   <% end %>
 
-  <%= link_to "Back to activities", member_events_path %>
+  <%= link_to "Back to activities", member_events_path %> |
 
   <% unless @user.position == "Member" %>
     <% if @member_event.event.event_type == "Meeting"%>
-      <%= button_to "Destroy this meeting submission", @member_event, method: :delete %>
+      <%= link_to "Delete this meeting submission", delete_member_event_path(@member_event), class: "action delete" %>
     <% elsif @member_event.event.event_type == "Service" || @member_event.event.event_type == "Personal/Non-Event" %>
-      <%= button_to "Destroy this service", @member_event, method: :delete %>
+      <%= link_to "Delete this service", delete_member_event_path(@member_event), class: "action delete" %>
     <% end %>
   <% end %>
 </div>

@@ -10,6 +10,14 @@
       <%= member_event.member.name %>
     </p>
 
+
+    <% if member_event.event.event_type == "Personal/Non-Event" %>
+      <p>
+        <strong>Description:</strong>
+        <%= member_event.description %>
+      </p>
+    <% end %>
+
     <p>
       <strong>Approved status:</strong>
       <%= member_event.approved_status %>

@@ -3,6 +3,10 @@
   <h2>New Service Submission</h2>
 <% end %>
 
+<% if @version == "3" %>
+  <h2>New Personal/Non-Event Submission</h2>
+<% end %>
+
 <%# title for meetings %>
 <% if @version == "2" %>
   <h2>Meeting Sign In</h2>
