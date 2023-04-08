@@ -185,7 +185,6 @@ RSpec.describe 'Members integration', type: :feature do
             click_on 'Create Member'
 
             visit members_path
-            click_on 'Filter'
             expect(page).to have_content(delete_attributes[:name])
             expect(page).to have_content(committee4.name)
             expect(page).to have_content(delete_attributes[:position])
