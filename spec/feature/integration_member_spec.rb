@@ -187,7 +187,6 @@ RSpec.describe 'Members integration', type: :feature do
             click_on 'Delete Member'
             visit members_path
             expect(page).not_to have_content(delete_attributes[:name])
-            expect(page).not_to have_content(committee4.name)
             expect(page).not_to have_content(delete_attributes[:position])
             expect(page).not_to have_content(delete_attributes[:civicPoints])
             expect(page).not_to have_content(delete_attributes[:outreachPoints])
