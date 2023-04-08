@@ -6,8 +6,8 @@
   <!-- Filter members by committee or position -->
   <p>Filter By:</p>
   <%= form_tag members_path, method: :get do %>
-    Committee: <%= text_field_tag :com_filter %>
-    Position: <%= select_tag :pos_filter, options_for_select(["Any", "Admin", "Member"]) %>
+    <%= select_tag :com_filter, options_for_select(Committee.all.map { |com| com.name } + ["None"]), prompt: "Select Committee" %>
+    <%= select_tag :pos_filter, options_for_select(["Member", "Officer"]), prompt: "Select Position" %>
     <%= submit_tag "Filter" %>
   <% end %>
 
