@@ -52,10 +52,6 @@
    color: #fff2d5;
  }
 
- th:active {
-   background-color: #fff;
- }
-
  .table-head {
    text-align: center;
    text-decoration: none;
@@ -76,28 +72,6 @@
    text-decoration: none;
    color: #fff2d5
  }
-
- /* .table-sort {
-   color: #fff2d5;
-   background-color: #510000;
-   text-decoration: hidden;
-   overflow: hidden;
-   text-align: center;
-   display: inline-block;
-   padding: 14px 20px;
- }
-
- .table-sort:hover {
-   text-decoration: none;
-   color: #CEC5AF;
-   background-color: #410100;
- }
-
- .table-sort:active {
-   text-decoration: none;
-   color: #CEC5AF;
-   background-color: #410100;
- } */
 
 /* Navbar CSS Style */
 .navbar {

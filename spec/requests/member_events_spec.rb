@@ -62,6 +62,10 @@ RSpec.describe '/member_events', type: :request do
     skip('Add a hash of attributes invalid for your model')
   }
 
+  before do 
+    @type = "Meeting"
+  end
+
   describe 'GET /index' do
     it 'renders a successful response' do
       MemberEvent.create! valid_attributes

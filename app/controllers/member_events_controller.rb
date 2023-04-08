@@ -12,7 +12,22 @@ class MemberEventsController < ApplicationController
   # GET /member_events or /member_events.json
   def index
     @member_events = MemberEvent.all
-  end
+    @service_events = MemberEvent.all
+
+    # filter service if event type present in submission
+    if params[:service_status].present?
+      if params[:service_status] == 'All'
+        @service_events = MemberEvent.all
+      elsif params[:service_status] == 'Approved'
+        @service_events = MemberEvent.where('approved_status = true').all
+      elsif params[:service_status] == 'Pending'
+        @service_events = MemberEvent.where('approved_status = false').all
+      end
+      # if service_status not present do regular filtering
+      else 
+        @service_events = MemberEvent.all
+      end
+    end
 
   # GET /member_events/1 or /member_events/1.json
   def show
@@ -34,7 +49,18 @@ class MemberEventsController < ApplicationController
 
   # POST /member_events or /member_events.json
   def create # rubocop:todo Metrics/AbcSize, Style/InlineComment
-    custom_value = params[:member_event][:officer_ids].to_s
+    custom_value = ""
+    officers = params[:member_event][:officer_ids] || []
+
+    # loops through to populate custom_value which will be used to make approve by 
+    officers.each_with_index do |officer, index|
+      if index == officers.length - 1
+        custom_value += officer.to_s
+      else 
+        custom_value += officer.to_s + ", "
+      end
+    end
+
     @member_event = MemberEvent.new(event_id: params[:member_event][:event_id],
                                     member_id: params[:member_event][:member_id],
                                     approved_status: params[:member_event][:approved_status],
@@ -54,7 +80,7 @@ class MemberEventsController < ApplicationController
         if @member_event.phrase?
           format.html { redirect_to member_event_url(@member_event), notice: 'You successfully signed into meeting' }
         else
-          format.html { redirect_to member_event_url(@member_event), notice: 'Member event was successfully created.' }
+          format.html { redirect_to member_event_url(@member_event), notice: 'Service was successfully submitted.' }
         end
         format.json { render :show, status: :created, location: @member_event }
       else
@@ -68,17 +94,35 @@ class MemberEventsController < ApplicationController
   # PATCH/PUT /member_events/1 or /member_events/1.json
   def update
     respond_to do |format|
-      approval_change = false
-      previous_approval = @member_event.approved_status
       approve_by_placeholder = @member_event.approve_by
-      if @member_event.update(event_id: params[:member_event][:event_id],
-                                    approved_status: params[:member_event][:approved_status],
-                                    approve_date: params[:member_event][:approve_date],
-                                    phrase: params[:member_event][:phrase],
-                                    file: params[:member_event][:file])
+      # loops through to populate custom_value which will be used to make approve by 
+      custom_value = ""
+      officers = params[:member_event][:officer_ids] || []
+      officers.each_with_index do |officer, index|
+        if index == officers.length - 1
+          custom_value += officer.to_s
+        else 
+          custom_value += officer.to_s + ", "
+        end
+      end
+
+      previous_approval = @member_event.approved_status
+
+      # get rid of officer_ids before updating 
+      params[:member_event].delete(:officer_ids)
+
+      if @member_event.update(member_event_params)
         
+        # keeps old approve_by if nothin was changed 
+        if custom_value == ""
+          @member_event.approve_by = approve_by_placeholder
+          @member_event.save
+        else
+          @member_event.approve_by = custom_value
+          @member_event.save
+        end
+
         # updates member points based on what type of event it is 
-        @member_event.approve_by = approve_by_placeholder
         if previous_approval != @member_event.approved_status
           if @member_event.approved_status == true
             if @member_event.event.point_type == "Civic Engagement"
@@ -110,7 +154,7 @@ class MemberEventsController < ApplicationController
         if @member_event.phrase?
           format.html {redirect_to member_event_url(@member_event), notice: 'Member Sign in was successfully updated.'}
         else
-          format.html { redirect_to member_event_url(@member_event), notice: 'Member event was successfully updated.' }
+          format.html { redirect_to member_event_url(@member_event), notice: 'Service was successfully updated.' }
         end
         format.json { render :show, status: :ok, location: @member_event }
 
@@ -123,11 +167,24 @@ class MemberEventsController < ApplicationController
 
   # DELETE /member_events/1 or /member_events/1.json
   def destroy
+    type = @member_event.event.event_type
     @member_event.destroy
 
-    respond_to do |format|
-      format.html { redirect_to member_events_url, notice: 'Member event was successfully destroyed.' }
-      format.json { head :no_content }
+    if type == "Meeting"
+      respond_to do |format|
+          format.html { redirect_to member_events_url, notice: 'Meeting Attendance successfully destroyed.'}
+          format.json { head :no_content }
+      end
+    elsif type == "Service" || type == "Personal/Non-Event"
+      respond_to do |format|
+        format.html { redirect_to member_events_url, notice: 'Service was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to member_events_url, notice: 'Member event successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

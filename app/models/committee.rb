@@ -6,6 +6,8 @@ class Committee < ApplicationRecord
     validates :name, presence: true
     validate :formatting
 
+    has_many :members, dependent: :nullify
+
     # ensure that correct input formats are used
     def formatting
         # name only has letters, numbers, apostraphes, and space characters

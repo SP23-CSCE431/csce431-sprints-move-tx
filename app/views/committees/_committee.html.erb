@@ -5,8 +5,12 @@
   </p>
 
   <p>
-    <strong>Leader member:</strong>
-    <%= committee.member.name %>
+    <strong>Director:</strong>
+    <% if committee.member.present? %>
+      <%= committee.member.name %>
+    <% else %>
+      None
+    <% end %>
   </p>
 
 </div>

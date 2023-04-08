@@ -34,10 +34,10 @@
               <li class="nav-item <%= active_class(members_path) %>">
                 <%= link_to "Member List", members_path, class: 'nav-link' %>
               </li>
-              <li class="nav-item <%= active_class(committees_path) %>">
-                <%= link_to "Committees", committees_path, class: 'nav-link' %>
-              </li>
             <% end %>
+            <li class="nav-item <%= active_class(committees_path) %>">
+              <%= link_to "Committees", committees_path, class: 'nav-link' %>
+            </li>
             <li class="nav-item <%= active_class(excuses_path) %>">
               <%= link_to "Excuses", excuses_path, class: 'nav-link' %>
             </li>
@@ -46,7 +46,7 @@
             <%= link_to "Events", events_path, class: 'nav-link' %>
           </li>
           <li class="nav-item <%= active_class(member_events_path) %>">
-            <%= link_to "Member Events", member_events_path, class: 'nav-link' %>
+            <%= link_to "Activities", member_events_path, class: 'nav-link' %>
           </li>
 
           <!-- Checks if the user is logged in as to not display invalid information -->

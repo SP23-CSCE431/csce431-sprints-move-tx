@@ -1,5 +1,5 @@
 <div id="<%= dom_id member_event %>">
-  <% if member_event.event.event_type == "Service"%>
+  <% if member_event.event.event_type == "Service" || member_event.event.event_type == "Personal/Non-Event"%>
     <p>
       <strong>Event:</strong>
       <%= member_event.event.name %>

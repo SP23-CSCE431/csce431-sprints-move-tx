@@ -14,18 +14,17 @@
     </tr>
     <tr>
       <th>Committee</th>
+      <td>
       <% if @member.committee_id != nil %>
-        <td><%= @member.committee.name %><td>
+        <%= @member.committee.name %>
       <%else%>
-        <td>None</td>
+        None
       <% end %>
+      </td>
     </tr>
     <tr>
       <th>Position</th>
       <td><%= @member.position %></td>
-      <% if @member.position %>
-        <%= @member.position %>
-      <% end %>
     </tr>
     <tr>
       <th>Civic Points</th>

@@ -22,7 +22,7 @@
   </p>
 
   <% if event.phrase? %>
-    <% if @user.position != "Member" %>
+    <% unless @user.position == "Member" %>
       <p>
         <strong>Phrase:</strong>
         <%= event.phrase %>

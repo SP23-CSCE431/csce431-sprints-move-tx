@@ -1,10 +1,8 @@
 class CommitteesController < ApplicationController
   before_action :set_committee, only: %i[ show edit update destroy ]
   before_action :set_member
-  before_action :authenticate_admin
   before_action :member_admin_deletion_protection
   before_action :authenticate_user
-  
 
   # GET /committees or /committees.json
   def index
@@ -13,15 +11,18 @@ class CommitteesController < ApplicationController
 
   # GET /committees/1 or /committees/1.json
   def show
+    @members = Member.all
   end
 
   # GET /committees/new
   def new
+    redirect_to committees_path if !@user.nil? && (@user.position == 'Member')
     @committee = Committee.new
   end
 
   # GET /committees/1/edit
   def edit
+    redirect_to committees_path if !@user.nil? && (@user.position == 'Member')
   end
 
   # POST /committees or /committees.json
@@ -53,7 +54,9 @@ class CommitteesController < ApplicationController
   end
 
   def delete
+    redirect_to committees_path if !@user.nil? && (@user.position == 'Member')
     @committee = Committee.find(params[:id])
+    @members = Member.all
   end
 
   # DELETE /committees/1 or /committees/1.json
@@ -67,6 +70,7 @@ class CommitteesController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_committee
       @committee = Committee.find(params[:id])
@@ -81,17 +85,12 @@ class CommitteesController < ApplicationController
       @user = current_admin.member
     end
 
-    # only lets admins on certain pages
-    def authenticate_admin
-      redirect_to root_path if !@user.nil? && (@user.position == 'Member')
-    end
-
     # protects against site crashing when deleting members
     def member_admin_deletion_protection
       redirect_to new_member_path if @user.nil?
     end
 
-    # allows admins to check off on who has access to site 
+    # allows admins to check off on who has access to site
     def authenticate_user
       redirect_to root_path notice: 'Pending Leadership approval' if @user.status.nil?
     end
