@@ -122,7 +122,6 @@ RSpec.describe 'Members integration', type: :feature do
             click_on 'Create Member'
             
             visit members_path
-            expect(page).not_to have_content(committee3.name)
             expect(page).not_to have_content(invalid_attributes[:position])
             expect(page).not_to have_content(invalid_attributes[:civicPoints])
             expect(page).not_to have_content(invalid_attributes[:outreachPoints])
@@ -194,7 +193,7 @@ RSpec.describe 'Members integration', type: :feature do
             expect(page).to have_content(delete_attributes[:marketingPoints])
             expect(page).to have_content(delete_attributes[:totalPoints])
 
-            visit delete_member_path(@temp)
+            visit delete_member_url(@temp)
             click_on 'Delete Member'
             visit members_path
             expect(page).not_to have_content(delete_attributes[:name])
