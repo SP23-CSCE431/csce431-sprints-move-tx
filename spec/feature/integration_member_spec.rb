@@ -15,11 +15,16 @@ RSpec.describe 'Members integration', type: :feature do
           name: 'MyCommittee2'
         )
     }
-    #     let!(:committee3) {
-    #         Committee.create!(
-    #             name: 'MyCommittee3'
-    #         )
-    #     }
+    let!(:committee3) {
+        Committee.create!(
+            name: 'MyCommittee3'
+        )
+    }
+    let!(:committee4) {
+        Committee.create!(
+            name: 'MyCommittee4'
+        )
+    }
     let!(:valid_attributes) {
         {
             name: 'MyName1',
@@ -48,9 +53,31 @@ RSpec.describe 'Members integration', type: :feature do
         }
     }
 
+    let!(:delete_attributes) {
+        {
+            name: 'MyName4',
+            committee_id: committee4.id,
+            position: 'MyPosition4',
+            civicPoints: 10200,
+            outreachPoints: 10201,
+            socialPoints: 10202,
+            marketingPoints: 10203,
+            totalPoints: 40806,
+            status: true
+        }
+    }
+
     let!(:invalid_attributes) {
         {
-            name: nil
+            name: nil,
+            committee_id: committee3.id,
+            position: 'MyPosition3',
+            civicPoints: 10100,
+            outreachPoints: 10101,
+            socialPoints: 10102,
+            marketingPoints: 10103,
+            totalPoints: 40406,
+            status: true
         }
     }
 
@@ -85,23 +112,22 @@ RSpec.describe 'Members integration', type: :feature do
         scenario 'create with invalid name' do
             visit new_member_path
             
-            select committee2.name,             from: 'member[committee_id]'
-            fill_in 'member[position]',         with: valid_attributes[:position]
-            fill_in 'member[civicPoints]',      with: valid_attributes[:civicPoints]
-            fill_in 'member[outreachPoints]',   with: valid_attributes[:outreachPoints]
-            fill_in 'member[socialPoints]',     with: valid_attributes[:socialPoints]
-            fill_in 'member[marketingPoints]',  with: valid_attributes[:marketingPoints]
+            select committee3.name,             from: 'member[committee_id]'
+            fill_in 'member[position]',         with: invalid_attributes[:position]
+            fill_in 'member[civicPoints]',      with: invalid_attributes[:civicPoints]
+            fill_in 'member[outreachPoints]',   with: invalid_attributes[:outreachPoints]
+            fill_in 'member[socialPoints]',     with: invalid_attributes[:socialPoints]
+            fill_in 'member[marketingPoints]',  with: invalid_attributes[:marketingPoints]
             #fill_in "member[totalPoints]",      with: valid_attributes[:totalPoints]
             click_on 'Create Member'
             
             visit members_path
-            expect(page).not_to have_content(committee2.name)
-            expect(page).not_to have_content(valid_attributes[:position])
-            expect(page).not_to have_content(valid_attributes[:civicPoints])
-            expect(page).not_to have_content(valid_attributes[:outreachPoints])
-            expect(page).not_to have_content(valid_attributes[:socialPoints])
-            expect(page).not_to have_content(valid_attributes[:marketingPoints])
-            expect(page).not_to have_content(valid_attributes[:totalPoints])
+            expect(page).not_to have_content(invalid_attributes[:position])
+            expect(page).not_to have_content(invalid_attributes[:civicPoints])
+            expect(page).not_to have_content(invalid_attributes[:outreachPoints])
+            expect(page).not_to have_content(invalid_attributes[:socialPoints])
+            expect(page).not_to have_content(invalid_attributes[:marketingPoints])
+            expect(page).not_to have_content(invalid_attributes[:totalPoints])
         end
     end
 
@@ -145,29 +171,99 @@ RSpec.describe 'Members integration', type: :feature do
 
     describe 'Deletion' do
         scenario 'delete entry' do
-            @temp = Member.create!(valid_attributes)
+            @temp = Member.create!(delete_attributes)
+
             visit members_path
+            expect(page).to have_content(delete_attributes[:name])
+            expect(page).to have_content(committee4.name)
+            expect(page).to have_content(delete_attributes[:position])
+            expect(page).to have_content(delete_attributes[:civicPoints])
+            expect(page).to have_content(delete_attributes[:outreachPoints])
+            expect(page).to have_content(delete_attributes[:socialPoints])
+            expect(page).to have_content(delete_attributes[:marketingPoints])
+            expect(page).to have_content(delete_attributes[:totalPoints])
+
+            visit delete_member_path(@temp)
+            click_on 'Delete Member'
+            visit members_path
+            expect(page).not_to have_content(delete_attributes[:name])
+            expect(page).not_to have_content(delete_attributes[:position])
+            expect(page).not_to have_content(delete_attributes[:civicPoints])
+            expect(page).not_to have_content(delete_attributes[:outreachPoints])
+            expect(page).not_to have_content(delete_attributes[:socialPoints])
+            expect(page).not_to have_content(delete_attributes[:marketingPoints])
+            expect(page).not_to have_content(delete_attributes[:totalPoints])
+
+        end
+    end
+
+    describe 'Filtering' do
+        # sunny day committee filter test case
+        scenario 'Filter committee correctly' do
+            @temp1 = Member.create!(valid_attributes)
+
+            visit members_path
+            select committee1.name,         from: 'com_filter_select'
+            click_on 'Filter'
+
             expect(page).to have_content(valid_attributes[:name])
-            expect(page).to have_content(committee1.name)
             expect(page).to have_content(valid_attributes[:position])
             expect(page).to have_content(valid_attributes[:civicPoints])
             expect(page).to have_content(valid_attributes[:outreachPoints])
             expect(page).to have_content(valid_attributes[:socialPoints])
             expect(page).to have_content(valid_attributes[:marketingPoints])
             expect(page).to have_content(valid_attributes[:totalPoints])
+        end
 
-            visit delete_member_path(@temp)
-            click_on 'Delete Member'
+        # rainy day committee filter test case
+        scenario 'Filter committee incorrectly' do
+            @temp1 = Member.create!(valid_attributes)
+
             visit members_path
+            select 'None',         from: 'com_filter_select'
+            click_on 'Filter'
+
             expect(page).not_to have_content(valid_attributes[:name])
-            expect(page).not_to have_content(committee1.name)
             expect(page).not_to have_content(valid_attributes[:position])
             expect(page).not_to have_content(valid_attributes[:civicPoints])
             expect(page).not_to have_content(valid_attributes[:outreachPoints])
             expect(page).not_to have_content(valid_attributes[:socialPoints])
             expect(page).not_to have_content(valid_attributes[:marketingPoints])
             expect(page).not_to have_content(valid_attributes[:totalPoints])
+        end
 
+        # sunny day position filter test case
+        scenario 'Filter position correctly' do
+            @temp1 = Member.create!(valid_attributes)
+
+            visit members_path
+            select 'Officer',         from: 'pos_filter_select'
+            click_on 'Filter'
+
+            expect(page).to have_content(valid_attributes[:name])
+            expect(page).to have_content(valid_attributes[:position])
+            expect(page).to have_content(valid_attributes[:civicPoints])
+            expect(page).to have_content(valid_attributes[:outreachPoints])
+            expect(page).to have_content(valid_attributes[:socialPoints])
+            expect(page).to have_content(valid_attributes[:marketingPoints])
+            expect(page).to have_content(valid_attributes[:totalPoints])
+        end
+
+        # rainy day position filter test case
+        scenario 'Filter position incorrectly' do
+            @temp1 = Member.create!(valid_attributes)
+
+            visit members_path
+            select 'Member',         from: 'pos_filter_select'
+            click_on 'Filter'
+
+            expect(page).not_to have_content(valid_attributes[:name])
+            expect(page).not_to have_content(valid_attributes[:position])
+            expect(page).not_to have_content(valid_attributes[:civicPoints])
+            expect(page).not_to have_content(valid_attributes[:outreachPoints])
+            expect(page).not_to have_content(valid_attributes[:socialPoints])
+            expect(page).not_to have_content(valid_attributes[:marketingPoints])
+            expect(page).not_to have_content(valid_attributes[:totalPoints])
         end
     end
 end
