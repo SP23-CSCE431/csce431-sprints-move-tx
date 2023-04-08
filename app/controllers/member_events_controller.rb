@@ -5,9 +5,46 @@ class MemberEventsController < ApplicationController
   before_action :set_member 
 
   # admin validation for certain pages (will be determined on later date)
-  before_action :authorize_admin, only: %i[edit update destroy]
+  before_action :authorize_admin, only: %i[update destroy delete approve unapprove]
   before_action :member_admin_deletion_protection
   before_action :authenticate_user
+
+
+  def approve
+    @member_event = MemberEvent.find(params[:id])
+    @member_event.update(approved_status: true)
+
+    if @member_event.event.point_type == "Civic Engagement"
+      @member_event.member.civicPoints += 1
+    elsif @member_event.event.point_type == "Marketing"
+      @member_event.member.marketingPoints += 1
+    elsif @member_event.event.point_type == "Chapter Development"
+      @member_event.member.socialPoints += 1
+    elsif @member_event.event.point_type == "Outreach"
+      @member_event.member.outreachPoints += 1
+    end
+    @member_event.member.save
+    
+    redirect_to @member_event
+  end
+
+  def unapprove
+    @member_event = MemberEvent.find(params[:id])
+    @member_event.update(approved_status: false)
+
+    if @member_event.event.point_type == "Civic Engagement"
+      @member_event.member.civicPoints -= 1
+    elsif @member_event.event.point_type == "Marketing"
+      @member_event.member.marketingPoints -=1
+    elsif @member_event.event.point_type == "Chapter Development"
+      @member_event.member.socialPoints -= 1
+    elsif @member_event.event.point_type == "Outreach"
+      @member_event.member.outreachPoints -=1
+    end
+
+    @member_event.member.save    
+    redirect_to @member_event
+  end
 
   # GET /member_events or /member_events.json
   def index
@@ -40,6 +77,11 @@ class MemberEventsController < ApplicationController
     # creates version of page for service or meeting that defaults to version 1
     @version = params[:version] || '1'
 
+  end
+
+  # for deletion page
+  def delete
+    @member_event = MemberEvent.find(params[:id])
   end
 
   # GET /member_events/1/edit
@@ -120,34 +162,6 @@ class MemberEventsController < ApplicationController
         else
           @member_event.approve_by = custom_value
           @member_event.save
-        end
-
-        # updates member points based on what type of event it is 
-        if previous_approval != @member_event.approved_status
-          if @member_event.approved_status == true
-            if @member_event.event.point_type == "Civic Engagement"
-              @member_event.member.civicPoints += 1
-            elsif @member_event.event.point_type == "Marketing"
-              @member_event.member.marketingPoints += 1
-            elsif @member_event.event.point_type == "Chapter Development"
-              @member_event.member.socialPoints += 1
-            elsif @member_event.event.point_type == "Outreach"
-              @member_event.member.outreachPoints += 1
-            end
-            @member_event.member.save
-          end
-          if @member_event.approved_status == false
-            if @member_event.event.point_type == "Civic Engagement"
-              @member_event.member.civicPoints -= 1
-            elsif @member_event.event.point_type == "Marketing"
-              @member_event.member.marketingPoints -=1
-            elsif @member_event.event.point_type == "Chapter Development"
-              @member_event.member.socialPoints -= 1
-            elsif @member_event.event.point_type == "Outreach"
-              @member_event.member.outreachPoints -=1
-            end
-            @member_event.member.save
-          end
         end
 
         # if member_event is for a meeting then give a meeting message, if not give a member event message 

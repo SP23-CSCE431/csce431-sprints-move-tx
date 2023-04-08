@@ -19,19 +19,7 @@
     <%= form.select :event_id, Event.where(event_type: ["Service","Personal/Non-Event"]).order(:name).map { |event| [event.name, event.id] } %>
   </div>
 
-
-  <% unless @user.position == "Member" %>
-
-    <div>
-      <%= form.label :approved_status, style: "display: block" %>
-      <%= form.check_box :approved_status %>
-    </div>
-    
-  <% end %>
-
   <br>
-
-
   <%# makes a dropdown to where you can only see admins %>
     <% Member.where.not(position: "Member").each do |officer| %>
       <div>
@@ -59,7 +47,7 @@
 
   <br>
     <div>
-      <%= form.submit "Submit service" %>
+      <%= form.submit(member_event.new_record? ? "Submit service" : "Edit service") %>
       
     </div>
    <% end %>
@@ -80,7 +68,7 @@
 
   <br>
     <div>
-      <%= form.submit "Sign into meeting"%>
+      <%= form.submit(member_event.new_record? ? "Sign into meeting" : "Edit meeting attendance") %>
     </div>
   <% end %>
 <% end %>

@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :member_events
+  
+  resources :member_events do
+    member do
+      get :delete
+      patch :approve
+      patch :unapprove
+    end
+  end
   
   root "main#index"
 

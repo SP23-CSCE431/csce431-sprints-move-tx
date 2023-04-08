@@ -44,7 +44,13 @@
 
             <!-- Actions for each member event -->
             <td class="actions">
-              <%= link_to("Show this approval", member_event_path(member_event), class: 'action show') %>
+              <% if member_event.approved_status == false%>
+                <%= link_to("Approve", member_event_path(member_event), class: 'action show') %>
+              <% elsif member_event.approved_status == true %>
+                <%= link_to("Unapprove", member_event_path(member_event), class: 'action show') %>
+              <% end %>
+              <%= link_to("Edit", edit_member_event_path(member_event), class: 'action edit') %>
+              <%= link_to("Delete", delete_member_event_path(member_event), class: 'action delete') %>
             </td>
           </tr>
         <% end %>
@@ -81,7 +87,11 @@
 
             <!-- Actions for each member event -->
             <td class="actions">
-              <%= link_to("Show this service", member_event_path(member_event), class: 'action show') %>
+              <%= link_to("Show", member_event_path(member_event), class: 'action show') %>
+              <% if @user.position != "Member" %>
+                <%= link_to("Edit", edit_member_event_path(member_event), class: 'action edit') %>
+                <%= link_to("Delete", delete_member_event_path(member_event), class: 'action delete') %>
+              <% end %>
             </td>
           </tr>
         <% end %>
@@ -106,7 +116,11 @@
 
             <!-- Actions for each member event -->
             <td class="actions">
-              <%= link_to("Show this meeting attendance", member_event_path(member_event), class: 'action show') %>
+              <%= link_to("Show", member_event_path(member_event), class: 'action show') %>
+                <% if @user.position != "Member" %>
+                  <%= link_to("Edit", edit_member_event_path(member_event), class: 'action edit') %>
+                  <%= link_to("Delete", delete_member_event_path(member_event), class: 'action delete') %>
+                <% end %>
             </td>
           </tr>
         <% end %>
