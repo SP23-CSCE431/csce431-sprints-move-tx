@@ -31,7 +31,7 @@
     </tr>
     <!-- Display each member -->
     <% @members.each do |member| %>
-      <% if @member.status == true %>
+      <% if member.status == true %>
         <tr>
           <td> <%= member.id %></td>
           <td> <%= member.name %></td>
