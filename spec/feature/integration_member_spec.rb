@@ -196,4 +196,40 @@ RSpec.describe 'Members integration', type: :feature do
 
         end
     end
+
+    describe 'Filtering' do
+        # sunny day committee filter test case
+        scenario 'Filter committee correctly' do
+            @temp1 = Member.create!(valid_attributes)
+
+            visit members_path
+            select committee1.name,         from: 'com_filter_select'
+            click_on 'Filter'
+
+            expect(page).to have_content(valid_attributes[:name])
+            expect(page).to have_content(valid_attributes[:position])
+            expect(page).to have_content(valid_attributes[:civicPoints])
+            expect(page).to have_content(valid_attributes[:outreachPoints])
+            expect(page).to have_content(valid_attributes[:socialPoints])
+            expect(page).to have_content(valid_attributes[:marketingPoints])
+            expect(page).to have_content(valid_attributes[:totalPoints])
+        end
+
+        # rainy day committee filter test case
+        scenario 'Filter committee correctly' do
+            @temp1 = Member.create!(valid_attributes)
+
+            visit members_path
+            select 'None',         from: 'com_filter_select'
+            click_on 'Filter'
+
+            expect(page).not_to have_content(valid_attributes[:name])
+            expect(page).not_to have_content(valid_attributes[:position])
+            expect(page).not_to have_content(valid_attributes[:civicPoints])
+            expect(page).not_to have_content(valid_attributes[:outreachPoints])
+            expect(page).not_to have_content(valid_attributes[:socialPoints])
+            expect(page).not_to have_content(valid_attributes[:marketingPoints])
+            expect(page).not_to have_content(valid_attributes[:totalPoints])
+        end
+    end
 end
