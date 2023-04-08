@@ -10,40 +10,40 @@ class MembersController < ApplicationController
   $members = Member.order(:id)
 
   def index
-    if params[:com_filter].present? || params[:pos_filter].present?
-      $members = Member.order(:id)
 
-      puts params[:com_filter]
-      puts params[:pos_filter]
+    if !params[:com_filter].nil? || !params[:pos_filter].nil?
+      if params[:com_filter].empty? && params[:pos_filter].empty?
+        $members = Member.order(:id).all
+      elsif !params[:com_filter].empty? || !params[:pos_filter].empty?
+        $members = Member.order(:id).all
 
-      if params[:com_filter].present? && params[:pos_filter].present?
-        if params[:com_filter] != "None"
-          com_id = Committee.find_by("name = ?", params[:com_filter]).id
-          $members = Member.where("committee_id = ? and position = ?", com_id, params[:pos_filter]).all
-        else
-          $members = Member.where("committee_id is null and position = ?", params[:pos_filter]).all
+        if !params[:com_filter].empty? && !params[:pos_filter].empty?
+          if params[:com_filter] != "None"
+            com_id = Committee.find_by("name = ?", params[:com_filter]).id
+            $members = Member.where("committee_id = ? and position = ?", com_id, params[:pos_filter]).all
+          else
+            $members = Member.where("committee_id is null and position = ?", params[:pos_filter]).all
+          end
+        elsif !params[:com_filter].empty? && params[:pos_filter].empty?
+          # check if user filtered by committee
+          # find committee user specified if they did not put none
+          if params[:com_filter] != "None"
+            com_id = Committee.find_by("name = ?", params[:com_filter]).id
+            $members = Member.where("committee_id = ?", com_id).all
+          # find all members with no committee
+          elsif params[:com_filter] == "None"
+            $members = Member.where("committee_id is null").all
+          end
+        elsif params[:com_filter].empty? && !params[:pos_filter].empty?
+          # check if user filtered by position
+          # return members that are either admins or members based on what the
+          # user specified
+          if params[:pos_filter] == "Member"
+            $members = Member.where("position = 'Member'").all
+          elsif params[:pos_filter] != "Member"
+            $members = Member.where("position != 'Member'").all
+          end
         end
-      elsif params[:com_filter].present? && !params[:pos_filter].present?
-        # check if user filtered by committee
-        # find committee user specified if they did not put none
-        if params[:com_filter] != "None"
-          com_id = Committee.find_by("name = ?", params[:com_filter]).id
-          $members = Member.where("committee_id = ?", com_id).all
-        # find all members with no committee
-        elsif params[:com_filter] == "None"
-          $members = Member.where("committee_id is null").all
-        end
-      elsif !params[:com_filter].present? && params[:pos_filter].present? 
-        # check if user filtered by position
-        # return members that are either admins or members based on what the
-        # user specified
-        if params[:pos_filter] == "Member"
-          $members = Member.where("position = 'Member'").all
-        elsif params[:pos_filter] != "Member"
-          $members = Member.where("position != 'Member'").all
-        end
-      else
-        $members = Member.order(:id)
       end
     end
 
