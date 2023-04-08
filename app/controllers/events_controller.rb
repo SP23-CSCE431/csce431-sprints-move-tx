@@ -146,7 +146,7 @@ class EventsController < ApplicationController
         @event.save
       end
 
-      if @event.event_type == 'Service'
+      if @event.event_type == 'Service' || @event.event_type == "Personal/Non-Event"
         @event.phrase = nil
         @event.save
       end

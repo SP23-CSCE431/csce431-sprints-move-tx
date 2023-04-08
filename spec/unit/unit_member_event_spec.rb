@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe MemberEvent, type: :model do
     # Creates member
+
     let(:member) {
         Member.create!(
             name: 'MyName'
