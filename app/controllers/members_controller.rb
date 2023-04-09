@@ -8,9 +8,19 @@ class MembersController < ApplicationController
 
   @@sorting = ''
 
-  $members = Member.order(:id)
+  $latest_update = Member.maximum(:updated_at)
+  $latest_create = Member.maximum(:created_at)
+
+  $members = Member.order(:id).all
 
   def index
+
+    # if member table has been changed then reset $members
+    latest_update = Member.maximum(:updated_at)
+    latest_create = Member.maximum(:created_at)
+    if $latest_update.nil? || latest_update > $latest_update || latest_create > $latest_create
+      $members = Member.order(:id).all
+    end
 
     if !params[:com_filter].nil? || !params[:pos_filter].nil?
       if params[:com_filter].empty? && params[:pos_filter].empty?
@@ -78,20 +88,20 @@ class MembersController < ApplicationController
 
   def search_members
     # Search for member
-    redirect_to member_path($member) if $member = Member.all.find { |member| member.name.include?(params[:search]) }
+    redirect_to member_path(@member) if @member = Member.all.find { |member| member.name.include?(params[:search]) }
 
   end
 
   def show
-    $member = Member.find(params[:id])
+    @member = Member.find(params[:id])
   end
 
   def new
-    $member = Member.new
+    @member = Member.new
   end
 
   def create
-    $member = Member.new(name: params[:member][:name],
+    @member = Member.new(name: params[:member][:name],
                          committee_id: params[:member][:committee_id],
                          position: params[:member][:position],
                          civicPoints: params[:member][:civicPoints],
@@ -102,19 +112,19 @@ class MembersController < ApplicationController
                          admin_id: params[:member][:admin_id]
                         )
     respond_to do |format|
-      if $member.save
+      if @member.save
         # if the member does not have connected account connect email to member
-        if $member.admin.nil? && $user.nil?
+        if @member.admin.nil? && @user.nil?
           if params[:member][:admin_password] == 'Officer'
-            $member.update(admin_id: current_admin.id, position: 'Admin', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
+            @member.update(admin_id: current_admin.id, position: 'Admin', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
                            totalPoints: 0, status: 'true')
           else
-            $member.update(admin_id: current_admin.id, position: 'Member', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
+            @member.update(admin_id: current_admin.id, position: 'Member', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
                            totalPoints: 0)
           end
         end
-        format.html { redirect_to member_url($member), notice: 'Member was successfully created.' }
-        format.json { render :show, status: :created, location: $member }
+        format.html { redirect_to member_url(@member), notice: 'Member was successfully created.' }
+        format.json { render :show, status: :created, location: @member }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: $member.errors, status: :unprocessable_entity }
@@ -123,28 +133,28 @@ class MembersController < ApplicationController
   end
 
   def edit
-    $member = Member.find(params[:id])
+    @member = Member.find(params[:id])
   end
 
   def update
-    $member = Member.find(params[:id])
-    if $member.update(member_params)
-      redirect_to member_path($member)
+    @member = Member.find(params[:id])
+    if @member.update(member_params)
+      redirect_to member_path(@member)
     else
       render('edit')
     end
   end
 
   def delete
-    $member = Member.find(params[:id])
+    @member = Member.find(params[:id])
   end
 
   def destroy
-    $member = Member.find(params[:id])
+    @member = Member.find(params[:id])
 
     # sets committee leader to null if deleting member
     Committee.all.each do |committee|
-      if $member.id == committee.member_id 
+      if @member.id == committee.member_id 
         committee.member_id = nil
         committee.save
       end
@@ -152,19 +162,19 @@ class MembersController < ApplicationController
 
     # deletes excuses if deleting member
     Excuse.all.each do |excuse|
-      if $member.id == excuse.member_id 
+      if @member.id == excuse.member_id 
         excuse.destroy
       end
     end
 
     # deletes member event if deleting member
     MemberEvent.all.each do |memberevent|
-      if $member.id == memberevent.member_id 
+      if @member.id == memberevent.member_id 
         memberevent.destroy
       end
     end
 
-    $member.destroy
+    @member.destroy
     Admin.all.each do |admin|
       admin.destroy if admin.member.nil?
     end
@@ -172,7 +182,7 @@ class MembersController < ApplicationController
   end
 
   def update_status
-    $members = Member.order(:id)
+    @members = Member.order(:id)
 
     if request.post?
       if params[:members].present?
