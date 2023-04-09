@@ -123,6 +123,21 @@ class EventsController < ApplicationController
 
   # DELETE /events/1 or /events/1.json
   def destroy
+
+    # delete Excuse of deleted event
+    Excuse.all.each do |excuse|
+      if @event.id == excuse.event_id 
+        excuse.destroy
+      end
+    end
+
+    # delete Member_Event of deleted event
+    MemberEvent.all.each do |memberevent|
+      if @event.id == memberevent.event_id 
+        memberevent.destroy
+      end
+    end
+
     @event.destroy
     # delete event in Google calendar
     delete_google_calendar_event(@event, CALENDAR.authorization.fetch_access_token!)

@@ -149,6 +149,20 @@ class MembersController < ApplicationController
       end
     end
 
+    # deletes excuses if deleting member
+    Excuse.all.each do |excuse|
+      if @member.id == excuse.member_id 
+        excuse.destroy
+      end
+    end
+
+    # deletes member event if deleting member
+    MemberEvent.all.each do |memberevent|
+      if @member.id == memberevent.member_id 
+        memberevent.destroy
+      end
+    end
+
     @member.destroy
     Admin.all.each do |admin|
       admin.destroy if admin.member.nil?
