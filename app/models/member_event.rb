@@ -6,6 +6,8 @@ class MemberEvent < ApplicationRecord
   validate :phrase_matches_event_phrase
   has_one_attached :file
 
+  before_validation :dependencies
+
   # when saving, update values given approval status
   before_save do
     self.approved_status = false if approved_status.nil?
@@ -25,9 +27,19 @@ class MemberEvent < ApplicationRecord
     end
   end
 
+
   # function that checks if the event exists. 
   def event_exists?
     event.present?
+  end
+
+  private 
+  # checks to see you have approve by before submitting
+  def dependencies 
+    if (self.event&.event_type == 'Service' || self.event&.event_type == 'Personal/Non-Event') && self.approve_by == ''
+      errors.add(:approve_by, "cannot be empty")
+      return false
+    end
   end
 
 end

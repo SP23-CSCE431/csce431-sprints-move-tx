@@ -11,27 +11,58 @@
     </div>
   <% end %>
 
-  <%# form submission for services %>
-  <% if @version == "1" || (member_event.errors[:phrase].any? == false && member_event.errors.any?) %>
-  <div>
-    <%= form.label :event_id, style: "display: block" %>
-    <%# filters for membere vents that are services %>
-    <%= form.select :event_id, Event.where(event_type: ["Service","Personal/Non-Event"]).order(:name).map { |event| [event.name, event.id] } %>
-  </div>
 
+    <%# form for personal/Non-Event %>
+    <% if @version == "3" || (member_event[:description])%>
+    <div>
+      <%= form.label :event_id, style: "display: block" %>
+      <%# filters for member events that are services %>
+      <%= form.select :event_id, Event.where(event_type: ["Personal/Non-Event"]).order(:name).map { |event| [event.name, event.id] } %>
+    </div>
 
-  <% unless @user.position == "Member" %>
+    <br>
+    <%# makes a dropdown to where you can only see admins %>
+    <% Member.where.not(position: "Member").each do |officer| %>
+      <div>
+        <%= form.label :officer_ids, officer.name, style: "display: block"%>
+        <%= form.check_box :officer_ids, {multiple: true}, officer.name, nil %>
+      </div>
+    <% end %>
+
+    <br>
+
+    <% if member_event.file.attached? %>
+      <div>
+        <%= form.label :file, style: "display: block" %>
+        <%= form.file_field :file, value: member_event.file %>
+      </div>
+    <% else %>
+      <div>
+        <%= form.label :file, style: "display: block" %>
+        <%= form.file_field :file, value: member_event.file.url %>
+      <div>
+    <% end %>
 
     <div>
-      <%= form.label :approved_status, style: "display: block" %>
-      <%= form.check_box :approved_status %>
+      <%= form.label :description, style: "display: block" %>
+      <%= form.text_area :description %>
     </div>
-    
+
+    <br>
+    <div>
+      <%= form.submit(member_event.new_record? ? "Submit Personal/Non-Event" : "Edit Personal/Non-Event") %>
+    </div>
   <% end %>
 
+  <%# form submission for services %>
+  <% if @version == "1" || (member_event.errors[:phrase].any? == false && member_event.errors[:description].any? == false && member_event.errors.any? && member_event[:description].nil?) %>
+  <div>
+    <%= form.label :event_id, style: "display: block" %>
+    <%# filters for member events that are services %>
+    <%= form.select :event_id, Event.where(event_type: ["Service"]).order(:name).map { |event| [event.name, event.id] } %>
+  </div>
+
   <br>
-
-
   <%# makes a dropdown to where you can only see admins %>
     <% Member.where.not(position: "Member").each do |officer| %>
       <div>
@@ -59,7 +90,7 @@
 
   <br>
     <div>
-      <%= form.submit "Submit service" %>
+      <%= form.submit(member_event.new_record? ? "Submit service" : "Edit service") %>
       
     </div>
    <% end %>
@@ -80,7 +111,7 @@
 
   <br>
     <div>
-      <%= form.submit "Sign into meeting"%>
+      <%= form.submit(member_event.new_record? ? "Sign into meeting" : "Edit meeting attendance") %>
     </div>
   <% end %>
 <% end %>

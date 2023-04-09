@@ -23,12 +23,12 @@
 
   <div>
     <%= form.label :event_type, style: "display: block" %>
-    <%= form.select :event_type, options_for_select([["Meeting"], ["Service"], ["Personal/Non-Event"]])%>
+    <%= form.select :event_type, options_for_select([["Meeting"], ["Service"], ["Personal/Non-Event"]], selected: event.event_type)%>
   </div>
 
   <div>
     <%= form.label :point_type, style: "display: block" %>
-    <%= form.select :point_type, options_for_select([[nil], ["Marketing"], ["Civic Engagement"], ["Chapter Development"], ["Outreach"]]) %>
+    <%= form.select :point_type, options_for_select([[nil], ["Marketing"], ["Civic Engagement"], ["Social"], ["Outreach"]], selected: event.point_type) %>
   </div>
 
   <div>

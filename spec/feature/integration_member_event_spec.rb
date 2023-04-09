@@ -19,6 +19,15 @@ RSpec.describe 'Member_Event integration', type: :feature do
         )
     }
 
+    let!(:event3) {
+        Event.create!(
+            name: 'Personal Non Event Outreach',
+            date: Date.parse('2022-12-15'),
+            point_type: 'Outreach',
+            event_type: 'Personal/Non-Event'
+        )
+    }
+
     let!(:member2) {
         Member.create!(
           name: 'MyName2'
@@ -92,9 +101,21 @@ RSpec.describe 'Member_Event integration', type: :feature do
         scenario 'create Service event with valid inputs' do
             visit new_member_event_path(version: 1)
             select event.name, from: 'member_event[event_id]'
+            check('member_event[officer_ids][]')
             # select valid_attributes[:member_id], from: "member_event[member_id]"
             click_on 'Submit service'
             expect(page).to have_content('Service was successfully submitted')
+        end
+
+        # personal/Non-Event sunny day scenario
+        scenario 'create individual service with valid inputs' do
+            visit new_member_event_path(version: 3)
+            select event3.name, from: 'member_event[event_id]'
+            check('member_event[officer_ids][]')
+            fill_in 'member_event[description]', with: "I did this and whatever"
+            # select valid_attributes[:member_id], from: "member_event[member_id]"
+            click_on 'Submit Personal/Non-Event'
+            expect(page).to have_content('Personal/Non-Event was successfully submitted')
         end
 
         # Meeting creation sunny day scenario 
@@ -123,7 +144,7 @@ RSpec.describe 'Member_Event integration', type: :feature do
             visit edit_member_event_path(@temp, version: 1)
             select event.name, from: 'member_event[event_id]'
             # select edit_attributes[:member_id], from: "member_event[member_id]"
-            click_on 'Submit service'
+            click_on 'Edit service'
             expect(page).to have_content('Service was successfully updated')
         end
     end
@@ -131,8 +152,8 @@ RSpec.describe 'Member_Event integration', type: :feature do
     describe 'Deletion' do
         scenario 'delete entry' do
             @temp = MemberEvent.create!(valid_attributes)
-            visit member_event_path(@temp)
-            click_on 'Destroy this service'
+            visit delete_member_event_path(@temp)
+            click_on 'Delete service'
             expect(page).to have_content('Service was successfully destroyed')
         end
     end
@@ -159,9 +180,8 @@ RSpec.describe 'Member_Event integration', type: :feature do
                 point_type: 'Civic Engagement'
             )
             @member_social_event = MemberEvent.create!(event_id: @social_event.id, member_id: @member1.id, approve_by:"[\"wayland\"]")
-            visit edit_member_event_path(@member_social_event)
-            check "member_event[approved_status]"
-            click_on "Submit service"
+            visit member_event_path(@member_social_event)
+            click_on "Approve"
             visit member_path(@member1)
             expect(page).to have_content("Civic Points 10011")
             expect(page).to have_content("Total Points 40047")
@@ -176,9 +196,8 @@ RSpec.describe 'Member_Event integration', type: :feature do
                 point_type: 'Outreach'
             )
             @member_social_event = MemberEvent.create!(event_id: @social_event.id, member_id: @member1.id, approve_by:"[\"wayland\"]")
-            visit edit_member_event_path(@member_social_event)
-            check "member_event[approved_status]"
-            click_on "Submit service"
+            visit member_event_path(@member_social_event)
+            click_on "Approve"
             visit member_path(@member1)
             expect(page).to have_content("Outreach Points 10012")
             expect(page).to have_content("Total Points 40047")
@@ -190,12 +209,11 @@ RSpec.describe 'Member_Event integration', type: :feature do
                 name: 'Jan Meeting',
                 date: Date.parse('2022-01-01'),
                 event_type: 'Service',
-                point_type: 'Chapter Development'
+                point_type: 'Social'
             )
             @member_social_event = MemberEvent.create!(event_id: @social_event.id, member_id: @member1.id, approve_by:"[\"wayland\"]")
-            visit edit_member_event_path(@member_social_event)
-            check "member_event[approved_status]"
-            click_on "Submit service"
+            visit member_event_path(@member_social_event)
+            click_on "Approve"
             visit member_path(@member1)
             expect(page).to have_content("Social Points 10013")
             expect(page).to have_content("Total Points 40047")
@@ -210,9 +228,8 @@ RSpec.describe 'Member_Event integration', type: :feature do
                 point_type: 'Marketing'
             )
             @member_social_event = MemberEvent.create!(event_id: @social_event.id, member_id: @member1.id, approve_by:"[\"wayland\"]")
-            visit edit_member_event_path(@member_social_event)
-            check "member_event[approved_status]"
-            click_on "Submit service"
+            visit member_event_path(@member_social_event)
+            click_on "Approve"
             visit member_path(@member1)
             expect(page).to have_content("Marketing Points 10014")
             expect(page).to have_content("Total Points 40047")
