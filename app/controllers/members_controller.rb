@@ -8,40 +8,51 @@ class MembersController < ApplicationController
 
   @@sorting = ''
 
+  $latest_update = Member.maximum(:updated_at)
+  $latest_create = Member.maximum(:created_at)
+
+  $members = Member.order(:id).all
+
   def index
-    @members = Member.order(:id)
+
+    # if member table has been changed then reset $members
+    latest_update = Member.maximum(:updated_at)
+    latest_create = Member.maximum(:created_at)
+    if $latest_update.nil? || latest_update > $latest_update || latest_create > $latest_create
+      $members = Member.order(:id).all
+    end
 
     if !params[:com_filter].nil? || !params[:pos_filter].nil?
       if params[:com_filter].empty? && params[:pos_filter].empty?
-        @members = Member.order(:id).all
+        $members = Member.order(:id).all
       elsif !params[:com_filter].empty? || !params[:pos_filter].empty?
-        @members = Member.order(:id).all
+        $members = Member.order(:id).all
 
         if !params[:com_filter].empty? && !params[:pos_filter].empty?
           if params[:com_filter] != "None"
             com_id = Committee.find_by("name = ?", params[:com_filter]).id
-            @members = Member.where("committee_id = ? and position = ?", com_id, params[:pos_filter]).all
+            $members = Member.where("committee_id = ? and position = ?", com_id, params[:pos_filter]).all
           else
-            @members = Member.where("committee_id is null and position = ?", params[:pos_filter]).all
+            $members = Member.where("committee_id is null and position = ?", params[:pos_filter]).all
           end
         elsif !params[:com_filter].empty? && params[:pos_filter].empty?
           # check if user filtered by committee
           # find committee user specified if they did not put none
           if params[:com_filter] != "None"
             com_id = Committee.find_by("name = ?", params[:com_filter]).id
-            @members = Member.where("committee_id = ?", com_id).all
+            $members = Member.where("committee_id = ?", com_id).all
           # find all members with no committee
           elsif params[:com_filter] == "None"
-            @members = Member.where("committee_id is null").all
+            $members = Member.where("committee_id is null").all
           end
         elsif params[:com_filter].empty? && !params[:pos_filter].empty?
           # check if user filtered by position
           # return members that are either admins or members based on what the
           # user specified
           if params[:pos_filter] == "Member"
-            @members = Member.where("position = 'Member'").all
+            $members = Member.where("position = 'Member'").all
           elsif params[:pos_filter] != "Member"
-            @members = Member.where("position != 'Member'").all
+            $members = Member.where("position != 'Member'").all
           end
         end
       end
@@ -52,24 +63,24 @@ class MembersController < ApplicationController
     # Sorting the members table based on if it was clicked already or not
     if params[:sort] == @@sorting # if this is so, then items need to be reversed
       if params[:sort] == "id"
-        @members = @members.sort_by { |member| member.id }.reverse
+        $members = $members.sort_by { |member| member.id }.reverse
       elsif params[:sort] == "name"
-        @members = @members.sort_by { |member| member.name }.reverse
+        $members = $members.sort_by { |member| member.name }.reverse
       elsif params[:sort] == "committee_id"
-        @members = @members.sort_by { |member| (member.committee_id.present?) ? member.committee_id : -1 }.reverse
+        $members = $members.sort_by { |member| (member.committee_id.present?) ? member.committee_id : -1 }.reverse
       elsif params[:sort] == "position"
-        @members = @members.sort_by { |member| member.position }.reverse
+        $members = $members.sort_by { |member| member.position }.reverse
       end
       @@sorting = ''
     elsif params[:sort] != @@sorting # if this is so, items don't need to be reversed
       if params[:sort] == "id"
-        @members = @members.sort_by { |member| member.id } # must be sort by for array
+        $members = $members.sort_by { |member| member.id } # must be sort by for array
       elsif params[:sort] == "name"
-        @members = @members.sort_by { |member| member.name }
+        $members = $members.sort_by { |member| member.name }
       elsif params[:sort] == "committee_id"
-        @members = @members.sort_by { |member| (member.committee_id.present?) ? member.committee_id : -1 }
+        $members = $members.sort_by { |member| (member.committee_id.present?) ? member.committee_id : -1 }
       elsif params[:sort] == "position"
-        @members = @members.sort_by { |member| member.position }
+        $members = $members.sort_by { |member| member.position }
       end
       @@sorting = params[:sort]
     end
@@ -116,7 +127,7 @@ class MembersController < ApplicationController
         format.json { render :show, status: :created, location: @member }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
+        format.json { render json: $member.errors, status: :unprocessable_entity }
       end
     end
   end
