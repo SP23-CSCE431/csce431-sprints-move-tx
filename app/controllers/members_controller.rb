@@ -140,6 +140,15 @@ class MembersController < ApplicationController
 
   def destroy
     @member = Member.find(params[:id])
+
+    # sets committee leader to null if deleting member
+    Committee.all.each do |committee|
+      if @member.id == committee.member_id 
+        committee.member_id = nil
+        committee.save
+      end
+    end
+
     @member.destroy
     Admin.all.each do |admin|
       admin.destroy if admin.member.nil?
