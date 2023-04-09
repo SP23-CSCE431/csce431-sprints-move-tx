@@ -8,40 +8,41 @@ class MembersController < ApplicationController
 
   @@sorting = ''
 
+  $members = Member.order(:id)
+
   def index
-    @members = Member.order(:id)
 
     if !params[:com_filter].nil? || !params[:pos_filter].nil?
       if params[:com_filter].empty? && params[:pos_filter].empty?
-        @members = Member.order(:id).all
+        $members = Member.order(:id).all
       elsif !params[:com_filter].empty? || !params[:pos_filter].empty?
-        @members = Member.order(:id).all
+        $members = Member.order(:id).all
 
         if !params[:com_filter].empty? && !params[:pos_filter].empty?
           if params[:com_filter] != "None"
             com_id = Committee.find_by("name = ?", params[:com_filter]).id
-            @members = Member.where("committee_id = ? and position = ?", com_id, params[:pos_filter]).all
+            $members = Member.where("committee_id = ? and position = ?", com_id, params[:pos_filter]).all
           else
-            @members = Member.where("committee_id is null and position = ?", params[:pos_filter]).all
+            $members = Member.where("committee_id is null and position = ?", params[:pos_filter]).all
           end
         elsif !params[:com_filter].empty? && params[:pos_filter].empty?
           # check if user filtered by committee
           # find committee user specified if they did not put none
           if params[:com_filter] != "None"
             com_id = Committee.find_by("name = ?", params[:com_filter]).id
-            @members = Member.where("committee_id = ?", com_id).all
+            $members = Member.where("committee_id = ?", com_id).all
           # find all members with no committee
           elsif params[:com_filter] == "None"
-            @members = Member.where("committee_id is null").all
+            $members = Member.where("committee_id is null").all
           end
         elsif params[:com_filter].empty? && !params[:pos_filter].empty?
           # check if user filtered by position
           # return members that are either admins or members based on what the
           # user specified
           if params[:pos_filter] == "Member"
-            @members = Member.where("position = 'Member'").all
+            $members = Member.where("position = 'Member'").all
           elsif params[:pos_filter] != "Member"
-            @members = Member.where("position != 'Member'").all
+            $members = Member.where("position != 'Member'").all
           end
         end
       end
@@ -52,24 +53,24 @@ class MembersController < ApplicationController
     # Sorting the members table based on if it was clicked already or not
     if params[:sort] == @@sorting # if this is so, then items need to be reversed
       if params[:sort] == "id"
-        @members = @members.sort_by { |member| member.id }.reverse
+        $members = $members.sort_by { |member| member.id }.reverse
       elsif params[:sort] == "name"
-        @members = @members.sort_by { |member| member.name }.reverse
+        $members = $members.sort_by { |member| member.name }.reverse
       elsif params[:sort] == "committee_id"
-        @members = @members.sort_by { |member| (member.committee_id.present?) ? member.committee_id : -1 }.reverse
+        $members = $members.sort_by { |member| (member.committee_id.present?) ? member.committee_id : -1 }.reverse
       elsif params[:sort] == "position"
-        @members = @members.sort_by { |member| member.position }.reverse
+        $members = $members.sort_by { |member| member.position }.reverse
       end
       @@sorting = ''
     elsif params[:sort] != @@sorting # if this is so, items don't need to be reversed
       if params[:sort] == "id"
-        @members = @members.sort_by { |member| member.id } # must be sort by for array
+        $members = $members.sort_by { |member| member.id } # must be sort by for array
       elsif params[:sort] == "name"
-        @members = @members.sort_by { |member| member.name }
+        $members = $members.sort_by { |member| member.name }
       elsif params[:sort] == "committee_id"
-        @members = @members.sort_by { |member| (member.committee_id.present?) ? member.committee_id : -1 }
+        $members = $members.sort_by { |member| (member.committee_id.present?) ? member.committee_id : -1 }
       elsif params[:sort] == "position"
-        @members = @members.sort_by { |member| member.position }
+        $members = $members.sort_by { |member| member.position }
       end
       @@sorting = params[:sort]
     end
@@ -77,20 +78,20 @@ class MembersController < ApplicationController
 
   def search_members
     # Search for member
-    redirect_to member_path(@member) if @member = Member.all.find { |member| member.name.include?(params[:search]) }
+    redirect_to member_path($member) if $member = Member.all.find { |member| member.name.include?(params[:search]) }
 
   end
 
   def show
-    @member = Member.find(params[:id])
+    $member = Member.find(params[:id])
   end
 
   def new
-    @member = Member.new
+    $member = Member.new
   end
 
   def create
-    @member = Member.new(name: params[:member][:name],
+    $member = Member.new(name: params[:member][:name],
                          committee_id: params[:member][:committee_id],
                          position: params[:member][:position],
                          civicPoints: params[:member][:civicPoints],
@@ -101,49 +102,49 @@ class MembersController < ApplicationController
                          admin_id: params[:member][:admin_id]
                         )
     respond_to do |format|
-      if @member.save
+      if $member.save
         # if the member does not have connected account connect email to member
-        if @member.admin.nil? && @user.nil?
+        if $member.admin.nil? && $user.nil?
           if params[:member][:admin_password] == 'Officer'
-            @member.update(admin_id: current_admin.id, position: 'Admin', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
+            $member.update(admin_id: current_admin.id, position: 'Admin', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
                            totalPoints: 0, status: 'true')
           else
-            @member.update(admin_id: current_admin.id, position: 'Member', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
+            $member.update(admin_id: current_admin.id, position: 'Member', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
                            totalPoints: 0)
           end
         end
-        format.html { redirect_to member_url(@member), notice: 'Member was successfully created.' }
-        format.json { render :show, status: :created, location: @member }
+        format.html { redirect_to member_url($member), notice: 'Member was successfully created.' }
+        format.json { render :show, status: :created, location: $member }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
+        format.json { render json: $member.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def edit
-    @member = Member.find(params[:id])
+    $member = Member.find(params[:id])
   end
 
   def update
-    @member = Member.find(params[:id])
-    if @member.update(member_params)
-      redirect_to member_path(@member)
+    $member = Member.find(params[:id])
+    if $member.update(member_params)
+      redirect_to member_path($member)
     else
       render('edit')
     end
   end
 
   def delete
-    @member = Member.find(params[:id])
+    $member = Member.find(params[:id])
   end
 
   def destroy
-    @member = Member.find(params[:id])
+    $member = Member.find(params[:id])
 
     # sets committee leader to null if deleting member
     Committee.all.each do |committee|
-      if @member.id == committee.member_id 
+      if $member.id == committee.member_id 
         committee.member_id = nil
         committee.save
       end
@@ -151,19 +152,19 @@ class MembersController < ApplicationController
 
     # deletes excuses if deleting member
     Excuse.all.each do |excuse|
-      if @member.id == excuse.member_id 
+      if $member.id == excuse.member_id 
         excuse.destroy
       end
     end
 
     # deletes member event if deleting member
     MemberEvent.all.each do |memberevent|
-      if @member.id == memberevent.member_id 
+      if $member.id == memberevent.member_id 
         memberevent.destroy
       end
     end
 
-    @member.destroy
+    $member.destroy
     Admin.all.each do |admin|
       admin.destroy if admin.member.nil?
     end
@@ -171,7 +172,7 @@ class MembersController < ApplicationController
   end
 
   def update_status
-    @members = Member.order(:id)
+    $members = Member.order(:id)
 
     if request.post?
       if params[:members].present?
