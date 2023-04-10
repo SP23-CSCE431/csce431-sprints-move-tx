@@ -8,6 +8,9 @@ class Event < ApplicationRecord
   validate :non_event_point_type
   validate :formatting
 
+  before_save do
+    self.name = name.strip unless name.nil?
+  end
 
   private
   # if there is a meeting needs to be phrase 

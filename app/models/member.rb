@@ -16,6 +16,8 @@ class Member < ApplicationRecord
 
   # when saving, update points and total points
   before_save do
+    self.name = name.strip unless name.nil?
+    self.position = position.strip unless position.nil?
     self.civicPoints      = 0 if civicPoints.nil?     || civicPoints < 0
     self.outreachPoints   = 0 if outreachPoints.nil?  || outreachPoints < 0
     self.socialPoints     = 0 if socialPoints.nil?    || socialPoints < 0
