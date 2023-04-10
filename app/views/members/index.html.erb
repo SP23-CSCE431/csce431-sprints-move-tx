@@ -30,7 +30,7 @@
       <th class="table-head">Total Points</th>
     </tr>
     <!-- Display each member -->
-    <% @members.each do |member| %>
+    <% $members.each do |member| %>
       <% if member.status == true %>
         <tr>
           <td> <%= member.id %></td>
