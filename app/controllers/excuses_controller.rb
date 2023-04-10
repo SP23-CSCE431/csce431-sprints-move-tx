@@ -42,7 +42,13 @@ class ExcusesController < ApplicationController
     if @user.position != 'Member' then
       render 'show'
     else
-      render 'member_show'
+      # ensures member is not accessing excuse that is not theirs 
+      @excuse = Excuse.find(params[:id])
+      if @user.id != @excuse.member_id
+        redirect_to root_path, notice: 'You do not have access to that excuse'
+      else 
+        render 'member_show'
+      end
     end
   end
 
@@ -53,6 +59,12 @@ class ExcusesController < ApplicationController
 
   # GET /excuses/1/edit
   def edit
+
+    # ensures member is not accessing excuse that is not theirs 
+    @excuse = Excuse.find(params[:id])
+    if @user.id != @excuse.member_id && @user.position == 'Member'
+      redirect_to root_path, notice: 'You do not have access to that excuse'
+    end
   end
 
   # POST /excuses or /excuses.json

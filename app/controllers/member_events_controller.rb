@@ -68,6 +68,18 @@ class MemberEventsController < ApplicationController
 
   # GET /member_events/1 or /member_events/1.json
   def show
+    
+    # ensures that members does not access member_event that is not theirs
+    @member_event = MemberEvent.find(params[:id])
+    if @user.id != @member_event.member_id && @user.position == 'Member'
+      if @member_event.event.event_type == 'Service'
+        redirect_to root_path, notice: 'You do not have access to that service submission'
+      elsif @member_event.event.event_type == 'Meeting'
+        redirect_to root_path, notice: 'You do not have access to that meeting submission'
+      else
+        redirect_to root_path, notice: 'You do not have access to that Personal/Non-Event'
+      end
+    end
   end
 
   # GET /member_events/new
@@ -86,7 +98,20 @@ class MemberEventsController < ApplicationController
 
   # GET /member_events/1/edit
   def edit
-    @version = params[:version] || '2'
+
+    # ensures that members does not access member_event that is not theirs
+    @member_event = MemberEvent.find(params[:id])
+    if @user.id != @member_event.member_id && @user.position == 'Member'
+      if @member_event.event.event_type == 'Service'
+        redirect_to root_path, notice: 'You do not have access to that service submission'
+      elsif @member_event.event.event_type == 'Meeting'
+        redirect_to rooth_path, notice: 'You do not have access to that meeting submission'
+      else
+        redirect_to root_path, notice: 'You do not have access to that Personal/Non-Event'
+      end
+    end
+
+    @version = params[:version] || '1'
   end
 
   # POST /member_events or /member_events.json
