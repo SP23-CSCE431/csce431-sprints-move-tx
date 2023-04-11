@@ -10,8 +10,8 @@ RSpec.describe 'Excuse integration', type: :feature do
         Event.create!(
             name: 'Park clean up',
             date: Date.parse('2022-12-15'),
-            point_type: 'Outreach',
-            event_type: 'Service'
+            event_type: 'Meeting',
+            phrase: "what's down"
         )
     end
 

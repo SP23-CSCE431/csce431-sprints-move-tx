@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :event_id %>
-    <%= form.collection_select :event_id, Event.all, :id, :name %>
+    <%= form.collection_select :event_id, Event.where(event_type: "Meeting"), :id, :name %>
   </div>
 
   <div>

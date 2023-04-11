@@ -9,7 +9,7 @@
   <div>
     <div class="filter-field">
       <%= label_tag :event_name, "Event Name:" %>
-      <%= select_tag :event_name, options_for_select(Event.all.map{ |e| [e.name, e.id] }), prompt: "Select event name" %>
+      <%= select_tag :event_name, options_for_select(Event.where(event_type: "Meeting").map{ |e| [e.name, e.id] }), prompt: "Select event name" %>
     </div>
 
     <div class="filter-field">

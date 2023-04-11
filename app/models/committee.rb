@@ -8,6 +8,10 @@ class Committee < ApplicationRecord
 
     has_many :members, dependent: :nullify
 
+    before_save do
+        self.name = name.strip unless name.nil?
+    end
+
     # ensure that correct input formats are used
     def formatting
         # name only has letters, numbers, apostraphes, and space characters

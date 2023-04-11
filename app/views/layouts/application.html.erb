@@ -48,11 +48,17 @@
           <li class="nav-item <%= active_class(member_events_path) %>">
             <%= link_to "Activities", member_events_path, class: 'nav-link' %>
           </li>
-
-          <!-- Checks if the user is logged in as to not display invalid information -->
+        </ul>
+      </div>
+    <!-- Checks if the user is logged in as to not display invalid information -->
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to "FAQ", faqs_path(format: :html), class: 'nav-link-sep' %>
+          </li>
           <% if !@user.nil? %>
             <li class="nav-item">
-              <%= link_to "Sign Out", destroy_admin_session_path, class: 'nav-link' %>
+              <%= link_to "Sign Out", destroy_admin_session_path, class: 'nav-link-sep' %>
             </li>
             <li class="nav-item">
               <img src="<%= current_admin.avatar_url %>" class='nav-avatar' referrerpolicy="no-referrer"/>
