@@ -1,0 +1,211 @@
+<% if @user.position == 'Member' %>
+
+    <h1>Member Guide</h1>
+
+    <h2>First Time Login</h2>
+    <ul>
+        <li>Log into website using tamu gmail account</li>
+        <li>Wait for approval from Officers</li>
+        <li>Once you have approval you can use the website</li>
+    </ul>
+
+    <h2>Home page</h2>
+    <ul>
+        <li>on the home page will be able to view your personal information like position and point totals </li>
+        <li>you should also be able to view your past events you have signed up for</li>
+    </ul>
+
+    <h2>Committes Page</h2>
+    <ul>
+        <li>Allows you to view all the committees for Move TX </li>
+        <li>In addition 'show this comittee' will let you view all the members in a certain comittee</li>
+    </ul>
+
+    <h2>Excuses Page</h2>
+    <ul>
+        <li>view all you excuses for meetings </li>
+        <li>create new excuse when needed</li>
+    </ul>
+
+    <h2>Events Page</h2>
+    <ul>
+        <li>view all events for Move TX </li>
+        <li>Filter events by event type, month, or year</li>
+        <li>When selected a month you must have a year selected as well</li>
+    </ul>
+
+    <h2>Activities Page</h2>
+    <ul>
+        <li>view services and Personal/Non-Event submissions along with meeting attendance </li>
+        <li>Service Submission:
+            <ul>
+                <li>Select the event you want to submit for approval</li>
+                <li>Select officer for approval. Note: need to have atleast one marked for aproval</li>
+                <li>Choose your desired file if neccesary</li>
+            </ul>
+        </li>
+        <li>Personal/Non-Event Submission:
+            <ul>
+                <li>Select the event you want to submit for approval</li>
+                <li>Select officer for approval. Note: need to have atleast one marked for aproval</li>
+                <li>Choose your desired file if neccesary</li>
+                <li>Fill in Description if neccessary</li>
+            </ul>
+        </li>
+        <li>Meeting Sign in:
+            <ul>
+                <li>Select the meeting you are signing up for</li>
+                <li>Enter the password for the meeting. Note: will be given by officers during meeting</li>
+            </ul>
+        </li>
+    </ul>
+
+<% end %>
+
+<% if @user.position != 'Member' %>
+    <h1>Officer Guide</h1>
+
+    <h2>First Time Login</h2>
+    <ul>
+        <li>Login using your tamu email address</li>
+        <li>If you are new to the website you can use the officer override 
+        password or wait for another officer to approve your status and then change your position manually</li>
+    </ul>
+
+    <h2>New Member Approval</h2>
+    <ul>
+        <li>This is where you approve all the users you want to have access to the website </li>
+        <li>Check all the boxes of the members you want and leave the ones you don’t unchecked and hit submit</li>
+        <li>Once you hit submit checked users will have access to the website and unchecked members will be deleted from the website </li>
+    </ul>
+
+    <h2>Member List </h2>
+    <ul>
+        <li>View all the members in the organization</li>
+        <li>Can edit status of members such as position committee and point totals</li>
+        <li>Can also delete members if necessary</li>
+    </ul>
+
+    <h2>Committees</h2>
+    <ul>
+        <li>Here you can view all of your committees along with editing and delete when necessary</li>
+        <li>When you click on show committee you will be able to see all members in the committee along with the leading member</li>
+        <li>When you set a committee leader you also want to manually set their position to your desired role as well otherwise the will not have officer permissions</li>
+    </ul>
+
+    <h2>Excuses</h2>
+    <ul>
+        <li>View all excuses created by members, along with their associated events</li>
+        <li>Clicking on the file will open it</li>
+        <li>After clicking on “Show” you can mark an excuse as approved.</li>
+        <li>Edit allows changes to be made to the excuse, while delete will delete it (after confirmation)</li>
+        <li>To filter the results, select the event and/or member and click, “Filter”</li>
+    </ul>
+
+    <h2>Excuses</h2>
+    <ul>
+        <li>View all excuses created by members, along with their associated events</li>
+        <li>Clicking on the file will open it</li>
+        <li>After clicking on “Show” you can mark an excuse as approved.</li>
+        <li>Edit allows changes to be made to the excuse, while delete will delete it (after confirmation)</li>
+        <li>To filter the results, select the event and/or member and click, “Filter”</li>
+    </ul>
+
+    <h2>Activities</h2>
+    <ul>
+        <li>view services and Personal/Non-Event submissions along with meeting attendance </li>
+        <li>Service Submission:
+            <ul>
+                <li>Select the event you want to submit for approval</li>
+                <li>Select officer for approval. Note: need to have atleast one marked for aproval</li>
+                <li>Choose your desired file if neccesary</li>
+            </ul>
+        </li>
+        <li>Personal/Non-Event Submission:
+            <ul>
+                <li>Select the event you want to submit for approval</li>
+                <li>Select officer for approval. Note: need to have atleast one marked for aproval</li>
+                <li>Choose your desired file if neccesary</li>
+                <li>Fill in Description if neccessary</li>
+            </ul>
+        </li>
+        <li>Meeting Sign in:
+            <ul>
+                <li>Select the meeting you are signing up for</li>
+                <li>Enter the password for the meeting. Note: will be given by officers during meeting</li>
+            </ul>
+        </li>
+        <li>Officers have the ability to approve events they have been requested for:
+            <ul>
+                <li>Click approve on the specific event you want to approve </li>
+                <li>Then there will be a page displaying the information for the event and you can approve the event from there</li>
+                <li>You can also unapprove a meeting if you need to change the status back for any reason </li>
+            </ul>
+        </li>
+    </ul>
+<% end %>
+
+<% if @user.position == 'Member' %>
+    <h1>Frequently Asked Questions for Members</h1>
+    <h2>How do I join a committee?</h2>
+    <ul>
+        <li>Ask the committee director to add you to the committee </li>
+    </ul>
+
+    <h2>I missed a meeting because I was sick. What should I do?</h2>
+    <ul>
+        <li>Under the “Excuses” tab, you can create an excuse to be reviewed by an officer.</li>
+        <li>When making the excuse, describe why you were absent, select the event that you missed, and upload some sort of proof to confirm your excuse.</li>
+    </ul>
+
+    <h2>Can I add the Event Calendar to my Google Calendar?</h2>
+    <ul>
+        <li>Yes, on the bottom-right of the calendar, there's a ‘+’ symbol, which you can click on.</li>
+        <li>This will redirect you to the Google Calendar, where you can add the calendar to your calendars.</li>
+    </ul>
+
+    <h2>Where do I get the pass-phrase for the meeting sign in?</h2>
+    <ul>
+        <li>The phrase is given during its associated meeting. Contact an officer if you believe the phrase was not mentioned.</li>
+    </ul>
+
+    <h2>What are personal/non-events?</h2>
+    <ul>
+        <li>Personal/non-events are ways to earn points outside of organization-wide events</li>
+        <li>These may include things such as personal projects, social media posts, or any other activities that reflect the interests of the organization.</li>
+        <li>Submissions must be approved by an officer to earn points, and should contain a description of what was accomplished, along with some sort of proof in the form of a file submission if neccesary.</li>
+    </ul>
+<% end %>
+
+<% if @user.position != 'Member' %>
+    <h1>Frequently Asked Questions for Officers</h1>
+
+    <h2>What if leave a member I want approved unchecked during membership approval?</h2>
+    <ul>
+        <li>Ask the user to log back in and another request will be available for you </li>
+    </ul>
+
+    <h2>How do I change the positions of members?</h2>
+    <ul>
+        <li>To change the position of members you go to the members page and click edit on the member you want to change. From there you have the option to change the position of that member. 
+        When changing the position to a regular member it is important to make sure that you set the position to <strong>“Member”</strong>. With correct spelling and capitalization. </li>
+    </ul>
+
+    <h2>What if I accidentally approve a service by mistake?</h2>
+    <ul>
+        <li>You can unapprove the service and the point will be taken away</li>
+    </ul>
+
+    <h2>What are personal/non-events?</h2>
+    <ul>
+        <li>Personal/non-events are ways to earn points outside of organization-wide events</li>
+        <li>These may include things such as personal projects, social media posts, or any other activities that reflect the interests of the organization.</li>
+        <li>Submissions must be approved by an officer to earn points, and should contain a description of what was accomplished, along with some sort of proof in the form of a file submission if neccesary.</li>
+        <li>4 have already been entered for the 4 different types of points in Move TX</li>
+    </ul>
+<% end %>
+
+
+
+
+
