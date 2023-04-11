@@ -19,7 +19,8 @@ Rails.application.routes.draw do
 
 
   get 'main/index'
-  resources :faq
+  resources :faqs
+
   # get 'members/index'
   # get 'members/new'
   # get 'members/edit'
