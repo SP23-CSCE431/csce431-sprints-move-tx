@@ -144,3 +144,23 @@
   height: 25px;
   width: 25px;
 }
+
+.nav-link-sep {
+  color: #fff2d5;
+  background-color: #510000;
+  text-decoration: none;
+  overflow: hidden;
+  text-align: center;
+  display: inline-block;
+  padding: 14px 20px;
+}
+
+.nav-link-sep:hover {
+  color: #CEC5AF;
+  background-color: #410100;
+}
+
+.nav-link-sep:active {
+  color: #CEC5AF;
+  background-color: #2e0100;
+}
