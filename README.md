@@ -2,7 +2,7 @@
 
 ## Introduction ##
 
-Our team is creating an application for the Move TX organization. This application will enable each member to log their points, attendance, and absence excuses, as well as view the org’s events in a calendar. In addition, administrators will also be able to view member points and excuses, and create events, committees, and new members. Admins will also be able to add events to the calendar. 
+Our team is creating an application for the Move TX organization. This application will enable each member to log their points, attendance, and absence excuses, as well as view the org’s events in a calendar. In addition, administrators will also be able to view member points and excuses, and create events, committees, and new members. Admins will also be able to add events to the calendar.
 
 ## Requirements ##
 
@@ -13,6 +13,11 @@ This code has been run and tested on:
 * Ruby Gems - Listed in `Gemfile`
 * PostgreSQL - 1.1
 * Puma - 5.0
+* Rspec-rails - 7.0.4
+* Omniauth - 2.1.1
+* RuboCop - 1.30.0
+* Brakeman - 5.4.0
+* Simplecov - 0.22.0
 
 
 ## External Deps  ##
@@ -20,6 +25,21 @@ This code has been run and tested on:
 * Docker - Download latest version at https://www.docker.com/products/docker-desktop
 * Heroku CLI - Download latest version at https://devcenter.heroku.com/articles/heroku-cli
 * Git - Downloat latest version at https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+* GitHub Desktop (Not needed, but HELPFUL) at https://desktop.github.com/
+
+## Documentation
+
+Our product and sprint backlog can be found in Jira, with organization name [NAME] and project name [NAME]
+
+Document
+•	Data Design v?
+•	UX Design v?
+•	User’s Manual v?
+•	Others
+
+Data
+•	Test Data v?
+•	Others
 
 ## Installation ##
 
