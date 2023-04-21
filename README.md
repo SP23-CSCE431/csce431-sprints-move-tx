@@ -29,17 +29,12 @@ This code has been run and tested on:
 
 ## Documentation
 
-Our product and sprint backlog can be found in Jira, with organization name [NAME] and project name [NAME]
+Our product and sprint backlog can be found in Jira, with organization name MOVE TX and project name MOVE TX
 
 Document
-•	Data Design v?
-•	UX Design v?
-•	User’s Manual v?
-•	Others
-
-Data
-•	Test Data v?
-•	Others
+*	Data Design - 4.0
+*	UX Design - 4.0
+*	User’s Manual - 1.0
 
 ## Installation ##
 
