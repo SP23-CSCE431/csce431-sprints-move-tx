@@ -70,6 +70,24 @@ class MembersController < ApplicationController
         $members = $members.sort_by { |member| (member.committee_id.present?) ? member.committee_id : -1 }.reverse
       elsif params[:sort] == "position"
         $members = $members.sort_by { |member| member.position }.reverse
+      elsif params[:sort] == "civicPoints"
+        $members = $members.sort_by { |member| member.civicPoints }.reverse
+      elsif params[:sort] == "outreachPoints"
+        $members = $members.sort_by { |member| member.outreachPoints }.reverse
+      elsif params[:sort] == "socialPoints"
+        $members = $members.sort_by { |member| member.socialPoints }.reverse
+      elsif params[:sort] == "marketingPoints"
+        $members = $members.sort_by { |member| member.marketingPoints }.reverse
+      elsif params[:sort] == "totalPoints"
+        $members = $members.sort_by { |member| member.totalPoints }.reverse
+      elsif params[:sort] == "eventsSubmitted"
+        $members = $members.sort_by { |member| MemberEvent.joins(:event).where.not(events: {event_type: "Meeting"}).where(member_id: member.id).count }.reverse
+      elsif params[:sort] == "eventsApproved"
+        $members = $members.sort_by { |member| MemberEvent.joins(:event).where.not(events: {event_type: "Meeting"}).where(member_id: member.id).where(approved_status: true).count }.reverse
+      elsif params[:sort] == "excusesSubmitted"
+        $members = $members.sort_by { |member| Excuse.joins(:event).where(events: {event_type: "Meeting"}).where(member_id: member.id).count }.reverse
+      elsif params[:sort] == "excusesApproved"
+        $members = $members.sort_by { |member| Excuse.joins(:event).where(events: {event_type: "Meeting"}).where(member_id: member.id).where(approved: true).count }.reverse
       end
       @@sorting = ''
     elsif params[:sort] != @@sorting # if this is so, items don't need to be reversed
@@ -81,6 +99,24 @@ class MembersController < ApplicationController
         $members = $members.sort_by { |member| (member.committee_id.present?) ? member.committee_id : -1 }
       elsif params[:sort] == "position"
         $members = $members.sort_by { |member| member.position }
+      elsif params[:sort] == "civicPoints"
+        $members = $members.sort_by { |member| member.civicPoints }
+      elsif params[:sort] == "outreachPoints"
+        $members = $members.sort_by { |member| member.outreachPoints }
+      elsif params[:sort] == "socialPoints"
+        $members = $members.sort_by { |member| member.socialPoints }
+      elsif params[:sort] == "marketingPoints"
+        $members = $members.sort_by { |member| member.marketingPoints }
+      elsif params[:sort] == "totalPoints"
+        $members = $members.sort_by { |member| member.totalPoints }
+      elsif params[:sort] == "eventsSubmitted"
+        $members = $members.sort_by { |member| MemberEvent.joins(:event).where.not(events: {event_type: "Meeting"}).where(member_id: member.id).count }
+      elsif params[:sort] == "eventsApproved"
+        $members = $members.sort_by { |member| MemberEvent.joins(:event).where.not(events: {event_type: "Meeting"}).where(member_id: member.id).where(approved_status: true).count }
+      elsif params[:sort] == "excusesSubmitted"
+        $members = $members.sort_by { |member| Excuse.joins(:event).where(events: {event_type: "Meeting"}).where(member_id: member.id).count }
+      elsif params[:sort] == "excusesApproved"
+        $members = $members.sort_by { |member| Excuse.joins(:event).where(events: {event_type: "Meeting"}).where(member_id: member.id).where(approved: true).count }
       end
       @@sorting = params[:sort]
     end
@@ -116,10 +152,10 @@ class MembersController < ApplicationController
         # if the member does not have connected account connect email to member
         if @member.admin.nil? && @user.nil?
           if params[:member][:admin_password] == 'Officer'
-            @member.update(admin_id: current_admin.id, position: 'Admin', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
+            @member.update(admin_id: current_admin.id, position: 'Admin', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0,
                            totalPoints: 0, status: 'true')
           else
-            @member.update(admin_id: current_admin.id, position: 'Member', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0, 
+            @member.update(admin_id: current_admin.id, position: 'Member', civicPoints: 0, outreachPoints: 0, socialPoints: 0, marketingPoints: 0,
                            totalPoints: 0)
           end
         end
@@ -154,7 +190,7 @@ class MembersController < ApplicationController
 
     # sets committee leader to null if deleting member
     Committee.all.each do |committee|
-      if @member.id == committee.member_id 
+      if @member.id == committee.member_id
         committee.member_id = nil
         committee.save
       end
@@ -162,14 +198,14 @@ class MembersController < ApplicationController
 
     # deletes excuses if deleting member
     Excuse.all.each do |excuse|
-      if @member.id == excuse.member_id 
+      if @member.id == excuse.member_id
         excuse.destroy
       end
     end
 
     # deletes member event if deleting member
     MemberEvent.all.each do |memberevent|
-      if @member.id == memberevent.member_id 
+      if @member.id == memberevent.member_id
         memberevent.destroy
       end
     end

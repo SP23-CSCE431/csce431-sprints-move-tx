@@ -23,15 +23,15 @@
       <th class="table-head"><%= link_to "Member Name", {:sort => "name"}, class: 'table-link'%></th>
       <th class="table-head"><%= link_to "Committee", {:sort => "committee_id"}, class: 'table-link'%></th>
       <th class="table-head"><%= link_to "Position", {:sort => "position"}, class: 'table-link'%></th>
-      <th class="table-head">Civic Points</th>
-      <th class="table-head">Outreach Points</th>
-      <th class="table-head">Social Points</th>
-      <th class="table-head">Marketing Points</th>
-      <th class="table-head">Total Points</th>
-      <th class="table-head">Events Submitted</th>
-      <th class="table-head">Events Approved</th>
-      <th class="table-head">Excuses Submitted</th>
-      <th class="table-head">Excuses Approved</th>
+      <th class="table-head"><%= link_to "Civic Points", {:sort => "civicPoints"}, class: 'table-link'%></th>
+      <th class="table-head"><%= link_to "Outreach Points", {:sort => "outreachPoints"}, class: 'table-link'%></th>
+      <th class="table-head"><%= link_to "Social Points", {:sort => "socialPoints"}, class: 'table-link'%></th>
+      <th class="table-head"><%= link_to "Marketing Points", {:sort => "marketingPoints"}, class: 'table-link'%></th>
+      <th class="table-head"><%= link_to "Total Points", {:sort => "totalPoints"}, class: 'table-link'%></th>
+      <th class="table-head"><%= link_to "Events Submitted", {:sort => "eventsSubmitted"}, class: 'table-link'%></th>
+      <th class="table-head"><%= link_to "Events Approved", {:sort => "eventsApproved"}, class: 'table-link'%></th>
+      <th class="table-head"><%= link_to "Excuses Submitted", {:sort => "excusesSubmitted"}, class: 'table-link'%></th>
+      <th class="table-head"><%= link_to "Excuses Approved", {:sort => "excusesApproved"}, class: 'table-link'%></th>
     </tr>
     <!-- Display each member -->
     <% $members.each do |member| %>
