@@ -138,4 +138,36 @@
         <% end %>
       <% end %>
     </table>
+
+    <%if @user.position != "Member"%>
+    <h2> Approvals: </h2>
+    <table class="listing" id="Approve By list" summary="Approve By list" style="width: 100%;">
+      <!-- table heads -->
+      <tr class="header">
+        <th class="table-head">Event</th>
+        <th class="table-head">Date</th>
+        <th class="table-head">Member</th>
+        <th class="table-head">Approved status</th>
+        <th class="table-head">Approved By</th>
+        <th class="table-head">File</th>
+      </tr>
+      <!-- Display each member -->
+      <% @service_events.each do |member_event| %>
+          <tr>
+            <td> <%= member_event.event.name %></td>
+            <td> <%= member_event.event.date %></td>
+            <td> <%= member_event.member.name %></td>
+            <td> <%= member_event.approved_status %></td>
+            <td> <%= member_event.approve_by %></td>
+            <% if member_event.file.attached?%>
+              <td> <%= link_to member_event.file.filename, member_event.file  %></td>
+            <% else %>
+              <td>n/a</td>
+            <% end %>
+
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+    <br>
 </div>
