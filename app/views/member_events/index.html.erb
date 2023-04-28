@@ -165,16 +165,6 @@
               <td>n/a</td>
             <% end %>
 
-            <!-- Actions for each member event -->
-            <td class="actions">
-
-              <% if member_event.event.event_type == 'Service' %>
-                <%= link_to("Edit", edit_member_event_path(member_event, version: 1), class: 'action edit') %>
-              <% elsif member_event.event.event_type == 'Personal/Non-Event' %>
-                <%= link_to("Edit", edit_member_event_path(member_event, version: 3), class: 'action edit') %>
-              <% end %>
-              <%= link_to("Delete", delete_member_event_path(member_event), class: 'action delete') %>
-            </td>
           </tr>
         <% end %>
       <% end %>
