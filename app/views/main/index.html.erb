@@ -15,6 +15,10 @@
       <th>Social Points</th>
       <th>Marketing Points</th>
       <th>Total Points</th>
+      <th>Events Submitted</th>
+      <th>Events Approved</th>
+      <th>Excuses Submitted</th>
+      <th>Excuses Approved</th>
     </tr>
     <tr>
       <%if @user.committee != nil%>
@@ -28,6 +32,10 @@
       <td> <%= @user.socialPoints %></td>
       <td> <%= @user.marketingPoints %></td>
       <td> <%= @user.totalPoints %></td>
+      <td> <%= MemberEvent.joins(:event).where.not(events: {event_type: "Meeting"}).where(member_id: @user.id).count %> </td>
+      <td> <%= MemberEvent.joins(:event).where.not(events: {event_type: "Meeting"}).where(member_id: @user.id).where(approved_status: true).count %> </td>
+      <td> <%= Excuse.joins(:event).where(events: {event_type: "Meeting"}).where(member_id: @user.id).count %> </td>
+      <td> <%= Excuse.joins(:event).where(events: {event_type: "Meeting"}).where(member_id: @user.id).where(approved: true).count %> </td>
     </tr>
   </table>
   <h2>Your Previous Events: </h2>
