@@ -77,8 +77,8 @@ RSpec.describe 'member_events/index', type: :view do
   it 'renders a list of member_events' do
     render
     cell_selector = 'tr>td'
-    assert_select cell_selector, text: Regexp.new(event[:name].to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(true.to_s), count: 2
-    assert_select cell_selector, text: 'wayland', count: 2
+    assert_select cell_selector, text: Regexp.new(event[:name].to_s), count: 4
+    assert_select cell_selector, text: Regexp.new(true.to_s), count: 4
+    assert_select cell_selector, text: 'wayland', count: 4
   end
 end

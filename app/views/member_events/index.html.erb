@@ -141,13 +141,6 @@
 
     <%if @user.position != "Member"%>
     <h2> Approvals: </h2>
-
-    <%# form submission for filtering service events by approval status %>
-    <%= form_tag member_events_path, method: :get do %>
-      <%= select_tag :service_status, options_for_select((["All", "Approved", "Pending"])), prompt: "Approval Status"%> 
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-      
-    <% end %>
     <table class="listing" id="Approve By list" summary="Approve By list" style="width: 100%;">
       <!-- table heads -->
       <tr class="header">
